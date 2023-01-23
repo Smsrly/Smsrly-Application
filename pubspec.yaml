@@ -63,6 +63,14 @@ flutter:
   assets:
      - images/home_icon_selected.png
      - images/home_icon_not_selected.png
+     - images/search_selected_icon.png
+     - images/search_not_selected_icon.png
+     - images/add_selected_icon.png
+     - images/add_icon_not_selected.png
+     - images/save_icon_selected.png
+     - images/save_icon_not_selected.png
+     - images/setting_icon_selected.png
+     - images/setting_icon_not_selected.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
