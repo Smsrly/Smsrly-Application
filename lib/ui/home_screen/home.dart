@@ -6,10 +6,20 @@ import '../../models/location.dart';
 import '../../models/realestate.dart';
 
 class HomeScreen extends StatefulWidget {
-  RealEstate item = RealEstate(123,
+  RealEstate item = RealEstate(
+      123,
       "https://www.travelandleisure.com/thmb/HaAgtnns6Cp6Tb08MJq8xXOHzH0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/soneva-jani-sunset-view-maldives-SONEVA0421-74b37591d80441ce87831a41da518e49.jpg",
       "Royal Sea Crown",
-      null, "123", "asdasd", 1231.1, 54, 5, 5, 21313.1, Location(21321.3,1231.2),"Egypt, Alex");
+      null,
+      "123",
+      "asdasd",
+      1231.1,
+      54,
+      5,
+      5,
+      21313.1,
+      Location(21321.3, 1231.2),
+      "Egypt, Alex");
   late List<RealEstate> realEstates;
   late User user;
   late VoidCallback seeAllAction;
@@ -30,108 +40,168 @@ class _HomeScreenState extends State<HomeScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-              Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("Welcome, ", style: TextStyle(fontSize: 13,
-                        color: Color.fromRGBO(115, 115, 115, 1)),),
-                    const SizedBox(height: 2,),
-                    Text(widget.user.username, style: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(14, 82, 137, 1)),)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Welcome, ",
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: Color.fromRGBO(115, 115, 115, 1)),
+                        ),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                        Text(
+                          widget.user.username,
+                          style: const TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(14, 82, 137, 1)),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(widget.user.pictureUrl),
+                      ),
+                    ),
                   ],
                 ),
-
-                SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(widget.user.pictureUrl),
-                  ),
+                const SizedBox(
+                  height: 10,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Common Real Estates",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: widget.seeAllAction,
+                        child: const Text(
+                          "See all",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(68, 68, 68, 0.7)),
+                        ))
+                  ],
+                ),
+                SizedBox(
+                  height: 250,
+                  child: ListView(scrollDirection: Axis.horizontal, children: [
+                    Row(
+                      children: [
+                        FirstItem(
+                          item: widget.item,
+                          hasSaved: widget.user.isSaved(widget.item),
+                          onSaveIconSelected: () {
+                            setState(() {
+                              if (widget.user.isSaved(widget.item)) {
+                                widget.user.unSaveRealEstate(widget.item);
+                              } else {
+                                widget.user.saveRealEstate(widget.item);
+                              }
+                            });
+                          },
+                        ),
+                        FirstItem(
+                          item: widget.item,
+                          hasSaved: widget.user.isSaved(widget.item),
+                          onSaveIconSelected: () {
+                            setState(() {
+                              if (widget.user.isSaved(widget.item)) {
+                                widget.user.unSaveRealEstate(widget.item);
+                              } else {
+                                widget.user.saveRealEstate(widget.item);
+                              }
+                            });
+                          },
+                        ),
+                        FirstItem(
+                          item: widget.item,
+                          hasSaved: widget.user.isSaved(widget.item),
+                          onSaveIconSelected: () {
+                            setState(() {
+                              if (widget.user.isSaved(widget.item)) {
+                                widget.user.unSaveRealEstate(widget.item);
+                              } else {
+                                widget.user.saveRealEstate(widget.item);
+                              }
+                            });
+                          },
+                        ),
+                        FirstItem(
+                          item: widget.item,
+                          hasSaved: widget.user.isSaved(widget.item),
+                          onSaveIconSelected: () {
+                            setState(() {
+                              if (widget.user.isSaved(widget.item)) {
+                                widget.user.unSaveRealEstate(widget.item);
+                              } else {
+                                widget.user.saveRealEstate(widget.item);
+                              }
+                            });
+                          },
+                        ),
+                        FirstItem(
+                          item: widget.item,
+                          hasSaved: widget.user.isSaved(widget.item),
+                          onSaveIconSelected: () {
+                            setState(() {
+                              if (widget.user.isSaved(widget.item)) {
+                                widget.user.unSaveRealEstate(widget.item);
+                              } else {
+                                widget.user.saveRealEstate(widget.item);
+                              }
+                            });
+                          },
+                        ),
+                      ],
+                    )
+                  ]),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "More",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: widget.seeAllAction,
+                        child: const Text(
+                          "See all",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(68, 68, 68, 0.7)),
+                        ))
+                  ],
+                ),
+                ListView(
+                  children: [
+
+                  ],
+                )
               ],
             ),
-
-            const SizedBox(
-              height: 10,
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text("Common Real Estates", style: TextStyle(
-                  fontSize: 17, fontWeight: FontWeight.w500,),),
-                TextButton(onPressed: widget.seeAllAction,
-                    child: const Text("See all", style: TextStyle(fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(68, 68, 68, 0.7)),))
-              ],
-            ),
-            SizedBox(
-              height: 250,
-              child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [ Row(
-                    children: [
-                      FirstItem(item: widget.item, hasSaved: widget.user.isSaved(widget.item),onSaveIconSelected: (){
-                        setState(() {
-                          if(widget.user.isSaved(widget.item)){
-                            widget.user.unSaveRealEstate(widget.item);
-                          }else{
-                            widget.user.saveRealEstate(widget.item);
-                          }
-                        });
-                      },),
-                      FirstItem(item: widget.item, hasSaved: widget.user.isSaved(widget.item),onSaveIconSelected: (){
-                        setState(() {
-                          if(widget.user.isSaved(widget.item)){
-                            widget.user.unSaveRealEstate(widget.item);
-                          }else{
-                            widget.user.saveRealEstate(widget.item);
-                          }
-                        });
-                      },),
-                      FirstItem(item: widget.item, hasSaved: widget.user.isSaved(widget.item),onSaveIconSelected: (){
-                        setState(() {
-                          if(widget.user.isSaved(widget.item)){
-                            widget.user.unSaveRealEstate(widget.item);
-                          }else{
-                            widget.user.saveRealEstate(widget.item);
-                          }
-                        });
-                      },),
-                      FirstItem(item: widget.item, hasSaved: widget.user.isSaved(widget.item),onSaveIconSelected: (){
-                        setState(() {
-                          if(widget.user.isSaved(widget.item)){
-                            widget.user.unSaveRealEstate(widget.item);
-                          }else{
-                            widget.user.saveRealEstate(widget.item);
-                          }
-                        });
-                      },),
-                      FirstItem(item: widget.item, hasSaved: widget.user.isSaved(widget.item),onSaveIconSelected: (){
-                        setState(() {
-                          if(widget.user.isSaved(widget.item)){
-                            widget.user.unSaveRealEstate(widget.item);
-                          }else{
-                            widget.user.saveRealEstate(widget.item);
-                          }
-                        });
-                      },),
-                    ],
-                  )
-                  ]
-              ),
-            ),
-          ],
+          ),
         ),
       ),
-    ),)
-    ,
     );
   }
 }
