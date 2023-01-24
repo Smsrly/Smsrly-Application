@@ -11,16 +11,15 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(18.0), topRight: Radius.circular(18.0))),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(18.0),
-          topLeft: Radius.circular(18.0),
-        ),
-        child: BottomAppBar(
-          elevation: 5,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 100,
+            ),
+          ],
+          ),
+      child:BottomAppBar(
+          elevation: 1,
           child: SizedBox(
             height: 56,
             width: double.infinity,
@@ -29,7 +28,6 @@ class BottomNavBar extends StatelessWidget {
                 children: icons),
           ),
         ),
-      ),
     );
   }
 }
