@@ -71,6 +71,8 @@ flutter:
      - images/save_icon_not_selected.png
      - images/setting_icon_selected.png
      - images/setting_icon_not_selected.png
+     - images/save_btn.png
+     - images/saved_btn.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

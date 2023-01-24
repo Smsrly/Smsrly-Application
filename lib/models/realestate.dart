@@ -26,19 +26,19 @@ class RealEstate{
     _title = value;
   }
 
-  late User _owner;
+  late User? _owner;
 
-  User get owner => _owner;
+  User? get owner => _owner;
 
-  set owner(User value) {
+  set owner(User? value) {
     _owner = value;
   }
 
-  late int _ownerId;
+  late String _ownerId;
 
-  int get ownerId => _ownerId;
+  String get ownerId => _ownerId;
 
-  set ownerId(int value) {
+  set ownerId(String value) {
     _ownerId = value;
   }
 
@@ -99,6 +99,15 @@ class RealEstate{
     _location = value;
   }
 
+  late String? _locationText;
+
+
+  String? get locationText => _locationText;
+
+  set locationText(String? value) {
+    _locationText = value;
+  }
+
   RealEstate(
       this._realEstateId,
       this._imageUrl,
@@ -111,5 +120,6 @@ class RealEstate{
       this._bathroomsNo,
       this._roomsNo,
       this._price,
-      this._location);
+      this._location
+      ,this._locationText);
 }

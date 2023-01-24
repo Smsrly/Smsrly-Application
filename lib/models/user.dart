@@ -55,6 +55,9 @@ class User{
   }
   final Map<int , RealEstate> _savedRealEstates={};
 
+  bool isSaved(RealEstate item){
+    return _savedRealEstates.containsKey(item.realEstateId);
+  }
   void saveRealEstate(RealEstate item){
     _savedRealEstates[item.realEstateId] = item;
   }
