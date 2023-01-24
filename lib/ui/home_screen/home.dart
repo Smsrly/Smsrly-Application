@@ -10,7 +10,6 @@ class HomeScreen extends StatefulWidget {
       "https://www.travelandleisure.com/thmb/HaAgtnns6Cp6Tb08MJq8xXOHzH0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/soneva-jani-sunset-view-maldives-SONEVA0421-74b37591d80441ce87831a41da518e49.jpg",
       "Royal Sea Crown",
       null, "123", "asdasd", 1231.1, 54, 5, 5, 21313.1, Location(21321.3,1231.2),"Egypt, Alex");
-  bool hasSaved=false;
   late List<RealEstate> realEstates;
   late User user;
   late VoidCallback seeAllAction;
@@ -78,23 +77,50 @@ class _HomeScreenState extends State<HomeScreen> {
                   scrollDirection: Axis.horizontal,
                   children: [ Row(
                     children: [
-                      FirstItem(item: widget.item, hasSaved: widget.hasSaved,onSaveIconSelected: (){
+                      FirstItem(item: widget.item, hasSaved: widget.user.isSaved(widget.item),onSaveIconSelected: (){
                         setState(() {
-                          widget.hasSaved=!widget.hasSaved;
-                          print(widget.hasSaved);
-                            });
+                          if(widget.user.isSaved(widget.item)){
+                            widget.user.unSaveRealEstate(widget.item);
+                          }else{
+                            widget.user.saveRealEstate(widget.item);
+                          }
+                        });
                       },),
-                      FirstItem(item: widget.item, hasSaved: widget.hasSaved,onSaveIconSelected: (){
-
+                      FirstItem(item: widget.item, hasSaved: widget.user.isSaved(widget.item),onSaveIconSelected: (){
+                        setState(() {
+                          if(widget.user.isSaved(widget.item)){
+                            widget.user.unSaveRealEstate(widget.item);
+                          }else{
+                            widget.user.saveRealEstate(widget.item);
+                          }
+                        });
                       },),
-                      FirstItem(item: widget.item, hasSaved: widget.hasSaved,onSaveIconSelected: (){
-
+                      FirstItem(item: widget.item, hasSaved: widget.user.isSaved(widget.item),onSaveIconSelected: (){
+                        setState(() {
+                          if(widget.user.isSaved(widget.item)){
+                            widget.user.unSaveRealEstate(widget.item);
+                          }else{
+                            widget.user.saveRealEstate(widget.item);
+                          }
+                        });
                       },),
-                      FirstItem(item: widget.item, hasSaved: widget.hasSaved,onSaveIconSelected: (){
-
+                      FirstItem(item: widget.item, hasSaved: widget.user.isSaved(widget.item),onSaveIconSelected: (){
+                        setState(() {
+                          if(widget.user.isSaved(widget.item)){
+                            widget.user.unSaveRealEstate(widget.item);
+                          }else{
+                            widget.user.saveRealEstate(widget.item);
+                          }
+                        });
                       },),
-                      FirstItem(item: widget.item, hasSaved: widget.hasSaved,onSaveIconSelected: (){
-
+                      FirstItem(item: widget.item, hasSaved: widget.user.isSaved(widget.item),onSaveIconSelected: (){
+                        setState(() {
+                          if(widget.user.isSaved(widget.item)){
+                            widget.user.unSaveRealEstate(widget.item);
+                          }else{
+                            widget.user.saveRealEstate(widget.item);
+                          }
+                        });
                       },),
                     ],
                   )
