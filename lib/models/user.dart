@@ -1,4 +1,5 @@
 import 'package:smsrly/models/location.dart';
+import 'package:smsrly/models/realestate.dart';
 
 class User{
 
@@ -52,8 +53,18 @@ class User{
   set pictureUrl(String value) {
     _pictureUrl = value;
   }
+  final Map<int , RealEstate> _savedRealEstates={};
+
+  void saveRealEstate(RealEstate item){
+    _savedRealEstates[item.realEstateId] = item;
+  }
+  void unSaveRealEstate(RealEstate item){
+    _savedRealEstates.remove(item.realEstateId);
+  }
 
   User(this._userId, this._username, this._email, this._phoneNumber,
       this._location, this._pictureUrl);
+
+
 
 }
