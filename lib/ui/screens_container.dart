@@ -98,8 +98,11 @@ void main() {
     print("old : ${currItem.realEstateId}");
     currItem.realEstateId=currItemID;
     print("new : ${currItem.realEstateId}");
+    int mapSize=itemsMap.length;
     itemsMap[currItem.realEstateId] = currItem;
-    IDs.add(currItem.realEstateId);
+    if(mapSize != itemsMap.length){
+      IDs.add(currItem.realEstateId);
+    }
   }
   print(itemsMap);
   print(itemsMap.length);
