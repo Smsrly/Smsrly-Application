@@ -91,7 +91,7 @@ class FirstItem extends StatelessWidget {
                       const Icon(Icons.location_on_outlined,color: Color.fromARGB(
                           255, 188, 188, 188),
                       ),
-                      Text(item.locationText??"",style: const TextStyle(
+                      Text(item.locationText ?? "${item.location.late}, ${item.location.long}",style: const TextStyle(
                         color:
                         Color.fromARGB(
                             255, 188, 188, 188

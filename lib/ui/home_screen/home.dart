@@ -14,11 +14,11 @@ class HomeScreen extends StatefulWidget {
       null,
       "123",
       "asdasd",
-      1231.1,
+      1231,
       54,
       5,
       5,
-      21313.1,
+      100000,
       Location(21321.3, 1231.2),
       "Egypt, Alex");
   late List<RealEstate> realEstates;

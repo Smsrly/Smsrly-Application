@@ -41,7 +41,9 @@ class SecondItem extends StatelessWidget {
                 children: [
                   Text(item.title,
                       style: const TextStyle(
-                          fontSize: 17, fontWeight: FontWeight.w400)),
+                          fontSize: 17, fontFamily: "IBMPlexSans",
+                          fontWeight: FontWeight.w400,
+                      )),
                   Row(
                     children: [
                       SizedBox(
@@ -51,10 +53,11 @@ class SecondItem extends StatelessWidget {
                       const SizedBox(
                         width: 4,
                       ),
-                      Text(item.locationText ?? "",
+                      Text(item.locationText ?? "${item.location.late}, ${item.location.long}",
                           style: const TextStyle(
-                              fontSize: 15,
+                              fontFamily: "IBMPlexSans",
                               fontWeight: FontWeight.w400,
+                              fontSize: 15,
                               color: Color.fromRGBO(103, 103, 103, 1))),
                     ],
                   ),
@@ -71,16 +74,18 @@ class SecondItem extends StatelessWidget {
                       Text(
                         "${item.area} m²",
                         style: const TextStyle(
-                            fontSize: 15,
+                            fontFamily: "IBMPlexSans",
                             fontWeight: FontWeight.w400,
+                            fontSize: 15,
                             color: Color.fromRGBO(103, 103, 103, 1)),
                       ),
                     ],
                   ),
                   Text("${item.price} EGP",
                       style: const TextStyle(
-                          fontSize: 15,
+                          fontFamily: "IBMPlexSans",
                           fontWeight: FontWeight.w400,
+                          fontSize: 15,
                           color: Color.fromRGBO(14, 82, 137, 1))),
                 ],
               ),
