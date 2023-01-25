@@ -77,14 +77,15 @@ class FirstItem extends StatelessWidget {
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 18,
-                            fontWeight: FontWeight.w300
+                          fontFamily: "IBMPlexSans",
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                       const Expanded(flex: 1,child: SizedBox()),
                     ],
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 2,
                   ),
                   Row(
                     children:  [
@@ -96,7 +97,8 @@ class FirstItem extends StatelessWidget {
                         Color.fromARGB(
                             255, 188, 188, 188
                         ),
-                        fontWeight: FontWeight.w300,
+                        fontFamily: "IBMPlexSans",
+                        fontWeight: FontWeight.w400,
                       ),)
                     ],
                   )
