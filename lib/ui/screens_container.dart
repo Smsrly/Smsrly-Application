@@ -77,7 +77,7 @@ void main() {
   var items = [item1, item2, item3];
   List<int> IDs=[];
   Map<int, RealEstate> itemsMap = {};
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; i < 10; i++) {
     var currUserIndex = Random().nextInt(3);
     var currItemIndex = Random().nextInt(3);
     var currItemID = Random().nextInt(100);
