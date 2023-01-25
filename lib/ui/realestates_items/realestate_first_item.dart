@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 import '../../models/realestate.dart';
-class FirstItem extends StatelessWidget {
+class FirstItem extends StatefulWidget {
   late bool hasSaved;
   late RealEstate item;
   VoidCallback? onSaveIconSelected;
   FirstItem({Key? key, required this.item, required this.hasSaved,required this.onSaveIconSelected}) : super(key: key);
 
+  @override
+  State<FirstItem> createState() => _FirstItemState();
+}
+
+class _FirstItemState extends State<FirstItem> {
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -28,7 +33,7 @@ class FirstItem extends StatelessWidget {
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: [
-            Image(image: NetworkImage(item.imageUrl),
+            Image(image: NetworkImage(widget.item.imageUrl),
               fit: BoxFit.cover
               ,
               height: 235,
@@ -60,20 +65,20 @@ class FirstItem extends StatelessWidget {
                       const Expanded(flex: 1,child: SizedBox()),
                       InkWell(
                         onTap: (){
-                          onSaveIconSelected!();
+                          widget.onSaveIconSelected!();
                         },
                         child: Container(
                           margin: const EdgeInsets.all(5),
                           width: 25,
                             height: 30,
-                            child: Image.asset(hasSaved?"images/saved_btn.png":"images/save_btn.png")),
+                            child: Image.asset(widget.hasSaved?"images/saved_btn.png":"images/save_btn.png")),
                       )
                     ],
                   ),
                   const Expanded(flex: 1,child: SizedBox()),
                   Row(
                     children: [
-                      Text(item.title,
+                      Text(widget.item.title,
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -92,7 +97,7 @@ class FirstItem extends StatelessWidget {
                       const Icon(Icons.location_on_outlined,color: Color.fromARGB(
                           255, 188, 188, 188),
                       ),
-                      Text(item.locationText ?? "${item.location.late}, ${item.location.long}",style: const TextStyle(
+                      Text(widget.item.locationText ?? "${widget.item.location.late}, ${widget.item.location.long}",style: const TextStyle(
                         color:
                         Color.fromARGB(
                             255, 188, 188, 188

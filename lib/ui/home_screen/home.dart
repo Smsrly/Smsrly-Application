@@ -21,7 +21,8 @@ class HomeScreen extends StatefulWidget {
       100000,
       Location(21321.3, 1231.2),
       "Egypt, Alex");
-  late List<RealEstate> realEstates;
+  late Map<int, RealEstate> items;
+  late List<int> IDs;
   late User user;
   late VoidCallback seeAllAction;
 
@@ -33,6 +34,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -41,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 10,right: 10, top: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -80,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10,right: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -105,80 +110,37 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(
                   height: 250,
-                  child: ListView(scrollDirection: Axis.horizontal, children: [
-                    Row(
-                      children: [
-                        FirstItem(
-                          item: widget.item,
-                          hasSaved: widget.user.isSaved(widget.item),
-                          onSaveIconSelected: () {
-                            setState(() {
-                              if (widget.user.isSaved(widget.item)) {
-                                widget.user.unSaveRealEstate(widget.item);
-                              } else {
-                                widget.user.saveRealEstate(widget.item);
-                              }
-                            });
+                  child: ListView.builder(
+                    itemCount: widget.items.length!~/3,
+                  scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                      RealEstate currItem= widget.items[widget.IDs[index]]!;
+                        return InkWell(
+                          child: FirstItem(
+                            item: currItem,
+                            hasSaved: widget.user.isSaved(currItem),
+                            onSaveIconSelected: () {
+                              setState(() {
+                                print('before : ${widget.user.isSaved(currItem)}');
+                                print(currItem.realEstateId);
+                                if (widget.user.isSaved(currItem)) {
+                                  widget.user.unSaveRealEstate(currItem);
+                                } else {
+                                  widget.user.saveRealEstate(currItem);
+                                }
+                                print("after : ${widget.user.isSaved(currItem)}");
+                              });
+                            },
+                          ),
+                          onTap: (){
+                            // go to show detail
                           },
-                        ),
-                        FirstItem(
-                          item: widget.item,
-                          hasSaved: widget.user.isSaved(widget.item),
-                          onSaveIconSelected: () {
-                            setState(() {
-                              if (widget.user.isSaved(widget.item)) {
-                                widget.user.unSaveRealEstate(widget.item);
-                              } else {
-                                widget.user.saveRealEstate(widget.item);
-                              }
-                            });
-                          },
-                        ),
-                        FirstItem(
-                          item: widget.item,
-                          hasSaved: widget.user.isSaved(widget.item),
-                          onSaveIconSelected: () {
-                            setState(() {
-                              if (widget.user.isSaved(widget.item)) {
-                                widget.user.unSaveRealEstate(widget.item);
-                              } else {
-                                widget.user.saveRealEstate(widget.item);
-                              }
-                            });
-                          },
-                        ),
-                        FirstItem(
-                          item: widget.item,
-                          hasSaved: widget.user.isSaved(widget.item),
-                          onSaveIconSelected: () {
-                            setState(() {
-                              if (widget.user.isSaved(widget.item)) {
-                                widget.user.unSaveRealEstate(widget.item);
-                              } else {
-                                widget.user.saveRealEstate(widget.item);
-                              }
-                            });
-                          },
-                        ),
-                        FirstItem(
-                          item: widget.item,
-                          hasSaved: widget.user.isSaved(widget.item),
-                          onSaveIconSelected: () {
-                            setState(() {
-                              if (widget.user.isSaved(widget.item)) {
-                                widget.user.unSaveRealEstate(widget.item);
-                              } else {
-                                widget.user.saveRealEstate(widget.item);
-                              }
-                            });
-                          },
-                        ),
-                      ],
-                    )
-                  ]),
+                        );
+                      },
+                  )
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10,right: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -202,80 +164,33 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(
-                  child: ListView(
+                  child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    children: [
-                      Column(
-                        children: [
-                          SecondItem(
-                            item: widget.item,
-                            hasSaved: widget.user.isSaved(widget.item),
-                            onSaveBtn: (){
-                              setState(() {
-                                if (widget.user.isSaved(widget.item)) {
-                                  widget.user.unSaveRealEstate(widget.item);
-                                } else {
-                                  widget.user.saveRealEstate(widget.item);
-                                }
-                              });
-                            },
-                          ),
-                          SecondItem(
-                              item: widget.item,
-                              hasSaved: widget.user.isSaved(widget.item),
-                              onSaveBtn: (){
-                                setState(() {
-                                  if (widget.user.isSaved(widget.item)) {
-                                    widget.user.unSaveRealEstate(widget.item);
-                                  } else {
-                                    widget.user.saveRealEstate(widget.item);
-                                  }
-                                });
-                              },
-                          ),
-                          SecondItem(
-                              item: widget.item,
-                              hasSaved: widget.user.isSaved(widget.item),
-                              onSaveBtn: (){
-                                setState(() {
-                                  if (widget.user.isSaved(widget.item)) {
-                                    widget.user.unSaveRealEstate(widget.item);
-                                  } else {
-                                    widget.user.saveRealEstate(widget.item);
-                                  }
-                                });
-                              },
-                          ),
-                          SecondItem(
-                              item: widget.item,
-                              hasSaved: widget.user.isSaved(widget.item),
-                              onSaveBtn: (){
-                                setState(() {
-                                  if (widget.user.isSaved(widget.item)) {
-                                    widget.user.unSaveRealEstate(widget.item);
-                                  } else {
-                                    widget.user.saveRealEstate(widget.item);
-                                  }
-                                });
-                              },
-                          ),
-                          SecondItem(
-                              item: widget.item,
-                              hasSaved: widget.user.isSaved(widget.item),
-                              onSaveBtn: (){
-                                setState(() {
-                                  if (widget.user.isSaved(widget.item)) {
-                                    widget.user.unSaveRealEstate(widget.item);
-                                  } else {
-                                    widget.user.saveRealEstate(widget.item);
-                                  }
-                                });
-                              },
-                          ),
-                        ],
-                      )
-                    ],
+                    itemCount: widget.items.length! - widget.items.length!~/3,
+                    itemBuilder: (context, index) {
+                      int currIndex = index+widget.items.length!~/3;
+                      RealEstate currItem= widget.items[widget.IDs[currIndex]]!;
+                      return InkWell(
+                        child: SecondItem(
+                          item: currItem,
+                          hasSaved: widget.user.isSaved(currItem),
+                          onSaveBtn: () {
+                            setState(() {
+                              print(currItem.realEstateId);
+                              if (widget.user.isSaved(currItem)) {
+                                widget.user.unSaveRealEstate(currItem);
+                              } else {
+                                widget.user.saveRealEstate(currItem);
+                              }
+                            });
+                          },
+                        ),
+                        onTap: (){
+                          // go to show detail
+                        },
+                      );
+                    }
                   ),
                 )
               ],
