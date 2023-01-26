@@ -48,7 +48,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         flex: 1,
                         child: Container(
                           padding: const EdgeInsets.only(
-                              top: 4, bottom: 4, left: 13, right: 10),
+                              top: 3, bottom: 3, left: 13, right: 10),
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: const Color.fromRGBO(0, 0, 0, 0.1)),
@@ -64,8 +64,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           child: Row(
                             children: [
                               SizedBox(
-                                  width: 25,
-                                  height: 25,
+                                  width: 20,
+                                  height: 20,
                                   child: Image.asset("images/search_icon.png")),
                               const SizedBox(
                                 width: 10,
@@ -90,7 +90,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           ),
                         )),
                     const SizedBox(
-                      width: 10,
+                      width: 8,
                     ),
                     InkWell(
                       child: Container(
@@ -99,8 +99,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             color: const Color.fromRGBO(14, 122, 209, 1),
                             borderRadius: BorderRadius.circular(16)),
                         child: SizedBox(
-                            width: 25,
-                            height: 25,
+                            width: 20,
+                            height: 20,
                             child: Image.asset("images/options_icon.png")),
                       ),
                       onTap: () {},
