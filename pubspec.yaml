@@ -77,6 +77,8 @@ flutter:
      - images/black_location_icon.png
      - images/saved_icon_blue.png
      - images/save_icon_blue.png
+     - images/search_icon.png
+     - images/options_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

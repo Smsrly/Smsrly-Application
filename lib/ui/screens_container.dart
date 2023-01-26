@@ -7,6 +7,7 @@ import 'package:smsrly/ui/home_screen/home.dart';
 import 'package:smsrly/ui/navbar/bottom_nav_bar.dart';
 
 import '../models/realestate.dart';
+import 'explore_screen/explore.dart';
 
 void main() {
   var user1 = User(
@@ -130,7 +131,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   List<Widget> screens = [
     HomeScreen(),
-    Container(),
+    ExploreScreen(),
     Container(),
     Container(),
     Container()
@@ -147,6 +148,11 @@ class _AppState extends State<App> {
       });
     };
     screen1.IDs=widget.IDs;
+
+    var screen2 = screens[1] as ExploreScreen;
+    screen2.items=widget.items;
+    screen2.IDs=widget.IDs;
+    screen2.user=widget.currUser;
     super.initState();
   }
 

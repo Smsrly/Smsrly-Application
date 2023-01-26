@@ -7,20 +7,7 @@ import '../../models/realestate.dart';
 import '../realestates_items/realestate_second_item.dart';
 
 class HomeScreen extends StatefulWidget {
-  RealEstate item = RealEstate(
-      123,
-      "https://www.travelandleisure.com/thmb/HaAgtnns6Cp6Tb08MJq8xXOHzH0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/soneva-jani-sunset-view-maldives-SONEVA0421-74b37591d80441ce87831a41da518e49.jpg",
-      "Royal Sea Crown",
-      null,
-      "123",
-      "asdasd",
-      1231,
-      54,
-      5,
-      5,
-      100000,
-      Location(21321.3, 1231.2),
-      "Egypt, Alex");
+
   late Map<int, RealEstate> items;
   late List<int> IDs;
   late User user;
@@ -109,12 +96,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 250,
-                  child: ListView.builder(
-                    itemCount: widget.items.length!~/3,
-                  scrollDirection: Axis.horizontal,
+                    height: 250,
+                    child: ListView.builder(
+                      itemCount: widget.items.length!~/3,
+                      scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                      RealEstate currItem= widget.items[widget.IDs[index]]!;
+                        RealEstate currItem= widget.items[widget.IDs[index]]!;
                         return InkWell(
                           child: FirstItem(
                             item: currItem,
@@ -137,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         );
                       },
-                  )
+                    )
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
@@ -165,32 +152,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(
                   child: ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: widget.items.length! - widget.items.length!~/3,
-                    itemBuilder: (context, index) {
-                      int currIndex = index+widget.items.length!~/3;
-                      RealEstate currItem= widget.items[widget.IDs[currIndex]]!;
-                      return InkWell(
-                        child: SecondItem(
-                          item: currItem,
-                          hasSaved: widget.user.isSaved(currItem),
-                          onSaveBtn: () {
-                            setState(() {
-                              print(currItem.realEstateId);
-                              if (widget.user.isSaved(currItem)) {
-                                widget.user.unSaveRealEstate(currItem);
-                              } else {
-                                widget.user.saveRealEstate(currItem);
-                              }
-                            });
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: widget.items.length! - widget.items.length!~/3,
+                      itemBuilder: (context, index) {
+                        int currIndex = index+widget.items.length!~/3;
+                        RealEstate currItem= widget.items[widget.IDs[currIndex]]!;
+                        return InkWell(
+                          child: SecondItem(
+                            item: currItem,
+                            hasSaved: widget.user.isSaved(currItem),
+                            onSaveBtn: () {
+                              setState(() {
+                                print(currItem.realEstateId);
+                                if (widget.user.isSaved(currItem)) {
+                                  widget.user.unSaveRealEstate(currItem);
+                                } else {
+                                  widget.user.saveRealEstate(currItem);
+                                }
+                              });
+                            },
+                          ),
+                          onTap: (){
+                            // go to show detail
                           },
-                        ),
-                        onTap: (){
-                          // go to show detail
-                        },
-                      );
-                    }
+                        );
+                      }
                   ),
                 )
               ],
