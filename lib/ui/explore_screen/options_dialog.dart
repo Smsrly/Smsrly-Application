@@ -1,26 +1,520 @@
 import 'package:flutter/material.dart';
 
-class OptionsDialog extends StatelessWidget {
+class OptionsDialog extends StatefulWidget {
   late BuildContext context;
   OptionsDialog({Key? key,required this.context}) : super(key: key);
 
   @override
+  State<OptionsDialog> createState() => _OptionsDialogState();
+}
+
+class _OptionsDialogState extends State<OptionsDialog> {
+  var _forRentOrSale=-1;
+  @override
   Widget build(BuildContext context) {
     return Dialog(
+
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15)
+          borderRadius: BorderRadius.circular(10)
       ),
       child: SizedBox(
         width: double.infinity,
-        child: Column(
+        height: 500,
+        child: ListView(
           children: [
-            ElevatedButton(onPressed: (){
-              Navigator.pop(context,false);
-            }, child: const Text("Cancel")
-            )
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(left: 10),
+                          child: const Text("Filters",style: TextStyle(
+                              fontSize: 25,
+                              fontFamily: "IBMPlexSans",
+                              fontWeight: FontWeight.w500,
+                              ),)),
+                      IconButton(onPressed: (){
+                        Navigator.pop(context,false);
+
+                      }
+                          , icon: const Icon(Icons.close))
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: InkWell(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
+                                  decoration: BoxDecoration(
+                                    color: _forRentOrSale==-1?const Color.fromRGBO(14, 122, 209, 1):Colors.white,
+                                    borderRadius: BorderRadius.circular(18),
+                                    border: Border.all(width: 2, color:const Color.fromRGBO(14, 122, 209, 1)),
+                                  ),
+                                  child: Center(
+                                    child: Text("All",style:
+                                      TextStyle(
+                                          fontFamily: 'IBMPlexSans',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16,
+                                          color: _forRentOrSale==-1?Colors.white:const Color.fromRGBO(14, 122, 209, 1)
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                onTap: (){
+                                  setState(() {
+                                    _forRentOrSale=-1;
+                                  });
+                                },
+                              ),
+                            ),
+
+                            const SizedBox(width: 8,),
+
+                            Expanded(
+                              flex: 1,
+                              child: InkWell(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
+
+                                  decoration: BoxDecoration(
+                                    color: _forRentOrSale==1?const Color.fromRGBO(14, 122, 209, 1):Colors.white,
+                                    borderRadius: BorderRadius.circular(18),
+                                    border: Border.all(width: 2, color: const Color.fromRGBO(14, 122, 209, 1)),
+                                  ),
+                                  child: Center(
+                                    child: Text("For Sale",style:
+                                    TextStyle(
+                                        fontFamily: 'IBMPlexSans',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 16,
+                                        color: _forRentOrSale==1?Colors.white:const Color.fromRGBO(14, 122, 209, 1)
+                                    ),
+                                    ),
+                                  ),
+                                ),
+                                onTap: (){
+                                  setState(() {
+                                    _forRentOrSale=1;
+                                  });
+                                },
+                              ),
+                            ),
+
+                            const SizedBox(width: 8,),
+
+                            Expanded(
+                              flex: 1,
+                              child: InkWell(
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
+                                  decoration: BoxDecoration(
+                                    color: _forRentOrSale==0?const Color.fromRGBO(14, 122, 209, 1):Colors.white,
+                                    borderRadius: BorderRadius.circular(18),
+                                    border: Border.all(width: 2, color: const Color.fromRGBO(14, 122, 209, 1)),
+                                  ),
+                                  child: Center(
+                                    child: Text("For Rent",style:
+                                    TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'IBMPlexSans',
+                                        fontWeight: FontWeight.w400,
+                                        color: _forRentOrSale==0?Colors.white:const Color.fromRGBO(14, 122, 209, 1)
+                                    ),
+                                    ),
+                                  ),
+                                ),
+                                onTap: (){
+                                  setState(() {
+                                    _forRentOrSale=0;
+                                  });
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 15,),
+                        const Text("Price Range",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'IBMPlexSans',
+                            fontWeight: FontWeight.w500
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        Row(
+                          children:  [
+                            Expanded(
+                              flex: 1,
+                              child: TextFormField(
+                                cursorColor: const Color.fromRGBO(170, 171, 170,1),
+
+                                decoration:  InputDecoration(
+                                  labelText: "Min",
+
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(170, 171, 170,1),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+                            Expanded(
+                              flex: 1,
+                              child: TextFormField(
+                                cursorColor: const Color.fromRGBO(170, 171, 170,1),
+
+                                decoration:  InputDecoration(
+                                  labelText: "Max",
+
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(170, 171, 170,1),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+
+                        const SizedBox(height: 15,),
+                        const Text("Floors Number",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'IBMPlexSans',
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        Row(
+                          children:  [
+                            Expanded(
+                              flex: 1,
+                              child: TextFormField(
+                                cursorColor: const Color.fromRGBO(170, 171, 170,1),
+
+                                decoration:  InputDecoration(
+                                  labelText: "Min",
+
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(170, 171, 170,1),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+                            Expanded(
+                              flex: 1,
+                              child: TextFormField(
+                                cursorColor: const Color.fromRGBO(170, 171, 170,1),
+
+                                decoration:  InputDecoration(
+                                  labelText: "Max",
+
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(170, 171, 170,1),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+
+
+                        const SizedBox(height: 15,),
+                        const Text("Rooms Number",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'IBMPlexSans',
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        Row(
+                          children:  [
+                            Expanded(
+                              flex: 1,
+                              child: TextFormField(
+                                cursorColor: const Color.fromRGBO(170, 171, 170,1),
+
+                                decoration:  InputDecoration(
+                                  labelText: "Min",
+
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(170, 171, 170,1),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+                            Expanded(
+                              flex: 1,
+                              child: TextFormField(
+                                cursorColor: const Color.fromRGBO(170, 171, 170,1),
+
+                                decoration:  InputDecoration(
+                                  labelText: "Max",
+
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(170, 171, 170,1),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+
+
+                        const SizedBox(height: 15,),
+                        const Text("Bathrooms",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'IBMPlexSans',
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        Row(
+                          children:  [
+                            Expanded(
+                              flex: 1,
+                              child: TextFormField(
+                                cursorColor: const Color.fromRGBO(170, 171, 170,1),
+
+                                decoration:  InputDecoration(
+                                  labelText: "Min",
+
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(170, 171, 170,1),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+                            Expanded(
+                              flex: 1,
+                              child: TextFormField(
+                                cursorColor: const Color.fromRGBO(170, 171, 170,1),
+
+                                decoration:  InputDecoration(
+                                  labelText: "Max",
+
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(170, 171, 170,1),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+
+
+                        const SizedBox(height: 15,),
+                        const Text("Area Range",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'IBMPlexSans',
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        Row(
+                          children:  [
+                            Expanded(
+                              flex: 1,
+                              child: TextFormField(
+                                cursorColor: const Color.fromRGBO(170, 171, 170,1),
+
+                                decoration:  InputDecoration(
+                                  labelText: "Min",
+
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(170, 171, 170,1),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+                            Expanded(
+                              flex: 1,
+                              child: TextFormField(
+                                cursorColor: const Color.fromRGBO(170, 171, 170,1),
+
+                                decoration:  InputDecoration(
+                                  labelText: "Max",
+
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    borderSide: const BorderSide(
+                                      color:Color.fromRGBO(170, 171, 170,1),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 15),
+              child:
+                  Expanded(
+                    flex:1,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(14, 122, 209, 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: Text('Submit'),
+                      ),
+                    ),
+                  ),
+            ),
+            const SizedBox(height: 15),
+
           ],
         ),
       ),
-    );;
+    );
   }
 }

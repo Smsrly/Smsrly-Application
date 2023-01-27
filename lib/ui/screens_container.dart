@@ -47,7 +47,7 @@ void main() {
       100000,
       Location(21321.3, 1231.2),
       "Egypt",
-      "Alex");
+      "Alex",1);
   RealEstate item2 = RealEstate(
       122,
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lpibo-ew-1656015868.jpg",
@@ -62,7 +62,7 @@ void main() {
       100000,
       Location(21321.3, 1231.2),
       "Egypt",
-      "Cairo");
+      "Cairo",0);
   RealEstate item3 = RealEstate(
       123,
       "https://pix8.agoda.net/hotelImages/2163054/-1/4f3b334212d6cf837f60ee731edf916d.jpg",
@@ -77,7 +77,7 @@ void main() {
       100000,
       Location(21321.3, 1231.2),
       "Morocco",
-      "Elrbat");
+      "Elrbat",1);
   var items = [item1, item2, item3];
   List<int> IDs=[];
   Map<int, RealEstate> itemsMap = {};
@@ -99,7 +99,9 @@ void main() {
         realCurrItem.price,
         realCurrItem.location,
         realCurrItem.country,
-      realCurrItem.city);
+        realCurrItem.city,
+        realCurrItem.rentOrSale
+    );
     print("old : ${currItem.realEstateId}");
     currItem.realEstateId=currItemID;
     print("new : ${currItem.realEstateId}");

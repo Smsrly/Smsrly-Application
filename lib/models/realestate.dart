@@ -10,6 +10,16 @@ class RealEstate{
     _realEstateId = value;
   }
 
+  // if 0 it for rent , 1 for sale
+
+  late int _rentOrSale;
+
+  int get rentOrSale => _rentOrSale;
+
+  set rentOrSale(int value) {
+    _rentOrSale = value;
+  }
+
   late String _imageUrl;
 
   String get imageUrl => _imageUrl;
@@ -132,5 +142,6 @@ class RealEstate{
       this._price,
       this._location,
       this._country,
-      this._city);
+      this._city,
+      this._rentOrSale);
 }
