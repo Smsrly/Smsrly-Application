@@ -97,7 +97,9 @@ class _FirstItemState extends State<FirstItem> {
                       const Icon(Icons.location_on_outlined,color: Color.fromARGB(
                           255, 188, 188, 188),
                       ),
-                      Text(widget.item.locationText ?? "${widget.item.location.late}, ${widget.item.location.long}",style: const TextStyle(
+                      Text(widget.item.city != null && widget.item.country!= null?
+                          "${widget.item.country}, ${widget.item.city}"
+                          :"${widget.item.location.late}, ${widget.item.location.long}",style: const TextStyle(
                         color:
                         Color.fromARGB(
                             255, 188, 188, 188

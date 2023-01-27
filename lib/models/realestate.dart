@@ -99,13 +99,23 @@ class RealEstate{
     _location = value;
   }
 
-  late String? _locationText;
+
+  late String? _country;
 
 
-  String? get locationText => _locationText;
+  String? get country => _country;
 
-  set locationText(String? value) {
-    _locationText = value;
+  set country(String? value) {
+    _country = value;
+  }
+
+  late String? _city;
+
+
+  String? get city => _city;
+
+  set city(String? value) {
+    _city = value;
   }
 
   RealEstate(
@@ -120,6 +130,7 @@ class RealEstate{
       this._bathroomsNo,
       this._roomsNo,
       this._price,
-      this._location
-      ,this._locationText);
+      this._location,
+      this._country,
+      this._city);
 }

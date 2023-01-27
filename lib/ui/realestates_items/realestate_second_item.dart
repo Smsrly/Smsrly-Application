@@ -38,7 +38,7 @@ class _SecondItemState extends State<SecondItem> {
                   image: NetworkImage(widget.item.imageUrl),
                 ),
               ),
-              const Expanded(flex: 2, child: SizedBox()),
+              const SizedBox(width: 10,),
 
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,7 +58,10 @@ class _SecondItemState extends State<SecondItem> {
                       const SizedBox(
                         width: 4,
                       ),
-                      Text(widget.item.locationText ?? "${widget.item.location.late}, ${widget.item.location.long}",
+                      Text(
+                          widget.item.city != null && widget.item.country!= null
+                          ? "${widget.item.country}, ${widget.item.city}"
+                          : "${widget.item.location.late}, ${widget.item.location.long}",
                           style: const TextStyle(
                               fontFamily: "IBMPlexSans",
                               fontWeight: FontWeight.w400,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smsrly/ui/explore_screen/options_dialog.dart';
 
 import '../../models/realestate.dart';
 import '../../models/user.dart';
@@ -16,6 +17,12 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
+  void showOptionsDialog(var context){
+    showDialog(context: context, builder: (context){
+      var dialog = OptionsDialog(context: context);
+      return dialog;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +110,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             height: 20,
                             child: Image.asset("images/options_icon.png")),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        showOptionsDialog(context);
+                      },
                     ),
                   ],
                 ),
