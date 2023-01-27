@@ -62,7 +62,7 @@ void main() {
       100000,
       Location(21321.3, 1231.2),
       "Egypt",
-      "Alex");
+      "Cairo");
   RealEstate item3 = RealEstate(
       123,
       "https://pix8.agoda.net/hotelImages/2163054/-1/4f3b334212d6cf837f60ee731edf916d.jpg",
@@ -76,8 +76,8 @@ void main() {
       5,
       100000,
       Location(21321.3, 1231.2),
-      "Egypt",
-      "Alex");
+      "Morocco",
+      "Elrbat");
   var items = [item1, item2, item3];
   List<int> IDs=[];
   Map<int, RealEstate> itemsMap = {};

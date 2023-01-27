@@ -8,6 +8,8 @@ import '../realestates_items/realestate_second_item.dart';
 class ExploreScreen extends StatefulWidget {
   late Map<int, RealEstate> items;
   late List<int> IDs;
+
+
   late User user;
 
   ExploreScreen({Key? key}) : super(key: key);
@@ -17,11 +19,45 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
+  late Map<int, RealEstate> _filteredItems;
+  late List<int> _filteredIDs;
+
   void showOptionsDialog(var context){
     showDialog(context: context, builder: (context){
       var dialog = OptionsDialog(context: context);
       return dialog;
     });
+  }
+  void _runFilter(String text){
+    text=text.toLowerCase().trim();
+    Map<int, RealEstate> map ={};
+    List<int> list =[];
+    print('asdas');
+    if(text.isEmpty){
+      map=widget.items;
+      list=widget.IDs;
+    }else{
+      for(var entry in widget.items.entries){
+        var bool1 = entry.value.city?.toLowerCase().contains(text);
+        var bool2 = entry.value.country?.toLowerCase().contains(text);
+        print('$bool1 $bool2');
+        if(bool1! || bool2!){
+          list.add(entry.key);
+          map[entry.key] = entry.value;
+        }
+      }
+    }
+    print('list length: ${list.length} , map length: ${map.length}');
+    setState(() {
+      _filteredIDs=list;
+      _filteredItems=map;
+    });
+  }
+  @override
+  void initState() {
+    _filteredItems=widget.items;
+    _filteredIDs=widget.IDs;
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
@@ -80,6 +116,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               Expanded(
                                 flex: 1,
                                 child: TextFormField(
+                                  onChanged: (value)=>_runFilter(value),
                                   cursorColor:
                                       const Color.fromRGBO(169, 169, 169, 1),
                                   style: const TextStyle(
@@ -123,9 +160,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: widget.items.length!,
+                  itemCount: _filteredItems.length!,
                   itemBuilder: (context, index) {
-                    RealEstate currItem = widget.items[widget.IDs[index]]!;
+                    RealEstate currItem = _filteredItems[_filteredIDs[index]]!;
                     return InkWell(
                       child: SecondItem(
                         item: currItem,
@@ -146,6 +183,48 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       },
                     );
                   }),
+              const SizedBox(
+                height: 15,
+              ),
+              Visibility(
+                  visible:_filteredIDs.isEmpty,
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Image.asset("images/notfound_icon.png"),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text("Ups!... no results found",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontFamily: 'IBMPlexSans',
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(14, 82, 137, 1)
+                        ),),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        const Text("Please try another search",
+                          style: TextStyle(
+                              fontFamily: 'IBMPlexSans',
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromRGBO(143, 143, 143, 1.0),
+                              fontSize: 15
+                          ),),
+                      ],
+                    ),
+                  )
+              ),
+              const SizedBox(
+                height: 10,
+              ),
             ],
           ),
         ),
