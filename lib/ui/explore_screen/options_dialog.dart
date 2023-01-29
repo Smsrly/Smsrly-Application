@@ -85,9 +85,9 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
                                   decoration: BoxDecoration(
-                                    color: _forRentOrSale==-1?const Color.fromRGBO(14, 122, 209, 1):Colors.white,
+                                    color: _forRentOrSale==-1?const Color.fromRGBO(14, 82, 137, 1):Colors.white,
                                     borderRadius: BorderRadius.circular(18),
-                                    border: Border.all(width: 2, color:const Color.fromRGBO(14, 122, 209, 1)),
+                                    border: Border.all(width: 2, color:const Color.fromRGBO(14, 82, 137, 1)),
                                   ),
                                   child: Center(
                                     child: Text("All",style:
@@ -95,7 +95,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                           fontFamily: 'IBMPlexSans',
                                           fontWeight: FontWeight.w400,
                                           fontSize: 16,
-                                          color: _forRentOrSale==-1?Colors.white:const Color.fromRGBO(14, 122, 209, 1)
+                                          color: _forRentOrSale==-1?Colors.white:const Color.fromRGBO(14, 82, 137, 1)
                                       ),
                                     ),
                                   ),
@@ -117,9 +117,9 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
 
                                   decoration: BoxDecoration(
-                                    color: _forRentOrSale==1?const Color.fromRGBO(14, 122, 209, 1):Colors.white,
+                                    color: _forRentOrSale==1?const Color.fromRGBO(14, 82, 137, 1):Colors.white,
                                     borderRadius: BorderRadius.circular(18),
-                                    border: Border.all(width: 2, color: const Color.fromRGBO(14, 122, 209, 1)),
+                                    border: Border.all(width: 2, color: const Color.fromRGBO(14, 82, 137, 1)),
                                   ),
                                   child: Center(
                                     child: Text("For Sale",style:
@@ -127,7 +127,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                         fontFamily: 'IBMPlexSans',
                                         fontWeight: FontWeight.w400,
                                         fontSize: 16,
-                                        color: _forRentOrSale==1?Colors.white:const Color.fromRGBO(14, 122, 209, 1)
+                                        color: _forRentOrSale==1?Colors.white:const Color.fromRGBO(14, 82, 137, 1)
                                     ),
                                     ),
                                   ),
@@ -148,9 +148,9 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
                                   decoration: BoxDecoration(
-                                    color: _forRentOrSale==0?const Color.fromRGBO(14, 122, 209, 1):Colors.white,
+                                    color: _forRentOrSale==0?const Color.fromRGBO(14, 82, 137, 1):Colors.white,
                                     borderRadius: BorderRadius.circular(18),
-                                    border: Border.all(width: 2, color: const Color.fromRGBO(14, 122, 209, 1)),
+                                    border: Border.all(width: 2, color: const Color.fromRGBO(14, 82, 137, 1)),
                                   ),
                                   child: Center(
                                     child: Text("For Rent",style:
@@ -158,7 +158,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                         fontSize: 16,
                                         fontFamily: 'IBMPlexSans',
                                         fontWeight: FontWeight.w400,
-                                        color: _forRentOrSale==0?Colors.white:const Color.fromRGBO(14, 122, 209, 1)
+                                        color: _forRentOrSale==0?Colors.white:const Color.fromRGBO(14, 82, 137, 1)
                                     ),
                                     ),
                                   ),
@@ -196,7 +196,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     borderSide: const BorderSide(
-                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      color:Color.fromRGBO(14, 82, 137, 1),
                                       width: 2,
                                     ),
                                   ),
@@ -224,7 +224,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     borderSide: const BorderSide(
-                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      color:Color.fromRGBO(14, 82, 137, 1),
                                       width: 2,
                                     ),
                                   ),
@@ -265,7 +265,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     borderSide: const BorderSide(
-                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      color:Color.fromRGBO(14, 82, 137, 1),
                                       width: 2,
                                     ),
                                   ),
@@ -291,7 +291,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     borderSide: const BorderSide(
-                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      color:Color.fromRGBO(14, 82, 137, 1),
                                       width: 2,
                                     ),
                                   ),
@@ -333,7 +333,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     borderSide: const BorderSide(
-                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      color:Color.fromRGBO(14, 82, 137, 1),
                                       width: 2,
                                     ),
                                   ),
@@ -359,7 +359,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     borderSide: const BorderSide(
-                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      color:Color.fromRGBO(14, 82, 137, 1),
                                       width: 2,
                                     ),
                                   ),
@@ -401,7 +401,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     borderSide: const BorderSide(
-                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      color:Color.fromRGBO(14, 82, 137, 1),
                                       width: 2,
                                     ),
                                   ),
@@ -427,7 +427,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     borderSide: const BorderSide(
-                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      color:Color.fromRGBO(14, 82, 137, 1),
                                       width: 2,
                                     ),
                                   ),
@@ -469,7 +469,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     borderSide: const BorderSide(
-                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      color:Color.fromRGBO(14, 82, 137, 1),
                                       width: 2,
                                     ),
                                   ),
@@ -495,7 +495,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     borderSide: const BorderSide(
-                                      color:Color.fromRGBO(14, 122, 209, 1),
+                                      color:Color.fromRGBO(14, 82, 137, 1),
                                       width: 2,
                                     ),
                                   ),
@@ -539,7 +539,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
 
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(14, 122, 209, 1),
+                        backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
                         ),

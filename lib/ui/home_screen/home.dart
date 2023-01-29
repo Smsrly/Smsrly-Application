@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:smsrly/models/user.dart';
 import 'package:smsrly/ui/realestates_items/realestate_first_item.dart';
 
-import '../../models/location.dart';
 import '../../models/realestate.dart';
 import '../realestates_items/realestate_second_item.dart';
 
@@ -97,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                   height: 250,
                   child: ListView.builder(
-                    itemCount: widget.items.length!~/3,
+                    itemCount: widget.items.length~/3,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       RealEstate currItem= widget.items[widget.IDs[index]]!;
@@ -107,14 +106,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           hasSaved: widget.user.isSaved(currItem),
                           onSaveIconSelected: () {
                             setState(() {
-                              print('before : ${widget.user.isSaved(currItem)}');
-                              print(currItem.realEstateId);
+
                               if (widget.user.isSaved(currItem)) {
                                 widget.user.unSaveRealEstate(currItem);
                               } else {
                                 widget.user.saveRealEstate(currItem);
                               }
-                              print("after : ${widget.user.isSaved(currItem)}");
                             });
                           },
                         ),
@@ -153,9 +150,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: widget.items.length! - widget.items.length!~/3,
+                    itemCount: widget.items.length - widget.items.length~/3,
                     itemBuilder: (context, index) {
-                      int currIndex = index+widget.items.length!~/3;
+                      int currIndex = index+widget.items.length~/3;
                       RealEstate currItem= widget.items[widget.IDs[currIndex]]!;
                       return InkWell(
                         child: SecondItem(
@@ -163,7 +160,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           hasSaved: widget.user.isSaved(currItem),
                           onSaveBtn: () {
                             setState(() {
-                              print(currItem.realEstateId);
                               if (widget.user.isSaved(currItem)) {
                                 widget.user.unSaveRealEstate(currItem);
                               } else {

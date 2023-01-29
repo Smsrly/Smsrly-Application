@@ -45,9 +45,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
     text=text.toLowerCase().trim();
     Map<int, RealEstate> map ={};
     List<int> list =[];
-    print('asdas');
 
     for(var entry in widget.items.entries){
+
       var bool1 = text.isEmpty || entry.value.city?.toLowerCase().contains(text) as bool;
       var bool2 = text.isEmpty || entry.value.country?.toLowerCase().contains(text) as bool;
       var bool3 = rentOrSale == -1 || entry.value.rentOrSale == rentOrSale;
@@ -63,7 +63,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
       }
 
     }
-    print('list length: ${list.length} , map length: ${map.length}');
     setState(() {
       _filteredIDs=list;
       _filteredItems=map;
@@ -159,7 +158,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       child: Container(
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                            color: const Color.fromRGBO(14, 122, 209, 1),
+                            color: const Color.fromRGBO(14, 82, 137, 1),
                             borderRadius: BorderRadius.circular(16)),
                         child: SizedBox(
                             width: 20,
@@ -179,7 +178,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: _filteredItems.length!,
+                  itemCount: _filteredItems.length,
                   itemBuilder: (context, index) {
                     RealEstate currItem = _filteredItems[_filteredIDs[index]]!;
                     return InkWell(
@@ -188,7 +187,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         hasSaved: widget.user.isSaved(currItem),
                         onSaveBtn: () {
                           setState(() {
-                            print(currItem.realEstateId);
                             if (widget.user.isSaved(currItem)) {
                               widget.user.unSaveRealEstate(currItem);
                             } else {
@@ -214,9 +212,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          child: Image.asset("images/notfound_icon.png"),
-                        ),
+                        Image.asset("images/notfound_icon.png"),
                         const SizedBox(
                           height: 10,
                         ),
