@@ -36,7 +36,7 @@ void main() {
   RealEstate item1 = RealEstate(
       123,
       "https://www.travelandleisure.com/thmb/HaAgtnns6Cp6Tb08MJq8xXOHzH0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/soneva-jani-sunset-view-maldives-SONEVA0421-74b37591d80441ce87831a41da518e49.jpg",
-      "Royal Sea Crown",
+      "Royal Sea Crown1",
       null,
       "123",
       "asdasd",
@@ -51,7 +51,7 @@ void main() {
   RealEstate item2 = RealEstate(
       122,
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lpibo-ew-1656015868.jpg",
-      "Royal Sea Crown",
+      "Royal Sea Crown2",
       null,
       "123",
       "asdasd",
@@ -66,7 +66,7 @@ void main() {
   RealEstate item3 = RealEstate(
       123,
       "https://pix8.agoda.net/hotelImages/2163054/-1/4f3b334212d6cf837f60ee731edf916d.jpg",
-      "Royal Sea Crown",
+      "Royal Sea Crown3",
       null,
       "123",
       "asdasd",

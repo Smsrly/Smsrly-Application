@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class OptionsDialog extends StatefulWidget {
   late BuildContext context;
-  OptionsDialog({Key? key,required this.context}) : super(key: key);
+  late List<int> numbers;
+  late void Function(List<int>,int) onSubmit;
+  var forRentOrSale=-1;
+  OptionsDialog({Key? key,required this.context,required this.forRentOrSale,required this.numbers}) : super(key: key);
 
   @override
   State<OptionsDialog> createState() => _OptionsDialogState();
@@ -10,6 +14,27 @@ class OptionsDialog extends StatefulWidget {
 
 class _OptionsDialogState extends State<OptionsDialog> {
   var _forRentOrSale=-1;
+  final List<TextEditingController> _controllers=[
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController()
+
+  ];
+  @override
+  void initState() {
+    _forRentOrSale=widget.forRentOrSale;
+    for(int i=0; i<widget.numbers.length;i++){
+      _controllers[i]?.text=widget.numbers[i]!=1000000000000000000 && widget.numbers[i]!=-1?"${widget.numbers[i]}":"";
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -162,8 +187,9 @@ class _OptionsDialogState extends State<OptionsDialog> {
                             Expanded(
                               flex: 1,
                               child: TextFormField(
+                                controller: _controllers[0],
                                 cursorColor: const Color.fromRGBO(170, 171, 170,1),
-
+                                keyboardType: const TextInputType.numberWithOptions(decimal: true),
                                 decoration:  InputDecoration(
                                   labelText: "Min",
 
@@ -189,6 +215,8 @@ class _OptionsDialogState extends State<OptionsDialog> {
                               flex: 1,
                               child: TextFormField(
                                 cursorColor: const Color.fromRGBO(170, 171, 170,1),
+                                keyboardType: TextInputType.number,
+                                controller: _controllers[1],
 
                                 decoration:  InputDecoration(
                                   labelText: "Max",
@@ -230,7 +258,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                               flex: 1,
                               child: TextFormField(
                                 cursorColor: const Color.fromRGBO(170, 171, 170,1),
-
+                                controller: _controllers[2],
                                 decoration:  InputDecoration(
                                   labelText: "Min",
 
@@ -256,7 +284,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                               flex: 1,
                               child: TextFormField(
                                 cursorColor: const Color.fromRGBO(170, 171, 170,1),
-
+                                controller: _controllers[3],
                                 decoration:  InputDecoration(
                                   labelText: "Max",
 
@@ -298,7 +326,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                               flex: 1,
                               child: TextFormField(
                                 cursorColor: const Color.fromRGBO(170, 171, 170,1),
-
+                                controller: _controllers[4],
                                 decoration:  InputDecoration(
                                   labelText: "Min",
 
@@ -324,7 +352,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                               flex: 1,
                               child: TextFormField(
                                 cursorColor: const Color.fromRGBO(170, 171, 170,1),
-
+                                controller: _controllers[5],
                                 decoration:  InputDecoration(
                                   labelText: "Max",
 
@@ -366,7 +394,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                               flex: 1,
                               child: TextFormField(
                                 cursorColor: const Color.fromRGBO(170, 171, 170,1),
-
+                                controller: _controllers[6],
                                 decoration:  InputDecoration(
                                   labelText: "Min",
 
@@ -392,7 +420,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                               flex: 1,
                               child: TextFormField(
                                 cursorColor: const Color.fromRGBO(170, 171, 170,1),
-
+                                controller: _controllers[7],
                                 decoration:  InputDecoration(
                                   labelText: "Max",
 
@@ -434,7 +462,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                               flex: 1,
                               child: TextFormField(
                                 cursorColor: const Color.fromRGBO(170, 171, 170,1),
-
+                                controller: _controllers[8],
                                 decoration:  InputDecoration(
                                   labelText: "Min",
 
@@ -460,7 +488,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                               flex: 1,
                               child: TextFormField(
                                 cursorColor: const Color.fromRGBO(170, 171, 170,1),
-
+                                controller: _controllers[9],
                                 decoration:  InputDecoration(
                                   labelText: "Max",
 
@@ -493,10 +521,23 @@ class _OptionsDialogState extends State<OptionsDialog> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 15),
               child:
-                  Expanded(
-                    flex:1,
+                  SizedBox(
+                    width:double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        List<int> list =[];
+                        for(var i =0; i<_controllers.length;i++){
+                          if(_controllers[i].text.isEmpty){
+                            list.add(i%2==0?-1:1000000000000000000);
+                          }else{
+                            list.add(int.parse(_controllers[i].text.trim()));
+                          }
+                        }
+                        print("listo : $list");
+                    widget.onSubmit(list,_forRentOrSale);
+                        Navigator.pop(context,false);
+
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(14, 122, 209, 1),
                         shape: RoundedRectangleBorder(

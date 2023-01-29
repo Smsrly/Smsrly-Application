@@ -21,31 +21,47 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   late Map<int, RealEstate> _filteredItems;
   late List<int> _filteredIDs;
-
+  var _forRentOrSale=-1;
+  var _searchedText="";
+  var _filtersList =[
+    -1,1000000000000000000,
+    -1, 1000000000000000000,
+    -1,1000000000000000000,
+    -1,1000000000000000000,
+    -1,1000000000000000000
+  ];
   void showOptionsDialog(var context){
     showDialog(context: context, builder: (context){
-      var dialog = OptionsDialog(context: context);
+      var dialog = OptionsDialog(context: context,forRentOrSale: _forRentOrSale,numbers: _filtersList);
+      dialog.onSubmit=(values,forRentOrSale){
+        _filtersList=values;
+        _forRentOrSale=forRentOrSale;
+        _runFilter(_searchedText, _filtersList, _forRentOrSale);
+          };
       return dialog;
     });
   }
-  void _runFilter(String text){
+  void _runFilter(String text,List<int> requirements,int rentOrSale){
     text=text.toLowerCase().trim();
     Map<int, RealEstate> map ={};
     List<int> list =[];
     print('asdas');
-    if(text.isEmpty){
-      map=widget.items;
-      list=widget.IDs;
-    }else{
-      for(var entry in widget.items.entries){
-        var bool1 = entry.value.city?.toLowerCase().contains(text);
-        var bool2 = entry.value.country?.toLowerCase().contains(text);
-        print('$bool1 $bool2');
-        if(bool1! || bool2!){
-          list.add(entry.key);
-          map[entry.key] = entry.value;
-        }
+
+    for(var entry in widget.items.entries){
+      var bool1 = text.isEmpty || entry.value.city?.toLowerCase().contains(text) as bool;
+      var bool2 = text.isEmpty || entry.value.country?.toLowerCase().contains(text) as bool;
+      var bool3 = rentOrSale == -1 || entry.value.rentOrSale == rentOrSale;
+      var bool4 = entry.value.price>=requirements[0] && entry.value.price<=requirements[1];
+      var bool5 = entry.value.floor>=requirements[2] && entry.value.floor<=requirements[3];
+      var bool6 = entry.value.roomsNo>=requirements[4] && entry.value.roomsNo<=requirements[5];
+      var bool7 = entry.value.bathroomsNo>=requirements[6] && entry.value.bathroomsNo<=requirements[7];
+      var bool8 = entry.value.area>=requirements[8] && entry.value.area<=requirements[9];
+
+      if((bool1 || bool2) && bool3 && bool4 && bool5 && bool6 && bool7 && bool8){
+        list.add(entry.key);
+        map[entry.key] = entry.value;
       }
+
     }
     print('list length: ${list.length} , map length: ${map.length}');
     setState(() {
@@ -116,7 +132,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               Expanded(
                                 flex: 1,
                                 child: TextFormField(
-                                  onChanged: (value)=>_runFilter(value),
+                                  onChanged: (value){
+                                    _searchedText=value;
+                                    _runFilter(value,_filtersList,_forRentOrSale);
+                                  },
                                   cursorColor:
                                       const Color.fromRGBO(169, 169, 169, 1),
                                   style: const TextStyle(
