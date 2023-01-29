@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../models/realestate.dart';
+import '../../../models/realestate.dart';
+
 class FirstItem extends StatefulWidget {
   late bool hasSaved;
   late RealEstate item;

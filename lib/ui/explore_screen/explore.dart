@@ -3,7 +3,7 @@ import 'package:smsrly/ui/explore_screen/options_dialog.dart';
 
 import '../../models/realestate.dart';
 import '../../models/user.dart';
-import '../realestates_items/realestate_second_item.dart';
+import '../widgets/realestates_items/realestate_second_item.dart';
 
 class ExploreScreen extends StatefulWidget {
   late Map<int, RealEstate> items;

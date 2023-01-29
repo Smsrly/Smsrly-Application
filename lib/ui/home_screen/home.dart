@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:smsrly/models/user.dart';
-import 'package:smsrly/ui/realestates_items/realestate_first_item.dart';
 
 import '../../models/realestate.dart';
-import '../realestates_items/realestate_second_item.dart';
+import '../widgets/realestates_items/realestate_first_item.dart';
+import '../widgets/realestates_items/realestate_second_item.dart';
 
 class HomeScreen extends StatefulWidget {
 
