@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smsrly/models/user.dart';
+import 'package:smsrly/ui/show_details/show_detail.dart';
 
 import '../../models/realestate.dart';
 import '../widgets/realestates_items/realestate_first_item.dart';
@@ -117,6 +118,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         onTap: (){
                           // go to show detail
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_){
+                              return ShowDetail(item: currItem);
+                            })
+                          );
                         },
                       );
                     },
@@ -169,7 +175,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ),
                         onTap: (){
-                          // go to show detail
+                          // go to show details
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_){
+                                return ShowDetail(item: currItem);
+                              })
+                          );
                         },
                       );
                     }

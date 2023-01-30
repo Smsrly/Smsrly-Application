@@ -3,6 +3,7 @@ import 'package:smsrly/ui/explore_screen/options_dialog.dart';
 
 import '../../models/realestate.dart';
 import '../../models/user.dart';
+import '../show_details/show_detail.dart';
 import '../widgets/realestates_items/realestate_second_item.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -197,6 +198,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       ),
                       onTap: () {
                         // go to show detail
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_){
+                              return ShowDetail(item: currItem);
+                            })
+                        );
                       },
                     );
                   }),
