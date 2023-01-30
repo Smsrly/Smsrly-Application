@@ -18,6 +18,7 @@ class ShowDetail extends StatelessWidget {
                 Column(
                   children: [
                     SizedBox(
+                        width: double.infinity,
                         height: 422,
                         child: Image.network(item.imageUrl,fit: BoxFit.cover,)
                     ),
