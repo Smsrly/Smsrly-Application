@@ -36,7 +36,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  awesome_dialog: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -81,10 +80,6 @@ flutter:
      - images/search_icon.png
      - images/options_icon.png
      - images/notfound_icon.png
-     - images/add.png
-     - images/map.png
-     - images/back.png
-     - images/attach.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -110,10 +105,6 @@ flutter:
          - asset: fonts/IBMPlexSans-Regular.ttf
            weight: 400
          - asset: fonts/IBMPlexSans-Thin.ttf
-     - family: Inter
-       fonts:
-         - asset: fonts/Inter-SemiBold.ttf
-           style: normal
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

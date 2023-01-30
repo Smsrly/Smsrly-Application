@@ -16,21 +16,21 @@ void main() {
       "1",
       "Ahmed Ebeid",
       "ebeidahmed2@gmail.com",
-      "01153180577",
+      "+201153180577",
       Location(30.12571871868943, 31.70773392993082),
       "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg");
   var user2 = User(
       "2",
       "Youssef Amr",
       "youssefamr323@gmail.com",
-      "01153180577",
+      "+201153180577",
       Location(30.12571871868943, 31.70773392993082),
       "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg");
   var user3 = User(
       "2",
       "Omar Osama",
       "omarosama323@gmail.com",
-      "01153180577",
+      "+201153180577",
       Location(30.12571871868943, 31.70773392993082),
       "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg");
   var users = [user1, user2, user3];
@@ -41,7 +41,7 @@ void main() {
       "Royal Sea Crown1",
       null,
       "123",
-      "asdasd",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       1231,
       54,
       5,
@@ -56,7 +56,7 @@ void main() {
       "Royal Sea Crown2",
       null,
       "123",
-      "asdasd",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       1231,
       54,
       5,
@@ -71,7 +71,7 @@ void main() {
       "Royal Sea Crown3",
       null,
       "123",
-      "asdasd",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       1231,
       54,
       5,
@@ -172,7 +172,8 @@ class _AppState extends State<App> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: screens[currPage],
-        bottomNavigationBar: BottomNavBar(icons: [
+        bottomNavigationBar: BottomNavBar(
+         icons: [
           IconBottomBar(
               lightIcon: SizedBox(
                   width: 27,
