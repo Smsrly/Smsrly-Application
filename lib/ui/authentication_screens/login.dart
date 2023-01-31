@@ -73,27 +73,27 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   SizedBox(height: 15,),
-                 Column(
-                   children: [
-                     Padding(
-                       padding: EdgeInsets.only(left: 20.0,right: 15),
-                       child: SizedBox(
-                         width: 300,
-                         height: 56,
-                         child:
-                         RaisedButton(
-                           onPressed: () {},
-                           child: Text("Login"),
-                           textColor: Colors.white,
-                           color: Color(0xFF0E5289),
-                           shape: new RoundedRectangleBorder(
-                             borderRadius: new BorderRadius.circular(15.0),
-                           ),
-                         ),
-                       ),
-                     )
-                   ],
-                 ),
+                 // Column(
+                 //   children: [
+                 //     Padding(
+                 //       padding: EdgeInsets.only(left: 20.0,right: 15),
+                 //       child: SizedBox(
+                 //         width: 300,
+                 //         height: 56,
+                 //         child:
+                 //         RaisedButton(
+                 //           onPressed: () {},
+                 //           child: Text("Login"),
+                 //           textColor: Colors.white,
+                 //           color: Color(0xFF0E5289),
+                 //           shape: new RoundedRectangleBorder(
+                 //             borderRadius: new BorderRadius.circular(15.0),
+                 //           ),
+                 //         ),
+                 //       ),
+                 //     )
+                 //   ],
+                 // ),
                   SizedBox(height: 0,),
                   Row(
                     children: [

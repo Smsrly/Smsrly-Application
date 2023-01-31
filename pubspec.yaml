@@ -85,6 +85,13 @@ flutter:
      - images/map.png
      - images/back.png
      - images/attach.png
+     - images/areaa_icon.png
+     - images/bathtub_icon.png
+     - images/bed_icon.png
+     - images/stairs_icon.png
+     - images/call_icon.png
+     - images/onboarding_logo.png
+     - images/onboarding_screen_background.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
