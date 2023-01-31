@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'contact us.dart';
 import 'editProfile.dart';
 
 class setting extends StatefulWidget{
@@ -136,7 +135,7 @@ class _settingState extends State<setting> {
                                 ),
                                 SizedBox(width: 150,),
                                 IconButton(onPressed: (){
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>contact()));
+
                                 }, icon: Icon(Icons.arrow_forward_ios))
                               ],
                             ),
