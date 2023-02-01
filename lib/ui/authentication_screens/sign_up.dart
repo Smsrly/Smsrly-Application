@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smsrly/ui/authentication_screens/login.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -248,8 +249,14 @@ class _SignUpState extends State<SignUp> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Already have an account ?"),
-                      TextButton(onPressed: () {}, child: const Text("Log In"))
+                      const Text("Already have an account ?",style: TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
+                      TextButton(onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (_){
+                              return const Login();
+                            })
+                        );
+                      }, child: const Text("Log In",style: TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
                     ],
                   )
                 ]

@@ -113,14 +113,14 @@ class _LoginState extends State<Login> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don't have an account ?"),
+                    const Text("Don't have an account ?",style: TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)),
                     TextButton(onPressed: () {
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (_){
                             return const SignUp();
                           })
                       );
-                    }, child: const Text('Sign Up'))
+                    }, child: const Text('Sign Up',style: TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
                   ],
                 ),
                 const SizedBox(
