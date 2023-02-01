@@ -92,6 +92,9 @@ flutter:
      - images/call_icon.png
      - images/onboarding_logo.png
      - images/onboarding_screen_background.png
+     - images/picture_for_login.png
+     - images/profile_icon.png
+     - images/camera_icon.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -107,6 +110,7 @@ flutter:
      - family: IBMPlexSans
        fonts:
          - asset: fonts/IBMPlexSans-Bold.ttf
+           weight: 700
          - asset: fonts/IBMPlexSans-ExtraLight.ttf
          - asset: fonts/IBMPlexSans-ExtraLightItalic.ttf
          - asset: fonts/IBMPlexSans-Light.ttf
