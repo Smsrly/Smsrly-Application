@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 
 class OnBoarding extends StatelessWidget{
+  const OnBoarding({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class OnBoarding extends StatelessWidget{
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(builder: (_){
-                                return Login();
+                                return const Login();
                               })
                           );
 

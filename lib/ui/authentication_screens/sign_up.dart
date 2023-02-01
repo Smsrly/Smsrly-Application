@@ -1,4 +1,6 @@
+import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 
 class SignUp extends StatefulWidget {
@@ -11,8 +13,9 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   bool _isPasswordFieldNotVisible = true;
   bool _isConfirmPasswordFieldNotVisible = true;
-
-
+  final _countryPicker =const FlCountryCodePicker();
+  CountryCode? _countryCode;
+  Widget? _flag=Image.asset("images/egypt_flag.png");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,10 +88,11 @@ class _SignUpState extends State<SignUp> {
 
                   TextFormField(
                     keyboardType: TextInputType.name,
+                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
                     decoration: const InputDecoration(
                       labelText: 'First Name',
                       labelStyle: TextStyle(
-                          fontSize: 18,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: Color.fromRGBO(124, 124, 124, 1)),
+                          fontSize: 15,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(14, 82, 137, 1),
@@ -111,10 +115,11 @@ class _SignUpState extends State<SignUp> {
 
                   TextFormField(
                     keyboardType: TextInputType.name,
+                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
                     decoration: const InputDecoration(
                       labelText: 'Last Name',
                       labelStyle: TextStyle(
-                          fontSize: 18, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
+                          fontSize: 15, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(14, 82, 137, 1),
@@ -138,10 +143,12 @@ class _SignUpState extends State<SignUp> {
 
                   TextFormField(
                     keyboardType: TextInputType.emailAddress,
+
+                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
                     decoration: const InputDecoration(
                       labelText: 'Email',
                       labelStyle: TextStyle(
-                          fontSize: 18, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
+                          fontSize: 15, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(14, 82, 137, 1),
@@ -161,9 +168,75 @@ class _SignUpState extends State<SignUp> {
                     height: 25,
                   ),
 
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.done,
+                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    maxLines: 1,
+
+                    decoration:  InputDecoration(
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromRGBO(14, 82, 137, 1),
+                          width: 2,
+                        ),
+                      ),
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromRGBO(170, 171, 170, 1),
+                          width: 1.5,
+                        ),
+                      ),
+
+
+                      labelText: 'Phone Number',
+                      labelStyle: const TextStyle(
+                          fontSize: 15, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
+
+                      prefixIcon: Container(
+                        width: 80,
+
+                        padding: const EdgeInsets.all(3),
+                        margin: const EdgeInsets.all(3),
+
+
+                        child: InkWell(
+                          onTap: ()async{
+                            var code= await _countryPicker.showPicker(context: context);
+                            setState(() {
+                              if(code!=null){
+                                _countryCode=code;
+                                _flag=_countryCode?.flagImage;
+                              }
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 25,
+                                child: _countryCode!= null ? _countryCode?.flagImage:_flag,
+                              ),
+                              const SizedBox(width: 3,),
+                              Text(_countryCode == null ? "+20" : "${_countryCode?.dialCode}",style: const TextStyle(fontSize: 15,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,color: Color.fromRGBO(124, 124, 124, 1)),)
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      ),
+                    ),
+
+                  const SizedBox(
+                    height: 25,
+                  ),
+
 
                   TextFormField(
                     obscureText: _isPasswordFieldNotVisible,
+                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
                     keyboardType: TextInputType.visiblePassword,
                     decoration:  InputDecoration(
                       labelText: 'Password',
@@ -173,7 +246,7 @@ class _SignUpState extends State<SignUp> {
                         });
                       }, icon: Icon(_isPasswordFieldNotVisible?Icons.visibility_off:Icons.visibility)),
                       labelStyle: const TextStyle(
-                          fontSize: 18, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
+                          fontSize: 15, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(14, 82, 137, 1),
@@ -197,6 +270,7 @@ class _SignUpState extends State<SignUp> {
 
                   TextFormField(
                     obscureText: _isConfirmPasswordFieldNotVisible,
+                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
                     keyboardType: TextInputType.visiblePassword,
                     decoration:  InputDecoration(
                       labelText: 'Confirm Password',
@@ -206,7 +280,7 @@ class _SignUpState extends State<SignUp> {
                         });
                       }, icon: Icon(_isConfirmPasswordFieldNotVisible?Icons.visibility_off:Icons.visibility)),
                       labelStyle: const TextStyle(
-                          fontSize: 18, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
+                          fontSize: 15, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(14, 82, 137, 1),
@@ -227,14 +301,14 @@ class _SignUpState extends State<SignUp> {
                   ),
 
                   
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
                       ),
                       child: const Padding(
