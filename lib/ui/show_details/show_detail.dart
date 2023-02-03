@@ -157,7 +157,7 @@ class ShowDetail extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 25),
-                          SizedBox(width: double.infinity,child: Image.network("https://user-images.githubusercontent.com/90563044/215372638-0dca96fa-5e19-4aea-a8cd-57c9eb9c225b.png")),
+                          Container(margin: const EdgeInsets.symmetric(horizontal: 10), width: double.infinity,child: Image.network("https://user-images.githubusercontent.com/90563044/215372638-0dca96fa-5e19-4aea-a8cd-57c9eb9c225b.png")),
                           const SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,

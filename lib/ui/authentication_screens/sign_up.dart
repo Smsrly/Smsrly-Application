@@ -2,6 +2,7 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
+import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -304,7 +305,13 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (_){
+                              return  SplashScreen();
+                            })
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
                         shape: RoundedRectangleBorder(

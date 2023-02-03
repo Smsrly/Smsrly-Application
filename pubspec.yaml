@@ -39,6 +39,8 @@ dependencies:
   awesome_dialog: ^3.0.2
   url_launcher: ^6.1.8
   fl_country_code_picker: ^0.0.4
+  lottie: ^2.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -97,6 +99,12 @@ flutter:
      - images/profile_icon.png
      - images/camera_icon.png
      - images/egypt_flag.png
+     - images/area_icon_white.png
+     - images/bathtub_icon_white.png
+     - images/bed_icon_white.png
+     - images/number_of_requests_icon_white.png
+     - images/stairs_icon_white.png
+     - animations/loading_home_animation.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

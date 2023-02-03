@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smsrly/ui/authentication_screens/sign_up.dart';
+import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -94,7 +95,13 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (_){
+                            return  SplashScreen();
+                          })
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
                       shape: RoundedRectangleBorder(

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'editProfile.dart';
 
-class setting extends StatefulWidget{
+class Setting extends StatefulWidget{
   @override
-  State<setting> createState() => _settingState();
+  State<Setting> createState() => _SettingState();
 }
 
-class _settingState extends State<setting> {
+class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -39,7 +39,7 @@ class _editState extends State<edit> {
                           IconButton(
                               onPressed: () {
                                 Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context) => setting()));
+                                    MaterialPageRoute(builder: (context) => Setting()));
                               },
                               icon: Icon(Icons.arrow_back_ios,color: Colors.white,size:16,)),
                           Expanded(child: SizedBox(),flex: 1,),

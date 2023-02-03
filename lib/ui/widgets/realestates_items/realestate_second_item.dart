@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smsrly/models/realestate.dart';
 
-class SecondItem extends StatefulWidget {
+class SecondItem extends StatelessWidget {
   late RealEstate item;
   late bool hasSaved;
   VoidCallback? onSaveBtn;
   SecondItem({Key? key, required this.item, required this.hasSaved, required this.onSaveBtn}) : super(key: key);
 
-  @override
-  State<SecondItem> createState() => _SecondItemState();
-}
-
-class _SecondItemState extends State<SecondItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +30,7 @@ class _SecondItemState extends State<SecondItem> {
                   width: 120,
                   height: 130,
                   fit: BoxFit.cover,
-                  image: NetworkImage(widget.item.imageUrl),
+                  image: NetworkImage(item.imageUrl),
                 ),
               ),
               const SizedBox(width: 10,),
@@ -44,7 +39,7 @@ class _SecondItemState extends State<SecondItem> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.item.title,
+                  Text(item.title,
                       style: const TextStyle(
                           fontSize: 17, fontFamily: "IBMPlexSans",
                           fontWeight: FontWeight.w400,
@@ -59,9 +54,9 @@ class _SecondItemState extends State<SecondItem> {
                         width: 4,
                       ),
                       Text(
-                          widget.item.city != null && widget.item.country!= null
-                          ? "${widget.item.country}, ${widget.item.city}"
-                          : "${widget.item.location.late}, ${widget.item.location.long}",
+                          item.city != null && item.country!= null
+                          ? "${item.country}, ${item.city}"
+                          : "${item.location.late}, ${item.location.long}",
                           style: const TextStyle(
                               fontFamily: "IBMPlexSans",
                               fontWeight: FontWeight.w400,
@@ -80,7 +75,7 @@ class _SecondItemState extends State<SecondItem> {
                         width: 4,
                       ),
                       Text(
-                        "${widget.item.area} m²",
+                        "${item.area} m²",
                         style: const TextStyle(
                             fontFamily: "IBMPlexSans",
                             fontWeight: FontWeight.w400,
@@ -89,7 +84,7 @@ class _SecondItemState extends State<SecondItem> {
                       ),
                     ],
                   ),
-                  Text("${widget.item.price} EGP",
+                  Text("${item.price} EGP",
                       style: const TextStyle(
                           fontFamily: "IBMPlexSans",
                           fontWeight: FontWeight.w400,
@@ -105,9 +100,9 @@ class _SecondItemState extends State<SecondItem> {
                     height: 30,
                     margin: const EdgeInsets.all(5),
                       child: InkWell(
-                        child: Image.asset(widget.hasSaved?"images/saved_icon_blue.png":"images/save_icon_blue.png"),
+                        child: Image.asset(hasSaved?"images/saved_icon_blue.png":"images/save_icon_blue.png"),
                         onTap:(){
-                          widget.onSaveBtn!();
+                          onSaveBtn!();
                         },
                       )
                   ),
