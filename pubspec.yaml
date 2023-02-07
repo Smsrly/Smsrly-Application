@@ -40,7 +40,7 @@ dependencies:
   url_launcher: ^6.1.8
   fl_country_code_picker: ^0.0.4
   lottie: ^2.2.0
-
+  flutter_screenutil: ^5.5.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -105,6 +105,8 @@ flutter:
      - images/number_of_requests_icon_white.png
      - images/stairs_icon_white.png
      - animations/loading_home_animation.json
+     - images/SUIIIIIIIIIIII.jpg
+     - images/location.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
