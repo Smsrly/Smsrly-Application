@@ -63,6 +63,12 @@ class Setting extends StatelessWidget {
                         margin:
                             EdgeInsets.only(top: h / 5, right: 20.w, left: 20.w),
                         decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.15),
+                                blurRadius: 50.0,
+                              )
+                            ],
                             color: Colors.white,
                             borderRadius: BorderRadius.all(Radius.circular(20.h))),
                         child: Column(
