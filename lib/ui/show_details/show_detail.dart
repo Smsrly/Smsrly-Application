@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:smsrly/models/realestate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
+
 class ShowDetail extends StatelessWidget {
   late RealEstate item;
   ShowDetail({Key? key,required this.item}) : super(key: key);

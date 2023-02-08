@@ -4,7 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../dialogs/password_dialog.dart';
 import 'editProfile.dart';
+void main(){
+  runApp(
+    MaterialApp(
+      home: Setting(),
+    )
+  );
 
+}
 class Setting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
