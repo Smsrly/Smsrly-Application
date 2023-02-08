@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PasswordDialog extends StatefulWidget {
-  const PasswordDialog({super.key});
+  late Function onSubmit;
+  PasswordDialog({super.key,required this.onSubmit});
 
   @override
   State<PasswordDialog> createState() => _PasswordDialogState();
@@ -16,8 +18,8 @@ class _PasswordDialogState extends State<PasswordDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       child: SizedBox(
-        height: 390,
-        width: 300,
+        height: 390.h,
+        width: 300.w,
         child: Column(children: [
           Stack(
             children: [
@@ -46,14 +48,14 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(left: 20, top: 10),
             child: Container(
               alignment: Alignment.topLeft,
-              child: const Text("Current Password",
-                  style: TextStyle(fontSize: 16, color: Colors.black)),
+              child: Text("Current Password",
+                  style: TextStyle(fontSize: 16.sp, color: Colors.black)),
             ),
           ),
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: SizedBox(
-                height: 50,
+                height: 50.h,
                 child: TextField(
                   obscureText: currentPasswordIsHide,
                   decoration: InputDecoration(
@@ -72,14 +74,14 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(left: 20, top: 5),
             child: Container(
               alignment: Alignment.topLeft,
-              child: const Text("New Password",
-                  style: TextStyle(fontSize: 16, color: Colors.black)),
+              child:  Text("New Password",
+                  style: TextStyle(fontSize: 16.sp, color: Colors.black)),
             ),
           ),
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: SizedBox(
-                height: 50,
+                height: 50.h,
                 child: TextField(
                   obscureText: newPasswordIsHide,
                   decoration: InputDecoration(
@@ -98,14 +100,14 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(left: 20, top: 5),
             child: Container(
               alignment: Alignment.topLeft,
-              child: const Text("Confirm Password",
-                  style: TextStyle(fontSize: 16, color: Colors.black)),
+              child: Text("Confirm Password",
+                  style: TextStyle(fontSize: 16.sp, color: Colors.black)),
             ),
           ),
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: SizedBox(
-                height: 50,
+                height: 50.h,
                 child: TextField(
                   obscureText: confirmPasswordIsHide,
                   decoration: InputDecoration(
@@ -121,15 +123,22 @@ class _PasswordDialogState extends State<PasswordDialog> {
                 ),
               )),
           Padding(
-            padding: const EdgeInsets.only(top: 14),
-            child: ElevatedButton(
-              onPressed: () => print("Submitted"),
-              style: const ButtonStyle(
-                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)))),
-                  backgroundColor: MaterialStatePropertyAll(Color(0xFF0E5289)),
-                  fixedSize: MaterialStatePropertyAll(Size(150, 45))),
-              child: const Text("Submit"),
+            padding: const EdgeInsets.all( 14),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => widget.onSubmit(),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Text('Submit'),
+                ),
+              ),
             ),
           )
         ]),

@@ -1,6 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import './passwordDialog.dart';
+import 'package:smsrly/ui/dialogs/password_dialog.dart';
 
 
 class Dialog extends StatelessWidget {
@@ -43,7 +43,9 @@ class _DialogsState extends State<Dialogs> {
               onPressed: () => showDialog(
                     context: context,
                     builder: (context) {
-                      return const PasswordDialog();
+                      return PasswordDialog(onSubmit: (){
+                        print('Okay');
+                        },);
                     },
                   ),
               child: const Text("Click"))

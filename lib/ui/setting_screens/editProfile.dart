@@ -2,169 +2,176 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/setting_screens/setting.dart';
 
-class edit extends StatefulWidget {
+class Edit extends StatelessWidget {
   bool isVisible = true;
-  @override
-  State<edit> createState() => _editState();
-}
 
-class _editState extends State<edit> {
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
     return Scaffold(
         body: SingleChildScrollView(
       child: Stack(
         children: [
           Container(
-            height: 350,
+            height: 350.h,
             width: double.infinity,
             decoration: BoxDecoration(
                 color: Colors.blue[800],
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight:  Radius.circular(20))),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 45, left: 25),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(width: 50,
-                    padding: EdgeInsets.only(left: 2),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30.sp),
+                    bottomRight: Radius.circular(30.sp))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                InkWell(
+                  child: Container(
+                    margin: const EdgeInsets.all(10),
+                    width: 45,
+                    height: 45.h,
                     decoration: BoxDecoration(
-                        color:Color.fromRGBO(135, 169, 197, 0.6),
-                        borderRadius: BorderRadius.all(Radius.circular(20))
+                        color: const Color.fromRGBO(135, 169, 197, 0.6),
+                        borderRadius: BorderRadius.circular(13)),
+                    child: const Center(
+                      child: Icon(
+                        Icons.arrow_back_ios_new,
+                        color: Colors.white,
+                        size: 15,
+                      ),
                     ),
-                    child: Row(
-                      children: [
-                        Expanded(child: SizedBox(),flex: 1,),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (context) => Setting()));
-                            },
-                            icon: Icon(Icons.arrow_back_ios,color: Colors.white,size:16,)),
-                        Expanded(child: SizedBox(),flex: 1,),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
             ),
           ),
-          SingleChildScrollView(
-            child: Container(
-              margin: EdgeInsets.only(top: 110, left: 15, right: 15),
-              height:800,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(15))),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 110.h, left: 15.w, right: 15.w),
+                width: double.infinity,
+                padding: const EdgeInsets.only(right: 15,left: 15,top: 40,bottom: 15),
+                decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.15),
+                        blurRadius: 50.0,
+                      )
+                    ],
+                    color: Colors.white,
+                    
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Basic Information",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 30.h,
                     ),
                     TextField(
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           labelText: "First Name",
-                          border: new OutlineInputBorder(
-                              borderSide: BorderSide(width: 5),
+                          border: OutlineInputBorder(
+                              borderSide: const BorderSide(width: 5),
                               borderRadius: BorderRadius.circular(20.0)),
                         )),
                     SizedBox(
-                      height: 30,
+                      height: 30.h,
                     ),
                     TextField(
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           labelText: "Last Name",
-                          border: new OutlineInputBorder(
-                              borderSide: BorderSide(width: 5),
+                          border: OutlineInputBorder(
+                              borderSide: const BorderSide(width: 5),
                               borderRadius: BorderRadius.circular(20.0)),
                         )),
                     SizedBox(
-                      height: 30,
+                      height: 30.h,
                     ),
                     TextField(
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           labelText: "Email",
-                          border: new OutlineInputBorder(
-                              borderSide: BorderSide(width: 5),
+                          border: OutlineInputBorder(
+                              borderSide: const BorderSide(width: 5),
                               borderRadius: BorderRadius.circular(20.0)),
                         )),
                     SizedBox(
-                      height: 30,
+                      height: 30.h,
                     ),
                     TextField(
                         keyboardType: TextInputType.phone,
                         decoration: InputDecoration(
                           labelText: "Phone number",
-                          border: new OutlineInputBorder(
-                              borderSide: BorderSide(width: 5),
+                          border: OutlineInputBorder(
+                              borderSide: const BorderSide(width: 5),
                               borderRadius: BorderRadius.circular(20.0)),
                         )),
                     SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding:EdgeInsets.only(left: 10.0),
-                      child: Text("Location"),
-                    ),
-                    SizedBox(
-                      height: 15,
+                      height: 30.h,
                     ),
 
-                   Row(
-                     children: [
-                       Image.asset("images/location.jpg",)
-                     ],
+                    Text("Location",style: TextStyle(fontSize: 18.sp),),
+
+                    SizedBox(
+                      height: 15.h,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 15),
-                      child: Container(alignment: Alignment.center,
-                        child: Column(
-                          children: [
-                            SizedBox(height: 40,),
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                  shape: MaterialStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(14))),
-                                  backgroundColor:
-                                  const MaterialStatePropertyAll(Color(0xFF0E5289)),
-                                  fixedSize: const MaterialStatePropertyAll(Size(328, 49))),
-                              child: const Text("Submit"),
-                            ),
-                          ],
+
+                        Image.asset(
+                          "images/location.jpg",
                         ),
+
+                    Container(
+                      alignment: Alignment.center,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 40.h,
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                ),
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(15.0),
+                                child: Text('Submit'),
+                              ),
+                            ),
+                          ),
+
+                        ],
                       ),
                     ),
-
+                    SizedBox(height: 15.h,)
                   ],
                 ),
               ),
-            ),
+              SizedBox(height: 20.h,)
+            ],
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.only(top: 70),
+            margin: EdgeInsets.only(top: 70.h),
             child: Column(
-              children: [
+              children: const [
                 CircleAvatar(
                   radius: 40,
-                 backgroundImage: AssetImage("images/SUIIIIIIIIIIII.jpg"),
+                  backgroundImage: AssetImage("images/SUIIIIIIIIIIII.jpg"),
                 )
               ],
             ),
