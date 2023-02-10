@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OptionsDialog extends StatefulWidget {
   late BuildContext context;
@@ -31,7 +32,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
   void initState() {
     _forRentOrSale=widget.forRentOrSale;
     for(int i=0; i<widget.numbers.length;i++){
-      _controllers[i]?.text=widget.numbers[i]!=1000000000000000000 && widget.numbers[i]!=-1?"${widget.numbers[i]}":"";
+      _controllers[i].text=widget.numbers[i]!=1000000000000000000 && widget.numbers[i]!=-1?"${widget.numbers[i]}":"";
     }
     super.initState();
   }
@@ -48,7 +49,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
         child: ListView(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+              padding: EdgeInsets.symmetric(vertical: 5.h,horizontal: 5.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -57,8 +58,8 @@ class _OptionsDialogState extends State<OptionsDialog> {
                     children: [
                       Container(
                         margin: const EdgeInsets.only(left: 10),
-                          child: const Text("Filters",style: TextStyle(
-                              fontSize: 25,
+                          child: Text("Filters",style: TextStyle(
+                              fontSize: 25.sp,
                               fontFamily: "IBMPlexSans",
                               fontWeight: FontWeight.w500,
                               ),)),
@@ -71,7 +72,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                   ),
                   const SizedBox(height: 20,),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10  ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -94,7 +95,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                       TextStyle(
                                           fontFamily: 'IBMPlexSans',
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 16,
+                                          fontSize: 16.sp.sp,
                                           color: _forRentOrSale==-1?Colors.white:const Color.fromRGBO(14, 82, 137, 1)
                                       ),
                                     ),
@@ -126,7 +127,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                     TextStyle(
                                         fontFamily: 'IBMPlexSans',
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 16,
+                                        fontSize: 16.sp.sp,
                                         color: _forRentOrSale==1?Colors.white:const Color.fromRGBO(14, 82, 137, 1)
                                     ),
                                     ),
@@ -155,7 +156,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                   child: Center(
                                     child: Text("For Rent",style:
                                     TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 16.sp.sp,
                                         fontFamily: 'IBMPlexSans',
                                         fontWeight: FontWeight.w400,
                                         color: _forRentOrSale==0?Colors.white:const Color.fromRGBO(14, 82, 137, 1)
@@ -173,10 +174,10 @@ class _OptionsDialogState extends State<OptionsDialog> {
                           ],
                         ),
                         const SizedBox(height: 15,),
-                        const Text("Price Range",
+                        Text("Price Range",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 16.sp.sp,
                             fontFamily: 'IBMPlexSans',
                             fontWeight: FontWeight.w500
                           ),
@@ -243,10 +244,10 @@ class _OptionsDialogState extends State<OptionsDialog> {
 
 
                         const SizedBox(height: 15,),
-                        const Text("Floors Number",
+                        Text("Floors Number",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               fontFamily: 'IBMPlexSans',
                               fontWeight: FontWeight.w500
                           ),
@@ -311,10 +312,10 @@ class _OptionsDialogState extends State<OptionsDialog> {
 
 
                         const SizedBox(height: 15,),
-                        const Text("Rooms Number",
+                        Text("Rooms Number",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               fontFamily: 'IBMPlexSans',
                               fontWeight: FontWeight.w500
                           ),
@@ -379,10 +380,10 @@ class _OptionsDialogState extends State<OptionsDialog> {
 
 
                         const SizedBox(height: 15,),
-                        const Text("Bathrooms",
+                        Text("Bathrooms",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               fontFamily: 'IBMPlexSans',
                               fontWeight: FontWeight.w500
                           ),
@@ -447,10 +448,10 @@ class _OptionsDialogState extends State<OptionsDialog> {
 
 
                         const SizedBox(height: 15,),
-                        const Text("Area Range",
+                        Text("Area Range",
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 16.sp,
                               fontFamily: 'IBMPlexSans',
                               fontWeight: FontWeight.w500
                           ),
@@ -533,7 +534,6 @@ class _OptionsDialogState extends State<OptionsDialog> {
                             list.add(int.parse(_controllers[i].text.trim()));
                           }
                         }
-                        print("listo : $list");
                     widget.onSubmit(list,_forRentOrSale);
                         Navigator.pop(context,false);
 

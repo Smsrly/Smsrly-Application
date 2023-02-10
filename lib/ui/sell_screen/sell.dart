@@ -1,27 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
-  runApp(ScreenUtilInit(
-    designSize: const Size(360, 690),
-    minTextAdapt: true,
-    splitScreenMode: true,
-    builder: (BuildContext context, Widget? child) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Sell(),
-      );
-    },
-  ));
-}
-
 class Sell extends StatelessWidget {
   const Sell({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -39,30 +23,39 @@ class Sell extends StatelessWidget {
                     SizedBox(
                       height: 15.h,
                     ),
-                    Container(
-                        height: 151.h,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color: Colors.black38,
-                              width: 1.w,
-                            )),
-                        child: Center(
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                              Image(
-                                  image: AssetImage("images/add.png"),
-                                  width: 16.w,
-                                  height: 16.h),
-                              Text(
-                                "Add Images & Video",
-                                style: TextStyle(
-                                    fontFamily: "IBMPlexSans",
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ]))),
+                    InkWell(
+                      child: Container(
+                          height: 151.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: Colors.black38,
+                                width: 1,
+                              )),
+                          child: Center(
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                Image(
+                                    image: const AssetImage("images/add.png"),
+                                    width: 20.w,
+                                    height: 20.h),
+                                SizedBox(
+                                  width:1.w ,
+                                ),
+                                Text(
+                                  "Add Images & Video",
+                                  style: TextStyle(
+                                    fontSize: 22.sp,
+                                      fontFamily: "IBMPlexSans",
+                                      fontWeight: FontWeight.w500),
+                                )
+                              ]))),
+                      onTap: (){
+
+                      },
+                    ),
                     SizedBox(
                       height: 15.h,
                     ),
@@ -78,15 +71,15 @@ class Sell extends StatelessWidget {
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(18.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: Color.fromRGBO(14, 82, 137, 1),
-                              width: 1.w),
+                              width: 2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(18.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: Color.fromRGBO(170, 171, 170, 1),
-                              width: 1.w),
+                              width: 1),
                         ),
                       ),
                     ),
@@ -106,16 +99,16 @@ class Sell extends StatelessWidget {
                       cursorColor: const Color.fromRGBO(14, 82, 137, 1),
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18.0.w),
-                          borderSide: BorderSide(
+                          borderRadius: BorderRadius.circular(18.0),
+                          borderSide: const BorderSide(
                               color: Color.fromRGBO(14, 82, 137, 1),
-                              width: w / 300),
+                              width: 2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(18.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: Color.fromRGBO(170, 171, 170, 1),
-                              width: 1.w),
+                              width: 1),
                         ),
                       ),
                     ),
@@ -137,16 +130,16 @@ class Sell extends StatelessWidget {
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(18.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Color.fromRGBO(14, 82, 137, 1),
-                            width: 2.w,
+                            width: 2,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(18.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                               color: Color.fromRGBO(170, 171, 170, 1),
-                              width: 1.w),
+                              width: 1),
                         ),
                       ),
                     ),
@@ -166,8 +159,11 @@ class Sell extends StatelessWidget {
                     SizedBox(
                         height: 150.h,
                         width: double.infinity,
+                        // Map Here
                         child: const Image(
-                            image: AssetImage("images/map.png"))),
+                            image: AssetImage("images/map.png")
+                        )
+                    ),
                       SizedBox(height: 15.h,),
                     Row(
                       children: [
@@ -178,6 +174,7 @@ class Sell extends StatelessWidget {
                               cursorColor: const Color.fromRGBO(14, 82, 137, 1),
                               decoration: InputDecoration(
                                 labelText: "Floors",
+                                labelStyle: TextStyle(fontSize: 17.sp),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(18.0),
                                   borderSide: const BorderSide(
@@ -187,9 +184,9 @@ class Sell extends StatelessWidget {
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Color.fromRGBO(170, 171, 170, 1),
-                                      width: 1.w),
+                                      width: 1),
                                 ),
                               )),
                         ),
@@ -203,18 +200,19 @@ class Sell extends StatelessWidget {
                             cursorColor: const Color.fromRGBO(14, 82, 137, 1),
                             decoration: InputDecoration(
                               labelText: "Rooms",
+                              labelStyle: TextStyle(fontSize: 17.sp),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(18.0),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color.fromRGBO(14, 82, 137, 1),
-                                  width: 2.w,
+                                  width: 2,
                                 ),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(18.0),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                     color: Color.fromRGBO(170, 171, 170, 1),
-                                    width: 1.w),
+                                    width: 1),
                               ),
                             ),
                           ),
@@ -233,18 +231,19 @@ class Sell extends StatelessWidget {
                               cursorColor: const Color.fromRGBO(14, 82, 137, 1),
                               decoration: InputDecoration(
                                 labelText: "Rooms",
+                                labelStyle: TextStyle(fontSize: 17.sp),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Color.fromRGBO(14, 82, 137, 1),
-                                    width: 2.w,
+                                    width: 2,
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Color.fromRGBO(170, 171, 170, 1),
-                                      width: 1.w),
+                                      width: 1),
                                 ),
                               )),
                         ),
@@ -258,18 +257,19 @@ class Sell extends StatelessWidget {
                               cursorColor: const Color.fromRGBO(14, 82, 137, 1),
                               decoration: InputDecoration(
                                 labelText: "Area",
+                                labelStyle: TextStyle(fontSize: 17.sp),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Color.fromRGBO(14, 82, 137, 1),
-                                    width: 2.w,
+                                    width: 2,
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       color: Color.fromRGBO(170, 171, 170, 1),
-                                      width: 1.w),
+                                      width: 1),
                                 ),
                               )),
                         ),

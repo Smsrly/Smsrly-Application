@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/on_boarding.dart';
 
 void main(){
@@ -9,9 +10,16 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: OnBoarding(),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (BuildContext context, Widget? child) {
+        return const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: OnBoarding(),
+        );
+      },
     );
   }
 }

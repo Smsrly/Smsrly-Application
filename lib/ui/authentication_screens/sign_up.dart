@@ -1,6 +1,7 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
 
@@ -24,29 +25,29 @@ class _SignUpState extends State<SignUp> {
         child: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 12.w),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 20,),
+                  SizedBox(height: 20.h,),
                   SizedBox(
                     width: double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "Sign Up",
                           style: TextStyle(
-                              fontSize: 32,
+                              fontSize: 32.sp,
                               fontFamily: 'IBMPlexSans',
                               fontWeight: FontWeight.w700)
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
+                  SizedBox(
+                    height: 15.h,
                   ),
                   SizedBox(
                     width: 120,
@@ -80,27 +81,29 @@ class _SignUpState extends State<SignUp> {
                         ]
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+
+                      },
                     ),
                   ),
-                  const SizedBox(
-                    height: 25,
+                  SizedBox(
+                    height: 25.h,
                   ),
 
                   TextFormField(
                     keyboardType: TextInputType.name,
                     cursorColor: const Color.fromRGBO(124, 124, 124, 1),
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'First Name',
                       labelStyle: TextStyle(
-                          fontSize: 15,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: Color.fromRGBO(124, 124, 124, 1)),
-                      focusedBorder: UnderlineInputBorder(
+                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
+                      focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(14, 82, 137, 1),
                           width: 2,
                         ),
                       ),
-                      enabledBorder: UnderlineInputBorder(
+                      enabledBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(170, 171, 170, 1),
                           width: 1.5,
@@ -109,25 +112,25 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
 
-                  const SizedBox(
-                    height: 25,
+                  SizedBox(
+                    height: 25.h,
                   ),
 
 
                   TextFormField(
                     keyboardType: TextInputType.name,
                     cursorColor: const Color.fromRGBO(124, 124, 124, 1),
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Last Name',
                       labelStyle: TextStyle(
-                          fontSize: 15, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
-                      focusedBorder: UnderlineInputBorder(
+                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
+                      focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(14, 82, 137, 1),
                           width: 2,
                         ),
                       ),
-                      enabledBorder: UnderlineInputBorder(
+                      enabledBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(170, 171, 170, 1),
                           width: 1.5,
@@ -137,8 +140,8 @@ class _SignUpState extends State<SignUp> {
                   ),
 
 
-                  const SizedBox(
-                    height: 25,
+                  SizedBox(
+                    height: 25.h,
                   ),
 
 
@@ -146,17 +149,17 @@ class _SignUpState extends State<SignUp> {
                     keyboardType: TextInputType.emailAddress,
 
                     cursorColor: const Color.fromRGBO(124, 124, 124, 1),
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Email',
                       labelStyle: TextStyle(
-                          fontSize: 15, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
-                      focusedBorder: UnderlineInputBorder(
+                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
+                      focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(14, 82, 137, 1),
                           width: 2,
                         ),
                       ),
-                      enabledBorder: UnderlineInputBorder(
+                      enabledBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(170, 171, 170, 1),
                           width: 1.5,
@@ -165,8 +168,8 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
 
-                  const SizedBox(
-                    height: 25,
+                  SizedBox(
+                    height: 25.h,
                   ),
 
                   TextFormField(
@@ -194,9 +197,8 @@ class _SignUpState extends State<SignUp> {
 
 
                       labelText: 'Phone Number',
-                      labelStyle: const TextStyle(
-                          fontSize: 15, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
-
+                      labelStyle: TextStyle(
+                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
                       prefixIcon: Container(
                         width: 80,
 
@@ -246,8 +248,8 @@ class _SignUpState extends State<SignUp> {
                           _isPasswordFieldNotVisible=!_isPasswordFieldNotVisible;
                         });
                       }, icon: Icon(_isPasswordFieldNotVisible?Icons.visibility_off:Icons.visibility)),
-                      labelStyle: const TextStyle(
-                          fontSize: 15, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
+                      labelStyle: TextStyle(
+                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(14, 82, 137, 1),
@@ -264,8 +266,8 @@ class _SignUpState extends State<SignUp> {
                   ),
 
 
-                  const SizedBox(
-                    height: 25,
+                  SizedBox(
+                    height: 25.h,
                   ),
 
 
@@ -280,8 +282,8 @@ class _SignUpState extends State<SignUp> {
                           _isConfirmPasswordFieldNotVisible=!_isConfirmPasswordFieldNotVisible;
                         });
                       }, icon: Icon(_isConfirmPasswordFieldNotVisible?Icons.visibility_off:Icons.visibility)),
-                      labelStyle: const TextStyle(
-                          fontSize: 15, fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500,color: Color.fromRGBO(124, 124, 124, 1)),
+                      labelStyle: TextStyle(
+                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: Color.fromRGBO(14, 82, 137, 1),
@@ -297,8 +299,8 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
 
-                  const SizedBox(
-                    height: 30,
+                  SizedBox(
+                    height: 30.h,
                   ),
 
                   
@@ -324,20 +326,20 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 3,
+                  SizedBox(
+                    height: 3.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Already have an account ?",style: TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
+                      Text("Already have an account ?",style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
                       TextButton(onPressed: () {
                         Navigator.of(context).pushReplacement(
                             MaterialPageRoute(builder: (_){
                               return const Login();
                             })
                         );
-                      }, child: const Text("Log In",style: TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
+                      }, child: Text("Log In",style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
                     ],
                   )
                 ]

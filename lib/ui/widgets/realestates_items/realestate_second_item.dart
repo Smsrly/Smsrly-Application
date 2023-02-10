@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/models/realestate.dart';
 
 class SecondItem extends StatelessWidget {
@@ -11,7 +12,8 @@ class SecondItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      height: 130,
+      height: 130.h,
+
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25.0),
@@ -19,7 +21,7 @@ class SecondItem extends StatelessWidget {
         color: Colors.white,
         elevation: 25,
         child: SizedBox(
-          height: 130,
+          height: 130.h,
           child: Row(
             children: [
               Container(
@@ -27,28 +29,28 @@ class SecondItem extends StatelessWidget {
                     BoxDecoration(borderRadius: BorderRadius.circular(25.0)),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: Image(
-                  width: 120,
-                  height: 130,
+                  width: 120.w,
+                  height: 130.h,
                   fit: BoxFit.cover,
                   image: NetworkImage(item.imageUrl),
                 ),
               ),
-              const SizedBox(width: 10,),
+              SizedBox(width: 10.w,),
 
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(item.title,
-                      style: const TextStyle(
-                          fontSize: 17, fontFamily: "IBMPlexSans",
+                      style: TextStyle(
+                          fontSize: 17.sp, fontFamily: "IBMPlexSans",
                           fontWeight: FontWeight.w400,
                       )),
                   Row(
                     children: [
                       SizedBox(
                           width: 12,
-                          height: 16,
+                          height: 16.h,
                           child: Image.asset("images/black_location_icon.png")),
                       const SizedBox(
                         width: 4,
@@ -57,11 +59,11 @@ class SecondItem extends StatelessWidget {
                           item.city != null && item.country!= null
                           ? "${item.country}, ${item.city}"
                           : "${item.location.late}, ${item.location.long}",
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontFamily: "IBMPlexSans",
                               fontWeight: FontWeight.w400,
-                              fontSize: 15,
-                              color: Color.fromRGBO(103, 103, 103, 1))),
+                              fontSize: 15.sp,
+                              color: const Color.fromRGBO(103, 103, 103, 1))),
                     ],
                   ),
                   Row(
@@ -69,27 +71,27 @@ class SecondItem extends StatelessWidget {
                     children: [
                       SizedBox(
                           width: 20,
-                          height: 20,
+                          height: 20.h,
                           child: Image.asset("images/area_icon.png")),
                       const SizedBox(
                         width: 4,
                       ),
                       Text(
                         "${item.area} m²",
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontFamily: "IBMPlexSans",
                             fontWeight: FontWeight.w400,
-                            fontSize: 15,
-                            color: Color.fromRGBO(103, 103, 103, 1)),
+                            fontSize: 15.sp,
+                            color: const Color.fromRGBO(103, 103, 103, 1)),
                       ),
                     ],
                   ),
                   Text("${item.price} EGP",
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontFamily: "IBMPlexSans",
                           fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                          color: Color.fromRGBO(14, 82, 137, 1))),
+                          fontSize: 15.sp,
+                          color: const Color.fromRGBO(14, 82, 137, 1))),
                 ],
               ),
               const Expanded(flex: 5, child: SizedBox()),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:responsive_grid/responsive_grid.dart';
 import 'package:smsrly/models/user.dart';
 import 'package:smsrly/ui/show_details/show_detail.dart';
 
@@ -20,6 +22,38 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Widget> getSecondList(){
+    List<Widget> list =[];
+    for(int i=0;i<widget.items.length - widget.items.length~/3;i++){
+      int currIndex = i+widget.items.length~/3;
+      RealEstate currItem= widget.items[widget.IDs[currIndex]]!;
+
+      list.add(InkWell(
+        child: SecondItem(
+          item: currItem,
+          hasSaved: widget.user.isSaved(currItem),
+          onSaveBtn: () {
+            setState(() {
+              if (widget.user.isSaved(currItem)) {
+                widget.user.unSaveRealEstate(currItem);
+              } else {
+                widget.user.saveRealEstate(currItem);
+              }
+            });
+          },
+        ),
+        onTap: (){
+          // go to show details
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (_){
+                return ShowDetail(item: currItem);
+              })
+          );
+        },
+      ));
+    }
+    return list;
+  }
   @override
   void initState() {
     super.initState();
@@ -50,10 +84,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Text(
                           widget.user.username,
-                          style: const TextStyle(
-                              fontSize: 17,
+                          style: TextStyle(
+                              fontSize: 17.sp,
                               fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(14, 82, 137, 1)),
+                              color: const Color.fromRGBO(14, 82, 137, 1)),
                         )
                       ],
                     ),
@@ -67,29 +101,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 10.h,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "Common Real Estates",
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 17.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     TextButton(
                         onPressed: widget.seeAllAction,
-                        child: const Text(
+                        child: Text(
                           "See all",
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(68, 68, 68, 0.7)),
+                              color: const Color.fromRGBO(68, 68, 68, 0.7)),
                         ))
                   ],
                 ),
@@ -133,21 +167,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "More",
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 17.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     TextButton(
                         onPressed: widget.seeAllAction,
-                        child: const Text(
+                        child: Text(
                           "See all",
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(68, 68, 68, 0.7)),
+                              color: const Color.fromRGBO(68, 68, 68, 0.7)),
                         ))
                   ],
                 ),
@@ -193,3 +227,37 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+/*
+* ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: widget.items.length - widget.items.length~/3,
+                    itemBuilder: (context, index) {
+                      int currIndex = index+widget.items.length~/3;
+                      RealEstate currItem= widget.items[widget.IDs[currIndex]]!;
+                      return InkWell(
+                        child: SecondItem(
+                          item: currItem,
+                          hasSaved: widget.user.isSaved(currItem),
+                          onSaveBtn: () {
+                            setState(() {
+                              if (widget.user.isSaved(currItem)) {
+                                widget.user.unSaveRealEstate(currItem);
+                              } else {
+                                widget.user.saveRealEstate(currItem);
+                              }
+                            });
+                          },
+                        ),
+                        onTap: (){
+                          // go to show details
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_){
+                                return ShowDetail(item: currItem);
+                              })
+                          );
+                        },
+                      );
+                    }
+                ),
+* */

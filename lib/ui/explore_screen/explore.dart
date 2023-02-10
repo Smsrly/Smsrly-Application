@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/explore_screen/options_dialog.dart';
 
 import '../../models/realestate.dart';
@@ -42,33 +43,48 @@ class _ExploreScreenState extends State<ExploreScreen> {
       return dialog;
     });
   }
-  void _runFilter(String text,List<int> requirements,int rentOrSale){
-    text=text.toLowerCase().trim();
-    Map<int, RealEstate> map ={};
-    List<int> list =[];
 
-    for(var entry in widget.items.entries){
+  void _runFilter(String text, List<int> requirements, int rentOrSale) {
+    text = text.toLowerCase().trim();
+    Map<int, RealEstate> map = {};
+    List<int> list = [];
 
-      var bool1 = text.isEmpty || entry.value.city?.toLowerCase().contains(text) as bool;
-      var bool2 = text.isEmpty || entry.value.country?.toLowerCase().contains(text) as bool;
+    for (var entry in widget.items.entries) {
+      var bool1 = text.isEmpty ||
+          entry.value.city?.toLowerCase().contains(text) as bool;
+      var bool2 = text.isEmpty ||
+          entry.value.country?.toLowerCase().contains(text) as bool;
       var bool3 = rentOrSale == -1 || entry.value.rentOrSale == rentOrSale;
-      var bool4 = entry.value.price>=requirements[0] && entry.value.price<=requirements[1];
-      var bool5 = entry.value.floor>=requirements[2] && entry.value.floor<=requirements[3];
-      var bool6 = entry.value.roomsNo>=requirements[4] && entry.value.roomsNo<=requirements[5];
-      var bool7 = entry.value.bathroomsNo>=requirements[6] && entry.value.bathroomsNo<=requirements[7];
-      var bool8 = entry.value.area>=requirements[8] && entry.value.area<=requirements[9];
+      var bool4 = entry.value.price >= requirements[0] &&
+          entry.value.price <= requirements[1];
+      var bool5 = entry.value.floor >= requirements[2] &&
+          entry.value.floor <= requirements[3];
+      var bool6 = entry.value.roomsNo >= requirements[4] &&
+          entry.value.roomsNo <= requirements[5];
+      var bool7 = entry.value.bathroomsNo >= requirements[6] &&
+          entry.value.bathroomsNo <= requirements[7];
+      var bool8 = entry.value.area >= requirements[8] &&
+          entry.value.area <= requirements[9];
 
-      if((bool1 || bool2) && bool3 && bool4 && bool5 && bool6 && bool7 && bool8){
+      if ((bool1 || bool2) &&
+          bool3 &&
+          bool4 &&
+          bool5 &&
+          bool6 &&
+          bool7 &&
+          bool8) {
+
         list.add(entry.key);
         map[entry.key] = entry.value;
-      }
 
+      }
     }
     setState(() {
-      _filteredIDs=list;
-      _filteredItems=map;
+      _filteredIDs = list;
+      _filteredItems = map;
     });
   }
+
   @override
   void initState() {
     _filteredItems=widget.items;
@@ -83,21 +99,21 @@ class _ExploreScreenState extends State<ExploreScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 15,
+              SizedBox(
+                height: 15.h,
               ),
-              const Padding(
-                padding: EdgeInsets.all(9.0),
+              Padding(
+                padding: const EdgeInsets.all(9.0),
                 child: Text(
                   "Explore",
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 32.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 15,
+              SizedBox(
+                height: 15.h,
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -143,6 +159,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   decoration: const InputDecoration(
                                     hintText: "Where do you want to go",
                                     hintStyle: TextStyle(
+
                                         color:
                                             Color.fromRGBO(169, 169, 169, 1)),
                                     border: InputBorder.none,

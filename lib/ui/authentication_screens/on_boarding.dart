@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 
 class OnBoarding extends StatelessWidget{
@@ -16,7 +17,7 @@ class OnBoarding extends StatelessWidget{
                 width:double.infinity,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage("https://user-images.githubusercontent.com/108674357/215354307-5c8a0a80-64b4-4705-a44a-738c6585573a.png")
+                      image: AssetImage("images/onboarding_screen_background.png")
                     ,fit: BoxFit.cover),
                 ),
               ),
@@ -34,13 +35,13 @@ class OnBoarding extends StatelessWidget{
                   children: [
                     const Expanded(flex:1,child: SizedBox()),
                     SizedBox(
-                        width: 400,
-                        height: 400,
+                        width: 400.w,
+                        height: 400.h,
                         child: Image.asset("images/onboarding_logo.png")
                     ),
                     const Expanded(flex:1,child: SizedBox()),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
@@ -63,7 +64,7 @@ class OnBoarding extends StatelessWidget{
                         ),
                       ),
                     ),
-                    const SizedBox(height: 15,)
+                    SizedBox(height: 15.h,)
 
                   ],
                 ),

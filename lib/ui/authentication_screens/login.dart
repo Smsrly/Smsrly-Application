@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/sign_up.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
 
@@ -17,64 +18,35 @@ class _LoginState extends State<Login> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: Column(
               children: [
                 SizedBox(
                   width: double.infinity,
-                  height: 350,
+                  height: 350.h,
                   child: Image.asset("images/picture_for_login.png"),
                 ),
                 Row(
-                  children: const [
+                  children: [
                     Text(
                       "Login",
                       style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 32.sp,
                           fontFamily: 'IBMPlexSans',
                           fontWeight: FontWeight.w700),
                     ),
-                    Expanded(flex: 1, child: SizedBox())
+                    const Expanded(flex: 1, child: SizedBox())
                   ],
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 20.h,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(
-                        fontSize: 18, color: Color.fromRGBO(124, 124, 124, 1)),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(14, 82, 137, 1),
-                        width: 2,
-                      ),
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(170, 171, 170, 1),
-                        width: 1.5,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextFormField(
-                  obscureText: _isNotVisible,
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration:  InputDecoration(
-                    labelText: 'Password',
-                    suffixIcon: IconButton(onPressed: (){
-                      setState(() {
-                        _isNotVisible=!_isNotVisible;
-                      });
-                    }, icon: Icon(_isNotVisible?Icons.visibility_off:Icons.visibility)),
-                    labelStyle: const TextStyle(
-                        fontSize: 18, color: Color.fromRGBO(124, 124, 124, 1)),
+                        fontSize: 18.sp, color: Color.fromRGBO(124, 124, 124, 1)),
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color.fromRGBO(14, 82, 137, 1),
@@ -89,8 +61,37 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 28,
+                SizedBox(
+                  height: 15.h,
+                ),
+                TextFormField(
+                  obscureText: _isNotVisible,
+                  keyboardType: TextInputType.visiblePassword,
+                  decoration:  InputDecoration(
+                    labelText: 'Password',
+                    suffixIcon: IconButton(onPressed: (){
+                      setState(() {
+                        _isNotVisible=!_isNotVisible;
+                      });
+                    }, icon: Icon(_isNotVisible?Icons.visibility_off:Icons.visibility)),
+                    labelStyle: TextStyle(
+                        fontSize: 18.sp, color: const Color.fromRGBO(124, 124, 124, 1)),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromRGBO(14, 82, 137, 1),
+                        width: 2,
+                      ),
+                    ),
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromRGBO(170, 171, 170, 1),
+                        width: 1.5,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 28.h,
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -114,24 +115,24 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 4,
+                SizedBox(
+                  height: 4.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don't have an account ?",style: TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)),
+                    Text("Don't have an account ?",style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)),
                     TextButton(onPressed: () {
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (_){
                             return const SignUp();
                           })
                       );
-                    }, child: const Text('Sign Up',style: TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
+                    }, child: Text('Sign Up',style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
                   ],
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: 15.h,
                 ),
               ],
             ),
