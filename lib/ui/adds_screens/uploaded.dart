@@ -4,6 +4,7 @@ import 'package:smsrly/ui/widgets/realestates_items/realestate_third_item.dart';
 import '../../models/location.dart';
 import '../../models/realestate.dart';
 import '../../models/user.dart';
+import '../show_details/show_detail.dart';
 
 class Uploaded extends StatelessWidget{
   RealEstate item3 = RealEstate(
@@ -28,9 +29,22 @@ class Uploaded extends StatelessWidget{
        ListView(
          children: [
            const SizedBox(height: 10,),
-           ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),
-           ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),
-           ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false)
+           InkWell(child: ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),
+             onTap: (){
+               Navigator.of(context).push(MaterialPageRoute(builder: (builder){
+                 return ShowDetail(item: item3,isTheOwner: true);
+               }));
+             },),
+           InkWell(child: ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),onTap: (){
+             Navigator.of(context).push(MaterialPageRoute(builder: (builder){
+               return ShowDetail(item: item3,isTheOwner: true,);
+             }));
+           }),
+           InkWell(child: ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),onTap: (){
+             Navigator.of(context).push(MaterialPageRoute(builder: (builder){
+               return ShowDetail(item: item3,isTheOwner: true);
+             }));
+           })
          ],
        )
     );

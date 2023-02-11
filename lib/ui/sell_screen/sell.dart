@@ -68,6 +68,7 @@ class Sell extends StatelessWidget {
                     ),
                     TextField(
                       style: TextStyle(fontSize: 18.sp),
+                      cursorColor: const Color.fromRGBO(14, 82, 137, 1),
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(18.0),

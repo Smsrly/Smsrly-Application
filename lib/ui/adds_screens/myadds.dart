@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'requested.dart';
 import 'save.dart';
@@ -20,30 +21,30 @@ class MyAdds extends StatelessWidget {
               tabs: [
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 4),
-                  child: const Text(
+                  child: Text(
                     "UPLOADED",
                     style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 15.sp,
                         fontFamily: 'IBMPlexSans',
                         fontWeight: FontWeight.w400),
                   ),
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 4),
-                  child: const Text(
+                  child: Text(
                     "REQUESTED",
                     style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 15.sp,
                         fontFamily: 'IBMPlexSans',
                         fontWeight: FontWeight.w400),
                   ),
                 ),
                 Container(
                     margin: const EdgeInsets.symmetric(vertical: 4),
-                    child: const Text(
+                    child: Text(
                       "SAVED",
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 15.sp,
                           fontFamily: 'IBMPlexSans',
                           fontWeight: FontWeight.w400),
                     )),

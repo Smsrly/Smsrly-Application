@@ -1,49 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/models/realestate.dart';
+import 'package:smsrly/ui/widgets/user_items/user_item.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../../models/location.dart';
-void main(){
- var oo=RealEstate(
-     122,
-     "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lpibo-ew-1656015868.jpg",
-     "Royal Sea Crown2",
-     null,
-     "123",
-     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-     1231,
-     54,
-     5,
-     5,
-     100000,
-     Location(21321.3, 1231.2),
-     "Egypt",
-     "Cairo",0);
-
-  runApp(
-      ScreenUtilInit(
-        designSize: const Size(360, 690),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (BuildContext context, Widget? child) {
-          return
-            MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home:ShowDetail(item: oo,),
-            );
-        },
-
-      )
-  );
-}
+import '../../models/user.dart';
 
 class ShowDetail extends StatelessWidget {
   late RealEstate item;
-  ShowDetail({Key? key,required this.item}) : super(key: key);
+  var isTheOwner;
+  ShowDetail({Key? key,required this.item,this.isTheOwner=false}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width  = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -67,9 +37,9 @@ class ShowDetail extends StatelessWidget {
                                  return  Column(mainAxisAlignment: MainAxisAlignment.center,
                                    children: [
                                      SizedBox(
-                                       child: CircularProgressIndicator(),
                                        height: 70.0.h,
                                        width: 80.0.w,
+                                       child: const CircularProgressIndicator(),
                                      ),
                                    ],
                                  );
@@ -107,11 +77,11 @@ class ShowDetail extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                       width:20.w,
-                                      height: 20.h,
+                                      height: 20,
                                       child: Image.asset("images/bed_icon.png"),
                                   ),
                                     SizedBox(width: 3.w),
-                                  Text("${item.roomsNo}",style:   TextStyle(color: Color.fromRGBO(170, 169, 169, 1)
+                                  Text("${item.roomsNo}",style:   TextStyle(color: const Color.fromRGBO(170, 169, 169, 1)
                                   ,fontSize: 15.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
                                 ],
                               ),
@@ -119,23 +89,11 @@ class ShowDetail extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                     width:20.w,
-                                    height: 20.h,
+                                    height: 20,
                                     child: Image.asset("images/bathtub_icon.png"),
                                   ),
                                   const SizedBox(width: 3),
-                                  Text("${item.bathroomsNo}",style: const TextStyle(color: Color.fromRGBO(170, 169, 169, 1)
-                                      ,fontSize: 15,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width:20,
-                                    height: 20,
-                                    child: Image.asset("images/stairs_icon.png"),
-                                  ),
-                                    SizedBox(width: 3.w),
-                                  Text("${item.floor}",style:   TextStyle(color: Color.fromRGBO(170, 169, 169, 1)
+                                  Text("${item.bathroomsNo}",style:  TextStyle(color: const Color.fromRGBO(170, 169, 169, 1)
                                       ,fontSize: 15.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
                                 ],
                               ),
@@ -143,11 +101,23 @@ class ShowDetail extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                     width:20.w,
-                                    height: 20.h,
+                                    height: 20,
+                                    child: Image.asset("images/stairs_icon.png"),
+                                  ),
+                                    SizedBox(width: 3.w),
+                                  Text("${item.floor}",style:   TextStyle(color: const Color.fromRGBO(170, 169, 169, 1)
+                                      ,fontSize: 15.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width:20.w,
+                                    height: 20,
                                     child: Image.asset("images/areaa_icon.png"),
                                   ),
                                     SizedBox(width: 3.w),
-                                  Text("${item.area}m²",style:   TextStyle(color: Color.fromRGBO(170, 169, 169, 1)
+                                  Text("${item.area}m²",style:   TextStyle(color: const Color.fromRGBO(170, 169, 169, 1)
                                       ,fontSize: 15.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
                                 ],
                               ),
@@ -172,40 +142,43 @@ class ShowDetail extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        CircleAvatar(
-                                          backgroundImage: NetworkImage(item.owner!= null?item.owner?.pictureUrl as String:"https://user-images.githubusercontent.com/90563044/215369020-31ed45db-baa0-4175-a7ae-c31629fa7fdb.png"),
+                                Visibility(
+                                  visible: !isTheOwner,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundImage: NetworkImage(item.owner!= null?item.owner?.pictureUrl as String:"https://user-images.githubusercontent.com/90563044/215369020-31ed45db-baa0-4175-a7ae-c31629fa7fdb.png"),
 
-                                        ),
-                                          SizedBox(width: 5.w,),
-                                        Text(item.owner!=null?item.owner?.username as String:"Not Found",style: const TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),)
-                                      ],
-                                    ),
-                                    Visibility(
-                                      visible: item.owner != null,
-                                      child: InkWell(
-                                        child: Container(
-                                          margin: const EdgeInsets.all(10),
-                                          width: 40.w,
-                                          height: 40.h,
-                                          padding: const EdgeInsets.all(10),
-                                          decoration: BoxDecoration(
-                                              color: const Color.fromRGBO(14, 82, 137, 0.18),
-                                              borderRadius: BorderRadius.circular(13)
                                           ),
-                                          child: Image.asset("images/call_icon.png"),
-
-                                        ),
-                                        onTap: (){
-                                          launch("tel://${item.owner?.phoneNumber}");
-                                        },
+                                            SizedBox(width: 5.w,),
+                                          Text(item.owner!=null?item.owner?.username as String:"Not Found",style: const TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),)
+                                        ],
                                       ),
-                                    ),
-                                  ],
+                                      Visibility(
+                                        visible: item.owner != null,
+                                        child: InkWell(
+                                          child: Container(
+                                            margin: const EdgeInsets.all(10),
+                                            width: 40,
+                                            height: 40,
+                                            padding: const EdgeInsets.all(10),
+                                            decoration: BoxDecoration(
+                                                color: const Color.fromRGBO(14, 82, 137, 0.18),
+                                                borderRadius: BorderRadius.circular(13)
+                                            ),
+                                            child: Image.asset("images/call_icon.png"),
+
+                                          ),
+                                          onTap: (){
+                                            launch("tel://${item.owner?.phoneNumber}");
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                   SizedBox(height: 2.h),
                                 Text(item.description,style: const TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,),)
@@ -218,32 +191,102 @@ class ShowDetail extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text("Latitude: ${item.location.late}",style: const TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,),),
-                              Text("Longitude: ${item.location.long}",style: const TextStyle(fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,),),
+                              Text("Latitude: ${item.location.late}",style:  TextStyle(fontSize: 17.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,),),
+                              Text("Longitude: ${item.location.long}",style:  TextStyle(fontSize: 17.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,),),
                             ],
                           ),
                             SizedBox(height: 35.h),
                           Row(
                             children: [
                               Expanded(flex: 1,child: Text("${item.price} EGP",textAlign: TextAlign.center,style: const TextStyle(fontSize: 18,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500)),),
+                              const SizedBox(width: 5,),
                               Expanded(flex: 1,
                                   child: ElevatedButton(
-                                    onPressed: () {
-                                      // will add it later
-                                    },
+                                    onPressed: isTheOwner?
+                                        () {
+                                          // for the owner
+                                          // will add it later
+                                        }:
+                                        (){
+                                          // for the normal user
+                                          // will add it later
+                                        },
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
+                                      backgroundColor: isTheOwner? const Color.fromRGBO(248, 52, 52, 1): const Color.fromRGBO(14, 82, 137, 1),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8.0),
                                       ),
                                     ),
-                                    child: const Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 15.0,vertical: 20),
-                                      child: Text('Request'),
+                                    child:  Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 15.0.w,vertical: 20),
+                                      child: Text(isTheOwner?"Delete":'Request',style: TextStyle(fontSize: 18.sp),),
                                     ),
                                   ),
                               ),
                             ],
+                          ),
+                          SizedBox(height: 20.h,),
+                          Visibility(
+                            visible: isTheOwner,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(flex: 1,child: Text("Requested by",textAlign: TextAlign.center,style: TextStyle(fontSize: 20.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500),)),
+                                    const Expanded(flex: 1,child: SizedBox())
+                                  ],
+                                ),
+                                SizedBox(height: 13.h,),
+
+                                ListView(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  children: [
+                                    UserItem(
+                                        user: User(
+                                            "1",
+                                            "Ahmed Ebeid",
+                                            "ebeidahmed2@gmail.com",
+                                            "+201153180577",
+                                            Location(30.12571871868943, 31.70773392993082),
+                                            "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
+
+                                    ),
+                                    UserItem(
+                                        user: User(
+                                            "1",
+                                            "Ahmed Ebeid",
+                                            "ebeidahmed2@gmail.com",
+                                            "+201153180577",
+                                            Location(30.12571871868943, 31.70773392993082),
+                                            "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
+
+                                    ),
+                                    UserItem(
+                                        user: User(
+                                            "1",
+                                            "Ahmed Ebeid",
+                                            "ebeidahmed2@gmail.com",
+                                            "+201153180577",
+                                            Location(30.12571871868943, 31.70773392993082),
+                                            "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
+
+                                    ),
+                                    UserItem(
+                                        user: User(
+                                            "1",
+                                            "Ahmed Ebeid",
+                                            "ebeidahmed2@gmail.com",
+                                            "+201153180577",
+                                            Location(30.12571871868943, 31.70773392993082),
+                                            "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
+
+                                    ),
+
+                                  ],
+                                ),
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -254,8 +297,8 @@ class ShowDetail extends StatelessWidget {
                 InkWell(
                   child: Container(
                     margin: const EdgeInsets.all(10),
-                    width: 45.w,
-                    height: 45.h,
+                    width: 45,
+                    height: 45,
                     decoration: BoxDecoration(
                         color: const Color.fromRGBO(0, 0, 0, 0.15),
                         borderRadius: BorderRadius.circular(13)

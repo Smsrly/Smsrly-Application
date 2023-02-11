@@ -216,7 +216,7 @@ class _ContactUsState extends State<ContactUs> {
 
                             },
                           ),
-                          SizedBox(height: 23.h,),
+                          SizedBox(height: 45.h,),
                           SizedBox(
                             width:double.infinity,
                             child: ElevatedButton(
