@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/sign_up.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
+import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -41,26 +42,7 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 20.h,
                 ),
-                TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    labelStyle: TextStyle(
-                        fontSize: 18.sp, color: Color.fromRGBO(124, 124, 124, 1)),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(14, 82, 137, 1),
-                        width: 2,
-                      ),
-                    ),
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(170, 171, 170, 1),
-                        width: 1.5,
-                      ),
-                    ),
-                  ),
-                ),
+                TextFieldWithBottomBorder(label: 'Email',inputType: TextInputType.emailAddress,fontSize: 18.sp),
                 SizedBox(
                   height: 15.h,
                 ),

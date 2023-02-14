@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
+import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -90,54 +91,14 @@ class _SignUpState extends State<SignUp> {
                     height: 25.h,
                   ),
 
-                  TextFormField(
-                    keyboardType: TextInputType.name,
-                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
-                    decoration: InputDecoration(
-                      labelText: 'First Name',
-                      labelStyle: TextStyle(
-                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(14, 82, 137, 1),
-                          width: 2,
-                        ),
-                      ),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(170, 171, 170, 1),
-                          width: 1.5,
-                        ),
-                      ),
-                    ),
-                  ),
+                  TextFieldWithBottomBorder(label: "First Name",inputType: TextInputType.name,fontSize: 18.sp,),
 
                   SizedBox(
                     height: 25.h,
                   ),
 
 
-                  TextFormField(
-                    keyboardType: TextInputType.name,
-                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
-                    decoration: InputDecoration(
-                      labelText: 'Last Name',
-                      labelStyle: TextStyle(
-                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(14, 82, 137, 1),
-                          width: 2,
-                        ),
-                      ),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(170, 171, 170, 1),
-                          width: 1.5,
-                        ),
-                      ),
-                    ),
-                  ),
+                  TextFieldWithBottomBorder(label: "Second Name",inputType: TextInputType.name,fontSize: 18.sp),
 
 
                   SizedBox(
@@ -145,93 +106,48 @@ class _SignUpState extends State<SignUp> {
                   ),
 
 
-                  TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-
-                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: TextStyle(
-                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(14, 82, 137, 1),
-                          width: 2,
-                        ),
-                      ),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(170, 171, 170, 1),
-                          width: 1.5,
-                        ),
-                      ),
-                    ),
-                  ),
+                  TextFieldWithBottomBorder(label: "Email",inputType: TextInputType.emailAddress,fontSize: 18.sp),
 
                   SizedBox(
                     height: 25.h,
                   ),
-
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    textInputAction: TextInputAction.done,
-                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
-                    inputFormatters: <TextInputFormatter>[
+                  TextFieldWithBottomBorder(
+                    label: "Phone Number",
+                    inputType: TextInputType.number,
+                    inputFormatter: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
-                    maxLines: 1,
+                    fontSize: 18.sp,
+                    prefixIcon:  Container(
+                    width: 80,
 
-                    decoration:  InputDecoration(
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(14, 82, 137, 1),
-                          width: 2,
-                        ),
-                      ),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(170, 171, 170, 1),
-                          width: 1.5,
-                        ),
-                      ),
+                    padding: const EdgeInsets.all(3),
+                    margin: const EdgeInsets.all(3),
 
 
-                      labelText: 'Phone Number',
-                      labelStyle: TextStyle(
-                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
-                      prefixIcon: Container(
-                        width: 80,
-
-                        padding: const EdgeInsets.all(3),
-                        margin: const EdgeInsets.all(3),
-
-
-                        child: InkWell(
-                          onTap: ()async{
-                            var code= await _countryPicker.showPicker(context: context);
-                            setState(() {
-                              if(code!=null){
-                                _countryCode=code;
-                                _flag=_countryCode?.flagImage;
-                              }
-                            });
-                          },
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 25,
-                                child: _countryCode!= null ? _countryCode?.flagImage:_flag,
-                              ),
-                              const SizedBox(width: 3,),
-                              Text(_countryCode == null ? "+20" : "${_countryCode?.dialCode}",style: const TextStyle(fontSize: 15,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,color: Color.fromRGBO(124, 124, 124, 1)),)
-                            ],
+                    child: InkWell(
+                      onTap: ()async{
+                        var code= await _countryPicker.showPicker(context: context);
+                        setState(() {
+                          if(code!=null){
+                            _countryCode=code;
+                            _flag=_countryCode?.flagImage;
+                          }
+                        });
+                      },
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 25,
+                            child: _countryCode!= null ? _countryCode?.flagImage:_flag,
                           ),
-                        ),
-                      ),
-
+                          const SizedBox(width: 3,),
+                          Text(_countryCode == null ? "+20" : "${_countryCode?.dialCode}",style: const TextStyle(fontSize: 15,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,color: Color.fromRGBO(124, 124, 124, 1)),)
+                        ],
                       ),
                     ),
-
+                  ),
+                  ),
                   const SizedBox(
                     height: 25,
                   ),
