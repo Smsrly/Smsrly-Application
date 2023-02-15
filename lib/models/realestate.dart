@@ -10,7 +10,7 @@ class RealEstate{
     _realEstateId = value;
   }
 
-  // if 0 it for rent , 1 for sale
+  // if 0 it's for rent , 1 for sale
 
   late int _rentOrSale;
 

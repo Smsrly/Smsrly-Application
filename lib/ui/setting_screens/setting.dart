@@ -21,7 +21,7 @@ class Setting extends StatelessWidget {
                         EdgeInsets.symmetric(vertical: 45.h, horizontal: 20.w),
                     height: 300.h,
                     decoration: BoxDecoration(
-                        color: Colors.blue[800],
+                        color: Color(0xFF0E5289),
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30.sp),
                             bottomRight: Radius.circular(30.sp))),
