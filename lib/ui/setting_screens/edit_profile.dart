@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
 
 class Edit extends StatelessWidget {
   bool isVisible = true;
@@ -15,7 +16,7 @@ class Edit extends StatelessWidget {
                   height: 350.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      color: Colors.blue[800],
+                      color: const Color.fromRGBO(14, 82, 137, 1),
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(30.sp),
                           bottomRight: Radius.circular(30.sp))),
@@ -74,47 +75,19 @@ class Edit extends StatelessWidget {
                           SizedBox(
                             height: 30.h,
                           ),
-                          TextField(
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                labelText: "First Name",
-                                border: OutlineInputBorder(
-                                    borderSide: const BorderSide(width: 5),
-                                    borderRadius: BorderRadius.circular(20.0)),
-                              )),
+                          RoundedTextField(cursorColor: const Color.fromRGBO(14, 82, 137, 1),label: "First Name",),
                           SizedBox(
                             height: 30.h,
                           ),
-                          TextField(
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                labelText: "Last Name",
-                                border: OutlineInputBorder(
-                                    borderSide: const BorderSide(width: 5),
-                                    borderRadius: BorderRadius.circular(20.0)),
-                              )),
+                          RoundedTextField(cursorColor: const Color.fromRGBO(14, 82, 137, 1),label: "Second Name",),
                           SizedBox(
                             height: 30.h,
                           ),
-                          TextField(
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                labelText: "Email",
-                                border: OutlineInputBorder(
-                                    borderSide: const BorderSide(width: 5),
-                                    borderRadius: BorderRadius.circular(20.0)),
-                              )),
+                          RoundedTextField(cursorColor: const Color.fromRGBO(14, 82, 137, 1),label: "Email",inputType: TextInputType.emailAddress,),
                           SizedBox(
                             height: 30.h,
                           ),
-                          TextField(
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                labelText: "Phone number",
-                                border: OutlineInputBorder(
-                                    borderSide: const BorderSide(width: 5),
-                                    borderRadius: BorderRadius.circular(20.0)),
-                              )),
+                          RoundedTextField(cursorColor: const Color.fromRGBO(14, 82, 137, 1),label: "Phone number",inputType: TextInputType.phone,),
                           SizedBox(
                             height: 30.h,
                           ),

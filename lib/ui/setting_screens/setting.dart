@@ -171,9 +171,7 @@ class Setting extends StatelessWidget {
                         SizedBox(
                           height: 13.h,
                         ),
-                        settingRow("Dark Mode", Icons.dark_mode_outlined, () {
-
-                        }),
+                        // settingRow("Dark Mode", Icons.dark_mode_outlined, () {}),
                         SizedBox(
                           height: 13.h,
                         ),
