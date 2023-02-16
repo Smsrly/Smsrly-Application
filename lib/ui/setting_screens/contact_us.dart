@@ -206,7 +206,7 @@ class _ContactUsState extends State<ContactUs> {
                                     const Padding(
                                       padding: EdgeInsets.only(right: 16),
                                       child: Image(
-                                        image: AssetImage("images/attach.png"),
+                                        image: AssetImage("assets/images/attach.png"),
                                         width: 25,
                                       ),
                                     ),

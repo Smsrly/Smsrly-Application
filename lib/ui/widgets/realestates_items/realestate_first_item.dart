@@ -67,7 +67,7 @@ class FirstItem extends StatelessWidget {
                           margin: const EdgeInsets.all(5),
                           width: 25,
                             height: 30,
-                            child: Image.asset(hasSaved?"images/saved_btn.png":"images/save_btn.png")),
+                            child: Image.asset(hasSaved?"assets/images/saved_btn.png":"assets/images/save_btn.png")),
                       )
                     ],
                   ),

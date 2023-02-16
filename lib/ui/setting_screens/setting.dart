@@ -118,7 +118,7 @@ class Setting extends StatelessWidget {
                               const CircleAvatar(
                                   radius: 26,
                                   backgroundImage:
-                                      AssetImage("images/SUIIIIIIIIIIII.jpg")),
+                                      AssetImage("assets/images/SUIIIIIIIIIIII.jpg")),
                               SizedBox(
                                 width: 15.h,
                               ),

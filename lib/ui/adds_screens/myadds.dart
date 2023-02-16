@@ -12,8 +12,8 @@ class MyAdds extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            toolbarHeight: 70,
-            backgroundColor: Colors.blue[800],
+            toolbarHeight: 70.h,
+            backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
             title: const Text("My Adds"),
             bottom: TabBar(
               indicatorWeight: 2,

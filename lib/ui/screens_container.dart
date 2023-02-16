@@ -82,11 +82,11 @@ class _AppState extends State<App> {
         body: screens[currPage],
         bottomNavigationBar: BottomNavBar(
          icons: [
-          _getBottomBarIcon(0, "images/home_icon_not_selected.png", "images/home_icon_selected.png"),
-          _getBottomBarIcon(1, "images/search_not_selected_icon.png", "images/search_selected_icon.png"),
-          _getBottomBarIcon(2, "images/add_icon_not_selected.png", "images/add_selected_icon.png"),
-          _getBottomBarIcon(3, "images/save_icon_not_selected.png", "images/save_icon_selected.png"),
-          _getBottomBarIcon(4, "images/setting_icon_not_selected.png", "images/setting_icon_selected.png"),
+          _getBottomBarIcon(0, "assets/images/home_icon_not_selected.png", "assets/images/home_icon_selected.png"),
+          _getBottomBarIcon(1, "assets/images/search_not_selected_icon.png", "assets/images/search_selected_icon.png"),
+          _getBottomBarIcon(2, "assets/images/add_icon_not_selected.png", "assets/images/add_selected_icon.png"),
+          _getBottomBarIcon(3, "assets/images/save_icon_not_selected.png", "assets/images/save_icon_selected.png"),
+          _getBottomBarIcon(4, "assets/images/setting_icon_not_selected.png", "assets/images/setting_icon_selected.png"),
         ]),
       ),
     );

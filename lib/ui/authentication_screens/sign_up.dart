@@ -18,7 +18,7 @@ class _SignUpState extends State<SignUp> {
   bool _isConfirmPasswordFieldNotVisible = true;
   final _countryPicker =const FlCountryCodePicker();
   CountryCode? _countryCode;
-  Widget? _flag=Image.asset("images/egypt_flag.png");
+  Widget? _flag=Image.asset("assets/images/egypt_flag.png");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +62,7 @@ class _SignUpState extends State<SignUp> {
                               child: CircleAvatar(
                                 radius: 30,
                                 backgroundImage:
-                                    AssetImage("images/profile_icon.png"),
+                                    AssetImage("assets/images/profile_icon.png"),
                               )),
                           SizedBox(
                             width: double.infinity,
@@ -74,7 +74,7 @@ class _SignUpState extends State<SignUp> {
                                 SizedBox(
                                     width:50,
                                     height: 50,
-                                    child: Image.asset("images/camera_icon.png")
+                                    child: Image.asset("assets/images/camera_icon.png")
                                 )
                               ],
                             ),

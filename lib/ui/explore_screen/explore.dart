@@ -110,7 +110,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               SizedBox(
                   width: 20,
                   height: 20,
-                  child: Image.asset("images/search_icon.png")),
+                  child: Image.asset("assets/images/search_icon.png")),
               const SizedBox(
                 width: 10,
               ),
@@ -178,7 +178,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset("images/notfound_icon.png"),
+              Image.asset("assets/images/notfound_icon.png"),
               const SizedBox(
                 height: 10,
               ),
@@ -252,7 +252,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         child: SizedBox(
                             width: 20,
                             height: 20,
-                            child: Image.asset("images/options_icon.png")),
+                            child: Image.asset("assets/images/options_icon.png")),
                       ),
                       onTap: () {
                         showOptionsDialog(context);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:smsrly/models/realestate.dart';
-import 'package:smsrly/models/user.dart';
 
 class ThirdItem extends StatelessWidget {
   late RealEstate realEstate;
@@ -67,7 +66,7 @@ class ThirdItem extends StatelessWidget {
                               margin: const EdgeInsets.all(5),
                               width: 25,
                               height: 30,
-                              child: Image.asset(hasSaved?"images/saved_btn.png":"images/save_btn.png")
+                              child: Image.asset(hasSaved?"assets/images/saved_btn.png":"assets/images/save_btn.png")
                           ),
                           onTap: (){
                             onSaveIconSelected!();
@@ -104,7 +103,7 @@ class ThirdItem extends StatelessWidget {
                     SizedBox(
                         width: 20,
                         height: 20,
-                        child: Image.asset("images/area_icon_white.png")
+                        child: Image.asset("assets/images/area_icon_white.png")
                     ),
                     const SizedBox(width: 3,),
                     Text("${realEstate.area}",style: const TextStyle(
@@ -123,7 +122,7 @@ class ThirdItem extends StatelessWidget {
                     SizedBox(
                         width: 20,
                         height: 20,
-                        child: Image.asset("images/stairs_icon_white.png")
+                        child: Image.asset("assets/images/stairs_icon_white.png")
                     ),
                     const SizedBox(width: 3,),
                     Text("${realEstate.floor}",style: const TextStyle(
@@ -143,7 +142,7 @@ class ThirdItem extends StatelessWidget {
                     SizedBox(
                         width: 20,
                         height: 20,
-                        child: Image.asset("images/bathtub_icon_white.png")
+                        child: Image.asset("assets/images/bathtub_icon_white.png")
                     ),
                     const SizedBox(width: 3,),
                     Text("${realEstate.bathroomsNo}",style: const TextStyle(
@@ -163,7 +162,7 @@ class ThirdItem extends StatelessWidget {
                     SizedBox(
                         width: 20,
                         height: 20,
-                        child: Image.asset("images/bed_icon_white.png")
+                        child: Image.asset("assets/images/bed_icon_white.png")
                     ),
                     const SizedBox(width: 3,),
                     Text("${realEstate.roomsNo}",style: const TextStyle(

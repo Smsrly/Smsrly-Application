@@ -51,7 +51,7 @@ class SecondItem extends StatelessWidget {
                       SizedBox(
                           width: 12,
                           height: 16.h,
-                          child: Image.asset("images/black_location_icon.png")),
+                          child: Image.asset("assets/images/black_location_icon.png")),
                       const SizedBox(
                         width: 4,
                       ),
@@ -72,7 +72,7 @@ class SecondItem extends StatelessWidget {
                       SizedBox(
                           width: 20,
                           height: 20.h,
-                          child: Image.asset("images/area_icon.png")),
+                          child: Image.asset("assets/images/area_icon.png")),
                       const SizedBox(
                         width: 4,
                       ),
@@ -102,7 +102,7 @@ class SecondItem extends StatelessWidget {
                     height: 30,
                     margin: const EdgeInsets.all(5),
                       child: InkWell(
-                        child: Image.asset(hasSaved?"images/saved_icon_blue.png":"images/save_icon_blue.png"),
+                        child: Image.asset(hasSaved?"assets/images/saved_icon_blue.png":"assets/images/save_icon_blue.png"),
                         onTap:(){
                           onSaveBtn!();
                         },

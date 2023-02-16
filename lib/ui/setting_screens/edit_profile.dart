@@ -99,7 +99,7 @@ class Edit extends StatelessWidget {
                             height: 15.h,
                           ),
                           Image.asset(
-                            "images/location.jpg",
+                            "assets/images/location.jpg",
                           ),
                           Container(
                             alignment: Alignment.center,
@@ -146,7 +146,7 @@ class Edit extends StatelessWidget {
                     children: const [
                       CircleAvatar(
                         radius: 40,
-                        backgroundImage: AssetImage("images/SUIIIIIIIIIIII.jpg"),
+                        backgroundImage: AssetImage("assets/images/SUIIIIIIIIIIII.jpg"),
                       )
                     ],
                   ),

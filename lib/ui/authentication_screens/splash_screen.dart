@@ -162,7 +162,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     return Scaffold(
       body: Center(
         child:Lottie.asset(
-            "animations/loading_home_animation.json",
+            "assets/animations/loading_home_animation.json",
             animate: true,
             repeat: false,
             controller: _controller,

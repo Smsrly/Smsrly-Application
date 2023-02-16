@@ -48,7 +48,7 @@ class UserItem extends StatelessWidget {
                         color: const Color.fromRGBO(14, 82, 137, 0.18),
                         borderRadius: BorderRadius.circular(13)
                     ),
-                    child: Image.asset("images/call_icon.png"),
+                    child: Image.asset("assets/images/call_icon.png"),
 
                   ),
                   onTap: (){

@@ -78,7 +78,7 @@ class ShowDetail extends StatelessWidget {
                                   SizedBox(
                                       width:20.w,
                                       height: 20,
-                                      child: Image.asset("images/bed_icon.png"),
+                                      child: Image.asset("assets/images/bed_icon.png"),
                                   ),
                                     SizedBox(width: 3.w),
                                   Text("${item.roomsNo}",style:   TextStyle(color: const Color.fromRGBO(170, 169, 169, 1)
@@ -90,7 +90,7 @@ class ShowDetail extends StatelessWidget {
                                   SizedBox(
                                     width:20.w,
                                     height: 20,
-                                    child: Image.asset("images/bathtub_icon.png"),
+                                    child: Image.asset("assets/images/bathtub_icon.png"),
                                   ),
                                   const SizedBox(width: 3),
                                   Text("${item.bathroomsNo}",style:  TextStyle(color: const Color.fromRGBO(170, 169, 169, 1)
@@ -102,7 +102,7 @@ class ShowDetail extends StatelessWidget {
                                   SizedBox(
                                     width:20.w,
                                     height: 20,
-                                    child: Image.asset("images/stairs_icon.png"),
+                                    child: Image.asset("assets/images/stairs_icon.png"),
                                   ),
                                     SizedBox(width: 3.w),
                                   Text("${item.floor}",style:   TextStyle(color: const Color.fromRGBO(170, 169, 169, 1)
@@ -114,7 +114,7 @@ class ShowDetail extends StatelessWidget {
                                   SizedBox(
                                     width:20.w,
                                     height: 20,
-                                    child: Image.asset("images/areaa_icon.png"),
+                                    child: Image.asset("assets/images/areaa_icon.png"),
                                   ),
                                     SizedBox(width: 3.w),
                                   Text("${item.area}m²",style:   TextStyle(color: const Color.fromRGBO(170, 169, 169, 1)
@@ -169,7 +169,7 @@ class ShowDetail extends StatelessWidget {
                                                 color: const Color.fromRGBO(14, 82, 137, 0.18),
                                                 borderRadius: BorderRadius.circular(13)
                                             ),
-                                            child: Image.asset("images/call_icon.png"),
+                                            child: Image.asset("assets/images/call_icon.png"),
 
                                           ),
                                           onTap: (){

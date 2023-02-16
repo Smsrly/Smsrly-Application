@@ -64,14 +64,14 @@ class Sell extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                 Image(
-                                    image: const AssetImage("images/add.png"),
+                                    image: const AssetImage("assets/images/add.png"),
                                     width: 20.w,
                                     height: 20.h),
                                 SizedBox(
                                   width:1.w ,
                                 ),
                                 Text(
-                                  "Add Images & Video",
+                                  "Add Image Or Video",
                                   style: TextStyle(
                                     fontSize: 22.sp,
                                       fontFamily: "IBMPlexSans",
@@ -139,7 +139,7 @@ class Sell extends StatelessWidget {
                         width: double.infinity,
                         // Map Here
                         child: const Image(
-                            image: AssetImage("images/map.png")
+                            image: AssetImage("assets/images/map.png")
                         )
                     ),
                       SizedBox(height: 15.h,),
