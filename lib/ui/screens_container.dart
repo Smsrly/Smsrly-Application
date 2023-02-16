@@ -54,7 +54,26 @@ class _AppState extends State<App> {
   }
 
   int currPage = 0;
-
+  IconBottomBar _getBottomBarIcon(int index , String lightIconPath, String darkIconPath){
+    return IconBottomBar(
+          lightIcon: SizedBox(
+              width: 27,
+              height: 27,
+              child: Image.asset(lightIconPath)),
+          darkIcon: SizedBox(
+              width: 27,
+              height: 27,
+              child: Image.asset(darkIconPath)),
+          isSelected: currPage == index,
+          onPressed: () {
+            if (currPage != index) {
+              setState(() {
+                currPage = index;
+              });
+            }
+          }
+        );
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -63,91 +82,11 @@ class _AppState extends State<App> {
         body: screens[currPage],
         bottomNavigationBar: BottomNavBar(
          icons: [
-          IconBottomBar(
-              lightIcon: SizedBox(
-                  width: 27,
-                  height: 27,
-                  child: Image.asset("images/home_icon_not_selected.png")),
-              darkIcon: SizedBox(
-                  width: 27,
-                  height: 27,
-                  child: Image.asset("images/home_icon_selected.png")),
-              isSelected: currPage == 0,
-              onPressed: () {
-                if (currPage != 0) {
-                  setState(() {
-                    currPage = 0;
-                  });
-                }
-              }),
-          IconBottomBar(
-              lightIcon: SizedBox(
-                  width: 23,
-                  height: 23,
-                  child: Image.asset("images/search_not_selected_icon.png")),
-              darkIcon: SizedBox(
-                  width: 23,
-                  height: 23,
-                  child: Image.asset("images/search_selected_icon.png")),
-              isSelected: currPage == 1,
-              onPressed: () {
-                if (currPage != 1) {
-                  setState(() {
-                    currPage = 1;
-                  });
-                }
-              }),
-          IconBottomBar(
-              lightIcon: SizedBox(
-                  width: 23,
-                  height: 23,
-                  child: Image.asset("images/add_icon_not_selected.png")),
-              darkIcon: SizedBox(
-                  width: 23,
-                  height: 23,
-                  child: Image.asset("images/add_selected_icon.png")),
-              isSelected: currPage == 2,
-              onPressed: () {
-                if (currPage != 2) {
-                  setState(() {
-                    currPage = 2;
-                  });
-                }
-              }),
-          IconBottomBar(
-              lightIcon: SizedBox(
-                  width: 23,
-                  height: 23,
-                  child: Image.asset("images/save_icon_not_selected.png")),
-              darkIcon: SizedBox(
-                  width: 23,
-                  height: 23,
-                  child: Image.asset("images/save_icon_selected.png")),
-              isSelected: currPage == 3,
-              onPressed: () {
-                if (currPage != 3) {
-                  setState(() {
-                    currPage = 3;
-                  });
-                }
-              }),
-          IconBottomBar(
-              lightIcon: SizedBox(
-                  width: 23,
-                  height: 23,
-                  child: Image.asset("images/setting_icon_not_selected.png")),
-              darkIcon: SizedBox(
-                  width: 23,
-                  height: 23,
-                  child: Image.asset("images/setting_icon_selected.png")),
-              isSelected: currPage == 4,
-              onPressed: () {
-                if (currPage != 4) {
-                  setState(() {
-                    currPage = 4;
-                  });
-                }
-              }),
+          _getBottomBarIcon(0, "images/home_icon_not_selected.png", "images/home_icon_selected.png"),
+          _getBottomBarIcon(1, "images/search_not_selected_icon.png", "images/search_selected_icon.png"),
+          _getBottomBarIcon(2, "images/add_icon_not_selected.png", "images/add_selected_icon.png"),
+          _getBottomBarIcon(3, "images/save_icon_not_selected.png", "images/save_icon_selected.png"),
+          _getBottomBarIcon(4, "images/setting_icon_not_selected.png", "images/setting_icon_selected.png"),
         ]),
       ),
     );

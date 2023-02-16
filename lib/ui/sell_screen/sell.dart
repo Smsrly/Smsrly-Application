@@ -1,8 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
 
 class Sell extends StatelessWidget {
   const Sell({Key? key}) : super(key: key);
+
+  Widget textField(String text, String label, TextInputType inputType) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Visibility(
+          visible: text.isNotEmpty,
+          child: Container(
+            padding: EdgeInsets.only(left: 5.w, bottom: 6.h),
+            child: Text(
+              text,
+              style: TextStyle(fontSize: 16.sp),
+            ),
+          ),
+        ),
+        RoundedTextField(
+          cursorColor: const Color.fromRGBO(14, 82, 137, 1),
+          textStyle: TextStyle(fontSize: 18.sp),
+          label: label,
+          inputType: inputType,
+        ),
+      ],
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,60 +85,11 @@ class Sell extends StatelessWidget {
                     SizedBox(
                       height: 15.h,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(left: 5.w, bottom: 6.h),
-                      child: Text(
-                        "Title",
-                        style: TextStyle(fontSize: 16.sp),
-                      ),
-                    ),
-                    TextField(
-                      style: TextStyle(fontSize: 18.sp),
-                      cursorColor: const Color.fromRGBO(14, 82, 137, 1),
-                      decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                          borderSide: const BorderSide(
-                              color: Color.fromRGBO(14, 82, 137, 1),
-                              width: 2),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                          borderSide: const BorderSide(
-                              color: Color.fromRGBO(170, 171, 170, 1),
-                              width: 1),
-                        ),
-                      ),
-                    ),
+                    textField("Title","",TextInputType.text),
                     SizedBox(
                       height: 15.h,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(left: 5.w, bottom: 6.w),
-                      child: Text(
-                        "Price",
-                        style: TextStyle(fontSize: 16.sp),
-                      ),
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      style: TextStyle(fontSize: 18.sp),
-                      cursorColor: const Color.fromRGBO(14, 82, 137, 1),
-                      decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                          borderSide: const BorderSide(
-                              color: Color.fromRGBO(14, 82, 137, 1),
-                              width: 2),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                          borderSide: const BorderSide(
-                              color: Color.fromRGBO(170, 171, 170, 1),
-                              width: 1),
-                        ),
-                      ),
-                    ),
+                    textField("Price", "",TextInputType.number),
                     SizedBox(
                       height: 15.h,
                     ),
@@ -170,53 +147,14 @@ class Sell extends StatelessWidget {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: TextField(
-                              keyboardType: TextInputType.number,
-                              cursorColor: const Color.fromRGBO(14, 82, 137, 1),
-                              decoration: InputDecoration(
-                                labelText: "Floors",
-                                labelStyle: TextStyle(fontSize: 17.sp),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: const BorderSide(
-                                    color: Color.fromRGBO(14, 82, 137, 1),
-                                    width: 2,
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: const BorderSide(
-                                      color: Color.fromRGBO(170, 171, 170, 1),
-                                      width: 1),
-                                ),
-                              )),
+                          child: textField("", "Floors", TextInputType.number),
                         ),
                         SizedBox(
                           width: 10.w,
                         ),
                         Expanded(
                           flex: 1,
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            cursorColor: const Color.fromRGBO(14, 82, 137, 1),
-                            decoration: InputDecoration(
-                              labelText: "Rooms",
-                              labelStyle: TextStyle(fontSize: 17.sp),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                borderSide: const BorderSide(
-                                  color: Color.fromRGBO(14, 82, 137, 1),
-                                  width: 2,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                borderSide: const BorderSide(
-                                    color: Color.fromRGBO(170, 171, 170, 1),
-                                    width: 1),
-                              ),
-                            ),
-                          ),
+                          child: textField("", "Rooms", TextInputType.number),
                         ),
                       ],
                     ),
@@ -227,52 +165,17 @@ class Sell extends StatelessWidget {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: TextField(
-                              keyboardType: TextInputType.number,
-                              cursorColor: const Color.fromRGBO(14, 82, 137, 1),
-                              decoration: InputDecoration(
-                                labelText: "Rooms",
-                                labelStyle: TextStyle(fontSize: 17.sp),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: const BorderSide(
-                                    color: Color.fromRGBO(14, 82, 137, 1),
-                                    width: 2,
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: const BorderSide(
-                                      color: Color.fromRGBO(170, 171, 170, 1),
-                                      width: 1),
-                                ),
-                              )),
+                          child: Expanded(
+                            flex: 1,
+                            child: textField("", "Bathrooms", TextInputType.number),
+                          ),
                         ),
                         SizedBox(
                           width: 10.w,
                         ),
                         Expanded(
                           flex: 1,
-                          child: TextField(
-                              keyboardType: TextInputType.number,
-                              cursorColor: const Color.fromRGBO(14, 82, 137, 1),
-                              decoration: InputDecoration(
-                                labelText: "Area",
-                                labelStyle: TextStyle(fontSize: 17.sp),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: const BorderSide(
-                                    color: Color.fromRGBO(14, 82, 137, 1),
-                                    width: 2,
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: const BorderSide(
-                                      color: Color.fromRGBO(170, 171, 170, 1),
-                                      width: 1),
-                                ),
-                              )),
+                          child: textField("", "Area", TextInputType.number),
                         ),
                       ],
                     ),

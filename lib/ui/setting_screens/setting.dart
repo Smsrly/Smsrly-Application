@@ -1,11 +1,44 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/ui/setting_screens/contactUs.dart';
+import 'package:smsrly/ui/setting_screens/contact_us.dart';
 import 'password_dialog.dart';
-import 'editProfile.dart';
+import 'edit_profile.dart';
 
 class Setting extends StatelessWidget {
+
+  void showDeleteDialog(BuildContext context){
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.warning,
+      animType: AnimType.topSlide,
+      title: "Delete Account !",
+      desc:
+      "Are you sure that you want to delete your account ?",
+      btnCancelOnPress: () => print("Canceled"),
+      btnOkOnPress: () => print("Ok"),
+    ).show();
+  }
+
+
+  Widget settingRow(String text, IconData icon, VoidCallback onPressed) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          text,
+          style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.sp),
+        ),
+        IconButton(
+            onPressed: onPressed,
+            icon: Icon(
+              icon,
+              size: 25.sp,
+            ))
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
@@ -21,7 +54,7 @@ class Setting extends StatelessWidget {
                         EdgeInsets.symmetric(vertical: 45.h, horizontal: 20.w),
                     height: 300.h,
                     decoration: BoxDecoration(
-                        color: Color(0xFF0E5289),
+                        color: const Color(0xFF0E5289),
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30.sp),
                             bottomRight: Radius.circular(30.sp))),
@@ -56,7 +89,8 @@ class Setting extends StatelessWidget {
                     width: double.infinity,
                     padding:
                         EdgeInsets.symmetric(vertical: 12.h, horizontal: 10.w),
-                    margin: EdgeInsets.only(top: h / 5, right: 20.w, left: 20.w),
+                    margin:
+                        EdgeInsets.only(top: h / 5, right: 20.w, left: 20.w),
                     decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
@@ -114,74 +148,32 @@ class Setting extends StatelessWidget {
                         SizedBox(
                           height: 15.h,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Edit Profile",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 20.sp),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => Edit()));
-                                },
-                                icon: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 25.sp,
-                                ))
-                          ],
-                        ),
+
+                        settingRow("Edit Profile", Icons.arrow_forward_ios, () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Edit()));
+                        }),
                         SizedBox(
                           height: 13.h,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Change Password",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 20.sp),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return PasswordDialog(
-                                        onSubmit: () {
-                                          print('Ok');
-                                        },
-                                      );
-                                    },
-                                  );
+                        settingRow("Change Password", Icons.arrow_forward_ios, () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return PasswordDialog(
+                                onSubmit: () {
+                                  print('Ok');
                                 },
-                                icon: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 25.sp,
-                                ))
-                          ],
-                        ),
+                              );
+                            },
+                          );
+                        }),
                         SizedBox(
                           height: 13.h,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Dark Mode",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 20.sp),
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.dark_mode_outlined,
-                                  size: 25.sp,
-                                ))
-                          ],
-                        ),
+                        settingRow("Dark Mode", Icons.dark_mode_outlined, () {
+
+                        }),
                         SizedBox(
                           height: 13.h,
                         ),
@@ -195,75 +187,22 @@ class Setting extends StatelessWidget {
                         SizedBox(
                           height: 13.h,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Contact us",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 20.sp),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (_){
-                                    return const ContactUs();
-                                  }));
-                                },
-                                icon: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 25.sp,
-                                ))
-                          ],
-                        ),
+                        settingRow("Contact us", Icons.arrow_forward_ios, () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) {
+                            return const ContactUs();
+                          }));
+                        }),
                         SizedBox(
                           height: 13.h,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Log out",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 20.sp),
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.logout,
-                                  size: 25.sp,
-                                ))
-                          ],
-                        ),
+                        settingRow("Log out", Icons.logout, () { }),
                         SizedBox(
                           height: 13.h,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Delete Account",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 20.sp),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  AwesomeDialog(
-                                    context: context,
-                                    dialogType: DialogType.warning,
-                                    animType: AnimType.topSlide,
-                                    title: "Delete Account !",
-                                    desc:
-                                        "Are you sure that you want to delete your account ?",
-                                    btnCancelOnPress: () => print("Canceled"),
-                                    btnOkOnPress: () => print("Ok"),
-                                  ).show();
-                                },
-                                icon: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 25.sp,
-                                ))
-                          ],
-                        )
+                        settingRow("Delete Account", Icons.arrow_forward_ios, () {
+                          showDeleteDialog(context);
+                        }),
                       ],
                     ),
                   ),

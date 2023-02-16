@@ -6,14 +6,14 @@ class RoundedTextField extends StatelessWidget {
   String? label;
   TextEditingController? controller = TextEditingController();
   Color? cursorColor;
-
-  RoundedTextField({Key? key,this.fontSize,this.label,this.inputType,this.controller,required this.cursorColor}) : super(key: key);
+  TextStyle? textStyle;
+  RoundedTextField({Key? key,this.fontSize,this.label,this.inputType,this.controller,required this.cursorColor,this.textStyle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
             controller: controller,
-
+            style: textStyle,
             keyboardType: inputType,
             cursorColor: cursorColor,
             decoration: InputDecoration(
