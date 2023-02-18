@@ -5,6 +5,7 @@ import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/colors.dart';
 
 class OnBoarding extends StatelessWidget {
+  static const  String route = "/ON_BOARDING";
   const OnBoarding({super.key});
 
   Widget imageBackground() {
@@ -48,10 +49,7 @@ class OnBoarding extends StatelessWidget {
                 width: double.infinity,
                 child: RoundedButton(
                   onClick: () {
-                    Navigator.of(context)
-                        .pushReplacement(MaterialPageRoute(builder: (_) {
-                      return const Login();
-                    }));
+                    Navigator.of(context).pushReplacementNamed(Login.route);
                   },
                   text: 'Get Started',
                 ),

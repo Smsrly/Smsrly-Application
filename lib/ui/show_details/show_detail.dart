@@ -8,6 +8,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../models/user.dart';
 
 class ShowDetail extends StatelessWidget {
+
+
   late RealEstate item;
   var isTheOwner;
   ShowDetail({Key? key,required this.item,this.isTheOwner=false}) : super(key: key);
@@ -230,46 +232,46 @@ class ShowDetail extends StatelessWidget {
                                     UserItem(
                                         user: User(
                                             "1",
-                                            "Ahmed Ebeid",
-                                            "ebeidahmed2@gmail.com",
+                                            "Leo Messi",
+                                            "loemessi1234@gmail.com",
                                             "+201153180577",
                                             30.12571871868943,
                                             31.70773392993082,
-                                            "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
-
+                                            "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg"
+                                        )
                                     ),
                                     UserItem(
                                         user: User(
                                             "1",
-                                            "Ahmed Ebeid",
-                                            "ebeidahmed2@gmail.com",
+                                            "Leo Messi",
+                                            "loemessi1234@gmail.com",
                                             "+201153180577",
                                             30.12571871868943,
                                             31.70773392993082,
-                                            "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
-
+                                            "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg"
+                                        )
                                     ),
                                     UserItem(
                                         user: User(
                                             "1",
-                                            "Ahmed Ebeid",
-                                            "ebeidahmed2@gmail.com",
+                                            "Leo Messi",
+                                            "loemessi1234@gmail.com",
                                             "+201153180577",
                                             30.12571871868943,
                                             31.70773392993082,
-                                            "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
-
+                                            "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg"
+                                        )
                                     ),
                                     UserItem(
                                         user: User(
                                             "1",
-                                            "Ahmed Ebeid",
-                                            "ebeidahmed2@gmail.com",
+                                            "Leo Messi",
+                                            "loemessi1234@gmail.com",
                                             "+201153180577",
                                             30.12571871868943,
                                             31.70773392993082,
-                                            "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
-
+                                            "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg"
+                                        )
                                     ),
                                   ],
                                 ),

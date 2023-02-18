@@ -13,19 +13,19 @@ import 'package:smsrly/ui/widgets/navbar/bottombar_icon.dart';
 import '../models/realestate.dart';
 import 'explore_screen/explore.dart';
 
-
-class App extends StatefulWidget {
+class ScreensContainer extends StatefulWidget {
+  static const String route = "/SCREENS_CONTAINER";
   late User currUser;
-  late Map<int, RealEstate> items;
-  late List<int> IDs;
+  late List<RealEstate> items;
 
-  App({Key? key, required this.currUser,required this.items,required this.IDs}) : super(key: key);
+  ScreensContainer({Key? key,required this.currUser,required this.items})
+      : super(key: key);
 
   @override
-  State<App> createState() => _AppState();
+  State<ScreensContainer> createState() => _ScreensContainerState();
 }
 
-class _AppState extends State<App> {
+class _ScreensContainerState extends State<ScreensContainer> {
   int currPage = 0;
 
   List<Widget> screens = [
@@ -46,36 +46,29 @@ class _AppState extends State<App> {
         currPage = 1;
       });
     };
-    screen1.IDs=widget.IDs;
 
     var screen2 = screens[1] as ExploreScreen;
-    screen2.items=widget.items;
-    screen2.IDs=widget.IDs;
-    screen2.user=widget.currUser;
+    screen2.items = widget.items;
+    screen2.user = widget.currUser;
     super.initState();
   }
 
-  IconBottomBar _getBottomBarIcon(int index , String lightIconPath, String darkIconPath){
+  IconBottomBar _getBottomBarIcon(
+      int index, String lightIconPath, String darkIconPath) {
     return IconBottomBar(
-          lightIcon: SizedBox(
-              width: 27,
-              height: 27,
-              child: Image.asset(lightIconPath)),
-          darkIcon: SizedBox(
-              width: 27,
-              height: 27,
-              child: Image.asset(darkIconPath)),
-          isSelected: currPage == index,
-          onPressed: () {
-            if (currPage != index) {
-              setState(() {
-                currPage = index;
-              });
-            }
+        lightIcon:
+            SizedBox(width: 27, height: 27, child: Image.asset(lightIconPath)),
+        darkIcon:
+            SizedBox(width: 27, height: 27, child: Image.asset(darkIconPath)),
+        isSelected: currPage == index,
+        onPressed: () {
+          if (currPage != index) {
+            setState(() {
+              currPage = index;
+            });
           }
-        );
+        });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -83,13 +76,17 @@ class _AppState extends State<App> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: screens[currPage],
-        bottomNavigationBar: BottomNavBar(
-         icons: [
-          _getBottomBarIcon(0, "assets/images/home_icon_not_selected.png", "assets/images/home_icon_selected.png"),
-          _getBottomBarIcon(1, "assets/images/search_not_selected_icon.png", "assets/images/search_selected_icon.png"),
-          _getBottomBarIcon(2, "assets/images/add_icon_not_selected.png", "assets/images/add_selected_icon.png"),
-          _getBottomBarIcon(3, "assets/images/save_icon_not_selected.png", "assets/images/save_icon_selected.png"),
-          _getBottomBarIcon(4, "assets/images/setting_icon_not_selected.png", "assets/images/setting_icon_selected.png"),
+        bottomNavigationBar: BottomNavBar(icons: [
+          _getBottomBarIcon(0, "assets/images/home_icon_not_selected.png",
+              "assets/images/home_icon_selected.png"),
+          _getBottomBarIcon(1, "assets/images/search_not_selected_icon.png",
+              "assets/images/search_selected_icon.png"),
+          _getBottomBarIcon(2, "assets/images/add_icon_not_selected.png",
+              "assets/images/add_selected_icon.png"),
+          _getBottomBarIcon(3, "assets/images/save_icon_not_selected.png",
+              "assets/images/save_icon_selected.png"),
+          _getBottomBarIcon(4, "assets/images/setting_icon_not_selected.png",
+              "assets/images/setting_icon_selected.png"),
         ]),
       ),
     );

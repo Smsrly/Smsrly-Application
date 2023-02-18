@@ -10,6 +10,8 @@ import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart
 import '../widgets/colors.dart';
 
 class SignUp extends StatefulWidget {
+  static const  String route = "/SIGN_UP";
+
   const SignUp({Key? key}) : super(key: key);
 
   @override

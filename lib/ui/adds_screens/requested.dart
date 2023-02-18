@@ -22,6 +22,15 @@ class Requested extends StatelessWidget{
       1231.2,
       "Egypt",
       "Cairo",0);
+
+
+  void navigateToShowDetail(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder){
+      return ShowDetail(item: item2,isTheOwner: true);
+    }));
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,25 +42,19 @@ class Requested extends StatelessWidget{
               InkWell(
                   child: ThirdItem(realEstate: item2,isTheOwner: false,hasSaved: false),
                   onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-                      return ShowDetail(item: item2);
-                    }));
+                    navigateToShowDetail(context);
                   },
               ),
               InkWell(
                 child: ThirdItem(realEstate: item2,isTheOwner: false,hasSaved: false),
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-                    return ShowDetail(item: item2);
-                  }));
+                  navigateToShowDetail(context);
                 },
               ),
               InkWell(
                 child: ThirdItem(realEstate: item2,isTheOwner: false,hasSaved: true),
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-                    return ShowDetail(item: item2);
-                  }));
+                 navigateToShowDetail(context);
                 },
               ),            ],
           ),

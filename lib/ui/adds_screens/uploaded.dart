@@ -21,6 +21,16 @@ class Uploaded extends StatelessWidget{
       1231.2,
       "Morocco",
       "Elrbat",1);
+
+
+
+  void navigateToShowDetail(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (builder){
+      return ShowDetail(item: item3,isTheOwner: true);
+    }));
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,19 +40,13 @@ class Uploaded extends StatelessWidget{
            const SizedBox(height: 10,),
            InkWell(child: ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),
              onTap: (){
-               Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-                 return ShowDetail(item: item3,isTheOwner: true);
-               }));
+              navigateToShowDetail(context);
              },),
            InkWell(child: ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),onTap: (){
-             Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-               return ShowDetail(item: item3,isTheOwner: true,);
-             }));
+             navigateToShowDetail(context);
            }),
            InkWell(child: ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),onTap: (){
-             Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-               return ShowDetail(item: item3,isTheOwner: true);
-             }));
+             navigateToShowDetail(context);
            })
          ],
        )

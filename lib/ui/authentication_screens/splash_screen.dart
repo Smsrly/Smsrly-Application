@@ -8,6 +8,8 @@ import '../../models/user.dart';
 
 class SplashScreen extends StatefulWidget {
 
+  static const  String route = "/SPLASH_SCREEN";
+
   SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -18,36 +20,28 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   late AnimationController _controller;
   User? currUser;
 
-  Map<int, RealEstate> items={};
+  List<RealEstate> realEstateItems=[];
 
-  List<int> IDs=[];
 
-  Future<dynamic> getData()async{
+  Future<dynamic> getData() async{
     var user1 = User(
         "1",
-        "Ahmed Ebeid",
-        "ebeidahmed2@gmail.com",
+        "Leo Messi",
+        "loemessi1234@gmail.com",
         "+201153180577",
         30.12571871868943,
         31.70773392993082,
-        "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg");
+        "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg"
+    );
     var user2 = User(
-        "2",
-        "Youssef Amr",
-        "youssefamr323@gmail.com",
+        "1",
+        "Totti",
+        "totti1234@gmail.com",
         "+201153180577",
         30.12571871868943,
         31.70773392993082,
-        "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg");
-    var user3 = User(
-        "2",
-        "Omar Osama",
-        "omarosama323@gmail.com",
-        "+201153180577",
-        30.12571871868943,
-        31.70773392993082,
-        "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg");
-    var users = [user1, user2, user3];
+        "https://www.thefamouspeople.com/profiles/images/francesco-totti-1.jpg");
+    var users = [user1, user2];
 
     RealEstate item1 = RealEstate(
         123,
@@ -98,10 +92,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         "Morocco",
         "Elrbat",1);
     var items = [item1, item2, item3];
-    List<int> IDs=[];
-    Map<int, RealEstate> itemsMap = {};
     for (int i = 0; i < 10; i++) {
-      var currUserIndex = Random().nextInt(3);
+      var currUserIndex = Random().nextInt(users.length);
       var currItemIndex = Random().nextInt(3);
       var currItemID = Random().nextInt(100);
       var realCurrItem = items[currItemIndex];
@@ -122,34 +114,28 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           realCurrItem.city,
           realCurrItem.rentOrSale
       );
-      print("old : ${currItem.realEstateId}");
       currItem.realEstateId=currItemID;
-      print("new : ${currItem.realEstateId}");
-      int mapSize=itemsMap.length;
-      itemsMap[currItem.realEstateId] = currItem;
-      if(mapSize != itemsMap.length){
-        IDs.add(currItem.realEstateId);
-      }
+      realEstateItems.add(currItem);
     }
-    this.items = itemsMap;
-    this.IDs=IDs;
   }
+
   void navigateToHome(var context)async{
-    if(!_controller.isAnimating &&  IDs.isNotEmpty ){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder){
-        return App(currUser:  User(
-            "123",
-            "Ahmed Ebeid",
-            "ebeidahmed2@gmail.com",
-            "01153180577",
-            30.12571871868943,
-            31.70773392993082,
-            "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg"),
-            items: items, IDs: IDs);
+    if(!_controller.isAnimating &&  realEstateItems.isNotEmpty ){
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_){
+        return ScreensContainer(
+            currUser: User(
+                "1",
+                "Totti",
+                "totti1234@gmail.com",
+                "+201153180577",
+                30.12571871868943,
+                31.70773392993082,
+                "https://www.thefamouspeople.com/profiles/images/francesco-totti-1.jpg"), items: realEstateItems
+        );
       }));
     }
 
-  }
+    }
 
   @override
   void initState() {

@@ -7,6 +7,8 @@ import 'package:smsrly/ui/widgets/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 
 class Login extends StatefulWidget {
+  static const  String route = "/LOGIN";
+
   const Login({Key? key}) : super(key: key);
 
   @override
@@ -61,10 +63,7 @@ class _LoginState extends State<Login> {
             style: getIBMPlexSansFont(18.sp, FontWeight.w400)),
         TextButton(
             onPressed: () {
-              Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (_) {
-                return const SignUp();
-              }));
+              Navigator.of(context).pushReplacementNamed(SignUp.route);
             },
             child: Text('Sign Up',
                 style: getIBMPlexSansFont(18.sp, FontWeight.w400)))
@@ -113,10 +112,7 @@ class _LoginState extends State<Login> {
                   width: double.infinity,
                   child: RoundedButton(
                     onClick: () {
-                      Navigator.of(context)
-                          .pushReplacement(MaterialPageRoute(builder: (_) {
-                        return SplashScreen();
-                      }));
+                      Navigator.of(context).pushReplacementNamed(SplashScreen.route);
                     },
                     text: 'Login',
                   ),

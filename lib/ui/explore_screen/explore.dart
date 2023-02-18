@@ -8,8 +8,7 @@ import '../show_details/show_detail.dart';
 import '../widgets/realestates_items/realestate_second_item.dart';
 
 class ExploreScreen extends StatefulWidget {
-  late Map<int, RealEstate> items;
-  late List<int> IDs;
+  late List <RealEstate> items;
 
 
   late User user;
@@ -21,8 +20,7 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
-  late Map<int, RealEstate> _filteredItems;
-  late List<int> _filteredIDs;
+  late List<RealEstate> _filteredItems;
   var _forRentOrSale=-1;
   var _searchedText="";
   var _filtersList =[
@@ -46,25 +44,24 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   void _runFilter(String text, List<int> requirements, int rentOrSale) {
     text = text.toLowerCase().trim();
-    Map<int, RealEstate> map = {};
-    List<int> list = [];
+    List<RealEstate> list = [];
 
-    for (var entry in widget.items.entries) {
+    for (var entry in widget.items) {
       var bool1 = text.isEmpty ||
-          entry.value.city?.toLowerCase().contains(text) as bool;
+          entry.city?.toLowerCase().contains(text) as bool;
       var bool2 = text.isEmpty ||
-          entry.value.country?.toLowerCase().contains(text) as bool;
-      var bool3 = rentOrSale == -1 || entry.value.rentOrSale == rentOrSale;
-      var bool4 = entry.value.price >= requirements[0] &&
-          entry.value.price <= requirements[1];
-      var bool5 = entry.value.floor >= requirements[2] &&
-          entry.value.floor <= requirements[3];
-      var bool6 = entry.value.roomsNo >= requirements[4] &&
-          entry.value.roomsNo <= requirements[5];
-      var bool7 = entry.value.bathroomsNo >= requirements[6] &&
-          entry.value.bathroomsNo <= requirements[7];
-      var bool8 = entry.value.area >= requirements[8] &&
-          entry.value.area <= requirements[9];
+          entry.country?.toLowerCase().contains(text) as bool;
+      var bool3 = rentOrSale == -1 || entry.rentOrSale == rentOrSale;
+      var bool4 = entry.price >= requirements[0] &&
+          entry.price <= requirements[1];
+      var bool5 = entry.floor >= requirements[2] &&
+          entry.floor <= requirements[3];
+      var bool6 = entry.roomsNo >= requirements[4] &&
+          entry.roomsNo <= requirements[5];
+      var bool7 = entry.bathroomsNo >= requirements[6] &&
+          entry.bathroomsNo <= requirements[7];
+      var bool8 = entry.area >= requirements[8] &&
+          entry.area <= requirements[9];
 
       if ((bool1 || bool2) &&
           bool3 &&
@@ -74,14 +71,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
           bool7 &&
           bool8) {
 
-        list.add(entry.key);
-        map[entry.key] = entry.value;
+        list.add(entry);
 
       }
     }
     setState(() {
-      _filteredIDs = list;
-      _filteredItems = map;
+      _filteredItems = list;
     });
   }
 
@@ -170,7 +165,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   Widget notFoundWidget(){
     return Visibility(
-        visible:_filteredIDs.isEmpty,
+        visible:_filteredItems.isEmpty,
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -207,7 +202,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   void initState() {
     _filteredItems=widget.items;
-    _filteredIDs=widget.IDs;
     super.initState();
   }
   @override
@@ -270,7 +264,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   shrinkWrap: true,
                   itemCount: _filteredItems.length,
                   itemBuilder: (context, index) {
-                    RealEstate currItem = _filteredItems[_filteredIDs[index]]!;
+                    RealEstate currItem = _filteredItems[index]!;
                     return realEstateItem(currItem);
                   }),
               const SizedBox(

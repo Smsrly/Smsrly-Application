@@ -9,8 +9,7 @@ import '../widgets/realestates_items/realestate_second_item.dart';
 
 class HomeScreen extends StatefulWidget {
 
-  late Map<int, RealEstate> items;
-  late List<int> IDs;
+  late List<RealEstate> items;
   late User user;
   late VoidCallback seeAllAction;
 
@@ -186,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: widget.items.length~/3,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      RealEstate currItem= widget.items[widget.IDs[index]]!;
+                      RealEstate currItem= widget.items[index];
                       return firstItem(currItem);
                     },
                   )
@@ -199,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: widget.items.length - widget.items.length~/3,
                     itemBuilder: (context, index) {
                       int currIndex = index+widget.items.length~/3;
-                      RealEstate currItem= widget.items[widget.IDs[currIndex]]!;
+                      RealEstate currItem= widget.items[currIndex];
                       return secondItem(currItem);
                     }
                 ),
