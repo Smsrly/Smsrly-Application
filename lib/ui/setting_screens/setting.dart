@@ -2,8 +2,10 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/setting_screens/contact_us.dart';
+import 'package:smsrly/ui/widgets/colors.dart';
 import 'password_dialog.dart';
 import 'edit_profile.dart';
+
 
 class Setting extends StatelessWidget {
 
@@ -54,7 +56,7 @@ class Setting extends StatelessWidget {
                         EdgeInsets.symmetric(vertical: 45.h, horizontal: 20.w),
                     height: 300.h,
                     decoration: BoxDecoration(
-                        color: const Color(0xFF0E5289),
+                        color:   primaryColor,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30.sp),
                             bottomRight: Radius.circular(30.sp))),
@@ -95,7 +97,7 @@ class Setting extends StatelessWidget {
                     decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
-                            color: Color.fromRGBO(0, 0, 0, 0.15),
+                            color: BoxShadowColor,
                             blurRadius: 50.0,
                           )
                         ],
@@ -110,7 +112,7 @@ class Setting extends StatelessWidget {
                           decoration: BoxDecoration(
                               border: Border(
                             bottom: BorderSide(
-                              color: const Color.fromRGBO(202, 202, 202, 1),
+                              color: BorderSideColor,
                               width: 0.4.w,
                             ),
                           )),
@@ -140,7 +142,7 @@ class Setting extends StatelessWidget {
                             Text(
                               "Account Settings",
                               style: TextStyle(
-                                  color: const Color(0xFFADADAD),
+                                  color: offWhite ,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 20.sp),
                             ),
@@ -180,7 +182,7 @@ class Setting extends StatelessWidget {
                         Text(
                           "More",
                           style: TextStyle(
-                              color: const Color(0xFFADADAD),
+                              color:offWhite,
                               fontWeight: FontWeight.w300,
                               fontSize: 20.sp),
                         ),

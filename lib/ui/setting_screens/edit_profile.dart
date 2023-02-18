@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/ui/widgets/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
 
 import '../widgets/buttons/rounded_back_button.dart';
 
+    
 class Edit extends StatelessWidget {
   bool isVisible = true;
 
@@ -18,7 +20,7 @@ class Edit extends StatelessWidget {
                   height: 350.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      color: const Color.fromRGBO(14, 82, 137, 1),
+                      color: primaryColor,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(30.sp),
                           bottomRight: Radius.circular(30.sp))),
@@ -50,7 +52,7 @@ class Edit extends StatelessWidget {
                       decoration: const BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: Color.fromRGBO(0, 0, 0, 0.15),
+                              color: BoxShadowColor,
                               blurRadius: 50.0,
                             )
                           ],
@@ -68,19 +70,19 @@ class Edit extends StatelessWidget {
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: const Color.fromRGBO(14, 82, 137, 1),label: "First Name",),
+                          RoundedTextField(cursorColor: primaryColor,label: "First Name",),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: const Color.fromRGBO(14, 82, 137, 1),label: "Second Name",),
+                          RoundedTextField(cursorColor: primaryColor,label: "Second Name",),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: const Color.fromRGBO(14, 82, 137, 1),label: "Email",inputType: TextInputType.emailAddress,),
+                          RoundedTextField(cursorColor: primaryColor,label: "Email",inputType: TextInputType.emailAddress,),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: const Color.fromRGBO(14, 82, 137, 1),label: "Phone number",inputType: TextInputType.phone,),
+                          RoundedTextField(cursorColor: primaryColor,label: "Phone number",inputType: TextInputType.phone,),
                           SizedBox(
                             height: 30.h,
                           ),
@@ -107,7 +109,7 @@ class Edit extends StatelessWidget {
                                     onPressed: () {},
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
-                                          const Color.fromRGBO(14, 82, 137, 1),
+                                          primaryColor,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(18.0),
                                       ),
