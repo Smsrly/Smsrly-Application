@@ -1,4 +1,3 @@
-import 'package:smsrly/models/location.dart';
 import 'package:smsrly/models/realestate.dart';
 
 class User{
@@ -38,12 +37,20 @@ class User{
     _phoneNumber = value;
   }
 
-  late Location _location;
+  late double _longitude;
 
-  Location get location => _location;
+  double get longitude => _longitude;
 
-  set location(Location value) {
-    _location = value;
+  set longitude(double value) {
+    _longitude = value;
+  }
+
+  late double _latitude;
+
+  double get latitude => _latitude;
+
+  set latitude(double value) {
+    _latitude = value;
   }
 
   late String _pictureUrl;
@@ -66,7 +73,7 @@ class User{
   }
 
   User(this._userId, this._username, this._email, this._phoneNumber,
-      this._location, this._pictureUrl);
+      this._latitude,this._longitude, this._pictureUrl);
 
 
 

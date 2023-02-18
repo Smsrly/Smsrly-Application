@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smsrly/ui/widgets/realestates_items/realestate_third_item.dart';
 
-import '../../models/location.dart';
 import '../../models/realestate.dart';
-import '../../models/user.dart';
 import '../show_details/show_detail.dart';
 
 class Uploaded extends StatelessWidget{
@@ -19,7 +17,8 @@ class Uploaded extends StatelessWidget{
       5,
       5,
       100000,
-      Location(21321.3, 1231.2),
+      21321.3,
+      1231.2,
       "Morocco",
       "Elrbat",1);
   @override

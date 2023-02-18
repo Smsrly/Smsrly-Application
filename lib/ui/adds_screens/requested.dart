@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smsrly/ui/show_details/show_detail.dart';
 
-import '../../models/location.dart';
 import '../../models/realestate.dart';
 import '../widgets/realestates_items/realestate_third_item.dart';
 
@@ -19,7 +18,8 @@ class Requested extends StatelessWidget{
       5,
       5,
       100000,
-      Location(21321.3, 1231.2),
+      21321.3,
+      1231.2,
       "Egypt",
       "Cairo",0);
   @override
