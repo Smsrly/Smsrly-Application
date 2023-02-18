@@ -52,7 +52,7 @@ class Edit extends StatelessWidget {
                       decoration: const BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: BoxShadowColor,
+                              color: boxShadowColor,
                               blurRadius: 50.0,
                             )
                           ],

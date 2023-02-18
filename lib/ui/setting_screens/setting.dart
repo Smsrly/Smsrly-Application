@@ -97,7 +97,7 @@ class Setting extends StatelessWidget {
                     decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
-                            color: BoxShadowColor,
+                            color: boxShadowColor,
                             blurRadius: 50.0,
                           )
                         ],
@@ -112,7 +112,7 @@ class Setting extends StatelessWidget {
                           decoration: BoxDecoration(
                               border: Border(
                             bottom: BorderSide(
-                              color: BorderSideColor,
+                              color: borderSideColor,
                               width: 0.4.w,
                             ),
                           )),
