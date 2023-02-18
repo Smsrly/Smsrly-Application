@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
+import 'package:smsrly/ui/widgets/colors.dart';
 
 class PasswordDialog extends StatefulWidget {
   late Function onSubmit;
@@ -20,31 +21,23 @@ class _PasswordDialogState extends State<PasswordDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       child: SizedBox(
-        height: 390.h,
+        height: 430.h,
         width: 300.w,
         child: Column(children: [
-          Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 26),
-                child: Container(
-                  alignment: Alignment.center,
-                  child: const Text("Privacy Information",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'IBMPlexSans',
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black)),
-                ),
-              ),
-              Container(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                    alignment: AlignmentDirectional.topEnd,
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.close)),
-              ),
-            ],
+          Container(
+            alignment: Alignment.topRight,
+            child: IconButton(
+                alignment: AlignmentDirectional.topEnd,
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close)),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 26),
+            child: Container(
+              alignment: Alignment.center,
+              child: Text("Privacy Information",
+                  style: getIBMPlexSansFont(16.sp, FontWeight.bold)),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20, top: 10),
