@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/models/user.dart';
 import 'package:smsrly/ui/show_details/show_detail.dart';
+import 'package:smsrly/ui/widgets/colors.dart';
 
 import '../../models/realestate.dart';
 import '../widgets/realestates_items/realestate_first_item.dart';
@@ -48,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 "Welcome, ",
                 style: TextStyle(
                     fontSize: 13,
-                    color: Color.fromRGBO(115, 115, 115, 1)),
+                    color: welcomeMessageColor),
               ),
               const SizedBox(
                 height: 2,
@@ -58,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                     fontSize: 17.sp,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromRGBO(14, 82, 137, 1)),
+                    color: primaryColor),
               )
             ],
           ),

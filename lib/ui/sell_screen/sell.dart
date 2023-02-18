@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/ui/widgets/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
 
 class Sell extends StatelessWidget {
@@ -20,7 +21,7 @@ class Sell extends StatelessWidget {
           ),
         ),
         RoundedTextField(
-          cursorColor: const Color.fromRGBO(14, 82, 137, 1),
+          cursorColor: primaryColor,
           textStyle: TextStyle(fontSize: 18.sp),
           label: label,
           inputType: inputType,
@@ -104,12 +105,12 @@ class Sell extends StatelessWidget {
                       maxLines: 8,
                       style: TextStyle(
                           fontSize: 18.sp, overflow: TextOverflow.clip),
-                      cursorColor: const Color.fromRGBO(14, 82, 137, 1),
+                      cursorColor: primaryColor,
                       decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(18.0),
                           borderSide: const BorderSide(
-                            color: Color.fromRGBO(14, 82, 137, 1),
+                            color: primaryColor,
                             width: 2,
                           ),
                         ),
@@ -190,7 +191,7 @@ class Sell extends StatelessWidget {
                       shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14))),
                       backgroundColor:
-                          const MaterialStatePropertyAll(Color(0xFF0E5289)),
+                          const MaterialStatePropertyAll(primaryColor),
                       fixedSize: const MaterialStatePropertyAll(Size(328, 49))),
                   child: Text(
                     "Submit",

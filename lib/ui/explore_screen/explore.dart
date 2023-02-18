@@ -5,6 +5,7 @@ import 'package:smsrly/ui/explore_screen/options_dialog.dart';
 import '../../models/realestate.dart';
 import '../../models/user.dart';
 import '../show_details/show_detail.dart';
+import '../widgets/colors.dart';
 import '../widgets/realestates_items/realestate_second_item.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -94,7 +95,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             color: Colors.white,
             boxShadow: const [
               BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.15),
+                color: boxShadowColor,
                 blurRadius: 50.0,
               )
             ],
@@ -182,8 +183,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     fontSize: 25,
                     fontFamily: 'IBMPlexSans',
                     fontWeight: FontWeight.w500,
-                    color: Color.fromRGBO(14, 82, 137, 1)
-                ),),
+                    color: primaryColor)
+                ),
               const SizedBox(
                 height: 5,
               ),
@@ -241,7 +242,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       child: Container(
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                            color: const Color.fromRGBO(14, 82, 137, 1),
+                            color: primaryColor,
                             borderRadius: BorderRadius.circular(16)),
                         child: SizedBox(
                             width: 20,

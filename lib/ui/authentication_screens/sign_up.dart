@@ -172,7 +172,7 @@ class _SignUpState extends State<SignUp> {
                           fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color.fromRGBO(14, 82, 137, 1),
+                          color: primaryColor,
                           width: 2,
                         ),
                       ),
@@ -206,7 +206,7 @@ class _SignUpState extends State<SignUp> {
                           fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color.fromRGBO(14, 82, 137, 1),
+                          color: primaryColor,
                           width: 2,
                         ),
                       ),
