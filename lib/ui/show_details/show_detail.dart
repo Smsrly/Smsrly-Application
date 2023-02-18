@@ -5,7 +5,6 @@ import 'package:smsrly/ui/widgets/buttons/rounded_back_button.dart';
 import 'package:smsrly/ui/widgets/user_items/user_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../models/location.dart';
 import '../../models/user.dart';
 
 class ShowDetail extends StatelessWidget {
@@ -205,8 +204,8 @@ class ShowDetail extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text("Latitude: ${item.location.late}",style:  TextStyle(fontSize: 17.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,),),
-                              Text("Longitude: ${item.location.long}",style:  TextStyle(fontSize: 17.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,),),
+                              Text("Latitude: ${item.latitude}",style:  TextStyle(fontSize: 17.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,),),
+                              Text("Longitude: ${item.longitude}",style:  TextStyle(fontSize: 17.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,),),
                             ],
                           ),
                           SizedBox(height: 35.h),
@@ -234,7 +233,8 @@ class ShowDetail extends StatelessWidget {
                                             "Ahmed Ebeid",
                                             "ebeidahmed2@gmail.com",
                                             "+201153180577",
-                                            Location(30.12571871868943, 31.70773392993082),
+                                            30.12571871868943,
+                                            31.70773392993082,
                                             "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
 
                                     ),
@@ -244,7 +244,8 @@ class ShowDetail extends StatelessWidget {
                                             "Ahmed Ebeid",
                                             "ebeidahmed2@gmail.com",
                                             "+201153180577",
-                                            Location(30.12571871868943, 31.70773392993082),
+                                            30.12571871868943,
+                                            31.70773392993082,
                                             "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
 
                                     ),
@@ -254,7 +255,8 @@ class ShowDetail extends StatelessWidget {
                                             "Ahmed Ebeid",
                                             "ebeidahmed2@gmail.com",
                                             "+201153180577",
-                                            Location(30.12571871868943, 31.70773392993082),
+                                            30.12571871868943,
+                                            31.70773392993082,
                                             "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
 
                                     ),
@@ -264,7 +266,8 @@ class ShowDetail extends StatelessWidget {
                                             "Ahmed Ebeid",
                                             "ebeidahmed2@gmail.com",
                                             "+201153180577",
-                                            Location(30.12571871868943, 31.70773392993082),
+                                            30.12571871868943,
+                                            31.70773392993082,
                                             "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg")
 
                                     ),

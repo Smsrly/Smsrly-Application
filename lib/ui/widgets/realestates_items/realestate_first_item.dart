@@ -95,7 +95,7 @@ class FirstItem extends StatelessWidget {
                       ),
                       Text(item.city != null && item.country!= null?
                           "${item.country}, ${item.city}"
-                          :"${item.location.late}, ${item.location.long}",style: const TextStyle(
+                          :"${item.latitude}, ${item.longitude}",style: const TextStyle(
                         color:
                         Color.fromARGB(
                             255, 188, 188, 188

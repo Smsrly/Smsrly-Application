@@ -86,7 +86,7 @@ class ThirdItem extends StatelessWidget {
                     ),
                     Text(realEstate.city != null && realEstate.country!= null?
                     "${realEstate.country}, ${realEstate.city}"
-                        :"${realEstate.location.late}, ${realEstate.location.long}",style: const TextStyle(
+                        :"${realEstate.latitude}, ${realEstate.longitude}",style: const TextStyle(
                       color:
                       Color.fromARGB(
                           255, 188, 188, 188

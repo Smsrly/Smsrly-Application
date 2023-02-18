@@ -3,8 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:smsrly/ui/screens_container.dart';
-
-import '../../models/location.dart';
 import '../../models/realestate.dart';
 import '../../models/user.dart';
 
@@ -30,21 +28,24 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         "Ahmed Ebeid",
         "ebeidahmed2@gmail.com",
         "+201153180577",
-        Location(30.12571871868943, 31.70773392993082),
+        30.12571871868943,
+        31.70773392993082,
         "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg");
     var user2 = User(
         "2",
         "Youssef Amr",
         "youssefamr323@gmail.com",
         "+201153180577",
-        Location(30.12571871868943, 31.70773392993082),
+        30.12571871868943,
+        31.70773392993082,
         "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg");
     var user3 = User(
         "2",
         "Omar Osama",
         "omarosama323@gmail.com",
         "+201153180577",
-        Location(30.12571871868943, 31.70773392993082),
+        30.12571871868943,
+        31.70773392993082,
         "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg");
     var users = [user1, user2, user3];
 
@@ -60,7 +61,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         5,
         5,
         100000,
-        Location(21321.3, 1231.2),
+        21321.3,
+        1231.2,
         "Egypt",
         "Alex",1);
     RealEstate item2 = RealEstate(
@@ -75,7 +77,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         5,
         5,
         100000,
-        Location(21321.3, 1231.2),
+        21321.3,
+        1231.2,
         "Egypt",
         "Cairo",0);
     RealEstate item3 = RealEstate(
@@ -90,7 +93,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         5,
         5,
         100000,
-        Location(21321.3, 1231.2),
+        21321.3,
+        1231.2,
         "Morocco",
         "Elrbat",1);
     var items = [item1, item2, item3];
@@ -112,7 +116,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           realCurrItem.bathroomsNo,
           realCurrItem.roomsNo,
           realCurrItem.price,
-          realCurrItem.location,
+          realCurrItem.longitude,
+          realCurrItem.latitude,
           realCurrItem.country,
           realCurrItem.city,
           realCurrItem.rentOrSale
@@ -137,7 +142,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             "Ahmed Ebeid",
             "ebeidahmed2@gmail.com",
             "01153180577",
-            Location(30.12571871868943, 31.70773392993082),
+            30.12571871868943,
+            31.70773392993082,
             "https://user-images.githubusercontent.com/90563044/207663077-79de358a-66ab-40fb-ba51-c16708a69474.jpg"),
             items: items, IDs: IDs);
       }));

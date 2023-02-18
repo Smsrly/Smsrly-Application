@@ -58,7 +58,7 @@ class SecondItem extends StatelessWidget {
                       Text(
                           item.city != null && item.country!= null
                           ? "${item.country}, ${item.city}"
-                          : "${item.location.late}, ${item.location.long}",
+                          : "${item.latitude}, ${item.longitude}",
                           style: TextStyle(
                               fontFamily: "IBMPlexSans",
                               fontWeight: FontWeight.w400,

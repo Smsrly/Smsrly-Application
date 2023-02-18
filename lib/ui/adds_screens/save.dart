@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../models/location.dart';
 import '../../models/realestate.dart';
 import '../show_details/show_detail.dart';
 import '../widgets/realestates_items/realestate_third_item.dart';
@@ -18,7 +17,8 @@ class Saved extends StatelessWidget{
       5,
       5,
       100000,
-      Location(21321.3, 1231.2),
+      21321.3,
+      1231.2,
       "Egypt",
       "Alex",1);
 
