@@ -73,6 +73,7 @@ class Setting extends StatelessWidget {
                           Text(
                             "Setting",
                             style: TextStyle(
+                                fontFamily: 'IBMPlexSans',
                                 fontWeight: FontWeight.bold,
                                 fontSize: 26.sp,
                                 color: Colors.white),
@@ -175,6 +176,7 @@ class Setting extends StatelessWidget {
                         SizedBox(
                           height: 13.h,
                         ),
+
                         Text(
                           "More",
                           style: TextStyle(
@@ -182,6 +184,7 @@ class Setting extends StatelessWidget {
                               fontWeight: FontWeight.w300,
                               fontSize: 20.sp),
                         ),
+
                         SizedBox(
                           height: 13.h,
                         ),
@@ -194,7 +197,7 @@ class Setting extends StatelessWidget {
                         SizedBox(
                           height: 13.h,
                         ),
-                        settingRow("Log out", Icons.logout, () { }),
+                        settingRow("Log out", Icons.logout, () {}),
                         SizedBox(
                           height: 13.h,
                         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
+import 'package:smsrly/ui/widgets/colors.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
@@ -27,7 +28,7 @@ class OnBoarding extends StatelessWidget {
         Container(
           height: double.infinity,
           width: double.infinity,
-          color: const Color.fromRGBO(0, 0, 0, 0.5),
+          color: blackWithMediumOpacity,
         ),
         SizedBox(
           height: double.infinity,

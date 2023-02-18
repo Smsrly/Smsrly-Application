@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../colors.dart';
+
 class TextFieldWithBottomBorder extends StatelessWidget {
   TextInputType? inputType = TextInputType.text;
   late String label;
@@ -13,7 +15,7 @@ class TextFieldWithBottomBorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      cursorColor: const Color.fromRGBO(124, 124, 124, 1),
+      cursorColor: textFieldCursorColor,
       keyboardType: inputType,
       inputFormatters: inputFormatter,
       decoration: InputDecoration(
@@ -21,16 +23,16 @@ class TextFieldWithBottomBorder extends StatelessWidget {
         prefixIcon: prefixIcon,
 
         labelStyle: TextStyle(
-            fontSize: fontSize, color: const Color.fromRGBO(124, 124, 124, 1)),
+            fontSize: fontSize, color: textFieldCursorColor),
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Color.fromRGBO(14, 82, 137, 1),
+            color: primaryColor,
             width: 2,
           ),
         ),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Color.fromRGBO(170, 171, 170, 1),
+            color: textFieldEnabledBorderColor,
             width: 1.5,
           ),
         ),

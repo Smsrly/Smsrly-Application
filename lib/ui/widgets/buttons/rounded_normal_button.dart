@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smsrly/ui/widgets/colors.dart';
 
 class RoundedButton extends StatelessWidget {
   late String text;
@@ -10,7 +11,7 @@ class RoundedButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onClick,
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
+        backgroundColor: primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
         ),

@@ -7,6 +7,8 @@ import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 
+import '../widgets/colors.dart';
+
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
@@ -42,10 +44,7 @@ class _SignUpState extends State<SignUp> {
                       children: [
                         Text(
                           "Sign Up",
-                          style: TextStyle(
-                              fontSize: 32.sp,
-                              fontFamily: 'IBMPlexSans',
-                              fontWeight: FontWeight.w700)
+                          style: getIBMPlexSansFont(32.sp, FontWeight.w700)
                         ),
                       ],
                     ),
@@ -145,7 +144,7 @@ class _SignUpState extends State<SignUp> {
                             child: _countryCode!= null ? _countryCode?.flagImage:_flag,
                           ),
                           const SizedBox(width: 3,),
-                          Text(_countryCode == null ? "+20" : "${_countryCode?.dialCode}",style: const TextStyle(fontSize: 15,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,color: Color.fromRGBO(124, 124, 124, 1)),)
+                          Text(_countryCode == null ? "+20" : "${_countryCode?.dialCode}",style: const TextStyle(fontSize: 15,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,color: textFieldCursorColor,))
                         ],
                       ),
                     ),

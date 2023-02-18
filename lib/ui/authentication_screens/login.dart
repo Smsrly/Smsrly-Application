@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/sign_up.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
+import 'package:smsrly/ui/widgets/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 
 class Login extends StatefulWidget {
@@ -14,6 +15,62 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   var _isNotVisible = true;
+
+
+  Widget passwordField(){
+    return TextFormField(
+      cursorColor: textFieldCursorColor,
+      obscureText: _isNotVisible,
+      keyboardType: TextInputType.visiblePassword,
+      decoration: InputDecoration(
+        labelText: 'Password',
+        suffixIcon: IconButton(
+            onPressed: () {
+              setState(() {
+                _isNotVisible = !_isNotVisible;
+              });
+            },
+            icon: Icon(_isNotVisible
+                ? Icons.visibility_off
+                : Icons.visibility)),
+        labelStyle: TextStyle(
+            fontSize: 18.sp,
+            color: textFieldCursorColor),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: primaryColor,
+            width: 2,
+          ),
+        ),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: textFieldEnabledBorderColor,
+            width: 1.5,
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  Widget navigateToSignUp(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("Don't have an account ?",
+            style: getIBMPlexSansFont(18.sp, FontWeight.w400)),
+        TextButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .pushReplacement(MaterialPageRoute(builder: (_) {
+                return const SignUp();
+              }));
+            },
+            child: Text('Sign Up',
+                style: getIBMPlexSansFont(18.sp, FontWeight.w400)))
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +90,7 @@ class _LoginState extends State<Login> {
                   children: [
                     Text(
                       "Login",
-                      style: TextStyle(
-                          fontSize: 32.sp,
-                          fontFamily: 'IBMPlexSans',
-                          fontWeight: FontWeight.w700),
+                      style: getIBMPlexSansFont(32.sp, FontWeight.bold),
                     ),
                     const Expanded(flex: 1, child: SizedBox())
                   ],
@@ -51,37 +105,7 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 15.h,
                 ),
-                TextFormField(
-                  obscureText: _isNotVisible,
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _isNotVisible = !_isNotVisible;
-                          });
-                        },
-                        icon: Icon(_isNotVisible
-                            ? Icons.visibility_off
-                            : Icons.visibility)),
-                    labelStyle: TextStyle(
-                        fontSize: 18.sp,
-                        color: const Color.fromRGBO(124, 124, 124, 1)),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(14, 82, 137, 1),
-                        width: 2,
-                      ),
-                    ),
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(170, 171, 170, 1),
-                        width: 1.5,
-                      ),
-                    ),
-                  ),
-                ),
+                passwordField(),
                 SizedBox(
                   height: 28.h,
                 ),
@@ -100,28 +124,7 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 4.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Don't have an account ?",
-                        style: TextStyle(
-                            fontSize: 18.sp,
-                            fontFamily: 'IBMPlexSans',
-                            fontWeight: FontWeight.w400)),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(builder: (_) {
-                            return const SignUp();
-                          }));
-                        },
-                        child: Text('Sign Up',
-                            style: TextStyle(
-                                fontSize: 18.sp,
-                                fontFamily: 'IBMPlexSans',
-                                fontWeight: FontWeight.w400)))
-                  ],
-                ),
+                navigateToSignUp(),
                 SizedBox(
                   height: 15.h,
                 ),
