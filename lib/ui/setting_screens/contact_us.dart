@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/ui/widgets/buttons/rounded_back_button.dart';
+import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
+
+import '../widgets/background_with_shadow.dart';
 
 class ContactUs extends StatefulWidget {
   const ContactUs({Key? key}) : super(key: key);
@@ -17,6 +21,79 @@ class _ContactUsState extends State<ContactUs> {
         child: Text(item),
       );
 
+
+  Widget dropDownButton(){
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton(
+            isExpanded: true,
+            value: value,
+            icon: const Icon(Icons.arrow_drop_down_rounded,
+                size: 40, color: Color(0xFF374957)),
+            hint: Text("Your trouble", style: TextStyle(
+                fontSize: 16.sp, fontFamily: "IBMPlexSans",
+                fontWeight: FontWeight.w500),),
+            borderRadius: BorderRadius.circular(20),
+            items: problems.map(buildMenuItem).toList(),
+            onChanged: (value) {
+              setState(() {
+                this.value = value;
+              });
+            },
+          ),
+        )
+    );
+  }
+
+
+
+  Widget messageTextField(){
+    return TextField(
+            cursorColor:
+            const Color.fromRGBO(169, 169, 169, 1),
+            maxLines: 6,
+            decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18.0),
+                borderSide: const BorderSide(
+                  color: Color.fromRGBO(216, 216, 216, 0.9),
+                  width: 1,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18.0),
+                borderSide: const BorderSide(
+                  color: Color.fromRGBO(216, 216, 216, 0.44),
+                  width: 1,
+                ),
+              ),
+            ),
+          );
+  }
+
+  Widget attachPictureRow(){
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: Text("Attach a Picture",style: TextStyle(
+                fontSize: 16.sp,
+                fontFamily: "IBMPlexSans",
+                fontWeight: FontWeight.w500
+            ),),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(right: 16),
+            child: Image(
+              image: AssetImage("assets/images/attach.png"),
+              width: 25,
+            ),
+          ),
+        ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,25 +104,13 @@ class _ContactUsState extends State<ContactUs> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InkWell(
-                      child: Container(
-                        width: 45,
-                        height: 45,
-                        decoration: BoxDecoration(
-                            color: const Color.fromRGBO(135, 169, 197, 0.35),
-                            borderRadius: BorderRadius.circular(13)
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            Icons.arrow_back_ios_new,
-                            color: Color.fromRGBO(0, 0, 0, 0.5),
-                            size: 18,
-                          ),
-                        ),
-                      ),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
+                    RoundedBackButton(
+                        backgroundColor: const Color.fromRGBO(135, 169, 197, 0.35),
+                        arrowColor: const Color.fromRGBO(0, 0, 0, 0.5),
+                        iconSize: 16,
+                        onClick: () {
+                          Navigator.pop(context);
+                        }
                     ),
                     SizedBox(height: 23.h,),
                     Container(
@@ -86,45 +151,16 @@ class _ContactUsState extends State<ContactUs> {
                                 fontWeight: FontWeight.w500,),
                             ),
                           ),
+
                           SizedBox(height: 15.h,),
 
-                          Container(
+                          ContainerWithShadow(
                             padding: const EdgeInsets.only(
                                 top: 3, bottom: 3, left: 13, right: 10),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: const Color.fromRGBO(216, 216, 216, 0.44)),
-                              color: Colors.white,
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color.fromRGBO(
-                                      0, 0, 0, 0.07450980392156863),
-                                  blurRadius: 35.0,
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            width: double.infinity,
-                            child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton(
-                                    isExpanded: true,
-                                    value: value,
-                                    icon: const Icon(Icons.arrow_drop_down_rounded,
-                                        size: 40, color: Color(0xFF374957)),
-                                    hint: Text("Your trouble",style: TextStyle(fontSize: 16.sp,fontFamily: "IBMPlexSans",
-                                        fontWeight: FontWeight.w500),),
-                                    borderRadius: BorderRadius.circular(20),
-                                    items: problems.map(buildMenuItem).toList(),
-                                    onChanged: (value) {
-                                      setState(() {
-                                        this.value = value;
-                                      });
-                                    },
-                                  ),
-                                )),
+                              width: double.infinity,
+                              child: dropDownButton()
                           ),
+
                           SizedBox(height: 23.h,),
 
                           SizedBox(
@@ -138,79 +174,15 @@ class _ContactUsState extends State<ContactUs> {
                               ),),
                           SizedBox(height: 15.h,),
 
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: const Color.fromRGBO(216, 216, 216, 0.44)),
-                              color: Colors.white,
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color.fromRGBO(
-                                      0, 0, 0, 0.07450980392156863),
-                                  blurRadius: 35.0,
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child:  TextField(
-                              cursorColor:
-                              const Color.fromRGBO(169, 169, 169, 1),
-                              maxLines: 6,
-                              decoration: InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: const BorderSide(
-                                    color: Color.fromRGBO(216, 216, 216, 0.9),
-                                    width: 1,
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  borderSide: const BorderSide(
-                                    color: Color.fromRGBO(216, 216, 216, 0.44),
-                                    width: 1,
-                                  ),
-                                ),
-                              ),
-                            ),
+                          ContainerWithShadow(
+                              width: double.infinity,
+                              child: messageTextField()
                           ),
                           SizedBox(height: 18.h,),
-
                           InkWell(
-                            child: Container(
-                              height: 56,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: const Color.fromRGBO(216, 216, 216, 0.44)),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Color.fromRGBO(
-                                        0, 0, 0, 0.07450980392156863),
-                                    blurRadius: 35.0,
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 16),
-                                      child: Text("Attach a Picture",style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontFamily: "IBMPlexSans",
-                                          fontWeight: FontWeight.w500
-                                      ),),
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(right: 16),
-                                      child: Image(
-                                        image: AssetImage("assets/images/attach.png"),
-                                        width: 25,
-                                      ),
-                                    ),
-                                  ]),
+                            child: ContainerWithShadow(
+                                width: double.infinity,height: 56,
+                                child: attachPictureRow()
                             ),
                             onTap: (){
 
@@ -219,20 +191,9 @@ class _ContactUsState extends State<ContactUs> {
                           SizedBox(height: 45.h,),
                           SizedBox(
                             width:double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                ),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(15.0),
-                                child: Text('Submit'),
-                              ),
-                            ),
+                            child: RoundedButton(text: "Send", onClick: (){
+
+                            },)
                           ),
                         ],
                       ),

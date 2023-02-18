@@ -26,6 +26,8 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  int currPage = 0;
+
   List<Widget> screens = [
     HomeScreen(),
     ExploreScreen(),
@@ -53,7 +55,6 @@ class _AppState extends State<App> {
     super.initState();
   }
 
-  int currPage = 0;
   IconBottomBar _getBottomBarIcon(int index , String lightIconPath, String darkIconPath){
     return IconBottomBar(
           lightIcon: SizedBox(
@@ -74,6 +75,8 @@ class _AppState extends State<App> {
           }
         );
   }
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

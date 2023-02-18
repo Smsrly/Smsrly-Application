@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
 
+import '../widgets/buttons/rounded_back_button.dart';
+
 class Edit extends StatelessWidget {
   bool isVisible = true;
 
@@ -24,25 +26,16 @@ class Edit extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      InkWell(
-                        child: Container(
-                          margin: const EdgeInsets.all(10),
-                          width: 45,
-                          height: 45.h,
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(135, 169, 197, 0.6),
-                              borderRadius: BorderRadius.circular(13)),
-                          child: const Center(
-                            child: Icon(
-                              Icons.arrow_back_ios_new,
-                              color: Colors.white,
-                              size: 15,
-                            ),
-                          ),
+                      Container(
+                        margin: const EdgeInsets.all(10),
+                        child: RoundedBackButton(
+                            backgroundColor: const Color.fromRGBO(135, 169, 197, 0.6),
+                            arrowColor: Colors.white,
+                            iconSize: 15,
+                            onClick: () {
+                              Navigator.pop(context);
+                            }
                         ),
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
                       ),
                     ],
                   ),

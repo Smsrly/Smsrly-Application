@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 
 class PasswordDialog extends StatefulWidget {
   late Function onSubmit;
-  PasswordDialog({super.key,required this.onSubmit});
+
+  PasswordDialog({super.key, required this.onSubmit});
 
   @override
   State<PasswordDialog> createState() => _PasswordDialogState();
@@ -74,7 +76,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(left: 20, top: 5),
             child: Container(
               alignment: Alignment.topLeft,
-              child:  Text("New Password",
+              child: Text("New Password",
                   style: TextStyle(fontSize: 16.sp, color: Colors.black)),
             ),
           ),
@@ -123,21 +125,12 @@ class _PasswordDialogState extends State<PasswordDialog> {
                 ),
               )),
           Padding(
-            padding: const EdgeInsets.all( 14),
+            padding: const EdgeInsets.all(14),
             child: SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => widget.onSubmit(),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: Text('Submit'),
-                ),
+              child: RoundedButton(
+                onClick: () => widget.onSubmit(),
+                text: 'Submit',
               ),
             ),
           )

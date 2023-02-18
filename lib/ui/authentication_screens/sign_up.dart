@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
+import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 
 class SignUp extends StatefulWidget {
@@ -14,11 +15,13 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+
   bool _isPasswordFieldNotVisible = true;
   bool _isConfirmPasswordFieldNotVisible = true;
   final _countryPicker =const FlCountryCodePicker();
   CountryCode? _countryCode;
   Widget? _flag=Image.asset("assets/images/egypt_flag.png");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -222,24 +225,17 @@ class _SignUpState extends State<SignUp> {
                   
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
+                    child: RoundedButton(
+                      onClick: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (_){
                               return  SplashScreen();
                             })
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Text('Sign Up'),
-                      ),
+
+                      text: 'Sign Up',
+
                     ),
                   ),
                   SizedBox(

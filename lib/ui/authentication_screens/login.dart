@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/sign_up.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
+import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 
 class Login extends StatefulWidget {
@@ -13,6 +14,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   var _isNotVisible = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,22 +44,30 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 20.h,
                 ),
-                TextFieldWithBottomBorder(label: 'Email',inputType: TextInputType.emailAddress,fontSize: 18.sp),
+                TextFieldWithBottomBorder(
+                    label: 'Email',
+                    inputType: TextInputType.emailAddress,
+                    fontSize: 18.sp),
                 SizedBox(
                   height: 15.h,
                 ),
                 TextFormField(
                   obscureText: _isNotVisible,
                   keyboardType: TextInputType.visiblePassword,
-                  decoration:  InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Password',
-                    suffixIcon: IconButton(onPressed: (){
-                      setState(() {
-                        _isNotVisible=!_isNotVisible;
-                      });
-                    }, icon: Icon(_isNotVisible?Icons.visibility_off:Icons.visibility)),
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isNotVisible = !_isNotVisible;
+                          });
+                        },
+                        icon: Icon(_isNotVisible
+                            ? Icons.visibility_off
+                            : Icons.visibility)),
                     labelStyle: TextStyle(
-                        fontSize: 18.sp, color: const Color.fromRGBO(124, 124, 124, 1)),
+                        fontSize: 18.sp,
+                        color: const Color.fromRGBO(124, 124, 124, 1)),
                     focusedBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Color.fromRGBO(14, 82, 137, 1),
@@ -77,24 +87,14 @@ class _LoginState extends State<Login> {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (_){
-                            return  SplashScreen();
-                          })
-                      );
+                  child: RoundedButton(
+                    onClick: () {
+                      Navigator.of(context)
+                          .pushReplacement(MaterialPageRoute(builder: (_) {
+                        return SplashScreen();
+                      }));
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(15.0),
-                      child: Text('Login'),
-                    ),
+                    text: 'Login',
                   ),
                 ),
                 SizedBox(
@@ -103,14 +103,23 @@ class _LoginState extends State<Login> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have an account ?",style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)),
-                    TextButton(onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_){
+                    Text("Don't have an account ?",
+                        style: TextStyle(
+                            fontSize: 18.sp,
+                            fontFamily: 'IBMPlexSans',
+                            fontWeight: FontWeight.w400)),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(builder: (_) {
                             return const SignUp();
-                          })
-                      );
-                    }, child: Text('Sign Up',style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
+                          }));
+                        },
+                        child: Text('Sign Up',
+                            style: TextStyle(
+                                fontSize: 18.sp,
+                                fontFamily: 'IBMPlexSans',
+                                fontWeight: FontWeight.w400)))
                   ],
                 ),
                 SizedBox(

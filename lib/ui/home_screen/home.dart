@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:responsive_grid/responsive_grid.dart';
 import 'package:smsrly/models/user.dart';
 import 'package:smsrly/ui/show_details/show_detail.dart';
 
