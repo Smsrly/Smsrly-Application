@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
+import 'package:smsrly/ui/strings.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 
@@ -45,7 +46,7 @@ class _SignUpState extends State<SignUp> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Sign Up",
+                          "${StringManeger.signUp}",
                           style: getIBMPlexSansFont(32.sp, FontWeight.w700)
                         ),
                       ],
@@ -95,14 +96,14 @@ class _SignUpState extends State<SignUp> {
                     height: 25.h,
                   ),
 
-                  TextFieldWithBottomBorder(label: "First Name",inputType: TextInputType.name,fontSize: 18.sp,),
+                  TextFieldWithBottomBorder(label:StringManeger.first,inputType: TextInputType.name,fontSize: 18.sp,),
 
                   SizedBox(
                     height: 25.h,
                   ),
 
 
-                  TextFieldWithBottomBorder(label: "Second Name",inputType: TextInputType.name,fontSize: 18.sp),
+                  TextFieldWithBottomBorder(label: StringManeger.second,inputType: TextInputType.name,fontSize: 18.sp),
 
 
                   SizedBox(
@@ -110,13 +111,13 @@ class _SignUpState extends State<SignUp> {
                   ),
 
 
-                  TextFieldWithBottomBorder(label: "Email",inputType: TextInputType.emailAddress,fontSize: 18.sp),
+                  TextFieldWithBottomBorder(label: StringManeger.email,inputType: TextInputType.emailAddress,fontSize: 18.sp),
 
                   SizedBox(
                     height: 25.h,
                   ),
                   TextFieldWithBottomBorder(
-                    label: "Phone Number",
+                    label:StringManeger.phoneNum,
                     inputType: TextInputType.number,
                     inputFormatter: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
@@ -162,7 +163,7 @@ class _SignUpState extends State<SignUp> {
                     cursorColor: const Color.fromRGBO(124, 124, 124, 1),
                     keyboardType: TextInputType.visiblePassword,
                     decoration:  InputDecoration(
-                      labelText: 'Password',
+                      labelText: StringManeger.password,
                       suffixIcon: IconButton(onPressed: (){
                         setState(() {
                           _isPasswordFieldNotVisible=!_isPasswordFieldNotVisible;
@@ -196,7 +197,7 @@ class _SignUpState extends State<SignUp> {
                     cursorColor: const Color.fromRGBO(124, 124, 124, 1),
                     keyboardType: TextInputType.visiblePassword,
                     decoration:  InputDecoration(
-                      labelText: 'Confirm Password',
+                      labelText: StringManeger.cPassword,
                       suffixIcon: IconButton(onPressed: (){
                         setState(() {
                           _isConfirmPasswordFieldNotVisible=!_isConfirmPasswordFieldNotVisible;
@@ -235,7 +236,7 @@ class _SignUpState extends State<SignUp> {
                         );
                       },
 
-                      text: 'Sign Up',
+                      text: StringManeger.signUp,
 
                     ),
                   ),
@@ -245,14 +246,14 @@ class _SignUpState extends State<SignUp> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Already have an account ?",style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
+                      Text(StringManeger.haveAnAccount,style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
                       TextButton(onPressed: () {
                         Navigator.of(context).pushReplacement(
                             MaterialPageRoute(builder: (_){
                               return const Login();
                             })
                         );
-                      }, child: Text("Log In",style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
+                      }, child: Text(StringManeger.login,style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
                     ],
                   )
                 ]

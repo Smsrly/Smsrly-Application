@@ -4,6 +4,8 @@ import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/colors.dart';
 
+import '../strings.dart';
+
 class OnBoarding extends StatelessWidget {
   static const  String route = "/ON_BOARDING";
   const OnBoarding({super.key});
@@ -51,7 +53,7 @@ class OnBoarding extends StatelessWidget {
                   onClick: () {
                     Navigator.of(context).pushReplacementNamed(Login.route);
                   },
-                  text: 'Get Started',
+                  text: '${StringManeger.getStarted}',
                 ),
               ),
               SizedBox(

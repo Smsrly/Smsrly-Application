@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/ui/strings.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/colors.dart';
 
@@ -35,7 +36,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(top: 26),
             child: Container(
               alignment: Alignment.center,
-              child: Text("Privacy Information",
+              child: Text(StringManeger.privacy,
                   style: getIBMPlexSansFont(16.sp, FontWeight.bold)),
             ),
           ),
@@ -43,7 +44,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(left: 20, top: 10),
             child: Container(
               alignment: Alignment.topLeft,
-              child: Text("Current Password",
+              child: Text(StringManeger.currentPass,
                   style: TextStyle(fontSize: 16.sp, color: Colors.black)),
             ),
           ),
@@ -69,7 +70,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(left: 20, top: 5),
             child: Container(
               alignment: Alignment.topLeft,
-              child: Text("New Password",
+              child: Text(StringManeger.newPass,
                   style: TextStyle(fontSize: 16.sp, color: Colors.black)),
             ),
           ),
@@ -95,7 +96,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(left: 20, top: 5),
             child: Container(
               alignment: Alignment.topLeft,
-              child: Text("Confirm Password",
+              child: Text(StringManeger.cPassword,
                   style: TextStyle(fontSize: 16.sp, color: Colors.black)),
             ),
           ),
@@ -123,7 +124,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
               width: double.infinity,
               child: RoundedButton(
                 onClick: () => widget.onSubmit(),
-                text: 'Submit',
+                text: StringManeger.submit,
               ),
             ),
           )

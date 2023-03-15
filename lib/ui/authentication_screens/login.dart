@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/sign_up.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
+import 'package:smsrly/ui/strings.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
@@ -59,13 +60,13 @@ class _LoginState extends State<Login> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Don't have an account ?",
+        Text("${StringManeger.dont}",
             style: getIBMPlexSansFont(18.sp, FontWeight.w400)),
         TextButton(
             onPressed: () {
               Navigator.of(context).pushReplacementNamed(SignUp.route);
             },
-            child: Text('Sign Up',
+            child: Text('${StringManeger.signUp}',
                 style: getIBMPlexSansFont(18.sp, FontWeight.w400)))
       ],
     );
@@ -88,7 +89,7 @@ class _LoginState extends State<Login> {
                 Row(
                   children: [
                     Text(
-                      "Login",
+                      "${StringManeger.login}",
                       style: getIBMPlexSansFont(32.sp, FontWeight.bold),
                     ),
                     const Expanded(flex: 1, child: SizedBox())
@@ -98,7 +99,7 @@ class _LoginState extends State<Login> {
                   height: 20.h,
                 ),
                 TextFieldWithBottomBorder(
-                    label: 'Email',
+                    label: '${StringManeger.email}',
                     inputType: TextInputType.emailAddress,
                     fontSize: 18.sp),
                 SizedBox(
@@ -114,7 +115,7 @@ class _LoginState extends State<Login> {
                     onClick: () {
                       Navigator.of(context).pushReplacementNamed(SplashScreen.route);
                     },
-                    text: 'Login',
+                    text: '${StringManeger.login}',
                   ),
                 ),
                 SizedBox(

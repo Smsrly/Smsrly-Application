@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/ui/strings.dart';
 import 'package:smsrly/ui/widgets/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
 
@@ -44,7 +45,7 @@ class Sell extends StatelessWidget {
                   children: [
                     Center(
                         child: Text(
-                      "Smsrly",
+                      "${StringManeger.smsrly}",
                       style: TextStyle(fontFamily: "Inter", fontSize: 22.sp),
                     )),
                     SizedBox(
@@ -72,7 +73,7 @@ class Sell extends StatelessWidget {
                                   width:1.w ,
                                 ),
                                 Text(
-                                  "Add Image Or Video",
+                                  "${StringManeger.add}",
                                   style: TextStyle(
                                     fontSize: 22.sp,
                                       fontFamily: "IBMPlexSans",
@@ -86,18 +87,18 @@ class Sell extends StatelessWidget {
                     SizedBox(
                       height: 15.h,
                     ),
-                    textField("Title","",TextInputType.text),
+                    textField("${StringManeger.title}","",TextInputType.text),
                     SizedBox(
                       height: 15.h,
                     ),
-                    textField("Price", "",TextInputType.number),
+                    textField(StringManeger.price, "",TextInputType.number),
                     SizedBox(
                       height: 15.h,
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 5.w, bottom: 6.w),
                       child: Text(
-                        "Description",
+                        StringManeger.description,
                         style: TextStyle(fontSize: 16.sp),
                       ),
                     ),
@@ -128,7 +129,7 @@ class Sell extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.only(left: 5.w, bottom: 6.w),
                       child: Text(
-                        "Location",
+                        StringManeger.location,
                         style: TextStyle(fontSize: 16.sp),
                       ),
                     ),
@@ -148,14 +149,14 @@ class Sell extends StatelessWidget {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: textField("", "Floors", TextInputType.number),
+                          child: textField("", StringManeger.floors, TextInputType.number),
                         ),
                         SizedBox(
                           width: 10.w,
                         ),
                         Expanded(
                           flex: 1,
-                          child: textField("", "Rooms", TextInputType.number),
+                          child: textField("", StringManeger.rooms, TextInputType.number),
                         ),
                       ],
                     ),
@@ -168,7 +169,7 @@ class Sell extends StatelessWidget {
                           flex: 1,
                           child: Expanded(
                             flex: 1,
-                            child: textField("", "Bathrooms", TextInputType.number),
+                            child: textField("", StringManeger.bathrooms, TextInputType.number),
                           ),
                         ),
                         SizedBox(
@@ -176,7 +177,7 @@ class Sell extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: textField("", "Area", TextInputType.number),
+                          child: textField("", StringManeger.area, TextInputType.number),
                         ),
                       ],
                     ),
@@ -194,7 +195,7 @@ class Sell extends StatelessWidget {
                           const MaterialStatePropertyAll(primaryColor),
                       fixedSize: const MaterialStatePropertyAll(Size(328, 49))),
                   child: Text(
-                    "Submit",
+                    "${StringManeger.submit}",
                     style: TextStyle(fontSize: 16.sp),
                   ),
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/ui/strings.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_back_button.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 
@@ -31,7 +32,7 @@ class _ContactUsState extends State<ContactUs> {
             value: value,
             icon: const Icon(Icons.arrow_drop_down_rounded,
                 size: 40, color: Color(0xFF374957)),
-            hint: Text("Your trouble", style: TextStyle(
+            hint: Text(StringManeger.yourTrouble, style: TextStyle(
                 fontSize: 16.sp, fontFamily: "IBMPlexSans",
                 fontWeight: FontWeight.w500),),
             borderRadius: BorderRadius.circular(20),
@@ -78,7 +79,7 @@ class _ContactUsState extends State<ContactUs> {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 16),
-            child: Text("Attach a Picture",style: TextStyle(
+            child: Text(StringManeger.attach,style: TextStyle(
                 fontSize: 16.sp,
                 fontFamily: "IBMPlexSans",
                 fontWeight: FontWeight.w500
@@ -119,7 +120,7 @@ class _ContactUsState extends State<ContactUs> {
                         children: [
                           SizedBox(
                             width: double.infinity,
-                            child: Text("Get in touch with us",
+                            child: Text(StringManeger.getInTouch,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontFamily: "Inter",
@@ -130,7 +131,7 @@ class _ContactUsState extends State<ContactUs> {
                           SizedBox(
                             width: double.infinity,
                             child: Text(
-                              "We are happy to have contact with us and sorry for the problem that faces you and we will work to solve it",
+                              StringManeger.parragraph,
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontFamily: "IBMPlexSans",
@@ -144,7 +145,7 @@ class _ContactUsState extends State<ContactUs> {
                           SizedBox(
                             width: double.infinity,
                             child: Text(
-                              "What do you want to talk about?",
+                              StringManeger.question,
                               textAlign: TextAlign.left,
                               style: TextStyle(color: Colors.black54, fontSize: 16.sp
                               ,fontFamily: "IBMPlexSans",
@@ -166,7 +167,7 @@ class _ContactUsState extends State<ContactUs> {
                           SizedBox(
                               width: double.infinity,
                               child:Text(
-                                "Your Message",
+                                StringManeger.yourMeesage,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: Colors.black54, fontSize: 16.sp
                                   ,fontFamily: "IBMPlexSans",
@@ -191,7 +192,7 @@ class _ContactUsState extends State<ContactUs> {
                           SizedBox(height: 45.h,),
                           SizedBox(
                             width:double.infinity,
-                            child: RoundedButton(text: "Send", onClick: (){
+                            child: RoundedButton(text: StringManeger.send, onClick: (){
 
                             },)
                           ),

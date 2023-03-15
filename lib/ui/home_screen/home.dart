@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/models/user.dart';
 import 'package:smsrly/ui/show_details/show_detail.dart';
+import 'package:smsrly/ui/strings.dart';
 import 'package:smsrly/ui/widgets/colors.dart';
 
 import '../../models/realestate.dart';
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Welcome, ",
+                StringManeger.welcome,
                 style: TextStyle(
                     fontSize: 13,
                     color: welcomeMessageColor),
@@ -98,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   TextButton(
                       onPressed: widget.seeAllAction,
                       child: Text(
-                        "See all",
+                        StringManeger.see,
                         style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
@@ -179,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 10.h,
               ),
-              seeAllRow("Common Real Estates"),
+              seeAllRow(StringManeger.common),
               SizedBox(
                   height: 250,
                   child: ListView.builder(
@@ -191,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   )
               ),
-              seeAllRow("More"),
+              seeAllRow(StringManeger.more),
               SizedBox(
                 child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),

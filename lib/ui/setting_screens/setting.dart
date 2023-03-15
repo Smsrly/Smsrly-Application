@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/setting_screens/contact_us.dart';
+import 'package:smsrly/ui/strings.dart';
 import 'package:smsrly/ui/widgets/colors.dart';
 import 'password_dialog.dart';
 import 'edit_profile.dart';
@@ -14,9 +15,9 @@ class Setting extends StatelessWidget {
       context: context,
       dialogType: DialogType.warning,
       animType: AnimType.topSlide,
-      title: "Delete Account !",
+      title: StringManeger.delete,
       desc:
-      "Are you sure that you want to delete your account ?",
+      StringManeger.areYouSure,
       btnCancelOnPress: () => print("Canceled"),
       btnOkOnPress: () => print("Ok"),
     ).show();
@@ -73,7 +74,7 @@ class Setting extends StatelessWidget {
                             width: 10.w,
                           ),
                           Text(
-                            "Setting",
+                            StringManeger.setting,
                             style: TextStyle(
                                 fontFamily: 'IBMPlexSans',
                                 fontWeight: FontWeight.bold,
@@ -140,7 +141,7 @@ class Setting extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              "Account Settings",
+                              StringManeger.accSetting,
                               style: TextStyle(
                                   color: offWhite ,
                                   fontWeight: FontWeight.w300,
@@ -152,14 +153,14 @@ class Setting extends StatelessWidget {
                           height: 15.h,
                         ),
 
-                        settingRow("Edit Profile", Icons.arrow_forward_ios, () {
+                        settingRow(StringManeger.edit, Icons.arrow_forward_ios, () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => Edit()));
                         }),
                         SizedBox(
                           height: 13.h,
                         ),
-                        settingRow("Change Password", Icons.arrow_forward_ios, () {
+                        settingRow(StringManeger.changePassword, Icons.arrow_forward_ios, () {
                           showDialog(
                             context: context,
                             builder: (context) {
@@ -180,7 +181,7 @@ class Setting extends StatelessWidget {
                         ),
 
                         Text(
-                          "More",
+                          StringManeger.more,
                           style: TextStyle(
                               color:offWhite,
                               fontWeight: FontWeight.w300,
@@ -190,7 +191,7 @@ class Setting extends StatelessWidget {
                         SizedBox(
                           height: 13.h,
                         ),
-                        settingRow("Contact us", Icons.arrow_forward_ios, () {
+                        settingRow(StringManeger.contactUs, Icons.arrow_forward_ios, () {
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (_) {
                             return const ContactUs();
@@ -199,11 +200,11 @@ class Setting extends StatelessWidget {
                         SizedBox(
                           height: 13.h,
                         ),
-                        settingRow("Log out", Icons.logout, () {}),
+                        settingRow(StringManeger.logOut, Icons.logout, () {}),
                         SizedBox(
                           height: 13.h,
                         ),
-                        settingRow("Delete Account", Icons.arrow_forward_ios, () {
+                        settingRow("${StringManeger.deleteAccount}", Icons.arrow_forward_ios, () {
                           showDeleteDialog(context);
                         }),
                       ],

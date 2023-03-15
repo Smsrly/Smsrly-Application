@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/explore_screen/options_dialog.dart';
+import 'package:smsrly/ui/strings.dart';
 
 import '../../models/realestate.dart';
 import '../../models/user.dart';
@@ -122,7 +123,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   style: const TextStyle(
                       color: Color.fromRGBO(96, 96, 96, 1)),
                   decoration: const InputDecoration(
-                    hintText: "Where do you want to go",
+                    hintText: StringManeger.where,
                     hintStyle: TextStyle(
 
                         color:
@@ -178,7 +179,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text("Ups!... no results found",
+              const Text(StringManeger.ups,
                 style: TextStyle(
                     fontSize: 25,
                     fontFamily: 'IBMPlexSans',
@@ -188,7 +189,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               const SizedBox(
                 height: 5,
               ),
-              const Text("Please try another search",
+              const Text("${StringManeger.please}",
                 style: TextStyle(
                     fontFamily: 'IBMPlexSans',
                     fontWeight: FontWeight.w400,
@@ -219,7 +220,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               Padding(
                 padding: const EdgeInsets.all(9.0),
                 child: Text(
-                  "Explore",
+                  "${StringManeger.explore}",
                   style: TextStyle(
                     fontSize: 32.sp,
                     fontWeight: FontWeight.bold,

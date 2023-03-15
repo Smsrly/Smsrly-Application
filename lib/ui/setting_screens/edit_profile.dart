@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/ui/strings.dart';
 import 'package:smsrly/ui/widgets/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
 
@@ -63,31 +64,31 @@ class Edit extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Basic Information",
+                            StringManeger.basic,
                             style: TextStyle(
                                 fontSize: 20.sp, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: primaryColor,label: "First Name",),
+                          RoundedTextField(cursorColor: primaryColor,label: StringManeger.first,),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: primaryColor,label: "Second Name",),
+                          RoundedTextField(cursorColor: primaryColor,label: StringManeger.second,),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: primaryColor,label: "Email",inputType: TextInputType.emailAddress,),
+                          RoundedTextField(cursorColor: primaryColor,label:StringManeger.email,inputType: TextInputType.emailAddress,),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: primaryColor,label: "Phone number",inputType: TextInputType.phone,),
+                          RoundedTextField(cursorColor: primaryColor,label:StringManeger.phoneNum,inputType: TextInputType.phone,),
                           SizedBox(
                             height: 30.h,
                           ),
                           Text(
-                            "Location",
+                            StringManeger.location,
                             style: TextStyle(fontSize: 18.sp),
                           ),
                           SizedBox(
@@ -116,7 +117,7 @@ class Edit extends StatelessWidget {
                                     ),
                                     child: const Padding(
                                       padding: EdgeInsets.all(15.0),
-                                      child: Text('Submit'),
+                                      child: Text(StringManeger.submit),
                                     ),
                                   ),
                                 ),
