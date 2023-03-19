@@ -41,7 +41,7 @@ dependencies:
   fl_country_code_picker: ^0.0.4
   lottie: ^2.2.0
   flutter_screenutil: ^5.5.4
-  responsive_grid: ^2.1.0
+  get: ^4.6.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
