@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/colors.dart';
@@ -51,9 +53,9 @@ class OnBoarding extends StatelessWidget {
                 width: double.infinity,
                 child: RoundedButton(
                   onClick: () {
-                    Navigator.of(context).pushReplacementNamed(Login.route);
+                    Get.to(Login());
                   },
-                  text: '${StringManeger.getStarted}',
+                  text: StringManeger.getStarted,
                 ),
               ),
               SizedBox(

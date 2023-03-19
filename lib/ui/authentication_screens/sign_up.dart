@@ -2,6 +2,8 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
 import 'package:smsrly/ui/authentication_screens/verify.dart';
@@ -47,7 +49,7 @@ class _SignUpState extends State<SignUp> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${StringManeger.signUp}",
+                          StringManeger.signUp,
                           style: getIBMPlexSansFont(32.sp, FontWeight.w700)
                         ),
                       ],
@@ -249,11 +251,7 @@ class _SignUpState extends State<SignUp> {
                     children: [
                       Text(StringManeger.haveAnAccount,style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
                       TextButton(onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (_){
-                              return const Login();
-                            })
-                        );
+                        Get.to(Login());
                       }, child: Text(StringManeger.login,style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
                     ],
                   )
