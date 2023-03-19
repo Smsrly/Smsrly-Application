@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
+import 'package:smsrly/ui/authentication_screens/verify.dart';
 import 'package:smsrly/ui/strings.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
@@ -231,7 +232,7 @@ class _SignUpState extends State<SignUp> {
                       onClick: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (_){
-                              return  SplashScreen();
+                              return  Verify();
                             })
                         );
                       },

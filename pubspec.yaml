@@ -108,6 +108,7 @@ flutter:
      - assets/animations/loading_home_animation.json
      - assets/images/SUIIIIIIIIIIII.jpg
      - assets/images/location.jpg
+     - assets/images/verift.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
