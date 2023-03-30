@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/ui/strings.dart';
+import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
-import 'package:smsrly/ui/widgets/colors.dart';
+import 'package:smsrly/res/colors.dart';
 
 class PasswordDialog extends StatefulWidget {
   late Function onSubmit;
@@ -36,7 +36,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(top: 26),
             child: Container(
               alignment: Alignment.center,
-              child: Text(StringManeger.privacy,
+              child: Text(StringManager.privacy,
                   style: getIBMPlexSansFont(16.sp, FontWeight.bold)),
             ),
           ),
@@ -44,7 +44,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(left: 20, top: 10),
             child: Container(
               alignment: Alignment.topLeft,
-              child: Text(StringManeger.currentPass,
+              child: Text(StringManager.currentPass,
                   style: TextStyle(fontSize: 16.sp, color: Colors.black)),
             ),
           ),
@@ -70,7 +70,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(left: 20, top: 5),
             child: Container(
               alignment: Alignment.topLeft,
-              child: Text(StringManeger.newPass,
+              child: Text(StringManager.newPass,
                   style: TextStyle(fontSize: 16.sp, color: Colors.black)),
             ),
           ),
@@ -96,7 +96,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
             padding: const EdgeInsets.only(left: 20, top: 5),
             child: Container(
               alignment: Alignment.topLeft,
-              child: Text(StringManeger.cPassword,
+              child: Text(StringManager.cPassword,
                   style: TextStyle(fontSize: 16.sp, color: Colors.black)),
             ),
           ),
@@ -124,7 +124,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
               width: double.infinity,
               child: RoundedButton(
                 onClick: () => widget.onSubmit(),
-                text: StringManeger.submit,
+                text: StringManager.submit,
               ),
             ),
           )

@@ -2,8 +2,8 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/setting_screens/contact_us.dart';
-import 'package:smsrly/ui/strings.dart';
-import 'package:smsrly/ui/widgets/colors.dart';
+import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/res/colors.dart';
 import 'password_dialog.dart';
 import 'edit_profile.dart';
 
@@ -15,9 +15,9 @@ class Setting extends StatelessWidget {
       context: context,
       dialogType: DialogType.warning,
       animType: AnimType.topSlide,
-      title: StringManeger.delete,
+      title: StringManager.delete,
       desc:
-      StringManeger.areYouSure,
+      StringManager.areYouSure,
       btnCancelOnPress: () => print("Canceled"),
       btnOkOnPress: () => print("Ok"),
     ).show();
@@ -74,7 +74,7 @@ class Setting extends StatelessWidget {
                             width: 10.w,
                           ),
                           Text(
-                            StringManeger.setting,
+                            StringManager.setting,
                             style: TextStyle(
                                 fontFamily: 'IBMPlexSans',
                                 fontWeight: FontWeight.bold,
@@ -141,7 +141,7 @@ class Setting extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              StringManeger.accSetting,
+                              StringManager.accSetting,
                               style: TextStyle(
                                   color: offWhite ,
                                   fontWeight: FontWeight.w300,
@@ -153,14 +153,14 @@ class Setting extends StatelessWidget {
                           height: 15.h,
                         ),
 
-                        settingRow(StringManeger.edit, Icons.arrow_forward_ios, () {
+                        settingRow(StringManager.edit, Icons.arrow_forward_ios, () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Edit()));
+                              builder: (context) => EditProfileScreen()));
                         }),
                         SizedBox(
                           height: 13.h,
                         ),
-                        settingRow(StringManeger.changePassword, Icons.arrow_forward_ios, () {
+                        settingRow(StringManager.changePassword, Icons.arrow_forward_ios, () {
                           showDialog(
                             context: context,
                             builder: (context) {
@@ -181,7 +181,7 @@ class Setting extends StatelessWidget {
                         ),
 
                         Text(
-                          StringManeger.more,
+                          StringManager.more,
                           style: TextStyle(
                               color:offWhite,
                               fontWeight: FontWeight.w300,
@@ -191,20 +191,20 @@ class Setting extends StatelessWidget {
                         SizedBox(
                           height: 13.h,
                         ),
-                        settingRow(StringManeger.contactUs, Icons.arrow_forward_ios, () {
+                        settingRow(StringManager.contactUs, Icons.arrow_forward_ios, () {
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (_) {
-                            return const ContactUs();
+                            return const ContactUsScreen();
                           }));
                         }),
                         SizedBox(
                           height: 13.h,
                         ),
-                        settingRow(StringManeger.logOut, Icons.logout, () {}),
+                        settingRow(StringManager.logOut, Icons.logout, () {}),
                         SizedBox(
                           height: 13.h,
                         ),
-                        settingRow("${StringManeger.deleteAccount}", Icons.arrow_forward_ios, () {
+                        settingRow("${StringManager.deleteAccount}", Icons.arrow_forward_ios, () {
                           showDeleteDialog(context);
                         }),
                       ],

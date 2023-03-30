@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smsrly/controller/controller.dart';
 
+import '../../res/strings.dart';
 
-class SplashScreen extends GetWidget<Controller> {
+class SplashScreen extends StatelessWidget {
 
-  static const  String route = "/SPLASH_SCREEN";
-
-  SplashScreen({Key? key}) : super(key: key);
-
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    controller.getData();
-    return Scaffold(
-      body: Center(
-        child:Lottie.asset(
-            "assets/animations/loading_home_animation.json",
-            animate: true,
-            repeat: false,
-        ) ,
+    return Center(
+      child: Lottie.asset(
+        StringManager.splashAnimation,
+        animate: true,
+        repeat: false,
       ),
     );
   }

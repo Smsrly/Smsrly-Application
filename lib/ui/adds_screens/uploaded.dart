@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:smsrly/ui/widgets/realestates_items/realestate_third_item.dart';
 
 import '../../models/realestate.dart';
-import '../show_details/show_detail.dart';
+import '../../res/strings.dart';
+import '../../utils/routes/route_name.dart';
 
 class Uploaded extends StatelessWidget{
   RealEstate item3 = RealEstate(
@@ -25,9 +26,10 @@ class Uploaded extends StatelessWidget{
 
 
   void navigateToShowDetail(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-      return ShowDetail(item: item3,isTheOwner: true);
-    }));
+    Navigator.pushNamed(context, RouteName.showDetailsRoute,arguments: {
+      StringManager.item: item3,
+      StringManager.isTheOwner: true
+    });
   }
 
 

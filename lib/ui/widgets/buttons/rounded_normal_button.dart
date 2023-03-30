@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smsrly/ui/widgets/colors.dart';
+import 'package:smsrly/res/colors.dart';
 
 class RoundedButton extends StatelessWidget {
   late String text;

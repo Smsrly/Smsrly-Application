@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../models/realestate.dart';
+import '../../res/strings.dart';
+import '../../utils/routes/route_name.dart';
 import '../show_details/show_detail.dart';
 import '../widgets/realestates_items/realestate_third_item.dart';
 
@@ -25,9 +27,9 @@ class Saved extends StatelessWidget{
 
 
   void navigateToShowDetail(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-      return ShowDetail(item: item1,isTheOwner: true);
-    }));
+    Navigator.pushNamed(context, RouteName.showDetailsRoute,arguments: {
+      StringManager.item: item1,
+    });
   }
 
 

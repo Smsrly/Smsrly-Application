@@ -1,41 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/models/user.dart';
 import 'package:smsrly/ui/show_details/show_detail.dart';
-import 'package:smsrly/ui/strings.dart';
-import 'package:smsrly/ui/widgets/colors.dart';
+import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/res/colors.dart';
 
 import '../../models/realestate.dart';
+import '../../utils/routes/route_name.dart';
 import '../widgets/realestates_items/realestate_first_item.dart';
 import '../widgets/realestates_items/realestate_second_item.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
 
-  late List<RealEstate> items;
-  late User user;
-  late VoidCallback seeAllAction;
 
   HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-
-
-
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-
-
-
-
-
 
   Widget header(){
     return Padding(
@@ -47,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                StringManeger.welcome,
+                StringManager.welcome,
                 style: TextStyle(
                     fontSize: 13,
                     color: welcomeMessageColor),
@@ -56,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 2,
               ),
               Text(
-                widget.user.username,
+                'Totti',
                 style: TextStyle(
                     fontSize: 17.sp,
                     fontWeight: FontWeight.bold,
@@ -68,20 +45,13 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 50,
             height: 50,
             child: CircleAvatar(
-              backgroundImage: NetworkImage(widget.user.pictureUrl),
+              backgroundImage: NetworkImage('https://www.thefamouspeople.com/profiles/images/francesco-totti-1.jpg'),
             ),
           ),
         ],
       ),
     );
   }
-
-
-
-
-
-
-
 
   Widget seeAllRow(String title){
     return Padding(
@@ -97,9 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   TextButton(
-                      onPressed: widget.seeAllAction,
+                      onPressed: (){
+
+                      },
                       child: Text(
-                        StringManeger.see,
+                        StringManager.see,
                         style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
@@ -110,61 +82,38 @@ class _HomeScreenState extends State<HomeScreen> {
           );
   }
 
-
-
-
-  Widget firstItem(RealEstate currItem){
+  Widget firstItem(RealEstate currItem,BuildContext context){
     return InkWell(
             child: FirstItem(
               item: currItem,
-              hasSaved: widget.user.isSaved(currItem),
+              hasSaved: false,
               onSaveIconSelected: () {
-                setState(() {
 
-                  if (widget.user.isSaved(currItem)) {
-                    widget.user.unSaveRealEstate(currItem);
-                  } else {
-                    widget.user.saveRealEstate(currItem);
-                  }
-                });
               },
             ),
             onTap: (){
               // go to show detail
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_){
-                    return ShowDetail(item: currItem);
-                  })
-              );
+              Navigator.pushNamed(context, RouteName.showDetailsRoute,arguments: {
+                StringManager.item: currItem
+              });
             },
         );
   }
 
-
-
-
-  Widget secondItem(RealEstate currItem){
+  Widget secondItem(RealEstate currItem ,BuildContext context){
     return InkWell(
               child: SecondItem(
                 item: currItem,
-                hasSaved: widget.user.isSaved(currItem),
+                hasSaved: true,
                 onSaveBtn: () {
-                  setState(() {
-                    if (widget.user.isSaved(currItem)) {
-                      widget.user.unSaveRealEstate(currItem);
-                    } else {
-                      widget.user.saveRealEstate(currItem);
-                    }
-                  });
+
                 },
               ),
               onTap: (){
                 // go to show details
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_){
-                      return ShowDetail(item: currItem);
-                    })
-                );
+                Navigator.pushNamed(context, RouteName.showDetailsRoute,arguments: {
+                  StringManager.item : currItem
+                });
               },
           );
   }
@@ -180,28 +129,61 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 10.h,
               ),
-              seeAllRow(StringManeger.common),
+              seeAllRow(StringManager.common),
               SizedBox(
                   height: 250,
                   child: ListView.builder(
-                    itemCount: widget.items.length~/3,
+                    itemCount: 10, // widget.items.length~/3
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      RealEstate currItem= widget.items[index];
-                      return firstItem(currItem);
+                      return firstItem(
+                          RealEstate(
+                          122,
+                          "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lpibo-ew-1656015868.jpg",
+                          "Royal Sea Crown2",
+                          null,
+                          "123",
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                          1231,
+                          54,
+                          5,
+                          5,
+                          100000,
+                          21321.3,
+                          1231.2,
+                          "Egypt",
+                          "Cairo",0)
+                      ,context);
                     },
                   )
               ),
-              seeAllRow(StringManeger.more),
+              seeAllRow(StringManager.more),
               SizedBox(
                 child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: widget.items.length - widget.items.length~/3,
+                    itemCount: 10,  // widget.items.length - widget.items.length~/3
                     itemBuilder: (context, index) {
-                      int currIndex = index+widget.items.length~/3;
-                      RealEstate currItem= widget.items[currIndex];
-                      return secondItem(currItem);
+                      // int currIndex = index+widget.items.length~/3;
+                      // RealEstate currItem= widget.items[currIndex];
+                      return secondItem(
+                          RealEstate(
+                          122,
+                          "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lpibo-ew-1656015868.jpg",
+                          "Royal Sea Crown2",
+                          null,
+                          "123",
+                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                          1231,
+                          54,
+                          5,
+                          5,
+                          100000,
+                          21321.3,
+                          1231.2,
+                          "Egypt",
+                          "Cairo",0)
+                      ,context);
                     }
                 ),
               )

@@ -2,33 +2,66 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:smsrly/ui/authentication_screens/login.dart';
-import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
-import 'package:smsrly/ui/authentication_screens/verify.dart';
-import 'package:smsrly/ui/strings.dart';
+import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 
-import '../widgets/colors.dart';
+import '../../res/colors.dart';
+import '../../utils/routes/route_name.dart';
 
-class SignUp extends StatefulWidget {
-  static const  String route = "/SIGN_UP";
+class SignUpScreen extends StatefulWidget {
 
-  const SignUp({Key? key}) : super(key: key);
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpState extends State<SignUp> {
-
+class _SignUpScreenState extends State<SignUpScreen> {
   bool _isPasswordFieldNotVisible = true;
   bool _isConfirmPasswordFieldNotVisible = true;
-  final _countryPicker =const FlCountryCodePicker();
+  final _countryPicker = const FlCountryCodePicker();
   CountryCode? _countryCode;
-  Widget? _flag=Image.asset("assets/images/egypt_flag.png");
+  Widget? _flag = Image.asset(StringManager.egyptFlag);
+
+
+  Widget profilePicture(){
+    return SizedBox(
+      width: 120,
+      height: 120,
+      child: InkWell(
+        child: Center(
+          child: Stack(alignment: Alignment.center, children: [
+            const SizedBox(
+                width: 100,
+                height: 100,
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundImage: AssetImage(
+                      StringManager.profilePlaceholder),
+                )),
+            SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: Image.asset(
+                          StringManager.cameraIcon))
+                ],
+              ),
+            )
+          ]),
+        ),
+        onTap: () {},
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,138 +75,120 @@ class _SignUpState extends State<SignUp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 20.h,),
+                  SizedBox(
+                    height: 20.h,
+                  ),
                   SizedBox(
                     width: double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          StringManeger.signUp,
-                          style: getIBMPlexSansFont(32.sp, FontWeight.w700)
-                        ),
+                        Text(StringManager.signUp,
+                            style: getIBMPlexSansFont(32.sp, FontWeight.w700)),
                       ],
                     ),
                   ),
                   SizedBox(
                     height: 15.h,
                   ),
-                  SizedBox(
-                    width: 120,
-                    height: 120,
-                    child: InkWell(
-                      child: Center(
-                        child: Stack(alignment: Alignment.center, children:  [
-                          const SizedBox(
-                              width: 100,
-                              height: 100,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundImage:
-                                    AssetImage("assets/images/profile_icon.png"),
-                              )),
-                          SizedBox(
-                            width: double.infinity,
-                            height: double.infinity,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                SizedBox(
-                                    width:50,
-                                    height: 50,
-                                    child: Image.asset("assets/images/camera_icon.png")
-                                )
-                              ],
-                            ),
-                          )
-                        ]
-                        ),
-                      ),
-                      onTap: () {
-
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 25.h,
-                  ),
-
-                  TextFieldWithBottomBorder(label:StringManeger.first,inputType: TextInputType.name,fontSize: 18.sp,),
-
-                  SizedBox(
-                    height: 25.h,
-                  ),
-
-
-                  TextFieldWithBottomBorder(label: StringManeger.second,inputType: TextInputType.name,fontSize: 18.sp),
-
-
-                  SizedBox(
-                    height: 25.h,
-                  ),
-
-
-                  TextFieldWithBottomBorder(label: StringManeger.email,inputType: TextInputType.emailAddress,fontSize: 18.sp),
-
+                  profilePicture(),
                   SizedBox(
                     height: 25.h,
                   ),
                   TextFieldWithBottomBorder(
-                    label:StringManeger.phoneNum,
+                    label: StringManager.first,
+                    inputType: TextInputType.name,
+                    fontSize: 18.sp,
+                  ),
+                  SizedBox(
+                    height: 25.h,
+                  ),
+                  TextFieldWithBottomBorder(
+                      label: StringManager.second,
+                      inputType: TextInputType.name,
+                      fontSize: 18.sp),
+                  SizedBox(
+                    height: 25.h,
+                  ),
+                  TextFieldWithBottomBorder(
+                      label: StringManager.email,
+                      inputType: TextInputType.emailAddress,
+                      fontSize: 18.sp),
+                  SizedBox(
+                    height: 25.h,
+                  ),
+                  TextFieldWithBottomBorder(
+                    label: StringManager.phoneNum,
                     inputType: TextInputType.number,
                     inputFormatter: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
                     fontSize: 18.sp,
-                    prefixIcon:  Container(
-                    width: 80,
-
-                    padding: const EdgeInsets.all(3),
-                    margin: const EdgeInsets.all(3),
-
-
-                    child: InkWell(
-                      onTap: ()async{
-                        var code= await _countryPicker.showPicker(context: context);
-                        setState(() {
-                          if(code!=null){
-                            _countryCode=code;
-                            _flag=_countryCode?.flagImage;
-                          }
-                        });
-                      },
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 25,
-                            child: _countryCode!= null ? _countryCode?.flagImage:_flag,
-                          ),
-                          const SizedBox(width: 3,),
-                          Text(_countryCode == null ? "+20" : "${_countryCode?.dialCode}",style: const TextStyle(fontSize: 15,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400,color: textFieldCursorColor,))
-                        ],
+                    prefixIcon: Container(
+                      width: 80,
+                      padding: const EdgeInsets.all(3),
+                      margin: const EdgeInsets.all(3),
+                      child: InkWell(
+                        onTap: () async {
+                          var code =
+                              await _countryPicker.showPicker(context: context);
+                          setState(() {
+                            if (code != null) {
+                              _countryCode = code;
+                              _flag = _countryCode?.flagImage;
+                            }
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 25,
+                              child: _countryCode != null
+                                  ? _countryCode?.flagImage
+                                  : _flag,
+                            ),
+                            const SizedBox(
+                              width: 3,
+                            ),
+                            Text(
+                                _countryCode == null
+                                    ? "+20"
+                                    : "${_countryCode?.dialCode}",
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontFamily: 'IBMPlexSans',
+                                  fontWeight: FontWeight.w400,
+                                  color: textFieldCursorColor,
+                                ))
+                          ],
+                        ),
                       ),
                     ),
-                  ),
                   ),
                   const SizedBox(
                     height: 25,
                   ),
-
-
                   TextFormField(
                     obscureText: _isPasswordFieldNotVisible,
                     cursorColor: const Color.fromRGBO(124, 124, 124, 1),
                     keyboardType: TextInputType.visiblePassword,
-                    decoration:  InputDecoration(
-                      labelText: StringManeger.password,
-                      suffixIcon: IconButton(onPressed: (){
-                        setState(() {
-                          _isPasswordFieldNotVisible=!_isPasswordFieldNotVisible;
-                        });
-                      }, icon: Icon(_isPasswordFieldNotVisible?Icons.visibility_off:Icons.visibility)),
+                    decoration: InputDecoration(
+                      labelText: StringManager.password,
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordFieldNotVisible =
+                                  !_isPasswordFieldNotVisible;
+                            });
+                          },
+                          icon: Icon(_isPasswordFieldNotVisible
+                              ? Icons.visibility_off
+                              : Icons.visibility)),
                       labelStyle: TextStyle(
-                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
+                          fontSize: 18.sp,
+                          fontFamily: 'IBMPlexSans',
+                          fontWeight: FontWeight.w500,
+                          color: const Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: primaryColor,
@@ -188,26 +203,30 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
-
-
                   SizedBox(
                     height: 25.h,
                   ),
-
-
                   TextFormField(
                     obscureText: _isConfirmPasswordFieldNotVisible,
                     cursorColor: const Color.fromRGBO(124, 124, 124, 1),
                     keyboardType: TextInputType.visiblePassword,
-                    decoration:  InputDecoration(
-                      labelText: StringManeger.cPassword,
-                      suffixIcon: IconButton(onPressed: (){
-                        setState(() {
-                          _isConfirmPasswordFieldNotVisible=!_isConfirmPasswordFieldNotVisible;
-                        });
-                      }, icon: Icon(_isConfirmPasswordFieldNotVisible?Icons.visibility_off:Icons.visibility)),
+                    decoration: InputDecoration(
+                      labelText: StringManager.cPassword,
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _isConfirmPasswordFieldNotVisible =
+                                  !_isConfirmPasswordFieldNotVisible;
+                            });
+                          },
+                          icon: Icon(_isConfirmPasswordFieldNotVisible
+                              ? Icons.visibility_off
+                              : Icons.visibility)),
                       labelStyle: TextStyle(
-                          fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w500, color: const Color.fromRGBO(124, 124, 124, 1)),
+                          fontSize: 18.sp,
+                          fontFamily: 'IBMPlexSans',
+                          fontWeight: FontWeight.w500,
+                          color: const Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(
                           color: primaryColor,
@@ -222,25 +241,16 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
-
                   SizedBox(
                     height: 30.h,
                   ),
-
-                  
                   SizedBox(
                     width: double.infinity,
                     child: RoundedButton(
                       onClick: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (_){
-                              return  Verify();
-                            })
-                        );
+
                       },
-
-                      text: StringManeger.signUp,
-
+                      text: StringManager.signUp,
                     ),
                   ),
                   SizedBox(
@@ -249,14 +259,25 @@ class _SignUpState extends State<SignUp> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(StringManeger.haveAnAccount,style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
-                      TextButton(onPressed: () {
-                        Get.to(Login());
-                      }, child: Text(StringManeger.login,style: TextStyle(fontSize: 18.sp,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400)))
+                      Text(
+                        StringManager.haveAnAccount,
+                        style: TextStyle(
+                            fontSize: 18.sp,
+                            fontFamily: 'IBMPlexSans',
+                            fontWeight: FontWeight.w400),
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context,RouteName.loginRoute);
+                          },
+                          child: Text(StringManager.login,
+                              style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontFamily: StringManager.ibmPlexSans,
+                                  fontWeight: FontWeight.w400)))
                     ],
                   )
-                ]
-            ),
+                ]),
           ),
         ),
       ),

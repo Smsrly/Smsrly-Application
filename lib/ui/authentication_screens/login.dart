@@ -1,37 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:smsrly/controller/controller.dart';
-import 'package:smsrly/ui/authentication_screens/sign_up.dart';
-import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
-import 'package:smsrly/ui/strings.dart';
+import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
-import 'package:smsrly/ui/widgets/colors.dart';
+import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 
-import '../../models/user.dart';
-
-class Login extends GetView<Controller> {
-  static const  String route = "/LOGIN";
+import '../../utils/routes/route_name.dart';
 
 
-  Login({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+
+
+  const LoginScreen({Key? key}) : super(key: key);
 
 
   Widget passwordField(){
-    return Obx(
-      ()=>
+    return
        TextFormField(
         cursorColor: textFieldCursorColor,
-        obscureText: controller.isLoginPasswordHidden.value,
+        obscureText: true,
         keyboardType: TextInputType.visiblePassword,
         decoration: InputDecoration(
-          labelText: 'Password',
+          labelText: StringManager.password,
           suffixIcon: IconButton(
               onPressed: () {
-                controller.isLoginPasswordHidden.value = !controller.isLoginPasswordHidden.value;
               },
-              icon: Icon(controller.isLoginPasswordHidden.value
+              icon: Icon(true
                   ? Icons.visibility_off
                   : Icons.visibility)),
           labelStyle: TextStyle(
@@ -50,21 +44,18 @@ class Login extends GetView<Controller> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget navigateToSignUp(BuildContext context){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(StringManeger.dont,
+        Text(StringManager.haveAnAccountMessage,
             style: getIBMPlexSansFont(18.sp, FontWeight.w400)),
         TextButton(
-            onPressed: () {
-              Get.to(const SignUp());
-            },
-            child: Text(StringManeger.signUp,
+            onPressed: () => Navigator.pushReplacementNamed(context, RouteName.signUpRoute),
+            child: Text(StringManager.signUp,
                 style: getIBMPlexSansFont(18.sp, FontWeight.w400)))
       ],
     );
@@ -82,12 +73,12 @@ class Login extends GetView<Controller> {
                 SizedBox(
                   width: double.infinity,
                   height: 350.h,
-                  child: Image.asset("assets/images/picture_for_login.png"),
+                  child: Image.asset(StringManager.pictureForLogin),
                 ),
                 Row(
                   children: [
                     Text(
-                      StringManeger.login,
+                      StringManager.login,
                       style: getIBMPlexSansFont(32.sp, FontWeight.bold),
                     ),
                     const Expanded(flex: 1, child: SizedBox())
@@ -97,7 +88,7 @@ class Login extends GetView<Controller> {
                   height: 20.h,
                 ),
                 TextFieldWithBottomBorder(
-                    label: StringManeger.email,
+                    label: StringManager.email,
                     inputType: TextInputType.emailAddress,
                     fontSize: 18.sp),
                 SizedBox(
@@ -110,19 +101,8 @@ class Login extends GetView<Controller> {
                 SizedBox(
                   width: double.infinity,
                   child: RoundedButton(
-                    onClick: () {
-                      controller.user = User(
-                          "1",
-                          "Totti",
-                          "totti1234@gmail.com",
-                          "+201153180577",
-                          30.12571871868943,
-                          31.70773392993082,
-                          "https://www.thefamouspeople.com/profiles/images/francesco-totti-1.jpg"
-                      );
-                      Get.to(SplashScreen());
-                    },
-                    text: StringManeger.login,
+                    onClick: () => Navigator.pushReplacementNamed(context, RouteName.screensContainerRoute),
+                    text: StringManager.login,
                   ),
                 ),
                 SizedBox(

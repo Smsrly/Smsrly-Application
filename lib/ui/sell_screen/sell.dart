@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/ui/strings.dart';
-import 'package:smsrly/ui/widgets/colors.dart';
+import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
 
-class Sell extends StatelessWidget {
-  const Sell({Key? key}) : super(key: key);
+class SellScreen extends StatelessWidget {
+  const SellScreen({Key? key}) : super(key: key);
 
   Widget textField(String text, String label, TextInputType inputType) {
     return Column(
@@ -45,7 +45,7 @@ class Sell extends StatelessWidget {
                   children: [
                     Center(
                         child: Text(
-                      "${StringManeger.smsrly}",
+                      "${StringManager.smsrly}",
                       style: TextStyle(fontFamily: "Inter", fontSize: 22.sp),
                     )),
                     SizedBox(
@@ -73,7 +73,7 @@ class Sell extends StatelessWidget {
                                   width:1.w ,
                                 ),
                                 Text(
-                                  "${StringManeger.add}",
+                                  "${StringManager.add}",
                                   style: TextStyle(
                                     fontSize: 22.sp,
                                       fontFamily: "IBMPlexSans",
@@ -87,18 +87,18 @@ class Sell extends StatelessWidget {
                     SizedBox(
                       height: 15.h,
                     ),
-                    textField("${StringManeger.title}","",TextInputType.text),
+                    textField("${StringManager.title}","",TextInputType.text),
                     SizedBox(
                       height: 15.h,
                     ),
-                    textField(StringManeger.price, "",TextInputType.number),
+                    textField(StringManager.price, "",TextInputType.number),
                     SizedBox(
                       height: 15.h,
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 5.w, bottom: 6.w),
                       child: Text(
-                        StringManeger.description,
+                        StringManager.description,
                         style: TextStyle(fontSize: 16.sp),
                       ),
                     ),
@@ -129,7 +129,7 @@ class Sell extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.only(left: 5.w, bottom: 6.w),
                       child: Text(
-                        StringManeger.location,
+                        StringManager.location,
                         style: TextStyle(fontSize: 16.sp),
                       ),
                     ),
@@ -149,14 +149,14 @@ class Sell extends StatelessWidget {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: textField("", StringManeger.floors, TextInputType.number),
+                          child: textField("", StringManager.floors, TextInputType.number),
                         ),
                         SizedBox(
                           width: 10.w,
                         ),
                         Expanded(
                           flex: 1,
-                          child: textField("", StringManeger.rooms, TextInputType.number),
+                          child: textField("", StringManager.rooms, TextInputType.number),
                         ),
                       ],
                     ),
@@ -169,7 +169,7 @@ class Sell extends StatelessWidget {
                           flex: 1,
                           child: Expanded(
                             flex: 1,
-                            child: textField("", StringManeger.bathrooms, TextInputType.number),
+                            child: textField("", StringManager.bathrooms, TextInputType.number),
                           ),
                         ),
                         SizedBox(
@@ -177,7 +177,7 @@ class Sell extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: textField("", StringManeger.area, TextInputType.number),
+                          child: textField("", StringManager.area, TextInputType.number),
                         ),
                       ],
                     ),
@@ -195,7 +195,7 @@ class Sell extends StatelessWidget {
                           const MaterialStatePropertyAll(primaryColor),
                       fixedSize: const MaterialStatePropertyAll(Size(328, 49))),
                   child: Text(
-                    "${StringManeger.submit}",
+                    "${StringManager.submit}",
                     style: TextStyle(fontSize: 16.sp),
                   ),
                 ),

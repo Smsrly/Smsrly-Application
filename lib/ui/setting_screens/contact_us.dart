@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/ui/strings.dart';
+import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_back_button.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 
 import '../widgets/background_with_shadow.dart';
 
-class ContactUs extends StatefulWidget {
-  const ContactUs({Key? key}) : super(key: key);
+class ContactUsScreen extends StatefulWidget {
+  const ContactUsScreen({Key? key}) : super(key: key);
 
   @override
-  State<ContactUs> createState() => _ContactUsState();
+  State<ContactUsScreen> createState() => _ContactUsScreenState();
 }
 
-class _ContactUsState extends State<ContactUs> {
+class _ContactUsScreenState extends State<ContactUsScreen> {
   final problems = ["Problem 1", "Problem 2", "Problem 3"];
   String? value;
 
@@ -32,7 +32,7 @@ class _ContactUsState extends State<ContactUs> {
             value: value,
             icon: const Icon(Icons.arrow_drop_down_rounded,
                 size: 40, color: Color(0xFF374957)),
-            hint: Text(StringManeger.yourTrouble, style: TextStyle(
+            hint: Text(StringManager.yourTrouble, style: TextStyle(
                 fontSize: 16.sp, fontFamily: "IBMPlexSans",
                 fontWeight: FontWeight.w500),),
             borderRadius: BorderRadius.circular(20),
@@ -79,7 +79,7 @@ class _ContactUsState extends State<ContactUs> {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 16),
-            child: Text(StringManeger.attach,style: TextStyle(
+            child: Text(StringManager.attach,style: TextStyle(
                 fontSize: 16.sp,
                 fontFamily: "IBMPlexSans",
                 fontWeight: FontWeight.w500
@@ -120,7 +120,7 @@ class _ContactUsState extends State<ContactUs> {
                         children: [
                           SizedBox(
                             width: double.infinity,
-                            child: Text(StringManeger.getInTouch,
+                            child: Text(StringManager.getInTouch,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     fontFamily: "Inter",
@@ -131,7 +131,7 @@ class _ContactUsState extends State<ContactUs> {
                           SizedBox(
                             width: double.infinity,
                             child: Text(
-                              StringManeger.parragraph,
+                              StringManager.paragraph,
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontFamily: "IBMPlexSans",
@@ -145,7 +145,7 @@ class _ContactUsState extends State<ContactUs> {
                           SizedBox(
                             width: double.infinity,
                             child: Text(
-                              StringManeger.question,
+                              StringManager.question,
                               textAlign: TextAlign.left,
                               style: TextStyle(color: Colors.black54, fontSize: 16.sp
                               ,fontFamily: "IBMPlexSans",
@@ -167,7 +167,7 @@ class _ContactUsState extends State<ContactUs> {
                           SizedBox(
                               width: double.infinity,
                               child:Text(
-                                StringManeger.yourMeesage,
+                                StringManager.yourMessage,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: Colors.black54, fontSize: 16.sp
                                   ,fontFamily: "IBMPlexSans",
@@ -192,7 +192,7 @@ class _ContactUsState extends State<ContactUs> {
                           SizedBox(height: 45.h,),
                           SizedBox(
                             width:double.infinity,
-                            child: RoundedButton(text: StringManeger.send, onClick: (){
+                            child: RoundedButton(text: StringManager.send, onClick: (){
 
                             },)
                           ),

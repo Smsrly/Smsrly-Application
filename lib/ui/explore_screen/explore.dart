@@ -1,30 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/explore_screen/options_dialog.dart';
-import 'package:smsrly/ui/strings.dart';
+import 'package:smsrly/res/strings.dart';
 
 import '../../models/realestate.dart';
-import '../../models/user.dart';
-import '../show_details/show_detail.dart';
-import '../widgets/colors.dart';
+import '../../res/colors.dart';
 import '../widgets/realestates_items/realestate_second_item.dart';
 
-class ExploreScreen extends StatefulWidget {
-  late List <RealEstate> items;
-
-
-  late User user;
+class ExploreScreen extends StatelessWidget {
 
   ExploreScreen({Key? key}) : super(key: key);
 
-  @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
-}
+  List<RealEstate> _filteredItems=[];
 
-class _ExploreScreenState extends State<ExploreScreen> {
-  late List<RealEstate> _filteredItems;
   var _forRentOrSale=-1;
+
   var _searchedText="";
+
   var _filtersList =[
     -1,1000000000000000000,
     -1, 1000000000000000000,
@@ -32,6 +24,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     -1,1000000000000000000,
     -1,1000000000000000000
   ];
+
   void showOptionsDialog(var context){
     showDialog(context: context, builder: (context){
       var dialog = OptionsDialog(context: context,forRentOrSale: _forRentOrSale,numbers: _filtersList);
@@ -48,41 +41,42 @@ class _ExploreScreenState extends State<ExploreScreen> {
     text = text.toLowerCase().trim();
     List<RealEstate> list = [];
 
-    for (var entry in widget.items) {
-      var bool1 = text.isEmpty ||
-          entry.city?.toLowerCase().contains(text) as bool;
-      var bool2 = text.isEmpty ||
-          entry.country?.toLowerCase().contains(text) as bool;
-      var bool3 = rentOrSale == -1 || entry.rentOrSale == rentOrSale;
-      var bool4 = entry.price >= requirements[0] &&
-          entry.price <= requirements[1];
-      var bool5 = entry.floor >= requirements[2] &&
-          entry.floor <= requirements[3];
-      var bool6 = entry.roomsNo >= requirements[4] &&
-          entry.roomsNo <= requirements[5];
-      var bool7 = entry.bathroomsNo >= requirements[6] &&
-          entry.bathroomsNo <= requirements[7];
-      var bool8 = entry.area >= requirements[8] &&
-          entry.area <= requirements[9];
+    // for (var entry in widget.items) {
+    //   var bool1 = text.isEmpty ||
+    //       entry.city?.toLowerCase().contains(text) as bool;
+    //   var bool2 = text.isEmpty ||
+    //       entry.country?.toLowerCase().contains(text) as bool;
+    //   var bool3 = rentOrSale == -1 || entry.rentOrSale == rentOrSale;
+    //   var bool4 = entry.price >= requirements[0] &&
+    //       entry.price <= requirements[1];
+    //   var bool5 = entry.floor >= requirements[2] &&
+    //       entry.floor <= requirements[3];
+    //   var bool6 = entry.roomsNo >= requirements[4] &&
+    //       entry.roomsNo <= requirements[5];
+    //   var bool7 = entry.bathroomsNo >= requirements[6] &&
+    //       entry.bathroomsNo <= requirements[7];
+    //   var bool8 = entry.area >= requirements[8] &&
+    //       entry.area <= requirements[9];
+    //
+    //   if ((bool1 || bool2) &&
+    //       bool3 &&
+    //       bool4 &&
+    //       bool5 &&
+    //       bool6 &&
+    //       bool7 &&
+    //       bool8) {
+    //
+    //     list.add(entry);
+    //
+    //   }
+    // }
+    /*
+      setState(() {
+        _filteredItems = list;
+      });
 
-      if ((bool1 || bool2) &&
-          bool3 &&
-          bool4 &&
-          bool5 &&
-          bool6 &&
-          bool7 &&
-          bool8) {
-
-        list.add(entry);
-
-      }
-    }
-    setState(() {
-      _filteredItems = list;
-    });
+     */
   }
-
-
 
   Widget searchTextField(){
     return Expanded(
@@ -123,7 +117,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   style: const TextStyle(
                       color: Color.fromRGBO(96, 96, 96, 1)),
                   decoration: const InputDecoration(
-                    hintText: StringManeger.where,
+                    hintText: StringManager.where,
                     hintStyle: TextStyle(
 
                         color:
@@ -137,33 +131,20 @@ class _ExploreScreenState extends State<ExploreScreen> {
         ));
   }
 
-
   Widget realEstateItem(RealEstate currItem){
     return InkWell(
               child: SecondItem(
                 item: currItem,
-                hasSaved: widget.user.isSaved(currItem),
+                hasSaved: false,
                 onSaveBtn: () {
-                  setState(() {
-                    if (widget.user.isSaved(currItem)) {
-                      widget.user.unSaveRealEstate(currItem);
-                    } else {
-                      widget.user.saveRealEstate(currItem);
-                    }
-                  });
+
                 },
               ),
               onTap: () {
                 // go to show detail
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_){
-                      return ShowDetail(item: currItem);
-                    })
-                );
               },
           );
   }
-
 
   Widget notFoundWidget(){
     return Visibility(
@@ -179,7 +160,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(StringManeger.ups,
+              const Text(StringManager.ups,
                 style: TextStyle(
                     fontSize: 25,
                     fontFamily: 'IBMPlexSans',
@@ -189,7 +170,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               const SizedBox(
                 height: 5,
               ),
-              const Text("${StringManeger.please}",
+              const Text("${StringManager.please}",
                 style: TextStyle(
                     fontFamily: 'IBMPlexSans',
                     fontWeight: FontWeight.w400,
@@ -201,11 +182,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         )
     );
   }
-  @override
-  void initState() {
-    _filteredItems=widget.items;
-    super.initState();
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,7 +197,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               Padding(
                 padding: const EdgeInsets.all(9.0),
                 child: Text(
-                  "${StringManeger.explore}",
+                  "${StringManager.explore}",
                   style: TextStyle(
                     fontSize: 32.sp,
                     fontWeight: FontWeight.bold,

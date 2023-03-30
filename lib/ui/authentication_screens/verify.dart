@@ -3,16 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:smsrly/ui/authentication_screens/sign_up.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
 
-class Verify extends StatelessWidget {
+class VerifyScreen extends StatelessWidget {
+  const VerifyScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(width: double.infinity,
-          color: Color(0xE1D9D1),
+          color: const Color(0x00e1d9d1),
 
-          padding: EdgeInsets.only(top: 50,left: 15,right: 15),
+          padding: const EdgeInsets.only(top: 50,left: 15,right: 15),
           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
@@ -21,23 +23,23 @@ class Verify extends StatelessWidget {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (_)
                         {
-                          return SignUp();
+                          return const SignUpScreen();
                         }),);
-                  }, icon: Icon(Icons.arrow_back_ios,size: 35,)),
+                  }, icon: const Icon(Icons.arrow_back_ios,size: 35,)),
 
                 ],
               ),
-              SizedBox(height: 25,),
+              const SizedBox(height: 25,),
               Container(padding: EdgeInsets.only(left: 20),
                 child: Row(
-                  children: [
+                  children: const [
                     Text("Verify your email",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
-              SizedBox(height: 65),
+              const SizedBox(height: 65),
               Image.asset("assets/images/verift.png",),
-              SizedBox(height: 40,),
+              const SizedBox(height: 40,),
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   SizedBox(
@@ -105,7 +107,7 @@ class Verify extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 88,),
+              const SizedBox(height: 88,),
               Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
@@ -122,7 +124,7 @@ class Verify extends StatelessWidget {
                         backgroundColor:
                         const MaterialStatePropertyAll(Color.fromRGBO(14, 82, 137, 1)),
                         fixedSize: const MaterialStatePropertyAll(Size(328, 49))),
-                    child: Text(
+                    child: const Text(
                       "Submit",
                       style: TextStyle(fontSize: 16),
                     ),

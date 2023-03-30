@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
-import 'package:smsrly/ui/widgets/colors.dart';
+import 'package:smsrly/res/colors.dart';
 
-import '../strings.dart';
+import '../../res/strings.dart';
+import '../../utils/routes/route_name.dart';
 
 class OnBoarding extends StatelessWidget {
-  static const  String route = "/ON_BOARDING";
   const OnBoarding({super.key});
 
   Widget imageBackground() {
@@ -18,7 +15,7 @@ class OnBoarding extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/onboarding_screen_background.png"),
+            image: AssetImage(StringManager.onBoardingScreenBackgroundImage),
             fit: BoxFit.cover),
       ),
     );
@@ -46,16 +43,16 @@ class OnBoarding extends StatelessWidget {
               SizedBox(
                   width: 400.w,
                   height: 400.h,
-                  child: Image.asset("assets/images/onboarding_logo.png")),
+                  child: Image.asset(StringManager.onBoardingScreenLogo)),
               const Expanded(flex: 1, child: SizedBox()),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
                 width: double.infinity,
                 child: RoundedButton(
                   onClick: () {
-                    Get.to(Login());
+                    Navigator.pushReplacementNamed(context, RouteName.loginRoute);
                   },
-                  text: StringManeger.getStarted,
+                  text: StringManager.getStarted,
                 ),
               ),
               SizedBox(

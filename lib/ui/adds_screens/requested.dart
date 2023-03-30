@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:smsrly/ui/show_details/show_detail.dart';
-
+import 'package:smsrly/res/strings.dart';
 import '../../models/realestate.dart';
+import '../../utils/routes/route_name.dart';
 import '../widgets/realestates_items/realestate_third_item.dart';
 
 class Requested extends StatelessWidget{
@@ -25,9 +24,9 @@ class Requested extends StatelessWidget{
 
 
   void navigateToShowDetail(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (builder){
-      return ShowDetail(item: item2,isTheOwner: true);
-    }));
+    Navigator.pushNamed(context, RouteName.showDetailsRoute,arguments: {
+      StringManager.item: item2,
+    });
   }
 
 

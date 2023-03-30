@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../colors.dart';
+import '../../../res/colors.dart';
 
 class TextFieldWithBottomBorder extends StatelessWidget {
   TextInputType? inputType = TextInputType.text;

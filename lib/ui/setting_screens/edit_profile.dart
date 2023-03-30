@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/ui/strings.dart';
-import 'package:smsrly/ui/widgets/colors.dart';
+import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
 
 import '../widgets/buttons/rounded_back_button.dart';
 
     
-class Edit extends StatelessWidget {
-  bool isVisible = true;
+class EditProfileScreen extends StatelessWidget {
+  const EditProfileScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,31 +65,31 @@ class Edit extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            StringManeger.basic,
+                            StringManager.basic,
                             style: TextStyle(
                                 fontSize: 20.sp, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: primaryColor,label: StringManeger.first,),
+                          RoundedTextField(cursorColor: primaryColor,label: StringManager.first,),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: primaryColor,label: StringManeger.second,),
+                          RoundedTextField(cursorColor: primaryColor,label: StringManager.second,),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: primaryColor,label:StringManeger.email,inputType: TextInputType.emailAddress,),
+                          RoundedTextField(cursorColor: primaryColor,label:StringManager.email,inputType: TextInputType.emailAddress,),
                           SizedBox(
                             height: 30.h,
                           ),
-                          RoundedTextField(cursorColor: primaryColor,label:StringManeger.phoneNum,inputType: TextInputType.phone,),
+                          RoundedTextField(cursorColor: primaryColor,label:StringManager.phoneNum,inputType: TextInputType.phone,),
                           SizedBox(
                             height: 30.h,
                           ),
                           Text(
-                            StringManeger.location,
+                            StringManager.location,
                             style: TextStyle(fontSize: 18.sp),
                           ),
                           SizedBox(
@@ -117,7 +118,7 @@ class Edit extends StatelessWidget {
                                     ),
                                     child: const Padding(
                                       padding: EdgeInsets.all(15.0),
-                                      child: Text(StringManeger.submit),
+                                      child: Text(StringManager.submit),
                                     ),
                                   ),
                                 ),

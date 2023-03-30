@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/ui/strings.dart';
-import 'package:smsrly/ui/widgets/colors.dart';
+import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/res/colors.dart';
 
 import 'requested.dart';
 import 'save.dart';
@@ -16,7 +16,7 @@ class MyAdds extends StatelessWidget {
           appBar: AppBar(
             toolbarHeight: 70.h,
             backgroundColor: primaryColor,
-            title: const Text(StringManeger.adds),
+            title: const Text(StringManager.adds),
             bottom: TabBar(
               indicatorWeight: 2,
               indicatorColor: Colors.white,
@@ -24,21 +24,21 @@ class MyAdds extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
-                    StringManeger.uploaded,
+                    StringManager.uploaded,
                     style: getIBMPlexSansFont(15.sp, FontWeight.w400),
                   ),
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
-                    StringManeger.requested,
+                    StringManager.requested,
                     style: getIBMPlexSansFont(15.sp, FontWeight.w400),
                   ),
                 ),
                 Container(
                     margin: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
-                      StringManeger.saved,
+                      StringManager.saved,
                       style: getIBMPlexSansFont(15.sp, FontWeight.w400),
                     )),
               ],
