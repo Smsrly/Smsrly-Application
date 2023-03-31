@@ -8,6 +8,7 @@ import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
+import 'package:smsrly/viewmodel/app_view_model.dart';
 import 'package:smsrly/viewmodel/login_view_model.dart';
 
 import '../../utils/routes/route_name.dart';
@@ -118,8 +119,8 @@ class LoginScreen extends StatelessWidget {
                     builder: (context,authViewModel,child){
                       return RoundedButton(
                         onClick: () {
-                          print('email : ${_emailController.text}\npassword : ${_passwordController.text}');
                           authViewModel.loginUser(_emailController.text, _passwordController.text, (){
+                            Provider.of<AppViewModel>(context,listen: false).currUser = authViewModel.user;
                             Navigator.pushReplacementNamed(context, RouteName.screensContainerRoute);
                           });
                         },

@@ -1,5 +1,3 @@
-import 'package:smsrly/models/user.dart';
-
 import '../../../res/strings.dart';
 import '../../../services/auth_service.dart';
 
@@ -19,14 +17,14 @@ class SignUpUseCase{
       String confirmPassword,
       Function(String) onFail
       ) async {
-    String res = _isValidData(firstName, secondName, email, phoneNumber, password, confirmPassword);
+    String res = isValidData(firstName, secondName, email, phoneNumber, password, confirmPassword);
     if(res == StringManager.success){
     }else{
       onFail(res);
     }
   }
 
-  String _isValidData(
+  String isValidData(
       String firstName,
       String secondName,
       String email,

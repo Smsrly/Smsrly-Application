@@ -1,71 +1,87 @@
+import 'dart:io';
+
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:smsrly/res/dimen.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
+import 'package:smsrly/viewmodel/sign_up_view_model.dart';
 
 import '../../res/colors.dart';
 import '../../utils/routes/route_name.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends StatelessWidget {
 
-  const SignUpScreen({Key? key}) : super(key: key);
+  SignUpScreen({Key? key}) : super(key: key);
 
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
-  bool _isPasswordFieldNotVisible = true;
-  bool _isConfirmPasswordFieldNotVisible = true;
   final _countryPicker = const FlCountryCodePicker();
-  CountryCode? _countryCode;
-  Widget? _flag = Image.asset(StringManager.egyptFlag);
+  final Widget _flag = Image.asset(StringManager.egyptFlag);
+
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _secondNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
+  final TextEditingController _confirmPassController = TextEditingController();
 
 
   Widget profilePicture(){
-    return SizedBox(
-      width: 120,
-      height: 120,
-      child: InkWell(
-        child: Center(
-          child: Stack(alignment: Alignment.center, children: [
-            const SizedBox(
-                width: 100,
-                height: 100,
-                child: CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage(
-                      StringManager.profilePlaceholder),
-                )),
-            SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
+    return Consumer<SignUpViewModel>(
+        builder: (context,signUpViewModel,child){
+          return SizedBox(
+            width: 120 ,
+            height: 120 ,
+            child: InkWell(
+              child: Center(
+                child: Stack(alignment: Alignment.center, children: [
                   SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: Image.asset(
-                          StringManager.cameraIcon))
-                ],
+                      width: 100,
+                      height: 100,
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundImage:
+                        signUpViewModel.hasNoImage() ?
+                        const AssetImage(
+                            StringManager.profilePlaceholder
+                        )
+                        : FileImage(File(signUpViewModel.image.path)) as ImageProvider,
+                      )
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: Image.asset(
+                                StringManager.cameraIcon))
+                      ],
+                    ),
+                  )
+                ]),
               ),
-            )
-          ]),
-        ),
-        onTap: () {},
-      ),
+              onTap: () async{
+                final image = await ImagePicker.platform.pickImage(source: ImageSource.gallery);
+                if(image != null){
+                  signUpViewModel.changeImage(image);
+                }
+              },
+            ),
+          );
+        }
     );
   }
-
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -97,142 +113,163 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     label: StringManager.first,
                     inputType: TextInputType.name,
                     fontSize: 18.sp,
+                    controller: _firstNameController,
                   ),
                   25.h.he,
                   TextFieldWithBottomBorder(
                       label: StringManager.second,
                       inputType: TextInputType.name,
-                      fontSize: 18.sp),
+                      fontSize: 18.sp,
+                      controller: _secondNameController,
+                  ),
                   25.h.he,
                   TextFieldWithBottomBorder(
                       label: StringManager.email,
                       inputType: TextInputType.emailAddress,
+                      controller: _emailController,
                       fontSize: 18.sp),
                   25.h.he,
-                  TextFieldWithBottomBorder(
-                    label: StringManager.phoneNum,
-                    inputType: TextInputType.number,
-                    inputFormatter: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    fontSize: 18.sp,
-                    prefixIcon: Container(
-                      width: 80,
-                      padding: const EdgeInsets.all(3),
-                      margin: const EdgeInsets.all(3),
-                      child: InkWell(
-                        onTap: () async {
-                          var code =
-                              await _countryPicker.showPicker(context: context);
-                          setState(() {
-                            if (code != null) {
-                              _countryCode = code;
-                              _flag = _countryCode?.flagImage;
-                            }
-                          });
-                        },
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 25,
-                              child: _countryCode != null
-                                  ? _countryCode?.flagImage
-                                  : _flag,
-                            ),
-                            const SizedBox(
-                              width: 3,
-                            ),
-                            Text(
-                                _countryCode == null
-                                    ? "+20"
-                                    : "${_countryCode?.dialCode}",
-                                style: AppStyles.bodyTextWithCursorColor
-                            )
+                  Consumer<SignUpViewModel>(
+                      builder: (context,viewModel,child){
+                        return TextFieldWithBottomBorder(
+                          label: StringManager.phoneNum,
+                          inputType: TextInputType.number,
+                          inputFormatter: <TextInputFormatter>[
+                            FilteringTextInputFormatter.digitsOnly
                           ],
-                        ),
-                      ),
-                    ),
+                          fontSize: 18.sp,
+                          prefixIcon: Container(
+                            width: 80,
+                            padding: const EdgeInsets.all(3),
+                            margin: const EdgeInsets.all(3),
+                            child: InkWell(
+                              onTap: () async {
+                                var code =
+                                await _countryPicker.showPicker(context: context);
+                                if(code != null){
+                                  viewModel.changeCountryCode(code);
+                                }
+                              },
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 25,
+                                    child: viewModel.countryCode != null
+                                        ? viewModel.countryCode!.flagImage
+                                        : _flag,
+                                  ),
+                                  const SizedBox(
+                                    width: 3,
+                                  ),
+                                  Text(
+                                      viewModel.countryCode == null
+                                          ? "+20"
+                                          : viewModel.countryCode!.dialCode,
+                                      style: AppStyles.bodyTextWithCursorColor
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }
                   ),
                   25.he,
-                  TextFormField(
-                    obscureText: _isPasswordFieldNotVisible,
-                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
-                    keyboardType: TextInputType.visiblePassword,
-                    decoration: InputDecoration(
-                      labelText: StringManager.password,
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _isPasswordFieldNotVisible =
-                                  !_isPasswordFieldNotVisible;
-                            });
-                          },
-                          icon: Icon(_isPasswordFieldNotVisible
-                              ? Icons.visibility_off
-                              : Icons.visibility)),
-                      labelStyle: TextStyle(
-                          fontSize: 18.sp,
-                          fontFamily: StringManager.ibmPlexSans,
-                          fontWeight: FontWeight.w500,
-                          color: const Color.fromRGBO(124, 124, 124, 1)),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: primaryColor,
-                          width: 2,
-                        ),
-                      ),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(170, 171, 170, 1),
-                          width: 1.5,
-                        ),
-                      ),
-                    ),
+                  Consumer<SignUpViewModel>(
+                      builder: (context,signUpViewModel,child){
+                        return TextFormField(
+                          obscureText: !signUpViewModel.isPasswordVisible,
+                          cursorColor: const Color.fromRGBO(124, 124, 124, 1),
+                          keyboardType: TextInputType.visiblePassword,
+                          controller: _passController,
+                          decoration: InputDecoration(
+                            labelText: StringManager.password,
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  signUpViewModel.togglePassword();
+                                },
+                                icon: Icon(
+                                    !signUpViewModel.isPasswordVisible
+                                    ? Icons.visibility_off
+                                    : Icons.visibility)),
+                            labelStyle: TextStyle(
+                                fontSize: 18.sp,
+                                fontFamily: StringManager.ibmPlexSans,
+                                fontWeight: FontWeight.w500,
+                                color: const Color.fromRGBO(124, 124, 124, 1)),
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: primaryColor,
+                                width: 2,
+                              ),
+                            ),
+                            enabledBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromRGBO(170, 171, 170, 1),
+                                width: 1.5,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
                   ),
                   25.h.he,
-                  TextFormField(
-                    obscureText: _isConfirmPasswordFieldNotVisible,
-                    cursorColor: const Color.fromRGBO(124, 124, 124, 1),
-                    keyboardType: TextInputType.visiblePassword,
-                    decoration: InputDecoration(
-                      labelText: StringManager.cPassword,
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _isConfirmPasswordFieldNotVisible =
-                                  !_isConfirmPasswordFieldNotVisible;
-                            });
-                          },
-                          icon: Icon(_isConfirmPasswordFieldNotVisible
-                              ? Icons.visibility_off
-                              : Icons.visibility)),
-                      labelStyle: TextStyle(
-                          fontSize: 18.sp,
-                          fontFamily: StringManager.ibmPlexSans,
-                          fontWeight: FontWeight.w500,
-                          color: const Color.fromRGBO(124, 124, 124, 1)),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: primaryColor,
-                          width: 2,
-                        ),
-                      ),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromRGBO(170, 171, 170, 1),
-                          width: 1.5,
-                        ),
-                      ),
-                    ),
+                  Consumer<SignUpViewModel>(
+                      builder: (context,signUpViewModel,child){
+                        return TextFormField(
+                          obscureText: !signUpViewModel.isConfirmPasswordVisible,
+                          cursorColor: const Color.fromRGBO(124, 124, 124, 1),
+                          controller: _confirmPassController,
+                          keyboardType: TextInputType.visiblePassword,
+                          decoration: InputDecoration(
+                            labelText: StringManager.cPassword,
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  signUpViewModel.toggleConfirmPassword();
+                                },
+                                icon: Icon(!signUpViewModel.isConfirmPasswordVisible
+                                    ? Icons.visibility_off
+                                    : Icons.visibility)),
+                            labelStyle: TextStyle(
+                                fontSize: 18.sp,
+                                fontFamily: StringManager.ibmPlexSans,
+                                fontWeight: FontWeight.w500,
+                                color: const Color.fromRGBO(124, 124, 124, 1)),
+                            focusedBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: primaryColor,
+                                width: 2,
+                              ),
+                            ),
+                            enabledBorder: const UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromRGBO(170, 171, 170, 1),
+                                width: 1.5,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
                   ),
                   30.h.he,
                   SizedBox(
                     width: double.infinity,
-                    child: RoundedButton(
-                      onClick: () {
-
+                    child: Consumer<SignUpViewModel>(
+                      builder: (context,viewModel,child){
+                        return RoundedButton(
+                          onClick: () {
+                            viewModel.signUp(
+                                _firstNameController.text,
+                                _secondNameController.text,
+                                _emailController.text,
+                                _phoneNumberController.text,
+                                _passController.text,
+                                _confirmPassController.text
+                            );
+                          },
+                          text: StringManager.signUp,
+                        );
                       },
-                      text: StringManager.signUp,
                     ),
                   ),
                   3.h.he,

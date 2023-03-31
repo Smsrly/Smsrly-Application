@@ -11,7 +11,7 @@ import 'package:smsrly/utils/routes/route_name.dart';
 final routes = {
   RouteName.onBoardingRoute: (context) => const OnBoarding(),
   RouteName.loginRoute: (context) => LoginScreen(),
-  RouteName.signUpRoute: (context) => const SignUpScreen(),
+  RouteName.signUpRoute: (context) => SignUpScreen(),
   RouteName.splashRoute: (context) => const SplashScreen(),
   RouteName.screensContainerRoute: (context) => const ScreensContainer(),
   RouteName.editProfileRoute: (context) => const EditProfileScreen(),

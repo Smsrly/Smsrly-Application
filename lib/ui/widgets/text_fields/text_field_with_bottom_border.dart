@@ -8,8 +8,9 @@ class TextFieldWithBottomBorder extends StatelessWidget {
   late double fontSize;
   TextEditingController? controller = TextEditingController();
   List<TextInputFormatter>? inputFormatter =[];
+  Function(String)? onTextChanged;
   final Widget? prefixIcon;
-  TextFieldWithBottomBorder({Key? key,required this.label,this.inputType,this.controller,this.inputFormatter,this.prefixIcon,required this.fontSize}) : super(key: key);
+  TextFieldWithBottomBorder({Key? key,required this.label,this.inputType,this.controller,this.inputFormatter,this.prefixIcon,required this.fontSize,this.onTextChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class TextFieldWithBottomBorder extends StatelessWidget {
       controller: controller,
       cursorColor: textFieldCursorColor,
       keyboardType: inputType,
+      onChanged: onTextChanged,
       inputFormatters: inputFormatter,
       decoration: InputDecoration(
         labelText: label,

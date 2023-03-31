@@ -23,7 +23,7 @@ class VerifyScreen extends StatelessWidget {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (_)
                         {
-                          return const SignUpScreen();
+                          return SignUpScreen();
                         }),);
                   }, icon: const Icon(Icons.arrow_back_ios,size: 35,)),
 
