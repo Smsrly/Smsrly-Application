@@ -5,7 +5,7 @@ class Utils {
     Fluttertoast.showToast(
       msg: msg ,
       toastLength: i == 0 ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
+      // gravity: ToastGravity.BOTTOM,
     );
   }
 }
