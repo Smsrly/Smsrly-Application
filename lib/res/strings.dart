@@ -55,6 +55,8 @@ class StringManager {
   static const String question = "What do you want to talk about?";
   static const String send = "Send";
   static const String yourMessage = "Your Message";
+  static const egyptianPound = "EGP";
+  static const areaUnit ="m²";
 
   // Args Keys
   static const String item = 'Item';
@@ -106,5 +108,15 @@ class StringManager {
       "assets/images/profile_icon.png";
   static const String cameraIcon =
       "assets/images/camera_icon.png";
+  
+  
+  static const String saveForRealEstateItem1 = "assets/images/saved_btn.png";
+  static const String unSaveFroRealEstateItem1 = "assets/images/save_btn.png";
+
+  static const String locationIcon = "assets/images/black_location_icon.png";
+  static const String areaIcon = "assets/images/area_icon.png";
+
+  static const String savedIconBlue = "assets/images/saved_icon_blue.png";
+  static const String unSaveIconBlue = 'assets/images/save_icon_blue.png';
 
 }

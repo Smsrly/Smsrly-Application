@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/res/dimen.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/res/colors.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
 
 import '../../res/strings.dart';
 import '../../utils/routes/route_name.dart';
@@ -46,7 +48,7 @@ class OnBoarding extends StatelessWidget {
                   child: Image.asset(StringManager.onBoardingScreenLogo)),
               const Expanded(flex: 1, child: SizedBox()),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                padding: Dimensions.contentSymmetricPadding,
                 width: double.infinity,
                 child: RoundedButton(
                   onClick: () {
@@ -55,9 +57,7 @@ class OnBoarding extends StatelessWidget {
                   text: StringManager.getStarted,
                 ),
               ),
-              SizedBox(
-                height: 15.h,
-              )
+              15.h.he
             ],
           ),
         )

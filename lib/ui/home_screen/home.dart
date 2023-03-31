@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/ui/show_details/show_detail.dart';
+import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/colors.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
 
 import '../../models/realestate.dart';
 import '../../utils/routes/route_name.dart';
@@ -27,17 +28,15 @@ class HomeScreen extends StatelessWidget {
                 StringManager.welcome,
                 style: TextStyle(
                     fontSize: 13,
-                    color: welcomeMessageColor),
+                    color: welcomeMessageColor
+                ),
               ),
               const SizedBox(
                 height: 2,
               ),
               Text(
                 'Totti',
-                style: TextStyle(
-                    fontSize: 17.sp,
-                    fontWeight: FontWeight.bold,
-                    color: primaryColor),
+                style: AppStyles.getBodyText2(primaryColor),
               )
             ],
           ),
@@ -75,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
-                            color: const Color.fromRGBO(68, 68, 68, 0.7)),
+                            color: homeTextColor),
                       ))
                 ],
               ),
@@ -126,9 +125,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               header(),
-              SizedBox(
-                height: 10.h,
-              ),
+              10.h.he,
               seeAllRow(StringManager.common),
               SizedBox(
                   height: 250,

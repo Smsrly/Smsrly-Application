@@ -2,9 +2,12 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/res/dimen.dart';
 import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
 
 import '../../res/colors.dart';
 import '../../utils/routes/route_name.dart';
@@ -65,58 +68,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 12.w),
+            padding: Dimensions.contentSymmetricPadding,
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 20.h,
-                  ),
+                  15.h.he,
                   SizedBox(
                     width: double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(StringManager.signUp,
-                            style: getIBMPlexSansFont(32.sp, FontWeight.w700)),
+                            style: AppStyles.headline1),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
+                  15.h.he,
                   profilePicture(),
-                  SizedBox(
-                    height: 25.h,
-                  ),
+                  25.h.he,
                   TextFieldWithBottomBorder(
                     label: StringManager.first,
                     inputType: TextInputType.name,
                     fontSize: 18.sp,
                   ),
-                  SizedBox(
-                    height: 25.h,
-                  ),
+                  25.h.he,
                   TextFieldWithBottomBorder(
                       label: StringManager.second,
                       inputType: TextInputType.name,
                       fontSize: 18.sp),
-                  SizedBox(
-                    height: 25.h,
-                  ),
+                  25.h.he,
                   TextFieldWithBottomBorder(
                       label: StringManager.email,
                       inputType: TextInputType.emailAddress,
                       fontSize: 18.sp),
-                  SizedBox(
-                    height: 25.h,
-                  ),
+                  25.h.he,
                   TextFieldWithBottomBorder(
                     label: StringManager.phoneNum,
                     inputType: TextInputType.number,
@@ -154,20 +146,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 _countryCode == null
                                     ? "+20"
                                     : "${_countryCode?.dialCode}",
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'IBMPlexSans',
-                                  fontWeight: FontWeight.w400,
-                                  color: textFieldCursorColor,
-                                ))
+                                style: AppStyles.bodyTextWithCursorColor
+                            )
                           ],
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 25,
-                  ),
+                  25.he,
                   TextFormField(
                     obscureText: _isPasswordFieldNotVisible,
                     cursorColor: const Color.fromRGBO(124, 124, 124, 1),
@@ -186,7 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               : Icons.visibility)),
                       labelStyle: TextStyle(
                           fontSize: 18.sp,
-                          fontFamily: 'IBMPlexSans',
+                          fontFamily: StringManager.ibmPlexSans,
                           fontWeight: FontWeight.w500,
                           color: const Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: const UnderlineInputBorder(
@@ -203,9 +189,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 25.h,
-                  ),
+                  25.h.he,
                   TextFormField(
                     obscureText: _isConfirmPasswordFieldNotVisible,
                     cursorColor: const Color.fromRGBO(124, 124, 124, 1),
@@ -224,7 +208,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               : Icons.visibility)),
                       labelStyle: TextStyle(
                           fontSize: 18.sp,
-                          fontFamily: 'IBMPlexSans',
+                          fontFamily: StringManager.ibmPlexSans,
                           fontWeight: FontWeight.w500,
                           color: const Color.fromRGBO(124, 124, 124, 1)),
                       focusedBorder: const UnderlineInputBorder(
@@ -241,9 +225,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 30.h,
-                  ),
+                  30.h.he,
                   SizedBox(
                     width: double.infinity,
                     child: RoundedButton(
@@ -253,30 +235,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       text: StringManager.signUp,
                     ),
                   ),
-                  SizedBox(
-                    height: 3.h,
-                  ),
+                  3.h.he,
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: width > 200
+                        ? MainAxisAlignment.center
+                        : MainAxisAlignment.start,
                     children: [
                       Text(
                         StringManager.haveAnAccount,
-                        style: TextStyle(
-                            fontSize: 18.sp,
-                            fontFamily: 'IBMPlexSans',
-                            fontWeight: FontWeight.w400),
+                        style: AppStyles.bodyText2,
                       ),
                       TextButton(
                           onPressed: () {
                             Navigator.pushReplacementNamed(context,RouteName.loginRoute);
                           },
-                          child: Text(StringManager.login,
+                          child: Text(
+                              StringManager.login,
                               style: TextStyle(
-                                  fontSize: 18.sp,
+                                  fontSize: 17.sp,
                                   fontFamily: StringManager.ibmPlexSans,
-                                  fontWeight: FontWeight.w400)))
+                                  fontWeight: FontWeight.w400,
+                              ))
+                      ),
+
                     ],
-                  )
+                  ),
+                  20.h.he
                 ]),
           ),
         ),

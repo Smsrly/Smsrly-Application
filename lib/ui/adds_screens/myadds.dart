@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/colors.dart';
+import 'package:smsrly/res/styles.dart';
 
 import 'requested.dart';
 import 'save.dart';
@@ -25,21 +26,21 @@ class MyAdds extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
                     StringManager.uploaded,
-                    style: getIBMPlexSansFont(15.sp, FontWeight.w400),
+                    style: AppStyles.getBodyText1(Colors.white),
                   ),
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
                     StringManager.requested,
-                    style: getIBMPlexSansFont(15.sp, FontWeight.w400),
+                    style: AppStyles.getBodyText1(Colors.white),
                   ),
                 ),
                 Container(
                     margin: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
                       StringManager.saved,
-                      style: getIBMPlexSansFont(15.sp, FontWeight.w400),
+                      style: AppStyles.getBodyText1(Colors.white),
                     )),
               ],
             ),

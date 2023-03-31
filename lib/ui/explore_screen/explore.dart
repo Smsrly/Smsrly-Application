@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/res/dimen.dart';
 import 'package:smsrly/ui/explore_screen/options_dialog.dart';
 import 'package:smsrly/res/strings.dart';
 
@@ -82,8 +83,7 @@ class ExploreScreen extends StatelessWidget {
     return Expanded(
         flex: 1,
         child: Container(
-          padding: const EdgeInsets.only(
-              top: 3, bottom: 3, left: 13, right: 10),
+          padding: Dimensions.explorePadding,
           decoration: BoxDecoration(
             border: Border.all(
                 color: const Color.fromRGBO(0, 0, 0, 0.1)),

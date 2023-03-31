@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/res/dimen.dart';
 import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
 
 import '../../utils/routes/route_name.dart';
 
@@ -30,7 +33,8 @@ class LoginScreen extends StatelessWidget {
                   : Icons.visibility)),
           labelStyle: TextStyle(
               fontSize: 18.sp,
-              color: textFieldCursorColor),
+              color: textFieldCursorColor
+          ),
           focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               color: primaryColor,
@@ -52,11 +56,15 @@ class LoginScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(StringManager.haveAnAccountMessage,
-            style: getIBMPlexSansFont(18.sp, FontWeight.w400)),
+            style: AppStyles.bodyText2),
         TextButton(
             onPressed: () => Navigator.pushReplacementNamed(context, RouteName.signUpRoute),
             child: Text(StringManager.signUp,
-                style: getIBMPlexSansFont(18.sp, FontWeight.w400)))
+                style: TextStyle(
+                  fontSize: 17.sp,
+                  fontFamily: StringManager.ibmPlexSans,
+                  fontWeight: FontWeight.w400,
+                )))
       ],
     );
   }
@@ -67,7 +75,7 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            padding: Dimensions.contentSymmetricPadding,
             child: Column(
               children: [
                 SizedBox(
@@ -79,25 +87,19 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Text(
                       StringManager.login,
-                      style: getIBMPlexSansFont(32.sp, FontWeight.bold),
+                      style: AppStyles.headline1,
                     ),
                     const Expanded(flex: 1, child: SizedBox())
                   ],
                 ),
-                SizedBox(
-                  height: 20.h,
-                ),
+                20.h.he,
                 TextFieldWithBottomBorder(
                     label: StringManager.email,
                     inputType: TextInputType.emailAddress,
                     fontSize: 18.sp),
-                SizedBox(
-                  height: 15.h,
-                ),
+                15.h.he,
                 passwordField(),
-                SizedBox(
-                  height: 28.h,
-                ),
+                28.h.he,
                 SizedBox(
                   width: double.infinity,
                   child: RoundedButton(
@@ -105,13 +107,9 @@ class LoginScreen extends StatelessWidget {
                     text: StringManager.login,
                   ),
                 ),
-                SizedBox(
-                  height: 4.h,
-                ),
+                4.h.he,
                 navigateToSignUp(context),
-                SizedBox(
-                  height: 15.h,
-                ),
+                15.h.he,
               ],
             ),
           ),

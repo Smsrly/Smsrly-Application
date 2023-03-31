@@ -8,7 +8,5 @@ const boxShadowColor = Color.fromRGBO(0, 0, 0, 0.15);
 const borderSideColor=  Color.fromRGBO(202, 202, 202, 1);
 const offWhite =  Color(0xFFADADAD);
 const welcomeMessageColor = Color.fromRGBO(115, 115, 115, 1);
-
-TextStyle getIBMPlexSansFont(double fontSize,FontWeight fontWeight){
-  return TextStyle(fontFamily: 'IBMPlexSans',fontSize: fontSize,fontWeight: fontWeight);
-}
+const homeTextColor = Color.fromRGBO(68, 68, 68, 0.7);
+const realEstateItemColor = Color.fromARGB(255, 188, 188, 188);

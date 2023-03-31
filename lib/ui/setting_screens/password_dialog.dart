@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/res/colors.dart';
 
@@ -37,7 +38,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
             child: Container(
               alignment: Alignment.center,
               child: Text(StringManager.privacy,
-                  style: getIBMPlexSansFont(16.sp, FontWeight.bold)),
+                  style: AppStyles.bodyText3),
             ),
           ),
           Padding(
