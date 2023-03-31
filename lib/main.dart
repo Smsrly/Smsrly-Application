@@ -5,6 +5,7 @@ import 'package:smsrly/utils/routes/route_name.dart';
 import 'package:smsrly/utils/routes/routes.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
 import 'package:smsrly/viewmodel/login_view_model.dart';
+import 'package:smsrly/viewmodel/sign_up_view_model.dart';
 
 
 
@@ -23,6 +24,9 @@ class App extends StatelessWidget {
         ),
         ChangeNotifierProvider(
             create: (BuildContext context)=> LoginViewModel()
+        ),
+        ChangeNotifierProvider(
+            create: (BuildContext context)=> SignUpViewModel()
         )
       ],
       child: ScreenUtilInit(
