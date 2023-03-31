@@ -8,12 +8,12 @@ class LoginUseCase {
 
   LoginUseCase(this.authService);
 
-  Future<User?> login(
+  Future<User?> signInUsingEmailAndPassword(
       String email, String password, Function(String msg) onFail) async {
 
     final res = _isValidData(email, password);
 
-    if (res == StringManager.successLogin) {
+    if (res == StringManager.success) {
       final user = await authService.signInUsingEmailAndPassword(email, password);
       if(user != null){
         return user;
@@ -32,9 +32,9 @@ class LoginUseCase {
     }
     final emailRegax = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    if (emailRegax.hasMatch(email)) {
+    if (!emailRegax.hasMatch(email)) {
       return StringManager.noUserFoundForThisEmail;
     }
-    return StringManager.successLogin;
+    return StringManager.success;
   }
 }

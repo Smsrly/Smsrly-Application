@@ -59,8 +59,10 @@ class StringManager {
   static const areaUnit ="m²";
   static const fieldsCannotBeEmpty = "Fields cannot be empty";
   static const noUserFoundForThisEmail = "No User Found For This Email !" ;
-  static const successLogin = "OK";
+  static const success = "OK";
   static const loginFailed = "Login Failed";
+  static const emailNotValid = "Not Valid Email !";
+  static const checkPassword = "Check Your Password please"; 
 
   // Args Keys
   static const String item = 'Item';

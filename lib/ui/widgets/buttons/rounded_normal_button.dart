@@ -4,7 +4,14 @@ import 'package:smsrly/res/colors.dart';
 class RoundedButton extends StatelessWidget {
   late String text;
   late VoidCallback onClick;
-  RoundedButton({Key? key,required this.text,required this.onClick}) : super(key: key);
+  bool? visible;
+
+  RoundedButton(
+      {Key? key,
+      required this.text,
+      required this.onClick,
+      this.visible = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +25,11 @@ class RoundedButton extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Text(text),
+        child: visible! ? Text(text) : const CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(
+            Colors.white
+          ),
+        ),
       ),
     );
   }
