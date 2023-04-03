@@ -62,7 +62,8 @@ class StringManager {
   static const success = "OK";
   static const loginFailed = "Login Failed";
   static const emailNotValid = "Not Valid Email !";
-  static const checkPassword = "Check Your Password please"; 
+  static const checkPassword = "Check Your Password please";
+  static const egyptCountryCode = "+20";
 
   // Args Keys
   static const String item = 'Item';

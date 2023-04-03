@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import '../../../res/colors.dart';
 
 class TextFieldWithBottomBorder extends StatelessWidget {
+  
   TextInputType? inputType = TextInputType.text;
   late String label;
   late double fontSize;
@@ -10,7 +11,22 @@ class TextFieldWithBottomBorder extends StatelessWidget {
   List<TextInputFormatter>? inputFormatter =[];
   Function(String)? onTextChanged;
   final Widget? prefixIcon;
-  TextFieldWithBottomBorder({Key? key,required this.label,this.inputType,this.controller,this.inputFormatter,this.prefixIcon,required this.fontSize,this.onTextChanged}) : super(key: key);
+  IconButton? suffixIcon;
+  bool? obscureText;
+
+  TextFieldWithBottomBorder(
+      {Key? key,
+      required this.label,
+      this.inputType,
+      this.controller,
+      this.inputFormatter,
+      this.prefixIcon,
+      required this.fontSize,
+      this.onTextChanged, 
+      this.suffixIcon,
+      this.obscureText,
+      })
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +34,16 @@ class TextFieldWithBottomBorder extends StatelessWidget {
       controller: controller,
       cursorColor: textFieldCursorColor,
       keyboardType: inputType,
+      obscureText: obscureText ?? false,
       onChanged: onTextChanged,
       inputFormatters: inputFormatter,
       decoration: InputDecoration(
         labelText: label,
         prefixIcon: prefixIcon,
-
+        suffixIcon: suffixIcon,
         labelStyle: TextStyle(
-            fontSize: fontSize, color: textFieldCursorColor),
+            fontSize: fontSize, color: textFieldCursorColor
+        ),
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: primaryColor,

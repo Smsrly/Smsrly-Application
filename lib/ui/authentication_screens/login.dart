@@ -4,9 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smsrly/res/dimen.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/styles.dart';
-import 'package:smsrly/ui/authentication_screens/showModalBottomSheet/forgetPassword.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
-import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
@@ -18,8 +16,8 @@ import '../../utils/routes/route_name.dart';
 class LoginScreen extends StatelessWidget {
 
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
 
   LoginScreen({Key? key}) : super(key: key);
@@ -29,35 +27,18 @@ class LoginScreen extends StatelessWidget {
     return
        Consumer<LoginViewModel>(
            builder: (context, loginViewModel, child){
-             return TextFormField(
-               cursorColor: textFieldCursorColor,
+             return TextFieldWithBottomBorder(
+               label: StringManager.password,
+               fontSize: 18.sp,
                obscureText: !loginViewModel.isPasswordVisible,
                controller: _passwordController,
-               keyboardType: TextInputType.visiblePassword,
-               decoration: InputDecoration(
-                 labelText: StringManager.password,
-                 suffixIcon: IconButton(
-                     onPressed: () => loginViewModel.togglePassword()
-                     ,
-                     icon: Icon(!loginViewModel.isPasswordVisible
-                         ? Icons.visibility_off
-                         : Icons.visibility)),
-                 labelStyle: TextStyle(
-                     fontSize: 18.sp,
-                     color: textFieldCursorColor
-                 ),
-                 focusedBorder: const UnderlineInputBorder(
-                   borderSide: BorderSide(
-                     color: primaryColor,
-                     width: 2,
-                   ),
-                 ),
-                 enabledBorder: const UnderlineInputBorder(
-                   borderSide: BorderSide(
-                     color: textFieldEnabledBorderColor,
-                     width: 1.5,
-                   ),
-                 ),
+               inputType: TextInputType.visiblePassword,
+               suffixIcon: IconButton(
+                   onPressed: () => loginViewModel.togglePassword()
+                   ,
+                   icon: Icon(!loginViewModel.isPasswordVisible
+                       ? Icons.visibility_off
+                       : Icons.visibility)
                ),
              );
            }
@@ -134,17 +115,6 @@ class LoginScreen extends StatelessWidget {
                 4.h.he,
                 navigateToSignUp(context),
                 15.h.he,
-                TextButton(onPressed: (){
-                  showModalBottomSheet(
-                      shape: const RoundedRectangleBorder( // <-- SEE HERE
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(25.0),
-                        ),
-                      ),
-                      isScrollControlled: true,
-                      context: context, builder: (ctx)=>
-                   ForgetPassword());
-                },child: Text("Forgot Pass"),),
               ],
             ),
           ),

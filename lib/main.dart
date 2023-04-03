@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smsrly/utils/routes/route_name.dart';
 import 'package:smsrly/utils/routes/routes.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
@@ -8,8 +9,11 @@ import 'package:smsrly/viewmodel/login_view_model.dart';
 import 'package:smsrly/viewmodel/sign_up_view_model.dart';
 
 
+SharedPreferences? prefs;
 
-void main(){
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  prefs = await SharedPreferences.getInstance();
   runApp(const App());
 }
 class App extends StatelessWidget {
@@ -33,13 +37,28 @@ class App extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (BuildContext context, Widget? child) {
-          return MaterialApp(
-            initialRoute: RouteName.onBoardingRoute,
-            routes: routes,
-            debugShowCheckedModeBanner: false,
-          );
+          return Application();
         },
       ),
     );
   }
 }
+
+class Application extends StatelessWidget{
+
+  Application({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final viewModel = Provider.of<AppViewModel>(context,listen: false);
+    return MaterialApp(
+      initialRoute: viewModel.hasSeenOnBoarding()
+          ? RouteName.loginRoute
+          : RouteName.onBoardingRoute,
+      routes: routes,
+      debugShowCheckedModeBanner: false,
+    );
+  }
+
+}
+

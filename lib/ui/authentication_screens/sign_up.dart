@@ -163,7 +163,7 @@ class SignUpScreen extends StatelessWidget {
                                   ),
                                   Text(
                                       viewModel.countryCode == null
-                                          ? "+20"
+                                          ? StringManager.egyptCountryCode
                                           : viewModel.countryCode!.dialCode,
                                       style: AppStyles.bodyTextWithCursorColor
                                   )
@@ -177,38 +177,18 @@ class SignUpScreen extends StatelessWidget {
                   25.he,
                   Consumer<SignUpViewModel>(
                       builder: (context,signUpViewModel,child){
-                        return TextFormField(
+                        return TextFieldWithBottomBorder(
+                          label: StringManager.password,
+                          fontSize: 18.sp,
                           obscureText: !signUpViewModel.isPasswordVisible,
-                          cursorColor: const Color.fromRGBO(124, 124, 124, 1),
-                          keyboardType: TextInputType.visiblePassword,
                           controller: _passController,
-                          decoration: InputDecoration(
-                            labelText: StringManager.password,
-                            suffixIcon: IconButton(
-                                onPressed: () {
-                                  signUpViewModel.togglePassword();
-                                },
-                                icon: Icon(
-                                    !signUpViewModel.isPasswordVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility)),
-                            labelStyle: TextStyle(
-                                fontSize: 18.sp,
-                                fontFamily: StringManager.ibmPlexSans,
-                                fontWeight: FontWeight.w500,
-                                color: const Color.fromRGBO(124, 124, 124, 1)),
-                            focusedBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: primaryColor,
-                                width: 2,
-                              ),
-                            ),
-                            enabledBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromRGBO(170, 171, 170, 1),
-                                width: 1.5,
-                              ),
-                            ),
+                          inputType: TextInputType.visiblePassword,
+                          suffixIcon: IconButton(
+                              onPressed: () => signUpViewModel.togglePassword()
+                              ,
+                              icon: Icon(!signUpViewModel.isPasswordVisible
+                                  ? Icons.visibility_off
+                                  : Icons.visibility)
                           ),
                         );
                       }
@@ -216,37 +196,18 @@ class SignUpScreen extends StatelessWidget {
                   25.h.he,
                   Consumer<SignUpViewModel>(
                       builder: (context,signUpViewModel,child){
-                        return TextFormField(
+                        return TextFieldWithBottomBorder(
+                          label: StringManager.password,
+                          fontSize: 18.sp,
                           obscureText: !signUpViewModel.isConfirmPasswordVisible,
-                          cursorColor: const Color.fromRGBO(124, 124, 124, 1),
                           controller: _confirmPassController,
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
-                            labelText: StringManager.cPassword,
-                            suffixIcon: IconButton(
-                                onPressed: () {
-                                  signUpViewModel.toggleConfirmPassword();
-                                },
-                                icon: Icon(!signUpViewModel.isConfirmPasswordVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility)),
-                            labelStyle: TextStyle(
-                                fontSize: 18.sp,
-                                fontFamily: StringManager.ibmPlexSans,
-                                fontWeight: FontWeight.w500,
-                                color: const Color.fromRGBO(124, 124, 124, 1)),
-                            focusedBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: primaryColor,
-                                width: 2,
-                              ),
-                            ),
-                            enabledBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromRGBO(170, 171, 170, 1),
-                                width: 1.5,
-                              ),
-                            ),
+                          inputType: TextInputType.visiblePassword,
+                          suffixIcon: IconButton(
+                              onPressed: () => signUpViewModel.toggleConfirmPassword()
+                              ,
+                              icon: Icon(!signUpViewModel.isConfirmPasswordVisible
+                                  ? Icons.visibility_off
+                                  : Icons.visibility)
                           ),
                         );
                       }

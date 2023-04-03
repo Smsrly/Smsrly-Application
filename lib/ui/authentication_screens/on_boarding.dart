@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:smsrly/res/dimen.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/res/colors.dart';
@@ -7,6 +8,7 @@ import 'package:smsrly/utils/helpers/extensions.dart';
 
 import '../../res/strings.dart';
 import '../../utils/routes/route_name.dart';
+import '../../viewmodel/app_view_model.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
@@ -25,6 +27,7 @@ class OnBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appViewModel = Provider.of<AppViewModel>(context,listen: false);
     return Scaffold(
         body: Stack(
       children: [
@@ -52,6 +55,7 @@ class OnBoarding extends StatelessWidget {
                 width: double.infinity,
                 child: RoundedButton(
                   onClick: () {
+                    appViewModel.setSeenOnBoarding();
                     Navigator.pushReplacementNamed(context, RouteName.loginRoute);
                   },
                   text: StringManager.getStarted,
