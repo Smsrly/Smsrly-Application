@@ -4,6 +4,7 @@ class RoundedTextField extends StatelessWidget {
   double? fontSize;
   TextInputType? inputType = TextInputType.text;
   String? label;
+
   TextEditingController? controller = TextEditingController();
   Color? cursorColor;
   TextStyle? textStyle;

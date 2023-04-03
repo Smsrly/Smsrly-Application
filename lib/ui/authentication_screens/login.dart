@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smsrly/res/dimen.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/styles.dart';
+import 'package:smsrly/ui/authentication_screens/showModalBottomSheet/forgetPassword.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
@@ -133,6 +134,17 @@ class LoginScreen extends StatelessWidget {
                 4.h.he,
                 navigateToSignUp(context),
                 15.h.he,
+                TextButton(onPressed: (){
+                  showModalBottomSheet(
+                      shape: const RoundedRectangleBorder( // <-- SEE HERE
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(25.0),
+                        ),
+                      ),
+                      isScrollControlled: true,
+                      context: context, builder: (ctx)=>
+                   ForgetPassword());
+                },child: Text("Forgot Pass"),),
               ],
             ),
           ),

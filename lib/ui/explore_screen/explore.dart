@@ -119,7 +119,6 @@ class ExploreScreen extends StatelessWidget {
                   decoration: const InputDecoration(
                     hintText: StringManager.where,
                     hintStyle: TextStyle(
-
                         color:
                         Color.fromRGBO(169, 169, 169, 1)),
                     border: InputBorder.none,
