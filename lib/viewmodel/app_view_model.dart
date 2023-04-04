@@ -1,16 +1,30 @@
 import 'package:flutter/foundation.dart';
 import 'package:smsrly/main.dart';
 import '../models/user.dart';
+import '../utils/routes/route_name.dart';
 
 class AppViewModel with ChangeNotifier{
   User? currUser;
 
-  void setSeenOnBoarding() {
-    prefs?.setString('has Entered The App before','1');
+  void setSeenOnBoarding() async {
+    localService!.setSeenOnBoarding();
   }
 
   bool hasSeenOnBoarding(){
-    return prefs?.getString('has Entered The App before') != null;
+    return localService!.hasSeenOnBoarding();
   }
 
+  bool hasUserSignedInBefore(){
+    return false;
+  }
+
+  String getStartScreen(){
+    if(hasUserSignedInBefore()){
+      return RouteName.screensContainerRoute;
+    } else if(hasSeenOnBoarding()){
+      return RouteName.loginRoute;
+    }else{
+      return RouteName.onBoardingRoute;
+    }
+  }
 }

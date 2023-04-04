@@ -1,5 +1,5 @@
 import '../../../res/strings.dart';
-import '../../../services/auth_service.dart';
+import '../../../services/network/auth_service.dart';
 
 class SignUpUseCase{
   final AuthService authService;

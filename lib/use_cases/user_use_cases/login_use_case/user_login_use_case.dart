@@ -1,4 +1,4 @@
-import 'package:smsrly/services/auth_service.dart';
+import 'package:smsrly/services/network/auth_service.dart';
 
 import '../../../models/user.dart';
 import '../../../res/strings.dart';
@@ -8,18 +8,13 @@ class LoginUseCase {
 
   LoginUseCase(this.authService);
 
-  Future<User?> signInUsingEmailAndPassword(
+  Future signInUsingEmailAndPassword(
       String email, String password, Function(String msg) onFail) async {
 
     final res = _isValidData(email, password);
 
     if (res == StringManager.success) {
-      final user = await authService.signInUsingEmailAndPassword(email, password);
-      if(user != null){
-        return user;
-      }else{
-        onFail(StringManager.loginFailed);
-      }
+      final res = await authService.signInUsingEmailAndPassword(email, password);
     } else {
       onFail(res);
     }

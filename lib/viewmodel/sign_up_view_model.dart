@@ -1,7 +1,7 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:smsrly/services/auth_service.dart';
+import 'package:smsrly/services/network/auth_service.dart';
 import 'package:smsrly/use_cases/user_use_cases/sign_up_use_case/user_signup_use_case.dart';
 import 'package:smsrly/utils/utils.dart';
 

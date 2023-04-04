@@ -2,64 +2,31 @@ import 'package:smsrly/models/realestate.dart';
 
 class User{
 
-  late String _userId;
+  String token = "";
 
-  String get userId => _userId;
-
-  set userId(String value) {
-    _userId = value;
-  }
+  late String userId;
 
 
-  late String _username;
-
-  String get username => _username;
-
-  set username(String value) {
-    _username = value;
-  }
+  late String username;
 
 
-  late String _email;
+
+  late String email;
 
 
-  String get email => _email;
 
-  set email(String value) {
-    _email = value;
-  }
+  late String phoneNumber;
 
-  late String _phoneNumber;
 
-  String get phoneNumber => _phoneNumber;
+  late double longitude;
 
-  set phoneNumber(String value) {
-    _phoneNumber = value;
-  }
 
-  late double _longitude;
+  late double latitude;
 
-  double get longitude => _longitude;
 
-  set longitude(double value) {
-    _longitude = value;
-  }
 
-  late double _latitude;
+  late String pictureUrl;
 
-  double get latitude => _latitude;
-
-  set latitude(double value) {
-    _latitude = value;
-  }
-
-  late String _pictureUrl;
-
-  String get pictureUrl => _pictureUrl;
-
-  set pictureUrl(String value) {
-    _pictureUrl = value;
-  }
   final Map<int , RealEstate> _savedRealEstates={};
 
   bool isSaved(RealEstate item){
@@ -72,8 +39,15 @@ class User{
     _savedRealEstates.remove(item.realEstateId);
   }
 
-  User(this._userId, this._username, this._email, this._phoneNumber,
-      this._latitude,this._longitude, this._pictureUrl);
+  User(this.userId,
+      this.username,
+      this.email,
+      this.phoneNumber,
+      this.latitude,
+      this.longitude,
+      this.pictureUrl);
+
+
 
 
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smsrly/services/network/auth_service.dart';
+import 'package:smsrly/services/local/local_service.dart';
 import 'package:smsrly/utils/routes/route_name.dart';
 import 'package:smsrly/utils/routes/routes.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
@@ -9,11 +10,13 @@ import 'package:smsrly/viewmodel/login_view_model.dart';
 import 'package:smsrly/viewmodel/sign_up_view_model.dart';
 
 
-SharedPreferences? prefs;
+LocalService? localService;
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  prefs = await SharedPreferences.getInstance();
+  localService = LocalService();
+  await localService?.initSharedPref();
+  print('${await AuthService().signInUsingEmailAndPassword('ahmedebeid856@gmail.com', 'Ahmed8884')}');
   runApp(const App());
 }
 class App extends StatelessWidget {
@@ -48,13 +51,13 @@ class Application extends StatelessWidget{
 
   Application({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<AppViewModel>(context,listen: false);
     return MaterialApp(
-      initialRoute: viewModel.hasSeenOnBoarding()
-          ? RouteName.loginRoute
-          : RouteName.onBoardingRoute,
+      initialRoute: viewModel.getStartScreen(),
       routes: routes,
       debugShowCheckedModeBanner: false,
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:smsrly/models/user.dart';
-import 'package:smsrly/services/auth_service.dart';
+import 'package:smsrly/services/network/auth_service.dart';
 import 'package:smsrly/use_cases/user_use_cases/login_use_case/user_login_use_case.dart';
 import 'package:smsrly/utils/utils.dart';
 
