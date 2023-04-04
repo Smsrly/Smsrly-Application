@@ -17,5 +17,10 @@ class LocalService {
     return _sharedPreferences.getString('has Entered The App before') != null;
   }
 
-
+  Future saveToken(String token)async{
+    _sharedPreferences.setString('token',token);
+  }
+  String? getToken() {
+    return _sharedPreferences.getString('token');
+  }
 }

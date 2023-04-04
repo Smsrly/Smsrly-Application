@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:smsrly/services/network/auth_service.dart';
 import 'package:smsrly/services/local/local_service.dart';
-import 'package:smsrly/utils/routes/route_name.dart';
 import 'package:smsrly/utils/routes/routes.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
 import 'package:smsrly/viewmodel/login_view_model.dart';
@@ -16,7 +14,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   localService = LocalService();
   await localService?.initSharedPref();
-  print('${await AuthService().signInUsingEmailAndPassword('ahmedebeid856@gmail.com', 'Ahmed8884')}');
   runApp(const App());
 }
 class App extends StatelessWidget {

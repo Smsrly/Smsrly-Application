@@ -60,10 +60,12 @@ class StringManager {
   static const fieldsCannotBeEmpty = "Fields cannot be empty";
   static const noUserFoundForThisEmail = "No User Found For This Email !" ;
   static const success = "OK";
+  static const fail = "FAIL";
   static const loginFailed = "Login Failed";
   static const emailNotValid = "Not Valid Email !";
   static const checkPassword = "Check Your Password please";
   static const egyptCountryCode = "+20";
+  static const apiLoginSuccess = "log in success";
 
   // Args Keys
   static const String item = 'Item';

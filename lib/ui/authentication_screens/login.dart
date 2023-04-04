@@ -102,7 +102,6 @@ class LoginScreen extends StatelessWidget {
                       return RoundedButton(
                         onClick: () {
                           authViewModel.loginUser(_emailController.text, _passwordController.text, (){
-                            Provider.of<AppViewModel>(context,listen: false).currUser = authViewModel.user;
                             Navigator.pushReplacementNamed(context, RouteName.screensContainerRoute);
                           });
                         },

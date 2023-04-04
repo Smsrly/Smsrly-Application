@@ -4,29 +4,28 @@ import 'package:http/http.dart' as http;
 import 'package:smsrly/services/network/api_constants.dart';
 
 class ApiServices {
-  Future<dynamic> getSignInResponse(
-      String email, String password) async {
-    try{
-      String body =jsonEncode({'email': email, 'password': password});
+  Future<dynamic> getSignInResponse(String email, String password) async {
+    try {
+      String body = jsonEncode({'email': email, 'password': password});
       print('body = $body');
       print('api url => ${ApiConstants.baseUrl + ApiConstants.loginEndPoint}');
 
-      var res12 = await http.post(Uri.parse(ApiConstants.baseUrl + ApiConstants.loginEndPoint),
-          body: body).timeout(const Duration(seconds: 10));
+      var res12 = await http
+          .post(
+            Uri.parse(ApiConstants.baseUrl + ApiConstants.loginEndPoint),
+            headers: {'Content-Type': 'application/json; charset=UTF-8'},
+            body: body,
+          )
+          .timeout(const Duration(seconds: 10));
 
-      print('res12 = ${res12.contentLength}');
-      print('res12 = ${res12.body}');
 
-      final res = returnResponse(
-          await http.post(Uri.parse(ApiConstants.baseUrl + ApiConstants.loginEndPoint),
-          body: body).timeout(const Duration(seconds: 10))
-      );
-      print('res : $res');
 
+      final res = returnResponse(res12);
+      print('res : ${res.runtimeType}');
+      print('hi 1');
       return res;
-    }catch(e){
-      print(e.toString());
-      return "No Internet Connection";
+    } catch (e) {
+      return e.toString();
     }
   }
 

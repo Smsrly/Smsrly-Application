@@ -15,7 +15,7 @@ class AppViewModel with ChangeNotifier{
   }
 
   bool hasUserSignedInBefore(){
-    return false;
+    return localService!.getToken() != null;
   }
 
   String getStartScreen(){

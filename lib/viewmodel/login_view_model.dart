@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:smsrly/main.dart';
 import 'package:smsrly/models/user.dart';
+import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/services/network/auth_service.dart';
 import 'package:smsrly/use_cases/user_use_cases/login_use_case/user_login_use_case.dart';
 import 'package:smsrly/utils/utils.dart';
 
 class LoginViewModel with ChangeNotifier {
-  late User user;
   AuthService authService = AuthService();
 
   bool isPasswordVisible = false;
@@ -24,11 +25,19 @@ class LoginViewModel with ChangeNotifier {
     notifyListeners();
     LoginUseCase loginUseCase = LoginUseCase(authService);
 
-    final user = await loginUseCase.signInUsingEmailAndPassword(
+    final result = await loginUseCase.signInUsingEmailAndPassword(
         email, password, (msg) => Utils.showToast(msg, 1));
-    if (user != null) {
-      this.user = user;
-      onSuccess();
+    if (result != null && result['statue'] == StringManager.success) {
+      if(result['message'] == StringManager.apiLoginSuccess){
+        localService!.saveToken(result['token']);
+        onSuccess();
+      }else{
+        Utils.showToast(
+            result['message'],
+            1
+        );
+      }
+
     }
     _isLoading = false;
     notifyListeners();

@@ -8,13 +8,14 @@ class LoginUseCase {
 
   LoginUseCase(this.authService);
 
-  Future signInUsingEmailAndPassword(
+  Future<dynamic> signInUsingEmailAndPassword(
       String email, String password, Function(String msg) onFail) async {
 
     final res = _isValidData(email, password);
 
     if (res == StringManager.success) {
-      final res = await authService.signInUsingEmailAndPassword(email, password);
+      final response = await authService.signInUsingEmailAndPassword(email, password);
+      return response;
     } else {
       onFail(res);
     }
