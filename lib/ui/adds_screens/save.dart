@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../models/realestate.dart';
 import '../../res/strings.dart';
 import '../../utils/routes/route_name.dart';
-import '../show_details/show_detail.dart';
 import '../widgets/realestates_items/realestate_third_item.dart';
 
 class Saved extends StatelessWidget{

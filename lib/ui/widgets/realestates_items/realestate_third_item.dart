@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smsrly/models/realestate.dart';
+
+import '../../../models/realestate.dart';
+
 
 class ThirdItem extends StatelessWidget {
   late RealEstate realEstate;

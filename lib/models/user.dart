@@ -1,54 +1,39 @@
+
 import 'package:smsrly/models/realestate.dart';
 
-class User{
-
-  String token = "";
-
+class User {
   late String userId;
-
-
-  late String username;
-
-
-
+  late String firstName;
+  late String secondName;
   late String email;
-
-
-
   late String phoneNumber;
-
-
   late double longitude;
-
-
   late double latitude;
+  String? pictureUrl;
+  final Map<int, RealEstate> _savedRealEstates = {};
+
+  String get username=> "$firstName $secondName";
 
 
-
-  late String pictureUrl;
-
-  final Map<int , RealEstate> _savedRealEstates={};
-
-  bool isSaved(RealEstate item){
+  bool isSaved(RealEstate item) {
     return _savedRealEstates.containsKey(item.realEstateId);
   }
-  void saveRealEstate(RealEstate item){
+
+  void saveRealEstate(RealEstate item) {
     _savedRealEstates[item.realEstateId] = item;
   }
-  void unSaveRealEstate(RealEstate item){
+
+  void unSaveRealEstate(RealEstate item) {
     _savedRealEstates.remove(item.realEstateId);
   }
 
-  User(this.userId,
-      this.username,
-      this.email,
-      this.phoneNumber,
-      this.latitude,
-      this.longitude,
-      this.pictureUrl);
-
-
-
-
-
+  User(
+      {required this.userId,
+      required this.firstName,
+      required this.secondName,
+      required this.email,
+      required this.phoneNumber,
+      required this.latitude,
+      required this.longitude,
+      this.pictureUrl});
 }

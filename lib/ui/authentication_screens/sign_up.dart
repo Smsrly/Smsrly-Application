@@ -133,6 +133,7 @@ class SignUpScreen extends StatelessWidget {
                       builder: (context,viewModel,child){
                         return TextFieldWithBottomBorder(
                           label: StringManager.phoneNum,
+                          controller: _phoneNumberController,
                           inputType: TextInputType.number,
                           inputFormatter: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly

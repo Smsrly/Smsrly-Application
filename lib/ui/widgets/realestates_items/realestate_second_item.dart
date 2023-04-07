@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/models/realestate.dart';
 import 'package:smsrly/res/styles.dart';
 
+import '../../../models/realestate.dart';
 import '../../../res/strings.dart';
 
 class SecondItem extends StatelessWidget {

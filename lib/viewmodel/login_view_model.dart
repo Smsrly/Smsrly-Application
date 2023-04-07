@@ -1,13 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:smsrly/domain/use_cases/user_use_cases/login_use_case/user_login_use_case.dart';
 import 'package:smsrly/main.dart';
-import 'package:smsrly/models/user.dart';
 import 'package:smsrly/res/strings.dart';
-import 'package:smsrly/services/network/auth_service.dart';
-import 'package:smsrly/use_cases/user_use_cases/login_use_case/user_login_use_case.dart';
 import 'package:smsrly/utils/utils.dart';
 
+import '../data/network/auth_service.dart';
+
 class LoginViewModel with ChangeNotifier {
-  AuthService authService = AuthService();
 
   bool isPasswordVisible = false;
 
@@ -23,6 +22,14 @@ class LoginViewModel with ChangeNotifier {
   Future loginUser(String email, String password, Function onSuccess) async {
     _isLoading = true;
     notifyListeners();
+    LoginUseCase loginUseCase = LoginUseCase(repository!);
+    final res = await loginUseCase.signInUsingEmailAndPassword(email, password);
+    if(res == StringManager.success){
+      onSuccess();
+    }else{
+      Utils.showToast(res, 1);
+    }
+    /*
     LoginUseCase loginUseCase = LoginUseCase(authService);
 
     final result = await loginUseCase.signInUsingEmailAndPassword(
@@ -39,6 +46,8 @@ class LoginViewModel with ChangeNotifier {
       }
 
     }
+
+     */
     _isLoading = false;
     notifyListeners();
   }

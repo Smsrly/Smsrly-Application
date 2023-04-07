@@ -1,6 +1,10 @@
-import 'package:smsrly/models/user.dart';
+import 'dart:io';
+
+import 'package:smsrly/data/network/api_constants.dart';
 import 'package:smsrly/res/strings.dart';
-import 'package:smsrly/services/network/api_services.dart';
+
+import '../../models/user.dart';
+import 'api_services.dart';
 
 class AuthService{
 
@@ -9,10 +13,12 @@ class AuthService{
   AuthService(){
     _apiServices = ApiServices();
   }
+
   Future<Map<dynamic,dynamic>> signInUsingEmailAndPassword(String email,String password) async {
     final ans = {};
     final res = await _apiServices.getSignInResponse(email, password);
     print('h2');
+    print('res => $res');
     if(res is Map<String,dynamic>){
       ans['statue'] = StringManager.success;
       ans['message'] = res['message'];
@@ -24,7 +30,10 @@ class AuthService{
     return ans;
   }
 
-  Future signUp(User user,String password,Function(String) onFail) async {
+  Future signUp(User user, File? file) async {
+    if(file != null){
+      _apiServices.uploadImage(ApiConstants.baseUrl + ApiConstants.registerEndPoint, file);
+    }
 
   }
 

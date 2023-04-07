@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:smsrly/services/network/api_constants.dart';
+
+import 'api_constants.dart';
 
 class ApiServices {
   Future<dynamic> getSignInResponse(String email, String password) async {
@@ -21,14 +23,27 @@ class ApiServices {
 
 
       final res = returnResponse(res12);
-      print('res : ${res.runtimeType}');
-      print('hi 1');
       return res;
     } catch (e) {
       return e.toString();
     }
   }
 
+  Future<dynamic> signUpResponse(
+      String firstName,
+      String secondName,
+      String email,
+      String password,
+      String phoneNumber,
+      double latitude,
+      double longitude
+      ) async {
+
+  }
+
+  Future<dynamic> uploadImage(String url, File file) async {
+
+  }
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

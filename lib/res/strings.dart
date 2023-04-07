@@ -55,17 +55,23 @@ class StringManager {
   static const String question = "What do you want to talk about?";
   static const String send = "Send";
   static const String yourMessage = "Your Message";
-  static const egyptianPound = "EGP";
-  static const areaUnit ="m²";
-  static const fieldsCannotBeEmpty = "Fields cannot be empty";
-  static const noUserFoundForThisEmail = "No User Found For This Email !" ;
-  static const success = "OK";
-  static const fail = "FAIL";
-  static const loginFailed = "Login Failed";
-  static const emailNotValid = "Not Valid Email !";
-  static const checkPassword = "Check Your Password please";
-  static const egyptCountryCode = "+20";
-  static const apiLoginSuccess = "log in success";
+  static const String egyptianPound = "EGP";
+  static const String areaUnit ="m²";
+  static const String fieldsCannotBeEmpty = "Fields cannot be empty";
+  static const String noUserFoundForThisEmail = "No User Found For This Email !" ;
+  static const String success = "OK";
+  static const String fail = "FAIL";
+  static const String emailNotValid = "Not Valid Email !";
+  static const String checkPassword = "Check Your Password please";
+  static const String egyptCountryCode = "+20";
+  static const String apiLoginSuccess = "log in success";
+  static const String passwordValidationMessage = "Password is not valid, password should contain at least one uppercase letter, one lowercase letter, one digit, and one special character";
+  static const String phoneNumberInvalid = "Phone Number is Invalid";
+  static const String firstNameInvalid = "First Name is invalid";
+  static const String secondNameInvalid = "First Name is invalid";
+
+
+
 
   // Args Keys
   static const String item = 'Item';

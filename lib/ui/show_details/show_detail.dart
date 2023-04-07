@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/models/realestate.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_back_button.dart';
 import 'package:smsrly/ui/widgets/user_items/user_item.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
+import '../../models/realestate.dart';
 import '../../models/user.dart';
 import '../../res/strings.dart';
 
@@ -313,40 +314,44 @@ class ShowDetailsScreen extends StatelessWidget {
                                   children: [
                                     UserItem(
                                         user: User(
-                                            "1",
-                                            "Leo Messi",
-                                            "loemessi1234@gmail.com",
-                                            "+201153180577",
-                                            30.12571871868943,
-                                            31.70773392993082,
-                                            "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg")),
+                                            userId: "1",
+                                            firstName: "Leo",
+                                            secondName: "Messi",
+                                            email: "loemessi1234@gmail.com",
+                                            phoneNumber: "+201153180577",
+                                            longitude: 30.12571871868943,
+                                            latitude: 31.70773392993082,
+                                            pictureUrl: "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg")),
                                     UserItem(
                                         user: User(
-                                            "1",
-                                            "Leo Messi",
-                                            "loemessi1234@gmail.com",
-                                            "+201153180577",
-                                            30.12571871868943,
-                                            31.70773392993082,
-                                            "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg")),
+                                            userId: "1",
+                                            firstName: "Leo",
+                                            secondName: "Messi",
+                                            email: "loemessi1234@gmail.com",
+                                            phoneNumber: "+201153180577",
+                                            longitude: 30.12571871868943,
+                                            latitude: 31.70773392993082,
+                                            pictureUrl: "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg")),
                                     UserItem(
                                         user: User(
-                                            "1",
-                                            "Leo Messi",
-                                            "loemessi1234@gmail.com",
-                                            "+201153180577",
-                                            30.12571871868943,
-                                            31.70773392993082,
-                                            "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg")),
+                                            userId: "1",
+                                            firstName: "Leo",
+                                            secondName: "Messi",
+                                            email: "loemessi1234@gmail.com",
+                                            phoneNumber: "+201153180577",
+                                            longitude: 30.12571871868943,
+                                            latitude: 31.70773392993082,
+                                            pictureUrl: "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg")),
                                     UserItem(
                                         user: User(
-                                            "1",
-                                            "Leo Messi",
-                                            "loemessi1234@gmail.com",
-                                            "+201153180577",
-                                            30.12571871868943,
-                                            31.70773392993082,
-                                            "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg")),
+                                            userId: "1",
+                                            firstName: "Leo",
+                                            secondName: "Messi",
+                                            email: "loemessi1234@gmail.com",
+                                            phoneNumber: "+201153180577",
+                                            longitude: 30.12571871868943,
+                                            latitude: 31.70773392993082,
+                                            pictureUrl: "https://phantom-marca.unidadeditorial.es/60192032bf2633d55bb044727463ec69/resize/660/f/webp/assets/multimedia/imagenes/2022/11/26/16694993827727.jpg")),
                                   ],
                                 ),
                               ],
