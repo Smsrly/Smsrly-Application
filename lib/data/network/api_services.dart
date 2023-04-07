@@ -2,7 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
+
+import '../../models/user.dart';
 import 'api_constants.dart';
 
 class ApiServices {
@@ -29,21 +32,43 @@ class ApiServices {
     }
   }
 
-  Future<dynamic> signUpResponse(
-      String firstName,
-      String secondName,
-      String email,
-      String password,
-      String phoneNumber,
-      double latitude,
-      double longitude
-      ) async {
-
+  Future<dynamic> signUpResponse(User user,String password) async {
+    try {
+      var body = user.toMap();
+      body['password'] = password;
+      final bodyR = jsonEncode(body);
+      final response = await http
+          .post(Uri.parse(ApiConstants.baseUrl + ApiConstants.registerEndPoint),
+              headers: {'Content-Type': 'application/json; charset=UTF-8'},
+              body: bodyR)
+          .timeout(const Duration(seconds: 10));
+      print(response.body);
+      return returnResponse(response);
+    } catch (e) {
+      return e.toString();
+    }
   }
 
-  Future<dynamic> uploadImage(String url, File file) async {
+  Future<dynamic> uploadUserImage(String email, File file) async {
 
+    var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(ApiConstants.baseUrl + ApiConstants.userRegisterImageEndPoint)
+    );
+    request.files.add(await http.MultipartFile.fromPath(
+        'image', file.path,
+        contentType: MediaType('image', 'jpeg')
+    ));
+
+    request.fields['email'] = email;
+
+    final response = await request.send();
+    final res = await http.Response.fromStream(response);
+
+    return returnResponse(res);
   }
+
+
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

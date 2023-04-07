@@ -2,13 +2,13 @@
 import 'package:smsrly/models/realestate.dart';
 
 class User {
-  late String userId;
+  String? userId;
   late String firstName;
   late String secondName;
   late String email;
   late String phoneNumber;
-  late double longitude;
-  late double latitude;
+  double? longitude;
+  double? latitude;
   String? pictureUrl;
   final Map<int, RealEstate> _savedRealEstates = {};
 
@@ -28,12 +28,30 @@ class User {
   }
 
   User(
-      {required this.userId,
+      {this.userId,
       required this.firstName,
       required this.secondName,
       required this.email,
       required this.phoneNumber,
-      required this.latitude,
-      required this.longitude,
+      this.latitude,
+      this.longitude,
       this.pictureUrl});
+
+  Map<String,dynamic> toMap(){
+    return {
+      'firstname' : firstName,
+      'lastname' : secondName,
+      'email' : email,
+      'phoneNumber' : _phoneToInt(phoneNumber),
+      'latitude' : latitude,
+      'longitude' : longitude
+    };
+  }
+  String _phoneToInt(String phoneNumber){
+    var s = "";
+    for(int i=1; i<phoneNumber.length; i++){
+      s+=phoneNumber[i];
+    }
+    return s;
+  }
 }

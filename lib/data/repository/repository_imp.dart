@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:smsrly/domain/repository/repository.dart';
+import 'package:smsrly/models/user.dart';
 
 import '../../res/strings.dart';
 import '../local/local_service.dart';
@@ -34,6 +37,20 @@ class RepositoryImp implements Repository {
   }
 
   @override
+  Future<String> signUp(User user,String password, File? file) async {
+    final response = await _authService.signUp(user, password,file);
+    if(response != null){
+
+      if(response['statue'] == StringManager.success){
+        return response['message'];
+      }else{
+        return response['result'];
+      }
+    }
+    return StringManager.fail;
+  }
+
+  @override
   void setSeenOnBoarding() async {
     _localService.setSeenOnBoarding();
   }
@@ -52,4 +69,5 @@ class RepositoryImp implements Repository {
   String signInWithGoogle() {
     return "";
   }
+
 }

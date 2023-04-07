@@ -22,6 +22,9 @@ class LoginUseCase {
     if (email.isEmpty || password.isEmpty) {
       return StringManager.fieldsCannotBeEmpty;
     }
+    if(password.length < 8){
+      return StringManager.incorrectPass;
+    }
     final emailRegax = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     if (!emailRegax.hasMatch(email)) {

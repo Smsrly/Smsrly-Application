@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:smsrly/models/user.dart';
+
 import '../../../../res/strings.dart';
 import '../../../repository/repository.dart';
 
@@ -7,17 +11,20 @@ class SignUpUseCase{
   SignUpUseCase(this.repository);
 
 
-  Future signUp(
+  Future<String> signUp(
       String firstName,
       String secondName,
       String email,
       String phoneNumber,
       String password,
       String confirmPassword,
+      double? lat,
+      double? long,
+      File? image
       ) async {
 
     firstName = firstName.trim();
-    secondName = firstName.trim();
+    secondName = secondName.trim();
     email = email.trim();
     phoneNumber = phoneNumber.trim();
 
@@ -32,7 +39,18 @@ class SignUpUseCase{
     if(res != StringManager.success){
       return res;
     }
-
+    return await repository.signUp(
+        User(
+            firstName: firstName,
+            secondName: secondName,
+            email: email,
+            phoneNumber: phoneNumber,
+            latitude: lat,
+            longitude: long,
+        ),
+        password,
+        image
+    );
   }
 
   String _isValidData(

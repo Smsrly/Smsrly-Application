@@ -18,7 +18,6 @@ import '../../res/colors.dart';
 import '../../utils/routes/route_name.dart';
 
 class SignUpScreen extends StatelessWidget {
-
   SignUpScreen({Key? key}) : super(key: key);
 
   final _countryPicker = const FlCountryCodePicker();
@@ -31,57 +30,53 @@ class SignUpScreen extends StatelessWidget {
   final TextEditingController _passController = TextEditingController();
   final TextEditingController _confirmPassController = TextEditingController();
 
-
-  Widget profilePicture(){
+  Widget profilePicture() {
     return Consumer<SignUpViewModel>(
-        builder: (context,signUpViewModel,child){
-          return SizedBox(
-            width: 120 ,
-            height: 120 ,
-            child: InkWell(
-              child: Center(
-                child: Stack(alignment: Alignment.center, children: [
-                  SizedBox(
-                      width: 100,
-                      height: 100,
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundImage:
-                        signUpViewModel.hasNoImage() ?
-                        const AssetImage(
-                            StringManager.profilePlaceholder
-                        )
-                        : FileImage(File(signUpViewModel.image.path)) as ImageProvider,
-                      )
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: Image.asset(
-                                StringManager.cameraIcon))
-                      ],
-                    ),
-                  )
-                ]),
-              ),
-              onTap: () async{
-                final image = await ImagePicker.platform.pickImage(source: ImageSource.gallery);
-                if(image != null){
-                  signUpViewModel.changeImage(image);
-                }
-              },
-            ),
-          );
-        }
-    );
+        builder: (context, signUpViewModel, child) {
+      return SizedBox(
+        width: 120,
+        height: 120,
+        child: InkWell(
+          child: Center(
+            child: Stack(alignment: Alignment.center, children: [
+              SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundImage: signUpViewModel.hasNoImage()
+                        ? const AssetImage(StringManager.profilePlaceholder)
+                        : FileImage(File(signUpViewModel.image.path))
+                            as ImageProvider,
+                  )),
+              SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: Image.asset(StringManager.cameraIcon))
+                  ],
+                ),
+              )
+            ]),
+          ),
+          onTap: () async {
+            final image = await ImagePicker.platform
+                .pickImage(source: ImageSource.gallery);
+            if (image != null) {
+              signUpViewModel.changeImage(image);
+            }
+          },
+        ),
+      );
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -101,8 +96,7 @@ class SignUpScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(StringManager.signUp,
-                            style: AppStyles.headline1),
+                        Text(StringManager.signUp, style: AppStyles.headline1),
                       ],
                     ),
                   ),
@@ -117,10 +111,10 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   25.h.he,
                   TextFieldWithBottomBorder(
-                      label: StringManager.second,
-                      inputType: TextInputType.name,
-                      fontSize: 18.sp,
-                      controller: _secondNameController,
+                    label: StringManager.second,
+                    inputType: TextInputType.name,
+                    fontSize: 18.sp,
+                    controller: _secondNameController,
                   ),
                   25.h.he,
                   TextFieldWithBottomBorder(
@@ -130,95 +124,89 @@ class SignUpScreen extends StatelessWidget {
                       fontSize: 18.sp),
                   25.h.he,
                   Consumer<SignUpViewModel>(
-                      builder: (context,viewModel,child){
-                        return TextFieldWithBottomBorder(
-                          label: StringManager.phoneNum,
-                          controller: _phoneNumberController,
-                          inputType: TextInputType.number,
-                          inputFormatter: <TextInputFormatter>[
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          fontSize: 18.sp,
-                          prefixIcon: Container(
-                            width: 80,
-                            padding: const EdgeInsets.all(3),
-                            margin: const EdgeInsets.all(3),
-                            child: InkWell(
-                              onTap: () async {
-                                var code =
-                                await _countryPicker.showPicker(context: context);
-                                if(code != null){
-                                  viewModel.changeCountryCode(code);
-                                }
-                              },
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 25,
-                                    child: viewModel.countryCode != null
-                                        ? viewModel.countryCode!.flagImage
-                                        : _flag,
-                                  ),
-                                  const SizedBox(
-                                    width: 3,
-                                  ),
-                                  Text(
-                                      viewModel.countryCode == null
-                                          ? StringManager.egyptCountryCode
-                                          : viewModel.countryCode!.dialCode,
-                                      style: AppStyles.bodyTextWithCursorColor
-                                  )
-                                ],
+                      builder: (context, viewModel, child) {
+                    return TextFieldWithBottomBorder(
+                      label: StringManager.phoneNum,
+                      controller: _phoneNumberController,
+                      inputType: TextInputType.number,
+                      inputFormatter: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      fontSize: 18.sp,
+                      prefixIcon: Container(
+                        width: 80,
+                        padding: const EdgeInsets.all(3),
+                        margin: const EdgeInsets.all(3),
+                        child: InkWell(
+                          onTap: () async {
+                            var code = await _countryPicker.showPicker(
+                                context: context);
+                            if (code != null) {
+                              viewModel.changeCountryCode(code);
+                            }
+                          },
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 25,
+                                child: viewModel.countryCode != null
+                                    ? viewModel.countryCode!.flagImage
+                                    : _flag,
                               ),
-                            ),
+                              const SizedBox(
+                                width: 3,
+                              ),
+                              Text(
+                                  viewModel.countryCode == null
+                                      ? StringManager.egyptCountryCode
+                                      : viewModel.countryCode!.dialCode,
+                                  style: AppStyles.bodyTextWithCursorColor)
+                            ],
                           ),
-                        );
-                      }
-                  ),
+                        ),
+                      ),
+                    );
+                  }),
                   25.he,
                   Consumer<SignUpViewModel>(
-                      builder: (context,signUpViewModel,child){
-                        return TextFieldWithBottomBorder(
-                          label: StringManager.password,
-                          fontSize: 18.sp,
-                          obscureText: !signUpViewModel.isPasswordVisible,
-                          controller: _passController,
-                          inputType: TextInputType.visiblePassword,
-                          suffixIcon: IconButton(
-                              onPressed: () => signUpViewModel.togglePassword()
-                              ,
-                              icon: Icon(!signUpViewModel.isPasswordVisible
-                                  ? Icons.visibility_off
-                                  : Icons.visibility)
-                          ),
-                        );
-                      }
-                  ),
+                      builder: (context, signUpViewModel, child) {
+                    return TextFieldWithBottomBorder(
+                      label: StringManager.password,
+                      fontSize: 18.sp,
+                      obscureText: !signUpViewModel.isPasswordVisible,
+                      controller: _passController,
+                      inputType: TextInputType.visiblePassword,
+                      suffixIcon: IconButton(
+                          onPressed: () => signUpViewModel.togglePassword(),
+                          icon: Icon(!signUpViewModel.isPasswordVisible
+                              ? Icons.visibility_off
+                              : Icons.visibility)),
+                    );
+                  }),
                   25.h.he,
                   Consumer<SignUpViewModel>(
-                      builder: (context,signUpViewModel,child){
-                        return TextFieldWithBottomBorder(
-                          label: StringManager.password,
-                          fontSize: 18.sp,
-                          obscureText: !signUpViewModel.isConfirmPasswordVisible,
-                          controller: _confirmPassController,
-                          inputType: TextInputType.visiblePassword,
-                          suffixIcon: IconButton(
-                              onPressed: () => signUpViewModel.toggleConfirmPassword()
-                              ,
-                              icon: Icon(!signUpViewModel.isConfirmPasswordVisible
-                                  ? Icons.visibility_off
-                                  : Icons.visibility)
-                          ),
-                        );
-                      }
-                  ),
+                      builder: (context, signUpViewModel, child) {
+                    return TextFieldWithBottomBorder(
+                      label: StringManager.password,
+                      fontSize: 18.sp,
+                      obscureText: !signUpViewModel.isConfirmPasswordVisible,
+                      controller: _confirmPassController,
+                      inputType: TextInputType.visiblePassword,
+                      suffixIcon: IconButton(
+                          onPressed: () =>
+                              signUpViewModel.toggleConfirmPassword(),
+                          icon: Icon(!signUpViewModel.isConfirmPasswordVisible
+                              ? Icons.visibility_off
+                              : Icons.visibility)),
+                    );
+                  }),
                   30.h.he,
                   SizedBox(
                     width: double.infinity,
                     child: Consumer<SignUpViewModel>(
-                      builder: (context,viewModel,child){
+                      builder: (context, viewModel, child) {
                         return RoundedButton(
+                          visible: !viewModel.isLoading,
                           onClick: () {
                             viewModel.signUp(
                                 _firstNameController.text,
@@ -226,8 +214,10 @@ class SignUpScreen extends StatelessWidget {
                                 _emailController.text,
                                 _phoneNumberController.text,
                                 _passController.text,
-                                _confirmPassController.text
-                            );
+                                _confirmPassController.text, () {
+                              Navigator.pushReplacementNamed(
+                                  context, RouteName.verifyRoute);
+                            });
                           },
                           text: StringManager.signUp,
                         );
@@ -246,17 +236,15 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context,RouteName.loginRoute);
+                            Navigator.pushReplacementNamed(
+                                context, RouteName.loginRoute);
                           },
-                          child: Text(
-                              StringManager.login,
+                          child: Text(StringManager.login,
                               style: TextStyle(
-                                  fontSize: 17.sp,
-                                  fontFamily: StringManager.ibmPlexSans,
-                                  fontWeight: FontWeight.w400,
-                              ))
-                      ),
-
+                                fontSize: 17.sp,
+                                fontFamily: StringManager.ibmPlexSans,
+                                fontWeight: FontWeight.w400,
+                              ))),
                     ],
                   ),
                   20.h.he

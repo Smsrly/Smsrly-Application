@@ -59,6 +59,9 @@ class StringManager {
   static const String areaUnit ="m²";
   static const String fieldsCannotBeEmpty = "Fields cannot be empty";
   static const String noUserFoundForThisEmail = "No User Found For This Email !" ;
+  static const String incorrectPass = "Incorrect Password !" ;
+  static const String weNeedYouLoc = "We need your location for better experience";
+  static const String verificationCodeSent = "verification code sent";
   static const String success = "OK";
   static const String fail = "FAIL";
   static const String emailNotValid = "Not Valid Email !";
