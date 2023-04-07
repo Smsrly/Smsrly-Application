@@ -73,7 +73,7 @@ class SellScreen extends StatelessWidget {
                                   width:1.w ,
                                 ),
                                 Text(
-                                  "${StringManager.add}",
+                                  StringManager.add,
                                   style: TextStyle(
                                     fontSize: 22.sp,
                                       fontFamily: "IBMPlexSans",
@@ -87,7 +87,7 @@ class SellScreen extends StatelessWidget {
                     SizedBox(
                       height: 15.h,
                     ),
-                    textField("${StringManager.title}","",TextInputType.text),
+                    textField(StringManager.title,"",TextInputType.text),
                     SizedBox(
                       height: 15.h,
                     ),
@@ -195,7 +195,7 @@ class SellScreen extends StatelessWidget {
                           const MaterialStatePropertyAll(primaryColor),
                       fixedSize: const MaterialStatePropertyAll(Size(328, 49))),
                   child: Text(
-                    "${StringManager.submit}",
+                    StringManager.submit,
                     style: TextStyle(fontSize: 16.sp),
                   ),
                 ),

@@ -8,11 +8,10 @@ import '../local/local_service.dart';
 import '../network/auth_service.dart';
 
 class RepositoryImp implements Repository {
-
   late AuthService _authService;
   late LocalService _localService;
 
-  void setLocalService(LocalService localService){
+  void setLocalService(LocalService localService) {
     _localService = localService;
   }
 
@@ -30,24 +29,36 @@ class RepositoryImp implements Repository {
       _localService.saveToken(response['token']);
       return StringManager.success;
     }
-    if(response['statue'] == StringManager.success && response['message'] != StringManager.apiLoginSuccess){
+    if (response['statue'] == StringManager.success &&
+        response['message'] != StringManager.apiLoginSuccess) {
       return response['message'];
     }
     return response['result'];
   }
 
   @override
-  Future<String> signUp(User user,String password, File? file) async {
-    final response = await _authService.signUp(user, password,file);
-    if(response != null){
-
-      if(response['statue'] == StringManager.success){
-        return response['message'];
-      }else{
-        return response['result'];
-      }
+  Future<String> signUp(User user, String password, File? file) async {
+    final response = await _authService.signUp(user, password, file);
+    if (response['statue'] == StringManager.success) {
+      return response['message'];
+    } else {
+      return response['result'];
     }
-    return StringManager.fail;
+  }
+
+  @override
+  Future<String> checkVerificationCode(String email, String code) async {
+    final res = await _authService.checkVerifyCode(email, code);
+    if (res['statue'] == StringManager.success &&
+        res['message'] == 'activated') {
+      print('Going To save token => ${res['token']}');
+      _localService.saveToken(res['token']);
+      return StringManager.verifyMessage;
+    } else if (res['statue'] == StringManager.fail && res['message'] != null) {
+      return res['message'];
+    }
+
+    return res['result'];
   }
 
   @override
@@ -56,12 +67,12 @@ class RepositoryImp implements Repository {
   }
 
   @override
-  bool hasSeenOnBoarding(){
+  bool hasSeenOnBoarding() {
     return _localService.hasSeenOnBoarding();
   }
 
   @override
-  bool hasUserSignedInBefore(){
+  bool hasUserSignedInBefore() {
     return _localService.getToken() != null;
   }
 
@@ -69,5 +80,4 @@ class RepositoryImp implements Repository {
   String signInWithGoogle() {
     return "";
   }
-
 }

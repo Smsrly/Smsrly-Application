@@ -68,6 +68,26 @@ class ApiServices {
     return returnResponse(res);
   }
 
+  Future<dynamic> verifyCode(
+      String email,
+      String code
+      )async{
+    final params = {
+      'email':email,
+      'code':code
+    };
+    try{
+      final response = await http.get(
+        Uri.parse(ApiConstants.baseUrl + ApiConstants.confirmEmailEndPoint).replace(
+            queryParameters: params
+        ),
+        headers: {'Content-Type': 'application/json; charset=UTF-8'},
+      );
+      return returnResponse(response);
+    }catch(e){
+      return e.toString();
+    }
+  }
 
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {

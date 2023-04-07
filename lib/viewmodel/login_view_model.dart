@@ -19,36 +19,19 @@ class LoginViewModel with ChangeNotifier {
 
   get isLoading => _isLoading;
 
-  Future loginUser(String email, String password, Function onSuccess) async {
-    _isLoading = true;
-    notifyListeners();
-    LoginUseCase loginUseCase = LoginUseCase(repository!);
-    final res = await loginUseCase.signInUsingEmailAndPassword(email, password);
-    if(res == StringManager.success){
-      onSuccess();
-    }else{
-      Utils.showToast(res, 1);
-    }
-    /*
-    LoginUseCase loginUseCase = LoginUseCase(authService);
-
-    final result = await loginUseCase.signInUsingEmailAndPassword(
-        email, password, (msg) => Utils.showToast(msg, 1));
-    if (result != null && result['statue'] == StringManager.success) {
-      if(result['message'] == StringManager.apiLoginSuccess){
-        localService!.saveToken(result['token']);
+  void loginUser(String email, String password, Function onSuccess) async {
+    if(!_isLoading){
+      _isLoading = true;
+      notifyListeners();
+      LoginUseCase loginUseCase = LoginUseCase(repository!);
+      final res = await loginUseCase.signInUsingEmailAndPassword(email, password);
+      if(res == StringManager.success){
         onSuccess();
       }else{
-        Utils.showToast(
-            result['message'],
-            1
-        );
+        Utils.showToast(res, 1);
       }
-
+      _isLoading = false;
+      notifyListeners();
     }
-
-     */
-    _isLoading = false;
-    notifyListeners();
   }
 }

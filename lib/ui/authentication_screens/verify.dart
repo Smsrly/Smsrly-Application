@@ -1,139 +1,100 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:smsrly/ui/authentication_screens/sign_up.dart';
-import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:smsrly/res/dimen.dart';
+import 'package:smsrly/res/styles.dart';
+import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
+import 'package:smsrly/viewmodel/verification_view_model.dart';
+
+import '../../res/strings.dart';
+import '../../utils/routes/route_name.dart';
 
 class VerifyScreen extends StatelessWidget {
-  const VerifyScreen({super.key});
+  VerifyScreen({super.key});
 
+  final numbers = [
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController()
+  ];
+
+  Widget numField(BuildContext context, TextEditingController controller) {
+    return Expanded(
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 5),
+        child: TextField(
+          keyboardType: TextInputType.number,
+          textAlign: TextAlign.center,
+          controller: controller,
+          inputFormatters: [LengthLimitingTextInputFormatter(1)],
+          onChanged: (value) {
+            if (value.length == 1) {
+              FocusScope.of(context).nextFocus();
+            }
+          },
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(width: double.infinity,
-          color: const Color(0x00e1d9d1),
-
-          padding: const EdgeInsets.only(top: 50,left: 15,right: 15),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: Container(
+          padding: Dimensions.contentSymmetricPadding,
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              32.h.he,
+              const Text(
+                StringManager.verifyYourEmail,
+                style: AppStyles.title1,
+              ),
+              const Expanded(flex: 3, child: SizedBox()),
+              Image.asset(
+                StringManager.verifyImage,
+              ),
+              const Expanded(flex: 3, child: SizedBox()),
               Row(
                 children: [
-                  IconButton(onPressed: (){
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (_)
-                        {
-                          return SignUpScreen();
-                        }),);
-                  }, icon: const Icon(Icons.arrow_back_ios,size: 35,)),
-
+                  numField(context, numbers[0]),
+                  numField(context, numbers[1]),
+                  numField(context, numbers[2]),
+                  numField(context, numbers[3]),
                 ],
               ),
-              const SizedBox(height: 25,),
-              Container(padding: EdgeInsets.only(left: 20),
-                child: Row(
-                  children: const [
-                    Text("Verify your email",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),)
-                  ],
-                ),
+              const Expanded(
+                flex: 4,
+                child: SizedBox(),
               ),
-              const SizedBox(height: 65),
-              Image.asset("assets/images/verift.png",),
-              const SizedBox(height: 40,),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    height: 68,
-                    width: 64,
-                    child:
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      inputFormatters: [LengthLimitingTextInputFormatter(1)],
-                      onChanged: (value){
-                        if(value.length==1){
-                          FocusScope.of(context).nextFocus();
+              Container(
+                margin: Dimensions.bottomMargin,
+                width: double.infinity,
+                child: Consumer<VerificationViewModel>(
+                    builder: (context, viewModel, child) {
+                  return RoundedButton(
+                      visible: !viewModel.isLoading,
+                      text: StringManager.submit,
+                      onClick: () {
+                        String code = "";
+                        for (var element in numbers) {
+                          code += element.text;
                         }
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 68,
-                    width: 64,
-                    child:
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      inputFormatters: [LengthLimitingTextInputFormatter(1)],
-                      onChanged: (value){
-                        if(value.length==1){
-                          FocusScope.of(context).nextFocus();
-                        }
-                      },
-
-                    ),
-                  ),
-                  SizedBox(
-                    height: 68,
-                    width: 64,
-                    child:
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      inputFormatters: [LengthLimitingTextInputFormatter(1)],
-                      onChanged: (value){
-                        if(value.length==1){
-                          FocusScope.of(context).nextFocus();
-                        }
-                      },
-
-                    ),
-                  ),
-                  SizedBox(
-                    height: 68,
-                    width: 64,
-                    child:
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      inputFormatters: [LengthLimitingTextInputFormatter(1)],
-                      onChanged: (value){
-                        if(value.length==1){
-                          FocusScope.of(context).nextFocus();
-                        }
-                      },
-
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 88,),
-              Row(mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (_)
-                      {
-                        return SplashScreen();
-                      }),);
-                    },
-                    style: ButtonStyle(
-                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14))),
-                        backgroundColor:
-                        const MaterialStatePropertyAll(Color.fromRGBO(14, 82, 137, 1)),
-                        fixedSize: const MaterialStatePropertyAll(Size(328, 49))),
-                    child: const Text(
-                      "Submit",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ],
-              ),
+                        viewModel.checkVerificationCode(code, () {
+                          Navigator.pushReplacementNamed(
+                              context, RouteName.screensContainerRoute);
+                        });
+                      });
+                }),
+              )
             ],
           ),
-
         ),
       ),
     );

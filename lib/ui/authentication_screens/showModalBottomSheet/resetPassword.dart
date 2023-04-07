@@ -22,7 +22,7 @@ class ResetPassword extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Reset Password",   style: AppStyles.showModalTextStyle,),
+          const Text("Reset Password",   style: AppStyles.title1,),
           25.he,
           const Text("Set the new password for your account so"),
           const Text("you can login and acces all the features."),

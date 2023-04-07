@@ -41,8 +41,9 @@ class AppStyles {
         fontWeight: fontWeight,
         color: color);
   }
-  static const TextStyle showModalTextStyle=
-   TextStyle(fontSize: 25,fontWeight: FontWeight.bold);
+  static const TextStyle title1=
+   TextStyle(fontSize: 28,fontWeight: FontWeight.bold);
+
   static const TextStyle showModalTextStyle2=
   TextStyle(fontSize: 20,fontWeight: FontWeight.bold);
 }

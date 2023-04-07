@@ -72,8 +72,9 @@ class StringManager {
   static const String phoneNumberInvalid = "Phone Number is Invalid";
   static const String firstNameInvalid = "First Name is invalid";
   static const String secondNameInvalid = "First Name is invalid";
-
-
+  static const String verifyYourEmail = "Verify your email";
+  static const String codeInvalid = "The Code is Invalid";
+  static const String verifyMessage = "Your Account is now Verified";
 
 
   // Args Keys
@@ -126,7 +127,8 @@ class StringManager {
       "assets/images/profile_icon.png";
   static const String cameraIcon =
       "assets/images/camera_icon.png";
-  
+
+  static const String verifyImage = "assets/images/verift.png";
   
   static const String saveForRealEstateItem1 = "assets/images/saved_btn.png";
   static const String unSaveFroRealEstateItem1 = "assets/images/save_btn.png";

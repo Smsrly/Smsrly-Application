@@ -3,5 +3,5 @@ class ApiConstants {
   static const String registerEndPoint = "auth/register";
   static const String userRegisterImageEndPoint = "image";
   static const String loginEndPoint = "auth/authentication";
-
+  static const String confirmEmailEndPoint = "auth/confirmEmail";
 }

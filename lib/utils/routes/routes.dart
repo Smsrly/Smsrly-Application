@@ -2,6 +2,7 @@ import 'package:smsrly/ui/authentication_screens/login.dart';
 import 'package:smsrly/ui/authentication_screens/on_boarding.dart';
 import 'package:smsrly/ui/authentication_screens/sign_up.dart';
 import 'package:smsrly/ui/authentication_screens/splash_screen.dart';
+import 'package:smsrly/ui/authentication_screens/verify.dart';
 import 'package:smsrly/ui/screens_container.dart';
 import 'package:smsrly/ui/setting_screens/contact_us.dart';
 import 'package:smsrly/ui/setting_screens/edit_profile.dart';
@@ -16,5 +17,6 @@ final routes = {
   RouteName.screensContainerRoute: (context) => const ScreensContainer(),
   RouteName.editProfileRoute: (context) => const EditProfileScreen(),
   RouteName.contactUsRoute: (context) => const ContactUsScreen(),
-  RouteName.showDetailsRoute: (context) => ShowDetailsScreen()
+  RouteName.showDetailsRoute: (context) => ShowDetailsScreen(),
+  RouteName.verifyRoute: (context) => VerifyScreen()
 };

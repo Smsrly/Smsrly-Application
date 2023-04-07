@@ -13,6 +13,7 @@ import '../res/strings.dart';
 
 class SignUpViewModel with ChangeNotifier {
   SignUpUseCase? _signUpUseCase;
+  String? email;
   bool _isLoading = false;
   get isLoading => _isLoading;
   PickedFile? _image;
@@ -55,62 +56,57 @@ class SignUpViewModel with ChangeNotifier {
     return _image == null;
   }
 
-  Future signUp(String firstName, String secondName, String email,
+  void signUp(String firstName, String secondName, String email,
       String phoneNumber, String password, String confirmPassword,
       Function() onSuccess
       ) async {
-    _isLoading = true;
-    notifyListeners();
-    _signUpUseCase ??= SignUpUseCase(repository!);
-    if (_countryCode != null) {
-      phoneNumber = "${_countryCode!.dialCode}$phoneNumber";
-    } else {
-      phoneNumber = "+20$phoneNumber";
-    }
-    while (!_locationPermissionGranted && !_locationDeniedForever) {
-      await _checkLocationPermission();
-      if (!_locationPermissionGranted) {
-        Utils.showToast(StringManager.weNeedYouLoc, 1);
-        await Future.delayed(const Duration(seconds: 3), () {});
+    if(!_isLoading){
+      _isLoading = true;
+      notifyListeners();
+      _signUpUseCase ??= SignUpUseCase(repository!);
+      if (_countryCode != null) {
+        phoneNumber = "${_countryCode!.dialCode}$phoneNumber";
+      } else {
+        phoneNumber = "+20$phoneNumber";
       }
-    }
-    double? lat;
-    double? long;
-    if (_locationPermissionGranted) {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      print(position);
-      lat = position.latitude;
-      long = position.longitude;
+      while (!_locationPermissionGranted && !_locationDeniedForever) {
+        await _checkLocationPermission();
+        if (!_locationPermissionGranted) {
+          Utils.showToast(StringManager.weNeedYouLoc, 1);
+          await Future.delayed(const Duration(seconds: 3), () {});
+        }
+      }
+      double? lat;
+      double? long;
+      if (_locationPermissionGranted) {
+        Position position = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high);
+        print(position);
+        lat = position.latitude;
+        long = position.longitude;
+      }
+
+      String res = await _signUpUseCase!.signUp(
+          firstName,
+          secondName,
+          email,
+          phoneNumber,
+          password,
+          confirmPassword,
+          lat,
+          long,
+          _image != null ? File(_image!.path) : null);
+
+      Utils.showToast(res, 1);
+      if(res == StringManager.verificationCodeSent){
+        this.email = email;
+        onSuccess();
+      }
+      _isLoading = false;
+      notifyListeners();
     }
 
-    String res = await _signUpUseCase!.signUp(
-        firstName,
-        secondName,
-        email,
-        phoneNumber,
-        password,
-        confirmPassword,
-        lat,
-        long,
-        _image != null ? File(_image!.path) : null);
 
-    Utils.showToast(res, 1);
-    if(res == StringManager.verificationCodeSent){
-      onSuccess();
-    }
-    _isLoading = false;
-    notifyListeners();
-    /*
-    signUpUseCase ??= SignUpUseCase(_authService);
-    final s = signUpUseCase?.isValidData(firstName, secondName, email, phoneNumber, password, confirmPassword);
-    if(s!=StringManager.success){
-      Utils.showToast(
-          s!, 1
-      );
-    }
-
-     */
   }
 
   Future _checkLocationPermission() async {
@@ -135,4 +131,12 @@ class SignUpViewModel with ChangeNotifier {
       _locationPermissionGranted = true;
     }
   }
+
+  void onDestroy(){
+    _signUpUseCase = null;
+    email = null;
+    _image = null;
+    _isLoading = false;
+  }
+
 }
