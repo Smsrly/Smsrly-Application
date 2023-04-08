@@ -4,7 +4,6 @@ import 'package:smsrly/main.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/utils/utils.dart';
 
-import '../data/network/auth_service.dart';
 
 class LoginViewModel with ChangeNotifier {
 
