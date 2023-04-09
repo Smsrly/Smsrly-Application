@@ -114,6 +114,36 @@ class ApiServices {
     }
   }
 
+
+  Future<dynamic> checkResetPasswordCode(String email, String code) async {
+    try {
+      final response = await http
+          .get(Uri.parse(ApiConstants.baseUrl +
+          ApiConstants.submitResetPasswordCodeEndPoint)
+          .replace(queryParameters: {'email': email, 'code': code}))
+          .timeout(const Duration(seconds: 15));
+      return returnResponse(response);
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<dynamic> changePassword(String token, String password) async {
+    try {
+      final response = await http.put(
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.updatePasswordEndPoint)
+              .replace(queryParameters: {'password': password}),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }).timeout(const Duration(seconds: 15));
+      return returnResponse(response);
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

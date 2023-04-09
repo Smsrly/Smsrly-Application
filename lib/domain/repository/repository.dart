@@ -8,6 +8,8 @@ abstract class Repository{
   Future<String> signUp(User user,String password,File? file);
   Future<String> checkVerificationCode(String email, String code);
   Future<String> sendResetPasswordCodeRequest(String email);
+  Future<dynamic> checkResetPasswordCode(String email, String code);
+  Future<String> resetPassword(String token, String password);
   void setSeenOnBoarding();
   bool hasSeenOnBoarding();
   bool hasUserSignedInBefore();

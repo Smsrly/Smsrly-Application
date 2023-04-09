@@ -97,4 +97,29 @@ class AuthService {
     result['result'] = res;
     return result;
   }
+  Future<Map<String,dynamic>> checkResetPasswordCode(String email ,String code)async{
+    Map<String,dynamic> res = {};
+    final apiRes = await _apiServices.checkResetPasswordCode(email, code);
+    if(apiRes is Map<String,dynamic>){
+      res['statue'] = StringManager.success;
+      if(apiRes['token'] != null){
+        res['token'] = apiRes['token'];
+      }
+      res['message'] = apiRes['message'];
+      return res;
+    }
+    res['statue'] = StringManager.fail;
+    res['result'] = res;
+    return res;
+  }
+
+  Future<String> updatePassword(String token,String password) async {
+    final apiRes = await _apiServices.changePassword(token, password);
+    print(apiRes);
+    print('boolean => ${apiRes is Map<String,dynamic>}');
+    if(apiRes is Map<String,dynamic>){
+      return apiRes['message']!;
+    }
+    return apiRes;
+  }
 }

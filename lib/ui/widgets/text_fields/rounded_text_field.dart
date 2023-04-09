@@ -9,16 +9,26 @@ class RoundedTextField extends StatelessWidget {
   Color? cursorColor;
   TextStyle? textStyle;
   Function(String)? onChange;
+  IconData? suffixIcon;
+  bool? obscureText;
+  Function()? onClickSuffixIcon;
+  bool get isObscure{
+    return obscureText ?? false;
+  }
 
   RoundedTextField(
       {Key? key,
         this.fontSize,
         this.onChange,
+        this.onClickSuffixIcon,
         this.label,
         this.inputType,
         this.controller,
         required this.cursorColor,
-        this.textStyle})
+        this.textStyle,
+        this.suffixIcon,
+        this.obscureText
+      })
       : super(key: key);
 
   @override
@@ -27,9 +37,12 @@ class RoundedTextField extends StatelessWidget {
         controller: controller,
         onChanged: onChange,
         style: textStyle,
+        obscureText: isObscure,
         keyboardType: inputType,
         cursorColor: cursorColor,
+
         decoration: InputDecoration(
+          suffixIcon: IconButton(onPressed: onClickSuffixIcon, icon: Icon(suffixIcon)),
           labelText: label,
           labelStyle: TextStyle(fontSize: fontSize),
           focusedBorder: OutlineInputBorder(

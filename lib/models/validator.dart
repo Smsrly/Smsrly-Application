@@ -45,7 +45,7 @@ class ValidationService {
   }
 
   bool isValidCode(String code) {
-    return code.length == 4;
+    return code.length == 4 && RegExp(r'^[0-9]+$').hasMatch(code);
   }
 
 }

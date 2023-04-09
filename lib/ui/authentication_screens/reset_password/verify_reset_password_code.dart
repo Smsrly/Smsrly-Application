@@ -30,7 +30,7 @@ class VerifyResetPasswordCodeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel =
-        Provider.of<ResetPasswordViewModel>(context, listen: false);
+    Provider.of<ResetPasswordViewModel>(context, listen: false);
 
     return SingleChildScrollView(
       child: Container(
@@ -70,7 +70,7 @@ class VerifyResetPasswordCodeView extends StatelessWidget {
 
               ],
             ),
-            40.h.he,
+            25.h.he,
             Row(
               children: [
                 Expanded(
@@ -83,11 +83,17 @@ class VerifyResetPasswordCodeView extends StatelessWidget {
 
                 10.w.wi,
                 Expanded(
-                  child: RoundedButton(
-                      text: StringManager.next,
-                      onClick: () {
-                        viewModel.next();
-                      }),
+                  child: Consumer<ResetPasswordViewModel>(
+                      builder: (context,resetPassViewModel,child){
+                        return RoundedButton(
+                            visible: !resetPassViewModel.isLoading,
+                            text: StringManager.next,
+                            onClick: () {
+                              resetPassViewModel.next();
+                            }
+                        );
+                      }
+                  ),
                 ),
               ],
             )

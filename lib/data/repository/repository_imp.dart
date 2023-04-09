@@ -106,4 +106,32 @@ class RepositoryImp implements Repository {
     }
     return res['result'];
   }
+
+  @override
+  Future<dynamic> checkResetPasswordCode(String email, String code) async {
+    final res = await _authService.checkResetPasswordCode(email, code);
+    if (res['statue'] == StringManager.success &&
+        res['message'] == StringManager.codeConfirmed) {
+      print('token => ${res['token']}');
+      Map<String,dynamic> resultMap = {
+        'statue' : StringManager.success,
+        'token' : res['token']
+      };
+      return resultMap;
+    } else if (res['statue'] == StringManager.success &&
+        res['message'] != StringManager.codeConfirmed) {
+      return res['message'];
+    } else {
+      return res['result'];
+    }
+  }
+
+  @override
+  Future<String> resetPassword(String token, String password) async {
+    final res = await _authService.updatePassword(token, password);
+    if(res == StringManager.passwordUpdated){
+      _localService.saveToken(token);
+    }
+    return res;
+  }
 }

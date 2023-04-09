@@ -11,6 +11,8 @@ class StringManager {
   static const String second = "Second Name";
   static const String phoneNum = "Phone Number";
   static const String cPassword = "Confirm Password";
+  static const String codeConfirmed = "code confirmed";
+  static const String passwordUpdated = "password updated";
   static const String haveAnAccount = "Already have an account ?";
   static const String successResetPassMessage = "verification code sent";
   static const String successResetCodeMessage = "reset code sent";
