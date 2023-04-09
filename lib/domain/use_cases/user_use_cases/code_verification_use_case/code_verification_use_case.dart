@@ -1,10 +1,14 @@
 import 'package:smsrly/res/strings.dart';
 
+import '../../../../models/validator.dart';
 import '../../../repository/repository.dart';
 
 class VerificationUseCase{
   Repository repository;
-  VerificationUseCase(this.repository);
+  late ValidationService _validationService;
+  VerificationUseCase(this.repository){
+    _validationService = ValidationService();
+  }
 
   Future<String> sendVerificationCode(
       String email,
@@ -21,9 +25,6 @@ class VerificationUseCase{
   bool _isValidData(
       String code
       ){
-    if(code.length != 4){
-      return false;
-    }
-    return true;
+    return _validationService.isValidCode(code);
   }
 }

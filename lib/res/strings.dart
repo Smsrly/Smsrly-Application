@@ -10,6 +10,8 @@ class StringManager {
   static const String phoneNum = "Phone Number";
   static const String cPassword = "Confirm Password";
   static const String haveAnAccount = "Already have an account ?";
+  static const String successResetPassMessage = "verification code sent";
+  static const String successResetCodeMessage = "reset code sent";
   static const String welcome = "Welcome, ";
   static const String common = "Common Real Estates";
   static const String see = "See all";
@@ -17,8 +19,14 @@ class StringManager {
   static const String explore = "Explore";
   static const String where = "Where do you want to go";
   static const String ups = "Ups!... no results found";
+  static const String back = "Back" ;
+  static const String enterCode = "Enter 4 Digits Code";
+  static const String codeSendMessage = "Enter the 4 digits code that you have received on your email";
+  static const String resetPass = "Reset Password";
+  static const String resetPassMessage = "Set the new password for your account so,\nyou can login and access all the features.";
   static const String please = "Please try another search";
-  static const String smsrly = "Smsrly";
+  static const String confirm = "Confirm";
+  static const String appName = "Smsrly";
   static const String add = "Add Image Or Video";
   static const String title = "Title";
   static const String price = "Price";
@@ -75,7 +83,9 @@ class StringManager {
   static const String verifyYourEmail = "Verify your email";
   static const String codeInvalid = "The Code is Invalid";
   static const String verifyMessage = "Your Account is now Verified";
-
+  static const String forgotPass = "Forgot Password ?";
+  static const String forgotPassMessage = "Enter your email for the verification process,\nWe will send 4 digits code to your email";
+  static const String next = "Next";
 
   // Args Keys
   static const String item = 'Item';
@@ -129,7 +139,7 @@ class StringManager {
       "assets/images/camera_icon.png";
 
   static const String verifyImage = "assets/images/verift.png";
-  
+
   static const String saveForRealEstateItem1 = "assets/images/saved_btn.png";
   static const String unSaveFroRealEstateItem1 = "assets/images/save_btn.png";
 

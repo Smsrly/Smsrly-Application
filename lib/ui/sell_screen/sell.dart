@@ -45,7 +45,7 @@ class SellScreen extends StatelessWidget {
                   children: [
                     Center(
                         child: Text(
-                      "${StringManager.smsrly}",
+                      StringManager.appName,
                       style: TextStyle(fontFamily: "Inter", fontSize: 22.sp),
                     )),
                     SizedBox(

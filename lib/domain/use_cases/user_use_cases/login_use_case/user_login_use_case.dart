@@ -1,11 +1,15 @@
 
+import '../../../../models/validator.dart';
 import '../../../../res/strings.dart';
 import '../../../repository/repository.dart';
 
 
 class LoginUseCase {
   Repository repository;
-  LoginUseCase(this.repository);
+  late ValidationService _validationService;
+  LoginUseCase(this.repository){
+    _validationService = ValidationService();
+  }
 
   Future<String> signInUsingEmailAndPassword(
       String email, String password) async {
@@ -22,12 +26,10 @@ class LoginUseCase {
     if (email.isEmpty || password.isEmpty) {
       return StringManager.fieldsCannotBeEmpty;
     }
-    if(password.length < 8){
+    if(!_validationService.isValidPassword(password)){
       return StringManager.incorrectPass;
     }
-    final emailRegax = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    if (!emailRegax.hasMatch(email)) {
+    if (!_validationService.isValidEmail(email)) {
       return StringManager.noUserFoundForThisEmail;
     }
     return StringManager.success;

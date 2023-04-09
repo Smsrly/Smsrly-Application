@@ -12,6 +12,7 @@ import 'data/local/local_service.dart';
 
 RepositoryImp? repository;
 LocalService? localService;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   repository = RepositoryImp();

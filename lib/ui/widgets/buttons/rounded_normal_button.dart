@@ -8,15 +8,17 @@ class RoundedButton extends StatelessWidget {
 
   RoundedButton(
       {Key? key,
-      required this.text,
-      required this.onClick,
-      this.visible = true})
+        required this.text,
+        required this.onClick,
+        this.visible = true})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onClick,
+      onPressed: visible! ? onClick : (){
+
+      },
       style: ElevatedButton.styleFrom(
         backgroundColor: primaryColor,
         shape: RoundedRectangleBorder(
@@ -27,7 +29,7 @@ class RoundedButton extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: visible! ? Text(text) : const CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(
-            Colors.white
+              Colors.white
           ),
         ),
       ),

@@ -2,13 +2,16 @@ import 'dart:io';
 
 import 'package:smsrly/models/user.dart';
 
+import '../../../../models/validator.dart';
 import '../../../../res/strings.dart';
 import '../../../repository/repository.dart';
 
 class SignUpUseCase{
   final Repository repository;
-
-  SignUpUseCase(this.repository);
+  late ValidationService _validationService;
+  SignUpUseCase(this.repository){
+    _validationService = ValidationService();
+  }
 
 
   Future<String> signUp(
@@ -41,12 +44,12 @@ class SignUpUseCase{
     }
     return await repository.signUp(
         User(
-            firstName: firstName,
-            secondName: secondName,
-            email: email,
-            phoneNumber: phoneNumber,
-            latitude: lat,
-            longitude: long,
+          firstName: firstName,
+          secondName: secondName,
+          email: email,
+          phoneNumber: phoneNumber,
+          latitude: lat,
+          longitude: long,
         ),
         password,
         image
@@ -63,71 +66,33 @@ class SignUpUseCase{
       ){
 
     if(
-      firstName.isEmpty ||
-      secondName.isEmpty ||
-      email.isEmpty ||
-      password.isEmpty ||
-      confirmPassword.isEmpty
+    firstName.isEmpty ||
+        secondName.isEmpty ||
+        email.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty
     ){
       return StringManager.fieldsCannotBeEmpty;
     }
-    if(!_isValidName(firstName)){
+    if(!_validationService.isValidName(firstName)){
       return StringManager.firstNameInvalid;
     }
-    if(!_isValidName(secondName)){
+    if(!_validationService.isValidName(secondName)){
       return StringManager.secondNameInvalid;
     }
-    final emailRegax = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    if(!emailRegax.hasMatch(email)){
+    if(!_validationService.isValidEmail(email)){
       return StringManager.emailNotValid;
     }
-    if(!_isValidPhoneNumber(phoneNumber)){
+    if(!_validationService.isValidNumber(phoneNumber)){
       return StringManager.phoneNumberInvalid;
     }
     if(password != confirmPassword){
       return StringManager.checkPassword;
     }
-    if(!_isValidPassword(password)){
+    if(!_validationService.isValidPassword(password)){
       return StringManager.passwordValidationMessage;
     }
     return StringManager.success;
-  }
-
-  bool _isValidPassword(String password) {
-    // Password length should be between 8 and 20 characters
-    if (password.length < 8 || password.length > 20) {
-      return false;
-    }
-
-    // Password should contain at least one uppercase letter, one lowercase letter, one digit, and one special character
-    RegExp pattern = RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^])[A-Za-z\d@$!%*?&#^]{8,20}$');
-    bool isMatched = pattern.hasMatch(password);
-
-    return isMatched;
-  }
-
-  bool _isValidPhoneNumber(String phoneNumber) {
-    if(phoneNumber[0] != '+'){
-      return false;
-    }
-
-    if(phoneNumber.length<10){
-      return false;
-    }
-
-    return true;
-  }
-  bool _isValidName(String name) {
-    if(name.length<2 || name.length>20){
-      return false;
-    }
-
-    RegExp pattern = RegExp(r'^[a-zA-Z]+$');
-
-    bool isMatched = pattern.hasMatch(name);
-
-    return isMatched;
   }
 
 }

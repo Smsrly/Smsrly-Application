@@ -7,6 +7,7 @@ abstract class Repository{
   Future<String> signInWithEmailAndPassword(String email,String password);
   Future<String> signUp(User user,String password,File? file);
   Future<String> checkVerificationCode(String email, String code);
+  Future<String> sendResetPasswordCodeRequest(String email);
   void setSeenOnBoarding();
   bool hasSeenOnBoarding();
   bool hasUserSignedInBefore();

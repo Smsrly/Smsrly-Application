@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:smsrly/res/dimen.dart';
@@ -10,6 +9,7 @@ import 'package:smsrly/viewmodel/verification_view_model.dart';
 
 import '../../res/strings.dart';
 import '../../utils/routes/route_name.dart';
+import '../widgets/text_fields/code_text_field.dart';
 
 class VerifyScreen extends StatelessWidget {
   VerifyScreen({super.key});
@@ -24,18 +24,11 @@ class VerifyScreen extends StatelessWidget {
   Widget numField(BuildContext context, TextEditingController controller) {
     return Expanded(
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 5),
-        child: TextField(
-          keyboardType: TextInputType.number,
-          textAlign: TextAlign.center,
-          controller: controller,
-          inputFormatters: [LengthLimitingTextInputFormatter(1)],
-          onChanged: (value) {
-            if (value.length == 1) {
-              FocusScope.of(context).nextFocus();
-            }
-          },
-        ),
+          margin: Dimensions.codeField,
+          child: CodeTextField(
+              parentContext: context,
+              controller:controller
+          )
       ),
     );
   }
@@ -78,20 +71,20 @@ class VerifyScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Consumer<VerificationViewModel>(
                     builder: (context, viewModel, child) {
-                  return RoundedButton(
-                      visible: !viewModel.isLoading,
-                      text: StringManager.submit,
-                      onClick: () {
-                        String code = "";
-                        for (var element in numbers) {
-                          code += element.text;
-                        }
-                        viewModel.checkVerificationCode(code, () {
-                          Navigator.pushReplacementNamed(
-                              context, RouteName.screensContainerRoute);
-                        });
-                      });
-                }),
+                      return RoundedButton(
+                          visible: !viewModel.isLoading,
+                          text: StringManager.submit,
+                          onClick: () {
+                            String code = "";
+                            for (var element in numbers) {
+                              code += element.text;
+                            }
+                            viewModel.checkVerificationCode(code, () {
+                              Navigator.pushReplacementNamed(
+                                  context, RouteName.screensContainerRoute);
+                            });
+                          });
+                    }),
               )
             ],
           ),

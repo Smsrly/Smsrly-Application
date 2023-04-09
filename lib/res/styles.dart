@@ -6,10 +6,10 @@ import 'colors.dart';
 
 class AppStyles {
   static TextStyle headline1 =
-      _getIBMPlexSansFont(fontSize: 32.sp, fontWeight: FontWeight.w500);
+  _getIBMPlexSansFont(fontSize: 32.sp, fontWeight: FontWeight.w500);
 
   static TextStyle bodyText1 =
-      _getIBMPlexSansFont(fontSize: 15.sp, fontWeight: FontWeight.w400);
+  _getIBMPlexSansFont(fontSize: 15.sp, fontWeight: FontWeight.w400);
 
   static TextStyle getBodyText1(Color color) {
     return _getIBMPlexSansFont(
@@ -20,7 +20,7 @@ class AppStyles {
       fontSize: 15, fontWeight: FontWeight.w400, color: textFieldCursorColor);
 
   static TextStyle bodyText2 =
-      _getIBMPlexSansFont(fontSize: 18.sp, fontWeight: FontWeight.w400);
+  _getIBMPlexSansFont(fontSize: 18.sp, fontWeight: FontWeight.w400);
 
   static TextStyle getBodyText2(Color color) {
     return _getIBMPlexSansFont(
@@ -29,12 +29,12 @@ class AppStyles {
   }
 
   static TextStyle bodyText3 =
-      _getIBMPlexSansFont(fontSize: 16.sp, fontWeight: FontWeight.w400);
+  _getIBMPlexSansFont(fontSize: 16.sp, fontWeight: FontWeight.w400);
 
   static TextStyle _getIBMPlexSansFont(
       {required double fontSize,
-      required FontWeight fontWeight,
-      Color? color = Colors.black}) {
+        required FontWeight fontWeight,
+        Color? color = Colors.black}) {
     return TextStyle(
         fontFamily: StringManager.ibmPlexSans,
         fontSize: fontSize,
@@ -42,8 +42,8 @@ class AppStyles {
         color: color);
   }
   static const TextStyle title1=
-   TextStyle(fontSize: 28,fontWeight: FontWeight.bold);
+  TextStyle(fontSize: 28,fontWeight: FontWeight.bold);
 
-  static const TextStyle showModalTextStyle2=
-  TextStyle(fontSize: 20,fontWeight: FontWeight.bold);
+  static  TextStyle showModalTextStyle2=
+  _getIBMPlexSansFont(fontSize: 20,fontWeight: FontWeight.bold);
 }

@@ -68,4 +68,18 @@ class AuthService {
     result['result'] = res;
     return result;
   }
+
+
+  Future<Map<String,dynamic>> sendResetCodeRequest(String email)async{
+    final res = await _apiServices.sendResetCodeRequest(email);
+    Map<String,dynamic> sub ={};
+    if(res is Map<String,dynamic>){
+      sub['statue'] = StringManager.success;
+      sub['message'] = res['message'];
+      return sub;
+    }
+    sub['statue'] = StringManager.fail;
+    sub['result'] = res;
+    return sub;
+  }
 }

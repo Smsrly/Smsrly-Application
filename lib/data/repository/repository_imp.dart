@@ -23,7 +23,7 @@ class RepositoryImp implements Repository {
   Future<String> signInWithEmailAndPassword(
       String email, String password) async {
     final response =
-        await _authService.signInUsingEmailAndPassword(email, password);
+    await _authService.signInUsingEmailAndPassword(email, password);
     if (response['statue'] == StringManager.success &&
         response['message'] == StringManager.apiLoginSuccess) {
       _localService.saveToken(response['token']);
@@ -79,5 +79,17 @@ class RepositoryImp implements Repository {
   @override
   String signInWithGoogle() {
     return "";
+  }
+
+  @override
+  Future<String> sendResetPasswordCodeRequest(String email) async {
+    final res = await _authService.sendResetCodeRequest(email);
+    if(res['statue'] == StringManager.success && res['message'] == StringManager.successResetPassMessage){
+      return StringManager.successResetCodeMessage;
+    }
+    if(res['statue'] == StringManager.success && res['message'] != StringManager.successResetPassMessage){
+      return res['message'];
+    }
+    return res['result'];
   }
 }
