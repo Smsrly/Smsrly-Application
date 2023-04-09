@@ -23,7 +23,7 @@ class RepositoryImp implements Repository {
   Future<String> signInWithEmailAndPassword(
       String email, String password) async {
     final response =
-    await _authService.signInUsingEmailAndPassword(email, password);
+        await _authService.signInUsingEmailAndPassword(email, password);
     if (response['statue'] == StringManager.success &&
         response['message'] == StringManager.apiLoginSuccess) {
       _localService.saveToken(response['token']);
@@ -77,17 +77,31 @@ class RepositoryImp implements Repository {
   }
 
   @override
-  String signInWithGoogle() {
-    return "";
+  Future<String> signInWithGoogle(
+      String firstName, String lastName, String email, String? imageUrl) async {
+    final response = await _authService.signInUsingGoogle(
+        firstName, lastName, email, imageUrl);
+    if (response['statue'] == StringManager.success &&
+        response['message'] == StringManager.apiLoginSuccessfully) {
+      _localService.saveToken(response['token']);
+      return StringManager.success;
+    }
+    if (response['statue'] == StringManager.success &&
+        response['message'] != StringManager.apiLoginSuccessfully) {
+      return response['message'];
+    }
+    return response['result'];
   }
 
   @override
   Future<String> sendResetPasswordCodeRequest(String email) async {
     final res = await _authService.sendResetCodeRequest(email);
-    if(res['statue'] == StringManager.success && res['message'] == StringManager.successResetPassMessage){
+    if (res['statue'] == StringManager.success &&
+        res['message'] == StringManager.successResetPassMessage) {
       return StringManager.successResetCodeMessage;
     }
-    if(res['statue'] == StringManager.success && res['message'] != StringManager.successResetPassMessage){
+    if (res['statue'] == StringManager.success &&
+        res['message'] != StringManager.successResetPassMessage) {
       return res['message'];
     }
     return res['result'];

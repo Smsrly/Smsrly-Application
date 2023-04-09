@@ -69,11 +69,10 @@ class AuthService {
     return result;
   }
 
-
-  Future<Map<String,dynamic>> sendResetCodeRequest(String email)async{
+  Future<Map<String, dynamic>> sendResetCodeRequest(String email) async {
     final res = await _apiServices.sendResetCodeRequest(email);
-    Map<String,dynamic> sub ={};
-    if(res is Map<String,dynamic>){
+    Map<String, dynamic> sub = {};
+    if (res is Map<String, dynamic>) {
       sub['statue'] = StringManager.success;
       sub['message'] = res['message'];
       return sub;
@@ -81,5 +80,21 @@ class AuthService {
     sub['statue'] = StringManager.fail;
     sub['result'] = res;
     return sub;
+  }
+
+  Future<Map<dynamic, dynamic>> signInUsingGoogle(
+      String firstName, String lastName, String email, String? imageUrl) async {
+    final result = {};
+    final res = await _apiServices.getSignInWithGoogleResponse(
+        firstName, lastName, email, imageUrl);
+    if (res is Map<String, dynamic>) {
+      result['statue'] = StringManager.success;
+      result['message'] = res['message'];
+      result['token'] = res['token'];
+      return result;
+    }
+    result['statue'] = StringManager.fail;
+    result['result'] = res;
+    return result;
   }
 }

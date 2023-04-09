@@ -11,5 +11,5 @@ abstract class Repository{
   void setSeenOnBoarding();
   bool hasSeenOnBoarding();
   bool hasUserSignedInBefore();
-  String signInWithGoogle();
+  Future<String> signInWithGoogle(String firstName, String lastName, String email, String? imageUrl) ;
 }

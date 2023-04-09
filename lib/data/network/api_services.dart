@@ -16,10 +16,10 @@ class ApiServices {
 
       var res12 = await http
           .post(
-        Uri.parse(ApiConstants.baseUrl + ApiConstants.loginEndPoint),
-        headers: {'Content-Type': 'application/json; charset=UTF-8'},
-        body: body,
-      )
+            Uri.parse(ApiConstants.baseUrl + ApiConstants.loginEndPoint),
+            headers: {'Content-Type': 'application/json; charset=UTF-8'},
+            body: body,
+          )
           .timeout(const Duration(seconds: 10));
 
       final res = returnResponse(res12);
@@ -36,8 +36,8 @@ class ApiServices {
       final bodyR = jsonEncode(body);
       final response = await http
           .post(Uri.parse(ApiConstants.baseUrl + ApiConstants.registerEndPoint),
-          headers: {'Content-Type': 'application/json; charset=UTF-8'},
-          body: bodyR)
+              headers: {'Content-Type': 'application/json; charset=UTF-8'},
+              body: bodyR)
           .timeout(const Duration(seconds: 20));
       print(response.body);
       return returnResponse(response);
@@ -77,17 +77,41 @@ class ApiServices {
   }
 
   Future<dynamic> sendResetCodeRequest(String email) async {
-    try{
+    try {
       final response = await http.get(
         Uri.parse(ApiConstants.baseUrl + ApiConstants.resetPasswordEndPoint)
             .replace(queryParameters: {'email': email}),
         headers: {'Content-Type': 'application/json; charset=UTF-8'},
       );
       return returnResponse(response);
-    }catch(e){
+    } catch (e) {
       return e.toString();
     }
+  }
 
+  Future<dynamic> getSignInWithGoogleResponse(
+      String firstName, String lastName, String email, String? imageUrl) async {
+    try {
+      String body = jsonEncode({
+        'firstname': firstName,
+        'lastname': lastName,
+        'email': email,
+        'imageURL': imageUrl
+      });
+      var response = await http
+          .post(
+        Uri.parse(
+            ApiConstants.baseUrl + ApiConstants.loginWithGoogleEndPoint),
+        headers: {'Content-Type': 'application/json; charset=UTF-8'},
+        body: body,
+      )
+          .timeout(const Duration(seconds: 10));
+
+      final res = returnResponse(response);
+      return res;
+    } catch (e) {
+      return e.toString();
+    }
   }
 
   dynamic returnResponse(http.Response response) {

@@ -3,7 +3,9 @@ class StringManager {
   static const String login = "Login";
   static const String email = "Email";
   static const String password = "Password";
+  static const String loginWithGoogle = "Login with google";
   static const String haveAnAccountMessage = "Don't have an account ?";
+  static const String tryAgain = "something wrong, please try again or use another account";
   static const String signUp = "Sign Up";
   static const String first = "First Name";
   static const String second = "Second Name";
@@ -76,6 +78,7 @@ class StringManager {
   static const String checkPassword = "Check Your Password please";
   static const String egyptCountryCode = "+20";
   static const String apiLoginSuccess = "log in success";
+  static const String apiLoginSuccessfully = "log in successfully";
   static const String passwordValidationMessage = "Password is not valid, password should contain at least one uppercase letter, one lowercase letter, one digit, and one special character";
   static const String phoneNumberInvalid = "Phone Number is Invalid";
   static const String firstNameInvalid = "First Name is invalid";
