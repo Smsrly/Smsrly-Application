@@ -69,7 +69,6 @@ class StringManager {
   static const String yourMessage = "Your Message";
   static const String egyptianPound = "EGP";
   static const String areaUnit ="m²";
-  static const String googleImage = "assets/images/google.png";
   static const String fieldsCannotBeEmpty = "Fields cannot be empty";
   static const String noUserFoundForThisEmail = "No User Found For This Email !" ;
   static const String incorrectPass = "Incorrect Password !" ;
@@ -109,6 +108,8 @@ class StringManager {
   static const String onBoardingScreenLogo =
       "assets/images/onboarding_logo.png";
   static const String pictureForLogin = "assets/images/picture_for_login.png";
+
+  static const String googleImage = "assets/images/google.png";
 
   static const String splashAnimation =
       "assets/animations/loading_home_animation.json";
