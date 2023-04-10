@@ -191,7 +191,7 @@ class SignUpScreen extends StatelessWidget {
                   Consumer<SignUpViewModel>(
                       builder: (context, signUpViewModel, child) {
                     return TextFieldWithBottomBorder(
-                      label: StringManager.password,
+                      label: StringManager.cPassword,
                       fontSize: 18.sp,
                       obscureText: !signUpViewModel.isConfirmPasswordVisible,
                       controller: _confirmPassController,

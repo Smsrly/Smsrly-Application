@@ -88,6 +88,7 @@ flutter:
      - assets/images/saved_btn.png
      - assets/images/area_icon.png
      - assets/images/black_location_icon.png
+     - assets/images/google.png
      - assets/images/saved_icon_blue.png
      - assets/images/save_icon_blue.png
      - assets/images/search_icon.png

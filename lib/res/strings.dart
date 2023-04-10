@@ -3,7 +3,7 @@ class StringManager {
   static const String login = "Login";
   static const String email = "Email";
   static const String password = "Password";
-  static const String loginWithGoogle = "Login with google";
+  static const String loginWithGoogle = "Login with Google";
   static const String haveAnAccountMessage = "Don't have an account ?";
   static const String tryAgain = "something wrong, please try again or use another account";
   static const String signUp = "Sign Up";
@@ -69,6 +69,7 @@ class StringManager {
   static const String yourMessage = "Your Message";
   static const String egyptianPound = "EGP";
   static const String areaUnit ="m²";
+  static const String googleImage = "assets/images/google.png";
   static const String fieldsCannotBeEmpty = "Fields cannot be empty";
   static const String noUserFoundForThisEmail = "No User Found For This Email !" ;
   static const String incorrectPass = "Incorrect Password !" ;

@@ -5,6 +5,7 @@ import 'package:smsrly/res/dimen.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/authentication_screens/reset_password/forget_password_view.dart';
+import 'package:smsrly/ui/widgets/buttons/google_button_login.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
@@ -139,7 +140,7 @@ class LoginScreen extends StatelessWidget {
                   width: double.infinity,
                   child: Consumer<LoginViewModel>(
                     builder: (context, authViewModel, child) {
-                      return RoundedButton(
+                      return GoogleLoginButton(
                         onClick: () {
                           authViewModel.loginWithGoogle(() {
                             Navigator.pushReplacementNamed(
