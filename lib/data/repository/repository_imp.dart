@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:smsrly/data/network/api_services.dart';
 import 'package:smsrly/domain/repository/repository.dart';
 import 'package:smsrly/models/user.dart';
 
@@ -10,9 +11,11 @@ import '../network/auth_service.dart';
 class RepositoryImp implements Repository {
   late AuthService _authService;
   late LocalService _localService;
+  late ApiServices _apiServices;
 
   void setLocalService(LocalService localService) {
     _localService = localService;
+    _apiServices = ApiServices();
   }
 
   RepositoryImp() {
@@ -52,7 +55,7 @@ class RepositoryImp implements Repository {
     if (res['statue'] == StringManager.success &&
         res['message'] == 'activated') {
       print('Going To save token => ${res['token']}');
-      _localService.saveToken(res['token']);
+      await _localService.saveToken(res['token']);
       return StringManager.verifyMessage;
     } else if (res['statue'] == StringManager.fail && res['message'] != null) {
       return res['message'];
@@ -133,5 +136,24 @@ class RepositoryImp implements Repository {
       _localService.saveToken(token);
     }
     return res;
+  }
+
+  @override
+  Future<dynamic> getUser() async {
+    String? token = _localService.getToken();
+    if(token == null){
+      return StringManager.tokenNotFound;
+    }
+    print('asdas');
+    final res = await _apiServices.getUser(token);
+    print('res => $res');
+    if(res is User){
+      return res;
+    } else if(res == StringManager.tokenNotWork) {
+      print('hsfds');
+      await _localService.deleteToken();
+      return StringManager.tokenNotWork;
+    }
+    return null;
   }
 }

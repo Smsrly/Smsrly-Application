@@ -12,7 +12,6 @@ import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/text_field_with_bottom_border.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
-import 'package:smsrly/viewmodel/app_view_model.dart';
 import 'package:smsrly/viewmodel/sign_up_view_model.dart';
 import 'package:smsrly/viewmodel/verification_view_model.dart';
 

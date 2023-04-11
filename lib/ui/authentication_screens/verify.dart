@@ -81,7 +81,7 @@ class VerifyScreen extends StatelessWidget {
                             }
                             viewModel.checkVerificationCode(code, () {
                               Navigator.pushReplacementNamed(
-                                  context, RouteName.screensContainerRoute);
+                                  context, RouteName.splashRoute);
                             });
                           });
                     }),

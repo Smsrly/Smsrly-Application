@@ -79,7 +79,7 @@ class ResetPasswordView extends StatelessWidget {
                         viewModel.next(
                             onFinish: (){
                               resetViewModel.dispose();
-                              Navigator.of(context).pushReplacementNamed(RouteName.screensContainerRoute);
+                              Navigator.of(context).pushReplacementNamed(RouteName.splashRoute);
                             }
                         );
                       });

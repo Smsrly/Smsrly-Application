@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'package:smsrly/res/strings.dart';
 
 import '../../models/user.dart';
 import 'api_constants.dart';
@@ -143,6 +144,27 @@ class ApiServices {
     }
   }
 
+  Future<dynamic> getUser(String token) async {
+    try{
+      final response = await http.get(
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.getUserEndPoint),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }).timeout(const Duration(seconds: 20));
+      print('response code => ${response.statusCode}');
+      print('response body => ${response.body}');
+      if(response.statusCode == 200){
+        return User.formJson(jsonDecode(response.body));
+      } else if(response.statusCode == 403) {
+        return StringManager.tokenNotWork;
+      } else {
+        return null;
+      }
+    }catch(e){
+      return e.toString();
+    }
+  }
 
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {

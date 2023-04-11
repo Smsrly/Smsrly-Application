@@ -37,6 +37,22 @@ class User {
       this.longitude,
       this.pictureUrl});
 
+
+  bool hasPicture(){
+    return pictureUrl != null;
+  }
+  factory User.formJson(Map<String,dynamic> userMap){
+    return User(
+        firstName: userMap['firstName'],
+        secondName: userMap['lastName'],
+        email: userMap['email'],
+        phoneNumber: "+${userMap['phoneNumber']}",
+        latitude: userMap['latitude'],
+        longitude: userMap['longitude'],
+        pictureUrl: userMap['imageURL']
+    );
+  }
+
   Map<String,dynamic> toMap(){
     return {
       'firstname' : firstName,

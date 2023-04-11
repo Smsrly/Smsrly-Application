@@ -91,6 +91,8 @@ class StringManager {
   static const String forgotPass = "Forgot Password ?";
   static const String forgotPassMessage = "Enter your email for the verification process,\nWe will send 4 digits code to your email";
   static const String next = "Next";
+  static const String tokenNotWork = "TokenIsExpired";
+  static const String tokenNotFound = "TOKEN NOT FOUND";
 
   // Args Keys
   static const String item = 'Item';

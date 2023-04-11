@@ -34,7 +34,7 @@ class AuthService {
     final ans = {};
     final res = await _apiServices.signUpResponse(user, password);
     if (res is Map<String, dynamic>) {
-      if (file != null) {
+      if (file != null && res['message'] == StringManager.verificationCodeSent) {
         await _apiServices.uploadUserImage(user.email, file);
       }
 

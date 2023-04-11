@@ -9,6 +9,7 @@ abstract class Repository{
   Future<String> checkVerificationCode(String email, String code);
   Future<String> sendResetPasswordCodeRequest(String email);
   Future<dynamic> checkResetPasswordCode(String email, String code);
+  Future<dynamic> getUser();
   Future<String> resetPassword(String token, String password);
   void setSeenOnBoarding();
   bool hasSeenOnBoarding();

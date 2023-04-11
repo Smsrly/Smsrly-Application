@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
+import 'package:smsrly/viewmodel/app_view_model.dart';
 
 import '../../models/realestate.dart';
 import '../../utils/routes/route_name.dart';
@@ -15,7 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   HomeScreen({Key? key}) : super(key: key);
 
-  Widget header(){
+  Widget header(AppViewModel viewModel){
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
       child: Row(
@@ -35,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                'Totti',
+                viewModel.currUser!.firstName,
                 style: AppStyles.getBodyText2(primaryColor),
               )
             ],
@@ -43,9 +45,9 @@ class HomeScreen extends StatelessWidget {
           SizedBox(
             width: 50,
             height: 50,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage('https://www.thefamouspeople.com/profiles/images/francesco-totti-1.jpg'),
-            ),
+            child: viewModel.currUser!.pictureUrl!= null? CircleAvatar(
+              backgroundImage: NetworkImage(viewModel.currUser!.pictureUrl!),
+            ) : Image.asset(StringManager.profilePlaceholder),
           ),
         ],
       ),
@@ -119,12 +121,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<AppViewModel>(context,listen: false);
+    print('pictureURL => ${viewModel.currUser!.pictureUrl!}');
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              header(),
+              header(viewModel),
               10.h.he,
               seeAllRow(StringManager.common),
               SizedBox(

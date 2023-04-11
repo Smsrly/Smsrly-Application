@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:smsrly/viewmodel/reset_password_viewmodel.dart';
+import 'package:smsrly/viewmodel/splash_view_model.dart';
 
 import '../viewmodel/app_view_model.dart';
 import '../viewmodel/login_view_model.dart';
@@ -23,6 +24,9 @@ List<SingleChildWidget> providers = [
 
   ChangeNotifierProvider(
       create: (BuildContext context) => ResetPasswordViewModel()
+  ),
+  ChangeNotifierProvider(
+      create: (BuildContext context) => SplashViewModel()
   )
 
 ];
