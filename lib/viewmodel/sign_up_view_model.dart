@@ -63,7 +63,7 @@ class SignUpViewModel with ChangeNotifier {
     if(!_isLoading){
       _isLoading = true;
       notifyListeners();
-      _signUpUseCase ??= SignUpUseCase(repository!);
+      _signUpUseCase ??= SignUpUseCase(userRepository!);
       if (_countryCode != null) {
         phoneNumber = "${_countryCode!.dialCode}$phoneNumber";
       } else {

@@ -1,9 +1,9 @@
 import '../../../../models/validator.dart';
 import '../../../../res/strings.dart';
-import '../../../repository/repository.dart';
+import '../../../repository/user_repository.dart';
 
 class LoginUseCase {
-  Repository repository;
+  UserRepository repository;
   late ValidationService _validationService;
 
   LoginUseCase(this.repository) {

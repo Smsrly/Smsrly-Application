@@ -30,7 +30,7 @@ class ThirdItem extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             height: 220,
-            child: Image.network(realEstate.imageUrl,
+            child: Image.network(realEstate.imageUrl[0],
             fit: BoxFit.cover,
             ),
 

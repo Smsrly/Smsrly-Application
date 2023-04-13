@@ -1,12 +1,12 @@
 import 'dart:ui';
 
-import 'package:smsrly/domain/repository/repository.dart';
+import 'package:smsrly/domain/repository/user_repository.dart';
 import 'package:smsrly/models/user.dart';
 
 import '../../../../res/strings.dart';
 
 class GetUserDataUseCase {
-  Repository repository;
+  UserRepository repository;
 
   GetUserDataUseCase(this.repository);
 

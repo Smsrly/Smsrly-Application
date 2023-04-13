@@ -63,7 +63,7 @@ class ResetPasswordViewModel with ChangeNotifier {
       if (!_validationService.isValidEmail(_email.text)) {
         Utils.showToast(StringManager.emailNotValid, 1);
       }
-      final res = await repository!.sendResetPasswordCodeRequest(_email.text);
+      final res = await userRepository!.sendResetPasswordCodeRequest(_email.text);
       if (res == StringManager.successResetCodeMessage) {
         _currWidget = 1;
       } else {
@@ -81,7 +81,7 @@ class ResetPasswordViewModel with ChangeNotifier {
         Utils.showToast(StringManager.codeInvalid, 0);
       } else {
         final res =
-        await repository!.checkResetPasswordCode(_email.text, codeNum);
+        await userRepository!.checkResetPasswordCode(_email.text, codeNum);
         if (res is Map<String, dynamic> &&
             res['statue'] == StringManager.success) {
           token = res['token'];
@@ -112,7 +112,7 @@ class ResetPasswordViewModel with ChangeNotifier {
         notifyListeners();
         return;
       }
-      final res = await repository!.resetPassword(token!, _passwordController!.text);
+      final res = await userRepository!.resetPassword(token!, _passwordController!.text);
       if(res == StringManager.passwordUpdated){
         if (onFinish != null) {
           onFinish();

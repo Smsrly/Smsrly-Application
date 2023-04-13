@@ -6,30 +6,12 @@ import '../../res/strings.dart';
 import '../../utils/routes/route_name.dart';
 
 class Uploaded extends StatelessWidget{
-  RealEstate item3 = RealEstate(
-      123,
-      "https://pix8.agoda.net/hotelImages/2163054/-1/4f3b334212d6cf837f60ee731edf916d.jpg",
-      "Royal Sea Crown3",
-      null,
-      "123",
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      1231,
-      54,
-      5,
-      5,
-      100000,
-      21321.3,
-      1231.2,
-      "Morocco",
-      "Elrbat",1);
+
 
 
 
   void navigateToShowDetail(BuildContext context){
-    Navigator.pushNamed(context, RouteName.showDetailsRoute,arguments: {
-      StringManager.item: item3,
-      StringManager.isTheOwner: true
-    });
+
   }
 
 
@@ -40,16 +22,10 @@ class Uploaded extends StatelessWidget{
        ListView(
          children: [
            const SizedBox(height: 10,),
-           InkWell(child: ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),
-             onTap: (){
-              navigateToShowDetail(context);
-             },),
-           InkWell(child: ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),onTap: (){
-             navigateToShowDetail(context);
-           }),
-           InkWell(child: ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),onTap: (){
-             navigateToShowDetail(context);
-           })
+
+           // InkWell(child: ThirdItem(realEstate: item3,isTheOwner: true,hasSaved: false),onTap: (){
+           //   navigateToShowDetail(context);
+           // })
          ],
        )
     );

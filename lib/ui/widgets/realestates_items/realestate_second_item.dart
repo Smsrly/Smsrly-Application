@@ -40,7 +40,7 @@ class SecondItem extends StatelessWidget {
                   width: 120.w,
                   height: 130.h,
                   fit: BoxFit.cover,
-                  image: NetworkImage(item.imageUrl),
+                  image: NetworkImage(item.imageUrl[0]),
                 ),
               ),
               SizedBox(

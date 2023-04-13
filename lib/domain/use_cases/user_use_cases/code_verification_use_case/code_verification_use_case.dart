@@ -1,10 +1,10 @@
 import 'package:smsrly/res/strings.dart';
 
 import '../../../../models/validator.dart';
-import '../../../repository/repository.dart';
+import '../../../repository/user_repository.dart';
 
 class VerificationUseCase{
-  Repository repository;
+  UserRepository repository;
   late ValidationService _validationService;
   VerificationUseCase(this.repository){
     _validationService = ValidationService();

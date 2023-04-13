@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:smsrly/data/network/api_services.dart';
-import 'package:smsrly/domain/repository/repository.dart';
+import 'package:smsrly/domain/repository/user_repository.dart';
 import 'package:smsrly/models/user.dart';
 
 import '../../res/strings.dart';
 import '../local/local_service.dart';
 import '../network/auth_service.dart';
 
-class RepositoryImp implements Repository {
+class UserRepositoryImp implements UserRepository {
   late AuthService _authService;
   late LocalService _localService;
   late ApiServices _apiServices;
@@ -18,7 +18,7 @@ class RepositoryImp implements Repository {
     _apiServices = ApiServices();
   }
 
-  RepositoryImp() {
+  UserRepositoryImp() {
     _authService = AuthService();
   }
 

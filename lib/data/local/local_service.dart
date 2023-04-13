@@ -23,8 +23,8 @@ class LocalService {
   String? getToken() {
     return _sharedPreferences.getString('token');
   }
-  Future<void> deleteToken()async{
-    _sharedPreferences.remove('token');
+  Future<void> deleteToken() async {
+    await _sharedPreferences.remove('token');
   }
 
 }

@@ -36,7 +36,7 @@ class FirstItem extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             Image(
-              image: NetworkImage(item.imageUrl),
+              image: NetworkImage(item.imageUrl[0]),
               fit: BoxFit.cover,
               height: 235,
             ),

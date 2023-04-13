@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:smsrly/data/repository/repository_imp.dart';
+import 'package:smsrly/data/repository/realestate_respository_imp.dart';
+import 'package:smsrly/data/repository/user_repository_imp.dart';
+import 'package:smsrly/models/realestate.dart';
 import 'package:smsrly/utils/provider_setup.dart';
 import 'package:smsrly/utils/routes/routes.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
@@ -10,15 +12,17 @@ import 'data/local/local_service.dart';
 
 
 
-RepositoryImp? repository;
+UserRepositoryImp? userRepository;
+RealEstateRepositoryImp? realEstateRepository;
 LocalService? localService;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  repository = RepositoryImp();
+  userRepository = UserRepositoryImp();
   localService = LocalService();
   await localService?.initSharedPref();
-  repository!.setLocalService(localService!);
+  userRepository!.setLocalService(localService!);
+  realEstateRepository = RealEstateRepositoryImp(localService!);
   runApp(const App());
 }
 class App extends StatelessWidget {
@@ -42,7 +46,6 @@ class App extends StatelessWidget {
 class Application extends StatelessWidget{
 
   Application({super.key});
-
 
 
   @override

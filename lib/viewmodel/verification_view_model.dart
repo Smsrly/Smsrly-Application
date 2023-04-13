@@ -18,7 +18,7 @@ class VerificationViewModel with ChangeNotifier {
     if (!isLoading) {
       isLoading = true;
       notifyListeners();
-      _verificationUseCase ??= VerificationUseCase(repository!);
+      _verificationUseCase ??= VerificationUseCase(userRepository!);
       final res =
           await _verificationUseCase!.sendVerificationCode(_email!, code);
       if (res == StringManager.verifyMessage) {

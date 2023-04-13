@@ -1,8 +1,10 @@
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'package:smsrly/models/realestate.dart';
 import 'package:smsrly/res/strings.dart';
 
 import '../../models/user.dart';
@@ -164,6 +166,45 @@ class ApiServices {
     }catch(e){
       return e.toString();
     }
+  }
+
+  Future<dynamic> getRealEstates(String token)async{
+    try{
+
+      final response = await http.get(
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.realEstatesEndPoint),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }
+      ).timeout(const Duration(seconds: 15));
+      List<RealEstate> elements = [];
+      var responseBody = jsonDecode(response.body);
+
+      for(var item in responseBody){
+        elements.add(RealEstate.fromJson(Map<String,dynamic>.from(item)));
+      }
+      return elements;
+    }catch(e){
+      return e.toString();
+    }
+
+  }
+  Future<dynamic> uploadRealEstateImages(List<File> images, int realEstateId) async {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse(''),
+    );
+
+    request.fields['RealEstateId'] = realEstateId.toString();
+
+    for (var i = 0; i < images.length; i++) {
+      var file = await http.MultipartFile.fromPath('image', images[i].path);
+      request.files.add(file);
+    }
+
+    var response = await request.send();
+    return returnResponse(await http.Response.fromStream(response));
   }
 
   dynamic returnResponse(http.Response response) {

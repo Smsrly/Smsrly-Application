@@ -13,15 +13,15 @@ class AppViewModel with ChangeNotifier {
   }
 
   void setSeenOnBoarding() async {
-    repository?.setSeenOnBoarding();
+    userRepository?.setSeenOnBoarding();
   }
 
   bool hasSeenOnBoarding() {
-    return repository!.hasSeenOnBoarding();
+    return userRepository!.hasSeenOnBoarding();
   }
 
   bool hasUserSignedInBefore() {
-    return repository!.hasUserSignedInBefore();
+    return userRepository!.hasUserSignedInBefore();
   }
 
   String getStartScreen() {

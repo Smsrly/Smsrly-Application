@@ -27,7 +27,7 @@ class LoginViewModel with ChangeNotifier {
     if (!_isLoading) {
       _isLoading = true;
       notifyListeners();
-      LoginUseCase loginUseCase = LoginUseCase(repository!);
+      LoginUseCase loginUseCase = LoginUseCase(userRepository!);
       final res =
           await loginUseCase.signInUsingEmailAndPassword(email, password);
       if (res == StringManager.success) {
@@ -44,7 +44,7 @@ class LoginViewModel with ChangeNotifier {
     final userDetails = await logIn();
 
     if (userDetails != null) {
-      LoginUseCase loginUseCase = LoginUseCase(repository!);
+      LoginUseCase loginUseCase = LoginUseCase(userRepository!);
       final res = await loginUseCase.signInUsingGoogle(
           userDetails.displayName, userDetails.email, userDetails.photoUrl);
       if (res == StringManager.success) {

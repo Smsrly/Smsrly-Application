@@ -88,26 +88,26 @@ class ShowDetailsScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(item.owner != null
-                          ? item.owner?.pictureUrl as String
-                          : "https://user-images.githubusercontent.com/90563044/215369020-31ed45db-baa0-4175-a7ae-c31629fa7fdb.png"),
-                    ),
+                    // CircleAvatar(
+                    //   backgroundImage: NetworkImage(item.owner != null
+                    //       ? item.owner?.pictureUrl as String
+                    //       : "https://user-images.githubusercontent.com/90563044/215369020-31ed45db-baa0-4175-a7ae-c31629fa7fdb.png"),
+                    // ),
                     SizedBox(
                       width: 5.w,
                     ),
-                    Text(
-                      item.owner != null
-                          ? item.owner?.username as String
-                          : "Not Found",
-                      style: const TextStyle(
-                          fontFamily: 'IBMPlexSans',
-                          fontWeight: FontWeight.w400),
-                    )
+                    // Text(
+                    //   item.owner != null
+                    //       ? item.owner?.username as String
+                    //       : "Not Found",
+                    //   style: const TextStyle(
+                    //       fontFamily: 'IBMPlexSans',
+                    //       fontWeight: FontWeight.w400),
+                    // )
                   ],
                 ),
                 Visibility(
-                  visible: item.owner != null,
+                  visible: true,
                   child: InkWell(
                     child: Container(
                       margin: const EdgeInsets.all(10),
@@ -120,7 +120,7 @@ class ShowDetailsScreen extends StatelessWidget {
                       child: Image.asset("assets/images/call_icon.png"),
                     ),
                     onTap: () {
-                      launch("tel://${item.owner?.phoneNumber}");
+                      launch("tel://");
                     },
                   ),
                 ),
@@ -196,7 +196,7 @@ class ShowDetailsScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 440.h,
                         child: Image.network(
-                          item.imageUrl,
+                          item.imageUrl[0],
                           fit: BoxFit.cover,
                           frameBuilder:
                               (context, child, frame, wasSynchronouslyLoaded) {

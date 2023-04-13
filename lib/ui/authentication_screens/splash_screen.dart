@@ -39,6 +39,10 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           Navigator.of(context).pushReplacementNamed(RouteName.screensContainerRoute);
         }else{
           print('hello1');
+          if(!_disposed){
+            _controller.dispose();
+            _disposed = true;
+          }
           Navigator.of(context).pushReplacementNamed(RouteName.loginRoute);
         }
       });
