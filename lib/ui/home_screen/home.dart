@@ -55,10 +55,10 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget seeAllRow(String title) {
-    return Padding(
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
@@ -67,15 +67,7 @@ class HomeScreen extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          TextButton(
-              onPressed: () {},
-              child: Text(
-                StringManager.see,
-                style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.bold,
-                    color: homeTextColor),
-              ))
+          const Expanded(child: SizedBox())
         ],
       ),
     );
@@ -147,6 +139,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               header(viewModel),
               10.h.he,
+              seeAllRow(StringManager.common),
               SizedBox(
                   height: 250,
                   child: ListView.builder(
@@ -158,6 +151,7 @@ class HomeScreen extends StatelessWidget {
                           ,context);
                     },
                   )),
+              seeAllRow(StringManager.more),
               SizedBox(
                 child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),

@@ -63,10 +63,10 @@ class ResetPasswordViewModel with ChangeNotifier {
     notifyListeners();
     if (_currWidget == 0) {
 
-      checkEmail();
+      await checkEmail();
 
     } else if (_currWidget == 1) {
-      checkCode();
+      await checkCode();
 
     } else if (_currWidget == 2) {
       if(!_validationService.isValidPassword(_passwordController!.text)
@@ -119,7 +119,7 @@ class ResetPasswordViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void checkEmail() async {
+  Future checkEmail() async {
     print('bool => ${!_validationService.isValidEmail(_email.text)}');
     if (!_validationService.isValidEmail(_email.text)) {
       Utils.showToast(StringManager.emailNotValid, 1);
@@ -132,7 +132,7 @@ class ResetPasswordViewModel with ChangeNotifier {
     }
   }
 
-  void checkCode() async {
+  Future checkCode() async {
     String codeNum = "";
     for (var element in code) {
       codeNum += element.text;
@@ -142,7 +142,7 @@ class ResetPasswordViewModel with ChangeNotifier {
       Utils.showToast(StringManager.codeInvalid, 0);
     } else {
       final res =
-          await userRepository!.checkResetPasswordCode(_email.text, codeNum);
+      await userRepository.checkResetPasswordCode(_email.text, codeNum);
       if (res is Map<String, dynamic> &&
           res['statue'] == StringManager.success) {
         token = res['token'];
