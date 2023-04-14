@@ -7,10 +7,12 @@ import '../res/strings.dart';
 
 class VerificationViewModel with ChangeNotifier {
   UserRepository userRepository;
+  late VerificationUseCase _verificationUseCase;
 
-  VerificationViewModel(this.userRepository);
+  VerificationViewModel(this.userRepository){
+    _verificationUseCase = VerificationUseCase(userRepository);
+  }
 
-  VerificationUseCase? _verificationUseCase;
   bool isLoading = false;
   String? _email;
 
@@ -22,9 +24,8 @@ class VerificationViewModel with ChangeNotifier {
     if (!isLoading) {
       isLoading = true;
       notifyListeners();
-      _verificationUseCase ??= VerificationUseCase(userRepository);
       final res =
-          await _verificationUseCase!.sendVerificationCode(_email!, code);
+          await _verificationUseCase.sendVerificationCode(_email!, code);
       if (res == StringManager.verifyMessage) {
         onSuccess();
       }else{
