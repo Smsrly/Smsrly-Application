@@ -7,29 +7,27 @@ import '../domain/use_cases/user_use_cases/get_user_data/get_user_data_use_case.
 import '../main.dart';
 
 class SplashViewModel with ChangeNotifier{
+
   User? user;
   List<RealEstate>? realEstateItems;
+
   Future<bool> onStart() async {
     await getData();
     return user != null && realEstateItems != null;
   }
 
   Future getData() async {
-    final user = await _getUser();
-    if (user != null) {
-      this.user = user;
-    }
-    print('asf');
+    await _getUser();
+    await _getItems();
+  }
+
+  Future _getItems() async {
+    print('hhhadsa');
     final items = await realEstateRepository?.getRealEstates();
-    print('items ===> $items');
-    print('asf');
-    try{
-      if(items is List<RealEstate>){
-        realEstateItems = items;
-        print(items);
-      }
-    }catch(e){
-      print('Error ===> ${e.toString()}');
+    print('items ==> $items');
+    if(items is List<RealEstate>){
+      realEstateItems = items;
+      print(items);
     }
   }
 
@@ -39,6 +37,7 @@ class SplashViewModel with ChangeNotifier{
       Utils.showToast('something went wrong', 1);
     });
     if (user != null) {
+      print(user.firstName);
       this.user = user;
     }
   }

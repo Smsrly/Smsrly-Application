@@ -30,15 +30,15 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     Future.delayed(const Duration(seconds: 5),(){
       provider.onStart().then((_) {
         if(_){
-          Provider.of<AppViewModel>(context,listen: false).currUser = provider.user;
+          final appProvider = Provider.of<AppViewModel>(context,listen: false);
+          appProvider.currUser = provider.user;
+          appProvider.realEstateItems = provider.realEstateItems!;
           if(!_disposed){
             _controller.dispose();
             _disposed = true;
           }
-          print('hello');
           Navigator.of(context).pushReplacementNamed(RouteName.screensContainerRoute);
         }else{
-          print('hello1');
           if(!_disposed){
             _controller.dispose();
             _disposed = true;

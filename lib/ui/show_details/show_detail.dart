@@ -88,22 +88,20 @@ class ShowDetailsScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    // CircleAvatar(
-                    //   backgroundImage: NetworkImage(item.owner != null
-                    //       ? item.owner?.pictureUrl as String
-                    //       : "https://user-images.githubusercontent.com/90563044/215369020-31ed45db-baa0-4175-a7ae-c31629fa7fdb.png"),
-                    // ),
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(item.ownerInfo.imageUrl != null
+                          ? item.ownerInfo.imageUrl as String
+                          : "https://user-images.githubusercontent.com/90563044/215369020-31ed45db-baa0-4175-a7ae-c31629fa7fdb.png"),
+                    ),
                     SizedBox(
                       width: 5.w,
                     ),
-                    // Text(
-                    //   item.owner != null
-                    //       ? item.owner?.username as String
-                    //       : "Not Found",
-                    //   style: const TextStyle(
-                    //       fontFamily: 'IBMPlexSans',
-                    //       fontWeight: FontWeight.w400),
-                    // )
+                    Text(
+                    item.ownerInfo.name,
+                      style: const TextStyle(
+                          fontFamily: 'IBMPlexSans',
+                          fontWeight: FontWeight.w400),
+                    )
                   ],
                 ),
                 Visibility(

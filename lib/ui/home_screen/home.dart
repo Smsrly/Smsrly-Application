@@ -125,31 +125,12 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                   height: 250,
                   child: ListView.builder(
-                    itemCount: 10, // widget.items.length~/3
+                    itemCount: viewModel.realEstateItems.length~/3, // widget.items.length~/3
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return firstItem(
-                          RealEstate(
-                              122,
-                              true,
-                              ["https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lpibo-ew-1656015868.jpg"],
-                              "Royal Sea Crown2",
-                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                              1231,
-                              54,
-                              5,
-                              5,
-                              100000,
-                              21321.3,
-                              1231.2,
-                              "Egypt",
-                              "Cairo",
-                              false,
-                              OwnerInfo(
-                                  name: 'Ahmed Ebeid',
-                                  phoneNumber: '+201153180577',
-                                  imageUrl: 'ksadas')),
-                          context);
+                        viewModel.realEstateItems[index]
+                          ,context);
                     },
                   )),
               seeAllRow(StringManager.more),
@@ -157,32 +138,13 @@ class HomeScreen extends StatelessWidget {
                 child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: 10,
+                    itemCount: viewModel.realEstateItems.length - viewModel.realEstateItems.length~/3,
                     // widget.items.length - widget.items.length~/3
                     itemBuilder: (context, index) {
-                      // int currIndex = index+widget.items.length~/3;
-                      // RealEstate currItem= widget.items[currIndex];
+                      int currIndex = index + viewModel.realEstateItems.length~/3;
+                      RealEstate currItem= viewModel.realEstateItems[currIndex];
                       return secondItem(
-                          RealEstate(
-                              122,
-                              false,
-                              ["https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lpibo-ew-1656015868.jpg"],
-                              "Royal Sea Crown2",
-                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                              1231,
-                              54,
-                              5,
-                              5,
-                              100000,
-                              21321.3,
-                              1231.2,
-                              "Egypt",
-                              "Cairo",
-                              true,
-                              OwnerInfo(
-                                  name: 'Ahmed Ebeid',
-                                  phoneNumber: '+201153180577',
-                                  imageUrl: 'ksadas')),
+                          currItem,
                           context);
                     }),
               )

@@ -126,7 +126,7 @@ class LoginScreen extends StatelessWidget {
                               _emailController.text, _passwordController.text,
                               () {
                             Navigator.pushReplacementNamed(
-                                context, RouteName.screensContainerRoute);
+                                context, RouteName.splashRoute);
                           });
                         },
                         text: StringManager.login,

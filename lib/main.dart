@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:smsrly/data/repository/realestate_respository_imp.dart';
 import 'package:smsrly/data/repository/user_repository_imp.dart';
-import 'package:smsrly/models/realestate.dart';
 import 'package:smsrly/utils/provider_setup.dart';
 import 'package:smsrly/utils/routes/routes.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';

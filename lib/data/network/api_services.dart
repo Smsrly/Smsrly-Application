@@ -170,7 +170,7 @@ class ApiServices {
 
   Future<dynamic> getRealEstates(String token)async{
     try{
-
+      print('before');
       final response = await http.get(
           Uri.parse(ApiConstants.baseUrl + ApiConstants.realEstatesEndPoint),
           headers: {
@@ -180,9 +180,14 @@ class ApiServices {
       ).timeout(const Duration(seconds: 15));
       List<RealEstate> elements = [];
       var responseBody = jsonDecode(response.body);
-
       for(var item in responseBody){
-        elements.add(RealEstate.fromJson(Map<String,dynamic>.from(item)));
+        List<String> urls = [];
+        for(var link in item['realEstateImages']){
+          urls.add(link['realEstateImageURL']);
+        }
+
+        var currItem = RealEstate.fromJson(Map<String,dynamic>.from(item),urls);
+        elements.add(currItem);
       }
       return elements;
     }catch(e){

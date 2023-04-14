@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:smsrly/res/colors.dart';
 
@@ -36,7 +38,7 @@ class FirstItem extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             Image(
-              image: NetworkImage(item.imageUrl[0]),
+              image: NetworkImage(item.imageUrl[Random().nextInt(item.imageUrl.length)]),
               fit: BoxFit.cover,
               height: 235,
             ),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/res/styles.dart';
@@ -40,7 +42,7 @@ class SecondItem extends StatelessWidget {
                   width: 120.w,
                   height: 130.h,
                   fit: BoxFit.cover,
-                  image: NetworkImage(item.imageUrl[0]),
+                  image: NetworkImage(item.imageUrl[Random().nextInt(item.imageUrl.length)]),
                 ),
               ),
               SizedBox(

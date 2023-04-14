@@ -1,6 +1,6 @@
 class OwnerInfo{
   String phoneNumber;
-  String imageUrl;
+  String? imageUrl;
   String name;
   
   OwnerInfo({

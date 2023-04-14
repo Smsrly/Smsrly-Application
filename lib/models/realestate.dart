@@ -4,7 +4,7 @@ class RealEstate {
 
   int realEstateId;
   bool isSale;
-  List<dynamic> imageUrl;
+  List<String> imageUrl;
   String title;
   String description;
   double area;
@@ -37,11 +37,11 @@ class RealEstate {
       this.hasSaved,
       this.ownerInfo);
 
-  factory RealEstate.fromJson(Map<String, dynamic> data) {
+  factory RealEstate.fromJson(Map<String, dynamic> data,List<String> imagesUrls) {
     return RealEstate(
         data['id'],
         data['isSale'],
-        data['realEstateImages'],
+        imagesUrls,
         data['title'],
         data['description'],
         data['area'],
