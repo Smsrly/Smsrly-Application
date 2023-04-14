@@ -10,4 +10,5 @@ class ApiConstants {
   static const String loginWithGoogleEndPoint = "auth/authorization";
   static const String getUserEndPoint = "user";
   static const String realEstatesEndPoint = "realEstate";
+  static const String savesEndPoint = "saves";
 }

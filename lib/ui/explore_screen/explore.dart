@@ -132,13 +132,14 @@ class ExploreScreen extends StatelessWidget {
 
   Widget realEstateItem(RealEstate currItem){
     return InkWell(
-              child: SecondItem(
-                item: currItem,
-                hasSaved: false,
-                onSaveBtn: () {
-
-                },
-              ),
+      child: Placeholder(),
+              // child: SecondItem(
+              //   item: currItem,
+              //   hasSaved: false,
+              //   onSaveBtn: () {
+              //
+              //   },
+              // ),
               onTap: () {
                 // go to show detail
               },

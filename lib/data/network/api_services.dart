@@ -195,6 +195,44 @@ class ApiServices {
     }
 
   }
+  Future<dynamic> saveRealEstate(String token , int realEstateId) async {
+    try{
+      final response = await http.post(
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.savesEndPoint).replace(
+              queryParameters: {
+                'RealEstateId':"$realEstateId"
+              }
+          ),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }
+      ).timeout(const Duration(seconds: 2));
+      return returnResponse(response);
+    }catch(e){
+      return e.toString();
+    }
+
+  }
+  Future<dynamic> unSaveRealEstate(String token , int realEstateId) async {
+    try{
+      final response = await http.delete(
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.savesEndPoint).replace(
+              queryParameters: {
+                'RealEstateId':"$realEstateId"
+              }
+          ),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }
+      ).timeout(const Duration(seconds: 2));
+      return returnResponse(response);
+    }catch(e){
+      return e.toString();
+    }
+
+  }
   Future<dynamic> uploadRealEstateImages(List<File> images, int realEstateId) async {
     var request = http.MultipartRequest(
       'POST',

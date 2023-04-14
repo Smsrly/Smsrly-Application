@@ -9,14 +9,12 @@ import '../../../res/strings.dart';
 
 class SecondItem extends StatelessWidget {
   late RealEstate item;
-  late bool hasSaved;
-  VoidCallback? onSaveBtn;
-
+  late Widget saveButton;
   SecondItem(
       {Key? key,
       required this.item,
-      required this.hasSaved,
-      required this.onSaveBtn})
+        required this.saveButton
+      })
       : super(key: key);
 
   @override
@@ -104,14 +102,7 @@ class SecondItem extends StatelessWidget {
                       width: 30,
                       height: 30,
                       margin: const EdgeInsets.all(5),
-                      child: InkWell(
-                        child: Image.asset(hasSaved
-                            ? StringManager.savedIconBlue
-                            : StringManager.unSaveIconBlue),
-                        onTap: () {
-                          onSaveBtn!();
-                        },
-                      )),
+                      child:saveButton),
                   const Expanded(flex: 1, child: SizedBox()),
                 ],
               )

@@ -7,6 +7,7 @@ import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
+import 'package:smsrly/viewmodel/home_viewmodel.dart';
 
 import '../../models/realestate.dart';
 import '../../utils/routes/route_name.dart';
@@ -84,8 +85,22 @@ class HomeScreen extends StatelessWidget {
     return InkWell(
       child: FirstItem(
         item: currItem,
-        hasSaved: currItem.hasSaved??false,
-        onSaveIconSelected: () {},
+        saveButton: Consumer<HomeViewModel>(
+          builder: (_,viewModel,__){
+            return InkWell(
+              onTap: () {
+                viewModel.toggleRealEstate(currItem);
+              },
+              child: Container(
+                  margin: const EdgeInsets.all(5),
+                  width: 25,
+                  height: 30,
+                  child: Image.asset(currItem.hasSaved ?? false
+                      ? StringManager.saveForRealEstateItem1
+                      : StringManager.unSaveFroRealEstateItem1)),
+            );
+          },
+        ),
       ),
       onTap: () {
         // go to show detail
@@ -96,11 +111,22 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget secondItem(RealEstate currItem, BuildContext context) {
+    print('curr item ==> ${currItem.hasSaved}');
     return InkWell(
       child: SecondItem(
         item: currItem,
-        hasSaved: currItem.hasSaved??false,
-        onSaveBtn: () {},
+        saveButton: Consumer<HomeViewModel>(
+          builder: (_,viewModel,__){
+            return InkWell(
+              child: Image.asset(currItem.hasSaved ?? false
+                  ? StringManager.savedIconBlue
+                  : StringManager.unSaveIconBlue),
+              onTap: () {
+                viewModel.toggleRealEstate(currItem);
+              },
+            );
+          },
+        )
       ),
       onTap: () {
         // go to show details
@@ -121,11 +147,10 @@ class HomeScreen extends StatelessWidget {
             children: [
               header(viewModel),
               10.h.he,
-              seeAllRow(StringManager.common),
               SizedBox(
                   height: 250,
                   child: ListView.builder(
-                    itemCount: viewModel.realEstateItems.length~/3, // widget.items.length~/3
+                    itemCount: viewModel.realEstateItems.length~/3,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return firstItem(
@@ -133,13 +158,11 @@ class HomeScreen extends StatelessWidget {
                           ,context);
                     },
                   )),
-              seeAllRow(StringManager.more),
               SizedBox(
                 child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: viewModel.realEstateItems.length - viewModel.realEstateItems.length~/3,
-                    // widget.items.length - widget.items.length~/3
                     itemBuilder: (context, index) {
                       int currIndex = index + viewModel.realEstateItems.length~/3;
                       RealEstate currItem= viewModel.realEstateItems[currIndex];

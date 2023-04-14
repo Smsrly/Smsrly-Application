@@ -7,15 +7,13 @@ import '../../../models/realestate.dart';
 import '../../../res/strings.dart';
 
 class FirstItem extends StatelessWidget {
-  late bool hasSaved;
   late RealEstate item;
-  VoidCallback? onSaveIconSelected;
-
+  late Widget saveButton;
   FirstItem(
       {Key? key,
       required this.item,
-      required this.hasSaved,
-      required this.onSaveIconSelected})
+      required this.saveButton
+      })
       : super(key: key);
 
   @override
@@ -68,18 +66,7 @@ class FirstItem extends StatelessWidget {
                   Row(
                     children: [
                       const Expanded(flex: 1, child: SizedBox()),
-                      InkWell(
-                        onTap: () {
-                          onSaveIconSelected!();
-                        },
-                        child: Container(
-                            margin: const EdgeInsets.all(5),
-                            width: 25,
-                            height: 30,
-                            child: Image.asset(hasSaved
-                                ? StringManager.saveForRealEstateItem1
-                                : StringManager.unSaveFroRealEstateItem1)),
-                      )
+                      saveButton
                     ],
                   ),
                   const Expanded(flex: 1, child: SizedBox()),

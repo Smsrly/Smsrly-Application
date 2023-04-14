@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:smsrly/viewmodel/home_viewmodel.dart';
 import 'package:smsrly/viewmodel/reset_password_viewmodel.dart';
 import 'package:smsrly/viewmodel/splash_view_model.dart';
 import 'package:smsrly/viewmodel/tab_viewmodel.dart';
@@ -32,6 +33,9 @@ List<SingleChildWidget> providers = [
 
   ChangeNotifierProvider(
       create: (BuildContext context) => TabViewModel()
+  ),
+  ChangeNotifierProvider(
+      create: (BuildContext context) => HomeViewModel()
   )
 
 ];

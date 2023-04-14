@@ -26,4 +26,30 @@ class RealEstateRepositoryImp implements RealEstateRepository{
     return null;
   }
 
+  @override
+  Future<String> saveRealEstate(int realEstateId) async {
+    String? token = _localService.getToken();
+    if(token != null){
+      final res = await _apiServices.saveRealEstate(token, realEstateId);
+      if(res is Map<String,dynamic>){
+        return res['message'];
+      }
+      return res;
+    }
+    return 'No Token !';
+  }
+
+  @override
+  Future<String> unSaveRealEstate(int realEstateId) async{
+    String? token = _localService.getToken();
+    if(token != null){
+      final res = await _apiServices.unSaveRealEstate(token, realEstateId);
+      if(res is Map<String,dynamic>){
+        return res['message'];
+      }
+      return res;
+    }
+    return 'No Token !';
+  }
+
 }
