@@ -165,13 +165,12 @@ class SellScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Expanded(
-                          flex: 1,
-                          child: Expanded(
+
+                          Expanded(
                             flex: 1,
                             child: textField("", StringManager.bathrooms, TextInputType.number),
                           ),
-                        ),
+
                         SizedBox(
                           width: 10.w,
                         ),
