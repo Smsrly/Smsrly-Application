@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:smsrly/main.dart';
+import 'package:flutter/material.dart';
+import 'package:smsrly/domain/repository/user_repository.dart';
 import 'package:smsrly/models/validator.dart';
 import 'package:smsrly/ui/authentication_screens/reset_password/forget_password_view.dart';
 import 'package:smsrly/ui/authentication_screens/reset_password/verify_reset_password_code.dart';
@@ -9,6 +9,10 @@ import '../res/strings.dart';
 import '../ui/authentication_screens/reset_password/reset_password_view.dart';
 
 class ResetPasswordViewModel with ChangeNotifier {
+  UserRepository userRepository;
+
+  ResetPasswordViewModel(this.userRepository);
+
   final ValidationService _validationService = ValidationService();
 
   TextEditingController _email = TextEditingController();
@@ -59,37 +63,11 @@ class ResetPasswordViewModel with ChangeNotifier {
     notifyListeners();
     if (_currWidget == 0) {
 
-      print('bool => ${!_validationService.isValidEmail(_email.text)}');
-      if (!_validationService.isValidEmail(_email.text)) {
-        Utils.showToast(StringManager.emailNotValid, 1);
-      }
-      final res = await userRepository!.sendResetPasswordCodeRequest(_email.text);
-      if (res == StringManager.successResetCodeMessage) {
-        _currWidget = 1;
-      } else {
-        Utils.showToast(res, 1);
-      }
+      checkEmail();
 
     } else if (_currWidget == 1) {
+      checkCode();
 
-      String codeNum = "";
-      for (var element in code) {
-        codeNum += element.text;
-      }
-
-      if (!_validationService.isValidCode(codeNum)) {
-        Utils.showToast(StringManager.codeInvalid, 0);
-      } else {
-        final res =
-        await userRepository!.checkResetPasswordCode(_email.text, codeNum);
-        if (res is Map<String, dynamic> &&
-            res['statue'] == StringManager.success) {
-          token = res['token'];
-          _currWidget = 2;
-        } else {
-          Utils.showToast(res, 1);
-        }
-      }
     } else if (_currWidget == 2) {
       if(!_validationService.isValidPassword(_passwordController!.text)
           || !_validationService.isValidPassword(_confirmPasswordController!.text)
@@ -112,7 +90,7 @@ class ResetPasswordViewModel with ChangeNotifier {
         notifyListeners();
         return;
       }
-      final res = await userRepository!.resetPassword(token!, _passwordController!.text);
+      final res = await userRepository.resetPassword(token!, _passwordController!.text);
       if(res == StringManager.passwordUpdated){
         if (onFinish != null) {
           onFinish();
@@ -139,6 +117,40 @@ class ResetPasswordViewModel with ChangeNotifier {
     }
     _currWidget--;
     notifyListeners();
+  }
+
+  void checkEmail() async {
+    print('bool => ${!_validationService.isValidEmail(_email.text)}');
+    if (!_validationService.isValidEmail(_email.text)) {
+      Utils.showToast(StringManager.emailNotValid, 1);
+    }
+    final res = await userRepository.sendResetPasswordCodeRequest(_email.text);
+    if (res == StringManager.successResetCodeMessage) {
+      _currWidget = 1;
+    } else {
+      Utils.showToast(res, 1);
+    }
+  }
+
+  void checkCode() async {
+    String codeNum = "";
+    for (var element in code) {
+      codeNum += element.text;
+    }
+
+    if (!_validationService.isValidCode(codeNum)) {
+      Utils.showToast(StringManager.codeInvalid, 0);
+    } else {
+      final res =
+          await userRepository!.checkResetPasswordCode(_email.text, codeNum);
+      if (res is Map<String, dynamic> &&
+          res['statue'] == StringManager.success) {
+        token = res['token'];
+        _currWidget = 2;
+      } else {
+        Utils.showToast(res, 1);
+      }
+    }
   }
 
   Widget? getCurrentWidget() {

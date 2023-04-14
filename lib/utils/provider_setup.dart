@@ -11,31 +11,44 @@ import 'package:smsrly/viewmodel/login_view_model.dart';
 import 'package:smsrly/viewmodel/sign_up_view_model.dart';
 import 'package:smsrly/viewmodel/verification_view_model.dart';
 
-List<SingleChildWidget> providers = [
+import '../domain/repository/realestate_repository.dart';
+import '../domain/repository/user_repository.dart';
 
-  ChangeNotifierProvider(
-    create: (BuildContext context) => AppViewModel(),
-  ),
+class ProviderSetup{
+  RealEstateRepository realEstateRepository;
+  UserRepository userRepository;
 
-  ChangeNotifierProvider(create: (BuildContext context) => LoginViewModel()),
+  ProviderSetup(this.userRepository,this.realEstateRepository);
 
-  ChangeNotifierProvider(create: (BuildContext context) => SignUpViewModel()),
+  List<SingleChildWidget> get providers{
+    return [
 
-  ChangeNotifierProvider(
-      create: (BuildContext context) => VerificationViewModel()),
+      ChangeNotifierProvider(
+        create: (BuildContext context) => AppViewModel(userRepository),
+      ),
 
-  ChangeNotifierProvider(
-      create: (BuildContext context) => ResetPasswordViewModel()
-  ),
-  ChangeNotifierProvider(
-      create: (BuildContext context) => SplashViewModel()
-  ),
+      ChangeNotifierProvider(create: (BuildContext context) => LoginViewModel(userRepository)),
 
-  ChangeNotifierProvider(
-      create: (BuildContext context) => TabViewModel()
-  ),
-  ChangeNotifierProvider(
-      create: (BuildContext context) => HomeViewModel()
-  )
+      ChangeNotifierProvider(create: (BuildContext context) => SignUpViewModel(userRepository)),
 
-];
+      ChangeNotifierProvider(
+          create: (BuildContext context) => VerificationViewModel(userRepository)),
+
+      ChangeNotifierProvider(
+          create: (BuildContext context) => ResetPasswordViewModel(userRepository)
+      ),
+      ChangeNotifierProvider(
+          create: (BuildContext context) => SplashViewModel(realEstateRepository,userRepository)
+      ),
+
+      ChangeNotifierProvider(
+          create: (BuildContext context) => TabViewModel()
+      ),
+      ChangeNotifierProvider(
+          create: (BuildContext context) => HomeViewModel(realEstateRepository)
+      )
+
+    ];
+  }
+
+}

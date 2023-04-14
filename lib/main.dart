@@ -30,7 +30,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: providers,
+      providers: ProviderSetup(userRepository!,realEstateRepository!).providers,
       child: ScreenUtilInit(
         minTextAdapt: true,
         splitScreenMode: true,

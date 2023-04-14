@@ -66,6 +66,7 @@ class StringManager {
       "We are happy to have contact with us and sorry for the problem that faces you and we will work to solve it";
   static const String question = "What do you want to talk about?";
   static const String send = "Send";
+  static const String wentWrong = 'something went wrong';
   static const String yourMessage = "Your Message";
   static const String egyptianPound = "EGP";
   static const String areaUnit ="m²";

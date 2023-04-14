@@ -5,14 +5,20 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:smsrly/domain/repository/user_repository.dart';
 import 'package:smsrly/domain/use_cases/user_use_cases/sign_up_use_case/user_signup_use_case.dart';
-import 'package:smsrly/main.dart';
 import 'package:smsrly/utils/utils.dart';
 
 import '../res/strings.dart';
 
 class SignUpViewModel with ChangeNotifier {
-  SignUpUseCase? _signUpUseCase;
+  UserRepository userRepository;
+  late SignUpUseCase _signUpUseCase;
+
+  SignUpViewModel(this.userRepository){
+    _signUpUseCase = SignUpUseCase(userRepository);
+  }
+
   String? email;
   bool _isLoading = false;
   get isLoading => _isLoading;
@@ -63,7 +69,7 @@ class SignUpViewModel with ChangeNotifier {
     if(!_isLoading){
       _isLoading = true;
       notifyListeners();
-      _signUpUseCase ??= SignUpUseCase(userRepository!);
+
       if (_countryCode != null) {
         phoneNumber = "${_countryCode!.dialCode}$phoneNumber";
       } else {
@@ -133,7 +139,6 @@ class SignUpViewModel with ChangeNotifier {
   }
 
   void onDestroy(){
-    _signUpUseCase = null;
     email = null;
     _image = null;
     _isLoading = false;
