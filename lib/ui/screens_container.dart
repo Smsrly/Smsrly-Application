@@ -28,9 +28,9 @@ class ScreensContainer extends StatelessWidget {
       Function(int) onClick) {
     return IconBottomBar(
         lightIcon:
-            SizedBox(width: 27, height: 27, child: Image.asset(lightIconPath)),
+            SizedBox(width: index != 0 ? 27 : 32, height: index != 0 ? 27 : 32, child: Image.asset(lightIconPath)),
         darkIcon:
-            SizedBox(width: 27, height: 27, child: Image.asset(darkIconPath)),
+            SizedBox(width: index != 0 ? 27 : 32, height: index != 0 ? 27 : 32, child: Image.asset(darkIconPath)),
         isSelected: isSelected(index),
         onPressed: () {
           onClick(index);
