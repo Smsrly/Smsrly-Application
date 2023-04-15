@@ -136,21 +136,34 @@ class EditProfileScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.only(top: 70.h),
-                  child: Column(
-                    children: const [
-                      CircleAvatar(
-                        radius: 40,
-                        backgroundImage: AssetImage("assets/images/SUIIIIIIIIIIII.jpg"),
-                      )
-                    ],
+         Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(top: 70.h),
+              child: Stack(
+                alignment: AlignmentDirectional.bottomEnd,
+                children: [
+                  const CircleAvatar(
+                    radius: 40,
+                    backgroundImage:
+                        AssetImage("assets/images/SUIIIIIIIIIIII.jpg"),
                   ),
-                ),
-              ],
+                  CircleAvatar(
+                    radius: 16,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.camera_alt_outlined,
+                        size: 16,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
+              ),
             ),
+          ],
         ),
+      ),
     ));
   }
 }
+
