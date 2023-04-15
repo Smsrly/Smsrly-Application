@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/res/styles.dart';
+import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
+import 'package:smsrly/viewmodel/explore_viewmodel.dart';
 
 import '../../res/colors.dart';
 
 class OptionsDialog extends StatelessWidget {
-
   /*
     for (int i = 0; i < widget.numbers.length; i++) {
       _controllers[i].text =
@@ -17,13 +22,7 @@ class OptionsDialog extends StatelessWidget {
 
      */
 
-
-
-  var forRentOrSale = -1;
-
-  OptionsDialog(
-      {Key? key})
-      : super(key: key);
+  OptionsDialog({Key? key}) : super(key: key);
 
   Widget getTitle(String text) {
     return Text(
@@ -38,12 +37,13 @@ class OptionsDialog extends StatelessWidget {
 
   Widget getChoice(String text, Color color, Color textColor) {
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 3),
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(18),
         border:
-        Border.all(width: 2, color: const Color.fromRGBO(14, 82, 137, 1)),
+            Border.all(width: 2, color: primaryColor),
       ),
       child: Center(
         child: Text(
@@ -75,6 +75,11 @@ class OptionsDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final exploreViewModel =
+        Provider.of<ExploreViewModel>(context, listen: false);
+    for (int i = 0; i < _controllers.length; i++) {
+      _controllers[i].text = exploreViewModel.getRequirement(i);
+    }
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
@@ -91,15 +96,12 @@ class OptionsDialog extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          margin: const EdgeInsets.only(left: 10),
-                          child: Text(
-                            "Filters",
-                            style: TextStyle(
-                              fontSize: 25.sp,
-                              fontFamily: "IBMPlexSans",
-                              fontWeight: FontWeight.w500,
-                            ),
-                          )),
+                        margin: const EdgeInsets.only(left: 10),
+                        child: Text(
+                          StringManager.filters,
+                          style: AppStyles.headline5,
+                        ),
+                      ),
                       IconButton(
                           onPressed: () {
                             Navigator.pop(context, false);
@@ -107,9 +109,7 @@ class OptionsDialog extends StatelessWidget {
                           icon: const Icon(Icons.close))
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  10.he,
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
@@ -121,229 +121,189 @@ class OptionsDialog extends StatelessWidget {
                           children: [
                             Expanded(
                               flex: 1,
-                              child: InkWell(
-                                child: getChoice(
-                                    "All",
-                                    _forRentOrSale == -1
-                                        ? primaryColor
-                                        : Colors.white,
-                                    _forRentOrSale == -1
-                                        ? Colors.white
-                                        : primaryColor),
-                                onTap: () {
-                                  /*
-                                  setState(() {
-                                    _forRentOrSale = -1;
-                                  });
-
-                                   */
+                              child: Consumer<ExploreViewModel>(
+                                builder: (_, viewModel, __) {
+                                  return InkWell(
+                                      child: getChoice(
+                                          StringManager.all,
+                                          viewModel.rentOrSale == -1
+                                              ? primaryColor
+                                              : Colors.white,
+                                          viewModel.rentOrSale == -1
+                                              ? Colors.white
+                                              : primaryColor),
+                                      onTap: () {
+                                        viewModel.rentOrSale = -1;
+                                      });
                                 },
                               ),
                             ),
-                            const SizedBox(
-                              width: 8,
-                            ),
+                            8.he,
                             Expanded(
-                              flex: 1,
-                              child: InkWell(
-                                child: getChoice(
-                                    "For Sale",
-                                    _forRentOrSale == 1
-                                        ? primaryColor
-                                        : Colors.white,
-                                    _forRentOrSale == 1
-                                        ? Colors.white
-                                        : primaryColor),
-                                onTap: () {
-                                  /*
-                                  setState(() {
-                                    _forRentOrSale = 1;
-                                  });
-
-                                   */
-                                },
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
+                                flex: 1,
+                                child: Consumer<ExploreViewModel>(
+                                  builder: (_, viewModel, __) {
+                                    return InkWell(
+                                      child: getChoice(
+                                          StringManager.forSale,
+                                          viewModel.rentOrSale == 0
+                                              ? primaryColor
+                                              : Colors.white,
+                                          viewModel.rentOrSale == 0
+                                              ? Colors.white
+                                              : primaryColor),
+                                      onTap: () {
+                                        viewModel.rentOrSale = 0;
+                                      },
+                                    );
+                                  },
+                                )),
+                            8.he,
                             Expanded(
-                              flex: 1,
-                              child: InkWell(
-                                child: getChoice(
-                                    "For Rent",
-                                    _forRentOrSale == 0
-                                        ? primaryColor
-                                        : Colors.white,
-                                    _forRentOrSale == 0
-                                        ? Colors.white
-                                        : primaryColor),
-                                onTap: () {
-                                  /*
-                                  setState(() {
-                                    _forRentOrSale = 0;
-                                  });
-
-                                   */
-                                },
-                              ),
-                            )
+                                flex: 1,
+                                child: Consumer<ExploreViewModel>(
+                                  builder: (_, viewModel, __) {
+                                    return InkWell(
+                                      child: getChoice(
+                                          StringManager.forRent,
+                                          viewModel.rentOrSale == 1
+                                              ? primaryColor
+                                              : Colors.white,
+                                          viewModel.rentOrSale == 1
+                                              ? Colors.white
+                                              : primaryColor),
+                                      onTap: () {
+                                        viewModel.rentOrSale = 1;
+                                      },
+                                    );
+                                  },
+                                ))
                           ],
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        getTitle('Price Range'),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        15.he,
+                        getTitle(StringManager.priceRange),
+                        10.he,
                         Row(
                           children: [
                             Expanded(
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                  const Color.fromRGBO(170, 171, 170, 1),
+                                  filterTextFieldCursorColor ,
                                   inputType:
-                                  const TextInputType.numberWithOptions(),
+                                      const TextInputType.numberWithOptions(),
                                   label: 'Min',
                                   controller: _controllers[0],
                                 )),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            10.wi,
                             Expanded(
                                 flex: 1,
                                 child: RoundedTextField(
                                     cursorColor:
-                                    const Color.fromRGBO(170, 171, 170, 1),
+                                      filterTextFieldCursorColor,
                                     inputType: TextInputType.number,
                                     label: 'Max',
                                     controller: _controllers[1])),
                           ],
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+                        15.he,
                         getTitle("Floors Number"),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        10.he,
                         Row(
                           children: [
                             Expanded(
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                  const Color.fromRGBO(170, 171, 170, 1),
+                                    filterTextFieldCursorColor,
                                   inputType: TextInputType.number,
                                   label: 'Min',
                                   controller: _controllers[2],
                                 )),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            10.wi,
                             Expanded(
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                  const Color.fromRGBO(170, 171, 170, 1),
+                                    filterTextFieldCursorColor,
                                   inputType: TextInputType.number,
                                   label: 'Max',
                                   controller: _controllers[3],
                                 )),
                           ],
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+                        15.he,
                         getTitle("Rooms Number"),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        10.he,
                         Row(
                           children: [
                             Expanded(
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                  const Color.fromRGBO(170, 171, 170, 1),
+                                    filterTextFieldCursorColor,
                                   inputType: TextInputType.number,
                                   label: 'Min',
                                   controller: _controllers[4],
                                 )),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            10.wi,
                             Expanded(
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                  const Color.fromRGBO(170, 171, 170, 1),
+                                    filterTextFieldCursorColor,
                                   inputType: TextInputType.number,
                                   label: 'Max',
                                   controller: _controllers[5],
                                 )),
                           ],
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+                        15.he,
                         getTitle("Bathrooms"),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        10.he,
                         Row(
                           children: [
                             Expanded(
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                  const Color.fromRGBO(170, 171, 170, 1),
+                                    filterTextFieldCursorColor,
                                   inputType: TextInputType.number,
                                   label: 'Min',
                                   controller: _controllers[6],
                                 )),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            10.wi,
                             Expanded(
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                  const Color.fromRGBO(170, 171, 170, 1),
+                                    filterTextFieldCursorColor,
                                   inputType: TextInputType.number,
                                   label: 'Max',
                                   controller: _controllers[7],
                                 )),
                           ],
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+                        15.he,
                         getTitle("Area Range"),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        10.he,
                         Row(
                           children: [
                             Expanded(
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                  const Color.fromRGBO(170, 171, 170, 1),
+                                    filterTextFieldCursorColor,
                                   inputType: TextInputType.number,
                                   label: 'Min',
                                   controller: _controllers[8],
                                 )),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            10.wi,
                             Expanded(
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                  const Color.fromRGBO(170, 171, 170, 1),
+                                    filterTextFieldCursorColor,
                                   inputType: TextInputType.number,
                                   label: 'Max',
                                   controller: _controllers[9],
@@ -356,37 +316,30 @@ class OptionsDialog extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 15),
+            15.he,
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
               child: SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    List<int> list = [];
-                    for (var i = 0; i < _controllers.length; i++) {
-                      if (_controllers[i].text.isEmpty) {
-                        list.add(i % 2 == 0 ? -1 : 1000000000000000000);
-                      } else {
-                        list.add(int.parse(_controllers[i].text.trim()));
-                      }
-                    }
-                    Navigator.pop(context, false);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromRGBO(14, 82, 137, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Text('Submit'),
-                  ),
+                child: Consumer<ExploreViewModel>(
+                  builder: (_,viewModel,__){
+                    return RoundedButton(
+                        text: StringManager.submit,
+                        onClick: (){
+                          List<String> req = [];
+                          for(var controller in _controllers){
+                            req.add(controller.text.trim());
+                          }
+                          viewModel.requirements = req;
+                          Navigator.pop(context, false);
+                        }
+                    );
+
+                  }
                 ),
               ),
             ),
-            const SizedBox(height: 15),
+            15.he,
           ],
         ),
       ),

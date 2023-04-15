@@ -29,6 +29,7 @@ class StringManager {
   static const String priceRange = 'Price Range';
   static const String saveDeleted = "save deleted";
   static const String saveAdded = "save added";
+  static const String filters = "Filters";
   static const String back = "Back" ;
   static const String enterCode = "Enter 4 Digits Code";
   static const String codeSendMessage = "Enter the 4 digits code that you have received on your email";

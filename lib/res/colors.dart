@@ -14,4 +14,5 @@ const searchHintColor = Color.fromRGBO(169, 169, 169, 1);
 const failedSearchTextColor = Color.fromRGBO(143, 143, 143, 1.0);
 const welcomeMessageColor = Color.fromRGBO(115, 115, 115, 1);
 const homeTextColor = Color.fromRGBO(68, 68, 68, 0.7);
+const filterTextFieldCursorColor = Color.fromRGBO(170, 171, 170, 1);
 const realEstateItemColor = Color.fromARGB(255, 188, 188, 188);

@@ -21,13 +21,6 @@ class ExploreScreen extends StatelessWidget {
 
   var _searchedText="";
 
-  var _filtersList =[
-    -1,1000000000000000000,
-    -1, 1000000000000000000,
-    -1,1000000000000000000,
-    -1,1000000000000000000,
-    -1,1000000000000000000
-  ];
 
    */
 
@@ -40,48 +33,7 @@ class ExploreScreen extends StatelessWidget {
         });
   }
 
-  void _runFilter(String text, List<int> requirements, int rentOrSale) {
-    text = text.toLowerCase().trim();
-    List<RealEstate> list = [];
-
-    // for (var entry in widget.items) {
-    //   var bool1 = text.isEmpty ||
-    //       entry.city?.toLowerCase().contains(text) as bool;
-    //   var bool2 = text.isEmpty ||
-    //       entry.country?.toLowerCase().contains(text) as bool;
-    //   var bool3 = rentOrSale == -1 || entry.rentOrSale == rentOrSale;
-    //   var bool4 = entry.price >= requirements[0] &&
-    //       entry.price <= requirements[1];
-    //   var bool5 = entry.floor >= requirements[2] &&
-    //       entry.floor <= requirements[3];
-    //   var bool6 = entry.roomsNo >= requirements[4] &&
-    //       entry.roomsNo <= requirements[5];
-    //   var bool7 = entry.bathroomsNo >= requirements[6] &&
-    //       entry.bathroomsNo <= requirements[7];
-    //   var bool8 = entry.area >= requirements[8] &&
-    //       entry.area <= requirements[9];
-    //
-    //   if ((bool1 || bool2) &&
-    //       bool3 &&
-    //       bool4 &&
-    //       bool5 &&
-    //       bool6 &&
-    //       bool7 &&
-    //       bool8) {
-    //
-    //     list.add(entry);
-    //
-    //   }
-    // }
-    /*
-      setState(() {
-        _filteredItems = list;
-      });
-
-     */
-  }
-
-  Widget searchTextField() {
+  Widget searchTextField(ExploreViewModel viewModel) {
     return Expanded(
         flex: 1,
         child: Container(
@@ -111,10 +63,7 @@ class ExploreScreen extends StatelessWidget {
                 flex: 1,
                 child: TextFormField(
                   onChanged: (value) {
-                    /*
-                    _searchedText=value;
-                    _runFilter(value,_filtersList,_forRentOrSale);
-                     */
+                    viewModel.searchedText = value;
                   },
                   cursorColor: searchCursorColor,
                   style: const TextStyle(color: searchTextColor),
@@ -210,7 +159,7 @@ class ExploreScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
                   children: [
-                    searchTextField(),
+                    searchTextField(viewModel),
                     8.he,
                     Container(
                       margin: const EdgeInsets.only(left: 5, right: 3),
