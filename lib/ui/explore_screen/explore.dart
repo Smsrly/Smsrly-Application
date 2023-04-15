@@ -14,15 +14,8 @@ import '../../res/colors.dart';
 import '../widgets/realestates_items/realestate_second_item.dart';
 
 class ExploreScreen extends StatelessWidget {
-  ExploreScreen({Key? key}) : super(key: key);
+  const ExploreScreen({Key? key}) : super(key: key);
 
-  /*
-  var _forRentOrSale=-1;
-
-  var _searchedText="";
-
-
-   */
 
   void showOptionsDialog(var context) {
     showDialog(
