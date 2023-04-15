@@ -3,24 +3,27 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
 
-class OptionsDialog extends StatefulWidget {
-  late BuildContext context;
-  late List<int> numbers;
-  late void Function(List<int>, int) onSubmit;
+import '../../res/colors.dart';
+
+class OptionsDialog extends StatelessWidget {
+
+  /*
+    for (int i = 0; i < widget.numbers.length; i++) {
+      _controllers[i].text =
+      widget.numbers[i] != 1000000000000000000 && widget.numbers[i] != -1
+          ? "${widget.numbers[i]}"
+          : "";
+    }
+
+     */
+
+
+
   var forRentOrSale = -1;
 
   OptionsDialog(
-      {Key? key,
-      required this.context,
-      required this.forRentOrSale,
-      required this.numbers})
+      {Key? key})
       : super(key: key);
-
-  @override
-  State<OptionsDialog> createState() => _OptionsDialogState();
-}
-
-class _OptionsDialogState extends State<OptionsDialog> {
 
   Widget getTitle(String text) {
     return Text(
@@ -40,7 +43,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
         color: color,
         borderRadius: BorderRadius.circular(18),
         border:
-            Border.all(width: 2, color: const Color.fromRGBO(14, 82, 137, 1)),
+        Border.all(width: 2, color: const Color.fromRGBO(14, 82, 137, 1)),
       ),
       child: Center(
         child: Text(
@@ -48,7 +51,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
           style: TextStyle(
               fontFamily: 'IBMPlexSans',
               fontWeight: FontWeight.w400,
-              fontSize: 16.sp.sp,
+              fontSize: 16.sp,
               color: textColor),
         ),
       ),
@@ -56,6 +59,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
   }
 
   var _forRentOrSale = -1;
+
   final List<TextEditingController> _controllers = [
     TextEditingController(),
     TextEditingController(),
@@ -68,18 +72,6 @@ class _OptionsDialogState extends State<OptionsDialog> {
     TextEditingController(),
     TextEditingController()
   ];
-
-  @override
-  void initState() {
-    _forRentOrSale = widget.forRentOrSale;
-    for (int i = 0; i < widget.numbers.length; i++) {
-      _controllers[i].text =
-          widget.numbers[i] != 1000000000000000000 && widget.numbers[i] != -1
-              ? "${widget.numbers[i]}"
-              : "";
-    }
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,15 +125,18 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 child: getChoice(
                                     "All",
                                     _forRentOrSale == -1
-                                        ? const Color.fromRGBO(14, 82, 137, 1)
+                                        ? primaryColor
                                         : Colors.white,
                                     _forRentOrSale == -1
                                         ? Colors.white
-                                        : const Color.fromRGBO(14, 82, 137, 1)),
+                                        : primaryColor),
                                 onTap: () {
+                                  /*
                                   setState(() {
                                     _forRentOrSale = -1;
                                   });
+
+                                   */
                                 },
                               ),
                             ),
@@ -154,15 +149,18 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 child: getChoice(
                                     "For Sale",
                                     _forRentOrSale == 1
-                                        ? const Color.fromRGBO(14, 82, 137, 1)
+                                        ? primaryColor
                                         : Colors.white,
                                     _forRentOrSale == 1
                                         ? Colors.white
-                                        : const Color.fromRGBO(14, 82, 137, 1)),
+                                        : primaryColor),
                                 onTap: () {
+                                  /*
                                   setState(() {
                                     _forRentOrSale = 1;
                                   });
+
+                                   */
                                 },
                               ),
                             ),
@@ -175,15 +173,18 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 child: getChoice(
                                     "For Rent",
                                     _forRentOrSale == 0
-                                        ? const Color.fromRGBO(14, 82, 137, 1)
+                                        ? primaryColor
                                         : Colors.white,
                                     _forRentOrSale == 0
                                         ? Colors.white
-                                        : const Color.fromRGBO(14, 82, 137, 1)),
+                                        : primaryColor),
                                 onTap: () {
+                                  /*
                                   setState(() {
                                     _forRentOrSale = 0;
                                   });
+
+                                   */
                                 },
                               ),
                             )
@@ -202,10 +203,9 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                      const Color.fromRGBO(170, 171, 170, 1),
+                                  const Color.fromRGBO(170, 171, 170, 1),
                                   inputType:
-                                      const TextInputType.numberWithOptions(
-                                          decimal: true),
+                                  const TextInputType.numberWithOptions(),
                                   label: 'Min',
                                   controller: _controllers[0],
                                 )),
@@ -216,7 +216,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 flex: 1,
                                 child: RoundedTextField(
                                     cursorColor:
-                                        const Color.fromRGBO(170, 171, 170, 1),
+                                    const Color.fromRGBO(170, 171, 170, 1),
                                     inputType: TextInputType.number,
                                     label: 'Max',
                                     controller: _controllers[1])),
@@ -235,7 +235,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                      const Color.fromRGBO(170, 171, 170, 1),
+                                  const Color.fromRGBO(170, 171, 170, 1),
                                   inputType: TextInputType.number,
                                   label: 'Min',
                                   controller: _controllers[2],
@@ -247,7 +247,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                      const Color.fromRGBO(170, 171, 170, 1),
+                                  const Color.fromRGBO(170, 171, 170, 1),
                                   inputType: TextInputType.number,
                                   label: 'Max',
                                   controller: _controllers[3],
@@ -267,7 +267,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                      const Color.fromRGBO(170, 171, 170, 1),
+                                  const Color.fromRGBO(170, 171, 170, 1),
                                   inputType: TextInputType.number,
                                   label: 'Min',
                                   controller: _controllers[4],
@@ -279,7 +279,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                      const Color.fromRGBO(170, 171, 170, 1),
+                                  const Color.fromRGBO(170, 171, 170, 1),
                                   inputType: TextInputType.number,
                                   label: 'Max',
                                   controller: _controllers[5],
@@ -299,7 +299,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                      const Color.fromRGBO(170, 171, 170, 1),
+                                  const Color.fromRGBO(170, 171, 170, 1),
                                   inputType: TextInputType.number,
                                   label: 'Min',
                                   controller: _controllers[6],
@@ -311,7 +311,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                      const Color.fromRGBO(170, 171, 170, 1),
+                                  const Color.fromRGBO(170, 171, 170, 1),
                                   inputType: TextInputType.number,
                                   label: 'Max',
                                   controller: _controllers[7],
@@ -331,7 +331,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                      const Color.fromRGBO(170, 171, 170, 1),
+                                  const Color.fromRGBO(170, 171, 170, 1),
                                   inputType: TextInputType.number,
                                   label: 'Min',
                                   controller: _controllers[8],
@@ -343,7 +343,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
                                 flex: 1,
                                 child: RoundedTextField(
                                   cursorColor:
-                                      const Color.fromRGBO(170, 171, 170, 1),
+                                  const Color.fromRGBO(170, 171, 170, 1),
                                   inputType: TextInputType.number,
                                   label: 'Max',
                                   controller: _controllers[9],
@@ -371,7 +371,6 @@ class _OptionsDialogState extends State<OptionsDialog> {
                         list.add(int.parse(_controllers[i].text.trim()));
                       }
                     }
-                    widget.onSubmit(list, _forRentOrSale);
                     Navigator.pop(context, false);
                   },
                   style: ElevatedButton.styleFrom(

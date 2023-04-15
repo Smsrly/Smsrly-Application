@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/res/styles.dart';
 
 import '../../../models/realestate.dart';
@@ -40,7 +41,7 @@ class SecondItem extends StatelessWidget {
                   width: 120.w,
                   height: 130.h,
                   fit: BoxFit.cover,
-                  image: NetworkImage(item.imageUrl[Random().nextInt(item.imageUrl.length)]),
+                  image: NetworkImage(item.imageUrl[0]),
                 ),
               ),
               SizedBox(
@@ -92,7 +93,7 @@ class SecondItem extends StatelessWidget {
                           fontFamily: StringManager.ibmPlexSans,
                           fontWeight: FontWeight.w400,
                           fontSize: 15.sp,
-                          color: const Color.fromRGBO(14, 82, 137, 1))),
+                          color: primaryColor)),
                 ],
               ),
               const Expanded(flex: 5, child: SizedBox()),

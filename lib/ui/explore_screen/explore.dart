@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:smsrly/res/dimen.dart';
+import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/explore_screen/options_dialog.dart';
 import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
+import 'package:smsrly/viewmodel/app_view_model.dart';
+import 'package:smsrly/viewmodel/explore_viewmodel.dart';
 
 import '../../models/realestate.dart';
 import '../../res/colors.dart';
 import '../widgets/realestates_items/realestate_second_item.dart';
 
 class ExploreScreen extends StatelessWidget {
-
   ExploreScreen({Key? key}) : super(key: key);
 
-  List<RealEstate> _filteredItems=[];
-
+  /*
   var _forRentOrSale=-1;
 
   var _searchedText="";
@@ -26,16 +29,15 @@ class ExploreScreen extends StatelessWidget {
     -1,1000000000000000000
   ];
 
-  void showOptionsDialog(var context){
-    showDialog(context: context, builder: (context){
-      var dialog = OptionsDialog(context: context,forRentOrSale: _forRentOrSale,numbers: _filtersList);
-      dialog.onSubmit=(values,forRentOrSale){
-        _filtersList=values;
-        _forRentOrSale=forRentOrSale;
-        _runFilter(_searchedText, _filtersList, _forRentOrSale);
-          };
-      return dialog;
-    });
+   */
+
+  void showOptionsDialog(var context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          var dialog = OptionsDialog();
+          return dialog;
+        });
   }
 
   void _runFilter(String text, List<int> requirements, int rentOrSale) {
@@ -79,14 +81,13 @@ class ExploreScreen extends StatelessWidget {
      */
   }
 
-  Widget searchTextField(){
+  Widget searchTextField() {
     return Expanded(
         flex: 1,
         child: Container(
           padding: Dimensions.explorePadding,
           decoration: BoxDecoration(
-            border: Border.all(
-                color: const Color.fromRGBO(0, 0, 0, 0.1)),
+            border: Border.all(color: shadowColor),
             color: Colors.white,
             boxShadow: const [
               BoxShadow(
@@ -98,29 +99,28 @@ class ExploreScreen extends StatelessWidget {
           ),
           child: Row(
             children: [
-              SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: Image.asset("assets/images/search_icon.png")),
-              const SizedBox(
-                width: 10,
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 6),
+                child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: Image.asset(StringManager.searchImage)),
               ),
+              10.he,
               Expanded(
                 flex: 1,
                 child: TextFormField(
-                  onChanged: (value){
+                  onChanged: (value) {
+                    /*
                     _searchedText=value;
                     _runFilter(value,_filtersList,_forRentOrSale);
+                     */
                   },
-                  cursorColor:
-                  const Color.fromRGBO(169, 169, 169, 1),
-                  style: const TextStyle(
-                      color: Color.fromRGBO(96, 96, 96, 1)),
+                  cursorColor: searchCursorColor,
+                  style: const TextStyle(color: searchTextColor),
                   decoration: const InputDecoration(
                     hintText: StringManager.where,
-                    hintStyle: TextStyle(
-                        color:
-                        Color.fromRGBO(169, 169, 169, 1)),
+                    hintStyle: TextStyle(color: searchHintColor),
                     border: InputBorder.none,
                   ),
                 ),
@@ -130,131 +130,127 @@ class ExploreScreen extends StatelessWidget {
         ));
   }
 
-  Widget realEstateItem(RealEstate currItem){
+  Widget realEstateItem(RealEstate currItem) {
     return InkWell(
-      child: Placeholder(),
-              // child: SecondItem(
-              //   item: currItem,
-              //   hasSaved: false,
-              //   onSaveBtn: () {
-              //
-              //   },
-              // ),
+      child: SecondItem(
+        item: currItem,
+        saveButton: Consumer<ExploreViewModel>(
+          builder: (_,viewModel,__){
+            return InkWell(
               onTap: () {
-                // go to show detail
+                viewModel.toggleRealEstate(currItem);
               },
-          );
+              child: Image.asset(currItem.hasSaved ?? false
+                  ? StringManager.savedIconBlue
+                  : StringManager.unSaveIconBlue),
+            );
+          },
+        )
+      ),
+      onTap: () {
+        // go to show detail
+      },
+    );
   }
 
-  Widget notFoundWidget(){
-    return Visibility(
-        visible:_filteredItems.isEmpty,
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset("assets/images/notfound_icon.png"),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(StringManager.ups,
-                style: TextStyle(
-                    fontSize: 25,
-                    fontFamily: 'IBMPlexSans',
-                    fontWeight: FontWeight.w500,
-                    color: primaryColor)
+  Widget notFoundWidget() {
+    return Consumer<ExploreViewModel>(
+        builder: (_,viewModel,__){
+          return Visibility(
+              visible: viewModel.realEstates.isEmpty, //_filteredItems.isEmpty,
+              child: Container(
+                width: double.infinity,
+                padding: Dimensions.notFoundImage,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(StringManager.notFoundImagePath),
+                    10.he,
+                    Text(
+                      StringManager.ups,
+                      style: AppStyles.headline2,
+                    ),
+                    5.he,
+                    Text(
+                      StringManager.please,
+                      style: AppStyles.bodyText4,
+                    ),
+                  ],
                 ),
-              const SizedBox(
-                height: 5,
-              ),
-              const Text("${StringManager.please}",
-                style: TextStyle(
-                    fontFamily: 'IBMPlexSans',
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromRGBO(143, 143, 143, 1.0),
-                    fontSize: 15
-                ),),
-            ],
-          ),
-        )
+              ));
+        }
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<ExploreViewModel>(context, listen: false);
+    viewModel.realEstates =
+        Provider.of<AppViewModel>(context, listen: false).realEstateItems;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 15.h,
-              ),
+              15.h.he,
               Padding(
                 padding: const EdgeInsets.all(9.0),
                 child: Text(
-                  "${StringManager.explore}",
+                  StringManager.explore,
                   style: TextStyle(
                     fontSize: 32.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              SizedBox(
-                height: 15.h,
-              ),
-
+              15.h.he,
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Row(
                   children: [
                     searchTextField(),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    InkWell(
-                      child: Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                            color: primaryColor,
-                            borderRadius: BorderRadius.circular(16)),
-                        child: SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: Image.asset("assets/images/options_icon.png")),
+                    8.he,
+                    Container(
+                      margin: const EdgeInsets.only(left: 5, right: 3),
+                      child: InkWell(
+                        child: Container(
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: Image.asset(
+                                  StringManager.optionIconImagePath)),
+                        ),
+                        onTap: () {
+                          showOptionsDialog(context);
+                        },
                       ),
-                      onTap: () {
-                        showOptionsDialog(context);
-                      },
                     ),
                   ],
                 ),
               ),
-
-              const SizedBox(
-                height: 20,
+              20.he,
+              Consumer<ExploreViewModel>(
+                builder: (_, viewModel, __) {
+                  return ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: viewModel.realEstates.length,
+                      // _filteredItems.length,
+                      itemBuilder: (context, index) {
+                        RealEstate currItem = viewModel.realEstates[index];
+                        return realEstateItem(currItem);
+                      });
+                },
               ),
-              ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: _filteredItems.length,
-                  itemBuilder: (context, index) {
-                    RealEstate currItem = _filteredItems[index]!;
-                    return realEstateItem(currItem);
-                  }),
-              const SizedBox(
-                height: 15,
-              ),
-
+              15.he,
               notFoundWidget(),
-
-              const SizedBox(
-                height: 10,
-              ),
+              10.he,
             ],
           ),
         ),

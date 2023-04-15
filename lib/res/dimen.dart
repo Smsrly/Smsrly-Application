@@ -9,6 +9,10 @@ class Dimensions {
 
   static const codeField = EdgeInsets.symmetric(horizontal: 5);
 
+  static const notFoundImage = EdgeInsets.symmetric(horizontal: 5);
+
+  static const optionDialogDimen =  EdgeInsets.symmetric(vertical: 8, horizontal: 5);
+
   static const explorePadding =
   EdgeInsets.only(top: 3, bottom: 3, left: 13, right: 10);
 

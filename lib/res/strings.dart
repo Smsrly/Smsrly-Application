@@ -22,7 +22,13 @@ class StringManager {
   static const String more = "More";
   static const String explore = "Explore";
   static const String where = "Where do you want to go";
-  static const String ups = "Ups!... no results found";
+  static const String ups = "Oops!... no results found";
+  static const String all = "All";
+  static const String forSale = "For Sale";
+  static const String forRent = "For Rent";
+  static const String priceRange = 'Price Range';
+  static const String saveDeleted = "save deleted";
+  static const String saveAdded = "save added";
   static const String back = "Back" ;
   static const String enterCode = "Enter 4 Digits Code";
   static const String codeSendMessage = "Enter the 4 digits code that you have received on your email";
@@ -131,7 +137,8 @@ class StringManager {
       "assets/images/add_icon_not_selected.png";
   static const String addIconSelected =
       "assets/images/add_selected_icon.png";
-
+  static const optionIconImagePath = "assets/images/options_icon.png";
+  static const filterString = "Filters";
   static const String saveIconNotSelected =
       "assets/images/save_icon_not_selected.png";
   static const String saveIconSelected =
@@ -147,6 +154,10 @@ class StringManager {
       "assets/images/profile_icon.png";
   static const String cameraIcon =
       "assets/images/camera_icon.png";
+
+  static const String searchImage = "assets/images/search_icon.png";
+
+  static const String notFoundImagePath = "assets/images/notfound_icon.png";
 
   static const String verifyImage = "assets/images/verift.png";
 

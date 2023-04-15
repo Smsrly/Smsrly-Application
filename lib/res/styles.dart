@@ -8,6 +8,15 @@ class AppStyles {
   static TextStyle headline1 =
   _getIBMPlexSansFont(fontSize: 32.sp, fontWeight: FontWeight.w500);
 
+  static TextStyle headline2 =
+  _getIBMPlexSansFont(fontSize: 25, fontWeight: FontWeight.w500,color: primaryColor);
+
+  static TextStyle headline3 =
+  _getIBMPlexSansFont(fontSize: 25, fontWeight: FontWeight.w500,color: primaryColor);
+
+  static TextStyle headline4 =
+  _getIBMPlexSansFont(fontSize: 25.sp, fontWeight: FontWeight.w500,color: primaryColor);
+
   static TextStyle bodyText1 =
   _getIBMPlexSansFont(fontSize: 15.sp, fontWeight: FontWeight.w400);
 
@@ -30,6 +39,11 @@ class AppStyles {
 
   static TextStyle bodyText3 =
   _getIBMPlexSansFont(fontSize: 16.sp, fontWeight: FontWeight.w400);
+
+  static TextStyle bodyText4 =
+  _getIBMPlexSansFont(fontSize: 15, fontWeight: FontWeight.w400,color: failedSearchTextColor);
+
+
 
   static TextStyle _getIBMPlexSansFont(
       {required double fontSize,

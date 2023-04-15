@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:smsrly/viewmodel/explore_viewmodel.dart';
 import 'package:smsrly/viewmodel/home_viewmodel.dart';
 import 'package:smsrly/viewmodel/reset_password_viewmodel.dart';
 import 'package:smsrly/viewmodel/splash_view_model.dart';
@@ -14,11 +15,12 @@ import 'package:smsrly/viewmodel/verification_view_model.dart';
 import '../domain/repository/realestate_repository.dart';
 import '../domain/repository/user_repository.dart';
 
-class ProviderSetup{
+class ProviderSetuper{
+  
   RealEstateRepository realEstateRepository;
   UserRepository userRepository;
 
-  ProviderSetup(this.userRepository,this.realEstateRepository);
+  ProviderSetuper(this.userRepository,this.realEstateRepository);
 
   List<SingleChildWidget> get providers{
     return [
@@ -46,6 +48,9 @@ class ProviderSetup{
       ),
       ChangeNotifierProvider(
           create: (BuildContext context) => HomeViewModel(realEstateRepository)
+      ),
+      ChangeNotifierProvider(
+          create: (BuildContext context) => ExploreViewModel(realEstateRepository)
       )
 
     ];

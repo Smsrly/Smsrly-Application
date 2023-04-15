@@ -13,7 +13,8 @@ import '../res/strings.dart';
 import 'explore_screen/explore.dart';
 
 class ScreensContainer extends StatelessWidget {
-  const ScreensContainer({Key? key}) : super(key: key);
+  ScreensContainer({Key? key}) : super(key: key);
+  final _pageController = PageController(initialPage: 0);
 
   IconBottomBar _getBottomBarIcon(
       int index,
@@ -32,6 +33,11 @@ class ScreensContainer extends StatelessWidget {
             child: Image.asset(darkIconPath)),
         isSelected: isSelected(index),
         onPressed: () {
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
           onClick(index);
         });
   }
@@ -57,14 +63,17 @@ class ScreensContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<TabViewModel>(context);
     return Scaffold(
-      body: IndexedStack(
-        index: viewModel.currentIndex,
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index){
+          viewModel.updateCurrentIndex(index);
+        },
         children: [
           HomeScreen(),
           ExploreScreen(),
           const SellScreen(),
           MyAdds(),
-          Setting(),
+          Setting()
         ],
       ),
       bottomNavigationBar: BottomNavBar(icons: [

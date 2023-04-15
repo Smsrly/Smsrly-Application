@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:smsrly/models/user.dart';
 
-abstract class UserRepository{
+abstract class UserRepository {
   Future<String> signInWithEmailAndPassword(String email,String password);
   Future<String> signUp(User user,String password,File? file);
   Future<String> checkVerificationCode(String email, String code);
