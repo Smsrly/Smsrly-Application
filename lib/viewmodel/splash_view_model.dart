@@ -21,11 +21,11 @@ class SplashViewModel with ChangeNotifier{
   User? user;
   List<RealEstate>? realEstateItems;
 
-  Future<bool> onStart() async {
-    await getData();
-    return user != null && realEstateItems != null;
-  }
-
+  // Future<bool> onStart() async {
+  //   await getData();
+  //   return user != null && realEstateItems != null;
+  // }
+  //
   Future getData() async {
     await _getUser();
     await _getItems();
