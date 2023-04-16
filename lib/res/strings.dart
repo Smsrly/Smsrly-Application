@@ -179,4 +179,9 @@ class StringManager {
   static const String showDetailBathtubIcon = "assets/images/bathtub_icon.png";
   static const String showDetailStairsIcon = "assets/images/stairs_icon.png";
   static const String showDetailAreaIcon = "assets/images/areaa_icon.png";
+
+  static const String areaWhite = "assets/images/area_icon_white.png";
+  static const String stairsWhite = "assets/images/stairs_icon_white.png";
+  static const String bathtubWhite = "assets/images/bathtub_icon_white.png";
+  static const String bedWhite = "assets/images/bed_icon_white.png";
 }

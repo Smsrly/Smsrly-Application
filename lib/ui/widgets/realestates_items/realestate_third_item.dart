@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
 
 import '../../../models/realestate.dart';
 
@@ -7,6 +9,28 @@ class ThirdItem extends StatelessWidget {
   late RealEstate realEstate;
   Widget saveButton;
   ThirdItem({Key? key, required this.realEstate,required this.saveButton}) : super(key: key);
+
+
+  Widget infoRow(String image , String value){
+    return Row(
+      children: [
+        SizedBox(
+            width: 20,
+            height: 20,
+            child: Image.asset(image)
+        ),
+        3.wi,
+        Text(value,style: const TextStyle(
+          color:
+          Color.fromRGBO(
+              213, 213, 213, 1
+          ),
+          fontFamily: StringManager.ibmPlexSans,
+          fontWeight: FontWeight.w400,
+        ),)
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +88,6 @@ class ThirdItem extends StatelessWidget {
                   ),
                 ),
                 const Expanded(flex: 2,child: SizedBox()),
-
-
                 Row(
                   children: [
                     const Icon(Icons.location_on_outlined,color: Color.fromRGBO(
@@ -78,92 +100,20 @@ class ThirdItem extends StatelessWidget {
                       Color.fromARGB(
                           255, 188, 188, 188
                       ),
-                      fontFamily: "IBMPlexSans",
-                      fontWeight: FontWeight.w400,
-                    ),)
-                  ],
-                ),
-
-                const Expanded(flex: 1,child: SizedBox()),
-                Row(
-                  children: [
-                    SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: Image.asset("assets/images/area_icon_white.png")
-                    ),
-                    const SizedBox(width: 3,),
-                    Text("${realEstate.area}",style: const TextStyle(
-                      color:
-                      Color.fromRGBO(
-                          213, 213, 213, 1
-                      ),
-                      fontFamily: "IBMPlexSans",
+                      fontFamily: StringManager.ibmPlexSans,
                       fontWeight: FontWeight.w400,
                     ),)
                   ],
                 ),
                 const Expanded(flex: 1,child: SizedBox()),
-                Row(
-                  children: [
-                    SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: Image.asset("assets/images/stairs_icon_white.png")
-                    ),
-                    const SizedBox(width: 3,),
-                    Text("${realEstate.floor}",style: const TextStyle(
-                      color:
-                      Color.fromRGBO(
-                          213, 213, 213, 1
-                      ),
-                      fontFamily: "IBMPlexSans",
-                      fontWeight: FontWeight.w400,
-                    ),)
-                  ],
-                ),
+                infoRow(StringManager.areaWhite, "${realEstate.area}"),
                 const Expanded(flex: 1,child: SizedBox()),
-
-                Row(
-                  children: [
-                    SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: Image.asset("assets/images/bathtub_icon_white.png")
-                    ),
-                    const SizedBox(width: 3,),
-                    Text("${realEstate.bathroomsNo}",style: const TextStyle(
-                      color:
-                      Color.fromRGBO(
-                          213, 213, 213, 1
-                      ),
-                      fontFamily: "IBMPlexSans",
-                      fontWeight: FontWeight.w400,
-                    ),)
-                  ],
-                ),
+                infoRow(StringManager.stairsWhite, "${realEstate.floor}"),
                 const Expanded(flex: 1,child: SizedBox()),
-
-                Row(
-                  children: [
-                    SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: Image.asset("assets/images/bed_icon_white.png")
-                    ),
-                    const SizedBox(width: 3,),
-                    Text("${realEstate.roomsNo}",style: const TextStyle(
-                      color:
-                      Color.fromRGBO(
-                          213, 213, 213, 1
-                      ),
-                      fontFamily: "IBMPlexSans",
-                      fontWeight: FontWeight.w400,
-                    ),)
-                  ],
-                ),
+                infoRow(StringManager.bathtubWhite, "${realEstate.bathroomsNo}"),
                 const Expanded(flex: 1,child: SizedBox()),
-
+                infoRow(StringManager.bathtubWhite, "${realEstate.roomsNo}"),
+                const Expanded(flex: 1,child: SizedBox()),
 
               ],
             ),
