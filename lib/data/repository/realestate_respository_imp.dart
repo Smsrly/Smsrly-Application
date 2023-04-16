@@ -1,5 +1,6 @@
 import 'package:smsrly/data/network/api_services.dart';
 import 'package:smsrly/domain/repository/realestate_repository.dart';
+import 'package:smsrly/models/realestate.dart';
 
 import '../local/local_service.dart';
 
@@ -50,6 +51,16 @@ class RealEstateRepositoryImp implements RealEstateRepository{
       return res;
     }
     return 'No Token !';
+  }
+
+  @override
+  Future getUploadedRealEstates() async {
+    String? token = _localService.getToken();
+    if(token != null){
+      var res = await _apiServices.getUploads(token);
+      return res;
+    }
+    return null;
   }
 
 }

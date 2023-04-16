@@ -45,6 +45,11 @@ class AppStyles {
   static TextStyle bodyText4 =
   _getIBMPlexSansFont(fontSize: 15, fontWeight: FontWeight.w400,color: failedSearchTextColor);
 
+  static TextStyle bodyText5 =
+  _getIBMPlexSansFont(fontSize: 18, fontWeight: FontWeight.w500);
+
+  static TextStyle bodyText6 =
+  _getIBMPlexSansFont(fontSize: 17.sp, fontWeight: FontWeight.w400);
 
 
   static TextStyle _getIBMPlexSansFont(

@@ -9,6 +9,7 @@ import 'save.dart';
 import 'uploaded.dart';
 
 class MyAdds extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -46,7 +47,7 @@ class MyAdds extends StatelessWidget {
             ),
           ),
           body: TabBarView(
-            children: [Uploaded(), Requested(), Saved()],
+            children: [const Uploaded(), Requested(), Saved()],
           ),
         ));
   }

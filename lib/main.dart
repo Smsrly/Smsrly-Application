@@ -21,7 +21,6 @@ void main() async {
   userRepository = UserRepositoryImp();
   localService = LocalService();
   await localService?.initSharedPref();
-  ApiServices().getUploads(localService!.getToken()!);
   userRepository!.setLocalService(localService!);
   realEstateRepository = RealEstateRepositoryImp(localService!);
   runApp(const App());

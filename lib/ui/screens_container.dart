@@ -15,25 +15,28 @@ import 'explore_screen/explore.dart';
 class ScreensContainer extends StatelessWidget {
   const ScreensContainer({Key? key}) : super(key: key);
 
-  IconBottomBar _getBottomBarIcon(
+  Widget _getBottomBarIcon(
       int index,
       String lightIconPath,
       String darkIconPath,
-      bool Function(int) isSelected,
-      Function(int) onClick) {
-    return IconBottomBar(
-        lightIcon: SizedBox(
-            width: index != 0 ? 27 : 32,
-            height: index != 0 ? 27 : 32,
-            child: Image.asset(lightIconPath)),
-        darkIcon: SizedBox(
-            width: index != 0 ? 27 : 32,
-            height: index != 0 ? 27 : 32,
-            child: Image.asset(darkIconPath)),
-        isSelected: isSelected(index),
-        onPressed: () {
-          onClick(index);
-        });
+      ) {
+    return Consumer<TabViewModel>(
+        builder: (_,viewModel,__){
+          return IconBottomBar(
+              lightIcon: SizedBox(
+                  width: index != 0 ? 27 : 32,
+                  height: index != 0 ? 27 : 32,
+                  child: Image.asset(lightIconPath)),
+              darkIcon: SizedBox(
+                  width: index != 0 ? 27 : 32,
+                  height: index != 0 ? 27 : 32,
+                  child: Image.asset(darkIconPath)),
+              isSelected: viewModel.currentIndex == index,
+              onPressed: () {
+                viewModel.updateCurrentIndex(index);
+              });
+        }
+    );
   }
 
   Widget? getCurrentScreenByIndex(int index) {
@@ -41,7 +44,7 @@ class ScreensContainer extends StatelessWidget {
       case 0:
         return HomeScreen();
       case 1:
-        return ExploreScreen();
+        return const ExploreScreen();
       case 2:
         return const SellScreen();
       case 3:
@@ -55,68 +58,37 @@ class ScreensContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<TabViewModel>(context);
     return Scaffold(
-      body: IndexedStack(
-        index: viewModel.currentIndex,
-        children: [
-          HomeScreen(),
-          ExploreScreen(),
-          const SellScreen(),
-          MyAdds(),
-          Setting(),
-        ],
+      body: Consumer<TabViewModel>(
+        builder: (_,viewModel,__){
+          return getCurrentScreenByIndex(viewModel.currentIndex)!;
+        },
       ),
       bottomNavigationBar: BottomNavBar(icons: [
         _getBottomBarIcon(
             0,
             StringManager.homeIconNotSelected,
             StringManager.homeIconSelected,
-            (index) => viewModel.currentIndex == index, (index) {
-              if (viewModel.currentIndex != index) {
-                viewModel.updateCurrentIndex(index);
-              }
-            }
         ),
         _getBottomBarIcon(
             1,
             StringManager.searchIconNotSelected,
             StringManager.searchIconSelected,
-            (index) => viewModel.currentIndex == index, (index) {
-              if (viewModel.currentIndex != index) {
-                viewModel.updateCurrentIndex(index);
-              }
-            }
         ),
         _getBottomBarIcon(
             2,
             StringManager.addIconNotSelected,
             StringManager.addIconSelected,
-            (index) => viewModel.currentIndex == index, (index) {
-              if (viewModel.currentIndex != index) {
-                viewModel.updateCurrentIndex(index);
-              }
-            }
         ),
         _getBottomBarIcon(
             3,
             StringManager.saveIconNotSelected,
             StringManager.saveIconSelected,
-            (index) => viewModel.currentIndex == index, (index) {
-              if (viewModel.currentIndex != index) {
-                viewModel.updateCurrentIndex(index);
-              }
-            }
         ),
         _getBottomBarIcon(
             4,
             StringManager.settingIconNotSelected,
             StringManager.settingIconSelected,
-            (index) => viewModel.currentIndex == index, (index) {
-              if (viewModel.currentIndex != index) {
-                viewModel.updateCurrentIndex(index);
-              }
-            }
         ),
       ]),
     );

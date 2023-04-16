@@ -51,6 +51,7 @@ class StringManager {
   static const String adds = "My Adds";
   static const String uploaded = "UPLOADED";
   static const String requested = "REQUESTED";
+  static const String request= "Request";
   static const String saved = "SAVED";
   static const String setting = "Setting";
   static const String accSetting = "Account Settings";
@@ -96,6 +97,8 @@ class StringManager {
   static const String verifyYourEmail = "Verify your email";
   static const String codeInvalid = "The Code is Invalid";
   static const String verifyMessage = "Your Account is now Verified";
+  static const String requestedBy = "Requested by";
+  static const String uploadMessage = "Share your real estate properties with potential buyers and renters by uploading them on our app today!";
   static const String forgotPass = "Forgot Password ?";
   static const String forgotPassMessage = "Enter your email for the verification process,\nWe will send 4 digits code to your email";
   static const String next = "Next";
@@ -171,4 +174,9 @@ class StringManager {
   static const String savedIconBlue = "assets/images/saved_icon_blue.png";
   static const String unSaveIconBlue = 'assets/images/save_icon_blue.png';
 
+  static const String phoneIconPath = "assets/images/call_icon.png";
+  static const String showDetailBedIcon = "assets/images/bed_icon.png";
+  static const String showDetailBathtubIcon = "assets/images/bathtub_icon.png";
+  static const String showDetailStairsIcon = "assets/images/stairs_icon.png";
+  static const String showDetailAreaIcon = "assets/images/areaa_icon.png";
 }

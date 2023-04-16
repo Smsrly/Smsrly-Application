@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smsrly/res/colors.dart';
+import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_back_button.dart';
 import 'package:smsrly/ui/widgets/user_items/user_item.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -20,16 +23,11 @@ class ShowDetailsScreen extends StatelessWidget {
       children: [
         Expanded(
           flex: 1,
-          child: Text("${item.price} EGP",
+          child: Text("${item.price} ${StringManager.egyptianPound}",
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'IBMPlexSans',
-                  fontWeight: FontWeight.w500)),
+              style: AppStyles.bodyText5),
         ),
-        const SizedBox(
-          width: 5,
-        ),
+        5.he,
         Expanded(
           flex: 1,
           child: ElevatedButton(
@@ -44,8 +42,8 @@ class ShowDetailsScreen extends StatelessWidget {
                   },
             style: ElevatedButton.styleFrom(
               backgroundColor: isTheOwner
-                  ? const Color.fromRGBO(248, 52, 52, 1)
-                  : const Color.fromRGBO(14, 82, 137, 1),
+                  ? redColor
+                  : primaryColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -53,7 +51,7 @@ class ShowDetailsScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 20),
               child: Text(
-                isTheOwner ? "Delete" : 'Request',
+                isTheOwner ? StringManager.delete : StringManager.request,
                 style: TextStyle(fontSize: 18.sp),
               ),
             ),
@@ -73,7 +71,7 @@ class ShowDetailsScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: const [
           BoxShadow(
-            color: Color.fromRGBO(0, 0, 0, 0.17),
+            color: shadowColor2,
             blurRadius: 50.0,
           )
         ],
@@ -89,13 +87,12 @@ class ShowDetailsScreen extends StatelessWidget {
                 Row(
                   children: [
                     CircleAvatar(
-                      backgroundImage: NetworkImage(item.ownerInfo?.imageUrl != null
+                      backgroundImage: NetworkImage(
+                          item.ownerInfo?.imageUrl != null
                           ? item.ownerInfo?.imageUrl as String
                           : "https://user-images.githubusercontent.com/90563044/215369020-31ed45db-baa0-4175-a7ae-c31629fa7fdb.png"),
                     ),
-                    SizedBox(
-                      width: 5.w,
-                    ),
+                    5.w.wi,
                     Text(
                     item.ownerInfo!.name,
                       style: const TextStyle(
@@ -113,9 +110,9 @@ class ShowDetailsScreen extends StatelessWidget {
                       height: 40,
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: const Color.fromRGBO(14, 82, 137, 0.18),
+                          color: darkBlue,
                           borderRadius: BorderRadius.circular(13)),
-                      child: Image.asset("assets/images/call_icon.png"),
+                      child: Image.asset(StringManager.phoneIconPath),
                     ),
                     onTap: () {
                       launch("tel://");
@@ -125,7 +122,7 @@ class ShowDetailsScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 2.h),
+          2.h.he,
           Text(
             item.description,
             style: const TextStyle(
@@ -163,7 +160,7 @@ class ShowDetailsScreen extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-              color: const Color.fromRGBO(170, 169, 169, 1),
+              color: showDetailColor,
               fontSize: 15.sp,
               fontFamily: 'IBMPlexSans',
               fontWeight: FontWeight.w400),
@@ -212,9 +209,7 @@ class ShowDetailsScreen extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    SizedBox(
-                      height: height / 2.1,
-                    ),
+                    (height / 2.1).he,
                     Container(
                       padding: const EdgeInsets.all(15),
                       width: double.infinity,
@@ -238,52 +233,28 @@ class ShowDetailsScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              infoRow("assets/images/bed_icon.png",
+                              infoRow(StringManager.showDetailBedIcon,
                                   "${item.roomsNo}"),
-                              infoRow("assets/images/bathtub_icon.png",
+                              infoRow(StringManager.showDetailBathtubIcon,
                                   "${item.bathroomsNo}"),
-                              infoRow("assets/images/stairs_icon.png",
+                              infoRow(StringManager.showDetailStairsIcon,
                                   "${item.floor}"),
-                              infoRow("assets/images/areaa_icon.png",
-                                  "${item.area}m²"),
+                              infoRow(StringManager.showDetailAreaIcon,
+                                  "${item.area}${StringManager.areaUnit}"),
                             ],
                           ),
-                          SizedBox(height: 20.h),
+                          20.h.he,
                           userCard(),
-                          SizedBox(height: 25.h),
+                          25.h.he,
                           Container(
                               margin:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               width: double.infinity,
                               child: Image.network(
                                   "https://user-images.githubusercontent.com/90563044/215372638-0dca96fa-5e19-4aea-a8cd-57c9eb9c225b.png")),
-                          SizedBox(height: 10.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                "Latitude: ${item.latitude}",
-                                style: TextStyle(
-                                  fontSize: 17.sp,
-                                  fontFamily: 'IBMPlexSans',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              Text(
-                                "Longitude: ${item.longitude}",
-                                style: TextStyle(
-                                  fontSize: 17.sp,
-                                  fontFamily: 'IBMPlexSans',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 35.h),
+                          35.h.he,
                           priceRow(),
-                          SizedBox(
-                            height: 20.h,
-                          ),
+                          20.h.he,
                           Visibility(
                             visible: isTheOwner,
                             child: Column(
@@ -293,11 +264,11 @@ class ShowDetailsScreen extends StatelessWidget {
                                     Expanded(
                                         flex: 1,
                                         child: Text(
-                                          "Requested by",
+                                          StringManager.requestedBy,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 20.sp,
-                                              fontFamily: 'IBMPlexSans',
+                                              fontFamily: StringManager.ibmPlexSans,
                                               fontWeight: FontWeight.w500),
                                         )),
                                     const Expanded(flex: 1, child: SizedBox())
@@ -363,7 +334,7 @@ class ShowDetailsScreen extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.all(10),
                   child: RoundedBackButton(
-                      backgroundColor: const Color.fromRGBO(0, 0, 0, 0.15),
+                      backgroundColor: shadowColor2,
                       arrowColor: Colors.white,
                       iconSize: 15,
                       onClick: () {

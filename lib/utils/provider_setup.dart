@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:smsrly/viewmodel/ads_viewmodel.dart';
 import 'package:smsrly/viewmodel/explore_viewmodel.dart';
 import 'package:smsrly/viewmodel/home_viewmodel.dart';
 import 'package:smsrly/viewmodel/reset_password_viewmodel.dart';
@@ -51,6 +52,9 @@ class ProviderSetuper{
       ),
       ChangeNotifierProvider(
           create: (BuildContext context) => ExploreViewModel(realEstateRepository)
+      ),
+      ChangeNotifierProvider(
+          create: (BuildContext context) => AdsViewModel(realEstateRepository)
       )
 
     ];

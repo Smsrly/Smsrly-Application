@@ -19,6 +19,7 @@ class RealEstate {
   UserInfo? ownerInfo;
   bool? hasSaved;
   bool? hasRequested;
+  List<UserInfo>? requestedBy;
 
   RealEstate(
       this.realEstateId,
@@ -37,9 +38,18 @@ class RealEstate {
       this.city,
       this.hasSaved,
       this.hasRequested,
-      this.ownerInfo);
+      this.ownerInfo,
+      this.requestedBy
+      );
 
   factory RealEstate.fromJson(Map<String, dynamic> data,List<String> imagesUrls) {
+    List<UserInfo>? userRequestInfo;
+    if(data['requestedBy'] != null){
+      userRequestInfo = [];
+      for(var user in data['requestedBy']){
+        userRequestInfo.add(UserInfo.fromJson(user));
+      }
+    }
     return RealEstate(
         data['id'],
         data['isSale'],
@@ -57,7 +67,8 @@ class RealEstate {
         data['city'],
         data['hasSaved'],
         data['hasRequested'],
-        data['userInfo'] != null ? UserInfo.fromJson(data['userInfo']) : null
+        data['userInfo'] != null ? UserInfo.fromJson(data['userInfo']) : null,
+        userRequestInfo
     );
   }
 }

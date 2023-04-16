@@ -5,10 +5,8 @@ import '../../../models/realestate.dart';
 
 class ThirdItem extends StatelessWidget {
   late RealEstate realEstate;
-  late bool isTheOwner;
-  late bool hasSaved;
-  VoidCallback? onSaveIconSelected;
-  ThirdItem({Key? key, required this.realEstate,required this.isTheOwner,required this.hasSaved,this.onSaveIconSelected}) : super(key: key);
+  Widget saveButton;
+  ThirdItem({Key? key, required this.realEstate,required this.saveButton}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,20 +59,7 @@ class ThirdItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(realEstate.title,style: const TextStyle(color: Colors.white,fontSize: 18,fontFamily: 'IBMPlexSans',fontWeight: FontWeight.w400),),
-                      Visibility(
-                        visible: !isTheOwner,
-                        child: InkWell(
-                          child: Container(
-                              margin: const EdgeInsets.all(5),
-                              width: 25,
-                              height: 30,
-                              child: Image.asset(hasSaved?"assets/images/saved_btn.png":"assets/images/save_btn.png")
-                          ),
-                          onTap: (){
-                            onSaveIconSelected!();
-                          },
-                        ),
-                      ),
+                      saveButton,
                     ],
                   ),
                 ),

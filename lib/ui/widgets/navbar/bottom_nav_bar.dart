@@ -5,7 +5,7 @@ import 'bottombar_icon.dart';
 
 
 class BottomNavBar extends StatelessWidget {
-  final  List<IconBottomBar> icons;
+  final  List<Widget> icons;
 
   const BottomNavBar({Key? key, required this.icons}) : super(key: key);
 

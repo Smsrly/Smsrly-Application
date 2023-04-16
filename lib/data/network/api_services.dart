@@ -234,7 +234,7 @@ class ApiServices {
           }).timeout(const Duration(seconds: 20));
       var responseBody = jsonDecode(res.body) as List<dynamic>;
       if(res.statusCode == 200){
-        Map<int,RealEstate> realEstates = {};
+        List<RealEstate> realEstates = [];
         for (var element in responseBody) {
           element = element as Map<String, dynamic>;
           element.remove('user');
@@ -243,8 +243,7 @@ class ApiServices {
             urls.add(link['realEstateImageURL']);
           }
           print('element => $element');
-          var currItem = RealEstate.fromJson(element, urls);
-          realEstates[currItem.realEstateId] = (RealEstate.fromJson(element, urls));
+          realEstates.add(RealEstate.fromJson(element, urls));
         }
         return realEstates;
       } else {

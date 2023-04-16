@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:smsrly/ui/widgets/others/d_progress_bar.dart';
 import 'package:smsrly/utils/routes/route_name.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
 
@@ -49,11 +50,7 @@ class SplashScreen extends StatelessWidget {
         Image.asset(
             StringManager.pictureForLogin
         ),
-        const CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(
-              primaryColor
-          ),
-        )
+        const DefaultProgressBar()
       ],
     );
   }
