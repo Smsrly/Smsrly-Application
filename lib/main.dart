@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:smsrly/data/network/api_services.dart';
 import 'package:smsrly/data/repository/realestate_respository_imp.dart';
 import 'package:smsrly/data/repository/user_repository_imp.dart';
 import 'package:smsrly/utils/provider_setup.dart';
@@ -20,6 +21,7 @@ void main() async {
   userRepository = UserRepositoryImp();
   localService = LocalService();
   await localService?.initSharedPref();
+  ApiServices().getUploads(localService!.getToken()!);
   userRepository!.setLocalService(localService!);
   realEstateRepository = RealEstateRepositoryImp(localService!);
   runApp(const App());

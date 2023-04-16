@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
@@ -103,11 +102,11 @@ class ApiServices {
       });
       var response = await http
           .post(
-        Uri.parse(
-            ApiConstants.baseUrl + ApiConstants.loginWithGoogleEndPoint),
-        headers: {'Content-Type': 'application/json; charset=UTF-8'},
-        body: body,
-      )
+            Uri.parse(
+                ApiConstants.baseUrl + ApiConstants.loginWithGoogleEndPoint),
+            headers: {'Content-Type': 'application/json; charset=UTF-8'},
+            body: body,
+          )
           .timeout(const Duration(seconds: 10));
 
       final res = returnResponse(response);
@@ -117,13 +116,12 @@ class ApiServices {
     }
   }
 
-
   Future<dynamic> checkResetPasswordCode(String email, String code) async {
     try {
       final response = await http
           .get(Uri.parse(ApiConstants.baseUrl +
-          ApiConstants.submitResetPasswordCodeEndPoint)
-          .replace(queryParameters: {'email': email, 'code': code}))
+                  ApiConstants.submitResetPasswordCodeEndPoint)
+              .replace(queryParameters: {'email': email, 'code': code}))
           .timeout(const Duration(seconds: 15));
       return returnResponse(response);
     } catch (e) {
@@ -147,7 +145,7 @@ class ApiServices {
   }
 
   Future<dynamic> getUser(String token) async {
-    try{
+    try {
       final response = await http.get(
           Uri.parse(ApiConstants.baseUrl + ApiConstants.getUserEndPoint),
           headers: {
@@ -156,84 +154,113 @@ class ApiServices {
           }).timeout(const Duration(seconds: 20));
       print('response code => ${response.statusCode}');
       print('response body => ${response.body}');
-      if(response.statusCode == 200){
+      if (response.statusCode == 200) {
         return User.formJson(jsonDecode(response.body));
-      } else if(response.statusCode == 403) {
+      } else if (response.statusCode == 403) {
         return StringManager.tokenNotWork;
       } else {
         return null;
       }
-    }catch(e){
+    } catch (e) {
       return e.toString();
     }
   }
 
-  Future<dynamic> getRealEstates(String token)async{
-    try{
+  Future<dynamic> getRealEstates(String token) async {
+    try {
       print('before');
       final response = await http.get(
           Uri.parse(ApiConstants.baseUrl + ApiConstants.realEstatesEndPoint),
           headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer $token'
-          }
-      ).timeout(const Duration(seconds: 15));
+          }).timeout(const Duration(seconds: 15));
       List<RealEstate> elements = [];
       var responseBody = jsonDecode(response.body);
-      for(var item in responseBody){
+      for (var item in responseBody) {
         List<String> urls = [];
-        for(var link in item['realEstateImages']){
+        for (var link in item['realEstateImages']) {
           urls.add(link['realEstateImageURL']);
         }
 
-        var currItem = RealEstate.fromJson(Map<String,dynamic>.from(item),urls);
+        var currItem =
+            RealEstate.fromJson(Map<String, dynamic>.from(item), urls);
         elements.add(currItem);
       }
       return elements;
-    }catch(e){
+    } catch (e) {
       return e.toString();
     }
-
   }
-  Future<dynamic> saveRealEstate(String token , int realEstateId) async {
-    try{
+
+  Future<dynamic> saveRealEstate(String token, int realEstateId) async {
+    try {
       final response = await http.post(
-          Uri.parse(ApiConstants.baseUrl + ApiConstants.savesEndPoint).replace(
-              queryParameters: {
-                'RealEstateId':"$realEstateId"
-              }
-          ),
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.savesEndPoint)
+              .replace(queryParameters: {'RealEstateId': "$realEstateId"}),
           headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer $token'
-          }
-      ).timeout(const Duration(seconds: 2));
+          }).timeout(const Duration(seconds: 2));
       return returnResponse(response);
-    }catch(e){
+    } catch (e) {
       return e.toString();
     }
-
   }
-  Future<dynamic> unSaveRealEstate(String token , int realEstateId) async {
-    try{
+
+  Future<dynamic> unSaveRealEstate(String token, int realEstateId) async {
+    try {
       final response = await http.delete(
-          Uri.parse(ApiConstants.baseUrl + ApiConstants.savesEndPoint).replace(
-              queryParameters: {
-                'RealEstateId':"$realEstateId"
-              }
-          ),
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.savesEndPoint)
+              .replace(queryParameters: {'RealEstateId': "$realEstateId"}),
           headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer $token'
-          }
-      ).timeout(const Duration(seconds: 2));
+          }).timeout(const Duration(seconds: 2));
       return returnResponse(response);
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<dynamic> getUploads(String token) async {
+    try{
+      final res = await http.get(
+          Uri.parse(ApiConstants.baseUrl +
+              ApiConstants.uploadedRealEstatesOfUserEndPoint),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }).timeout(const Duration(seconds: 20));
+      var responseBody = jsonDecode(res.body) as List<dynamic>;
+      if(res.statusCode == 200){
+        Map<int,RealEstate> realEstates = {};
+        for (var element in responseBody) {
+          element = element as Map<String, dynamic>;
+          element.remove('user');
+          List<String> urls = [];
+          for (var link in element['realEstateImages']) {
+            urls.add(link['realEstateImageURL']);
+          }
+          print('element => $element');
+          var currItem = RealEstate.fromJson(element, urls);
+          realEstates[currItem.realEstateId] = (RealEstate.fromJson(element, urls));
+        }
+        return realEstates;
+      } else {
+        return returnResponse(res);
+      }
     }catch(e){
       return e.toString();
     }
+  }
+
+  Future<dynamic> getRequests(String token) async {
 
   }
-  Future<dynamic> uploadRealEstateImages(List<File> images, int realEstateId) async {
+
+  Future<dynamic> uploadRealEstateImages(
+      List<File> images, int realEstateId) async {
     var request = http.MultipartRequest(
       'POST',
       Uri.parse(''),

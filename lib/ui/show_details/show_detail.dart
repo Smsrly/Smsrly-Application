@@ -89,15 +89,15 @@ class ShowDetailsScreen extends StatelessWidget {
                 Row(
                   children: [
                     CircleAvatar(
-                      backgroundImage: NetworkImage(item.ownerInfo.imageUrl != null
-                          ? item.ownerInfo.imageUrl as String
+                      backgroundImage: NetworkImage(item.ownerInfo?.imageUrl != null
+                          ? item.ownerInfo?.imageUrl as String
                           : "https://user-images.githubusercontent.com/90563044/215369020-31ed45db-baa0-4175-a7ae-c31629fa7fdb.png"),
                     ),
                     SizedBox(
                       width: 5.w,
                     ),
                     Text(
-                    item.ownerInfo.name,
+                    item.ownerInfo!.name,
                       style: const TextStyle(
                           fontFamily: 'IBMPlexSans',
                           fontWeight: FontWeight.w400),

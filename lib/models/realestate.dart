@@ -16,7 +16,7 @@ class RealEstate {
   double latitude;
   String country;
   String city;
-  OwnerInfo ownerInfo;
+  OwnerInfo? ownerInfo;
   bool? hasSaved;
 
   RealEstate(
@@ -54,7 +54,7 @@ class RealEstate {
         data['country'],
         data['city'],
         data['hasSaved'],
-        OwnerInfo.fromJson(data['ownerInfo'])
+        data['ownerInfo'] != null ? OwnerInfo.fromJson(data['ownerInfo']) : null
     );
   }
 }
