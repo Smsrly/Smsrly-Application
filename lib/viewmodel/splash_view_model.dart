@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:smsrly/models/realestate.dart';
 import 'package:smsrly/models/user.dart';
 import 'package:smsrly/res/strings.dart';
