@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smsrly/utils/routes/route_name.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
 
+import '../../res/colors.dart';
 import '../../res/strings.dart';
 import '../../viewmodel/splash_view_model.dart';
 
@@ -42,12 +43,18 @@ class SplashScreen extends StatelessWidget {
 
 
   Widget splashWidget(){
-    return Center(
-        child: Lottie.asset(
-          StringManager.splashAnimation,
-          animate: true,
-          repeat: true,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+            StringManager.pictureForLogin
+        ),
+        const CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(
+              primaryColor
+          ),
         )
+      ],
     );
   }
 
