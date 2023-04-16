@@ -1,4 +1,4 @@
-import 'owner_info.dart';
+import 'user_info.dart';
 
 class RealEstate {
 
@@ -16,8 +16,9 @@ class RealEstate {
   double latitude;
   String country;
   String city;
-  OwnerInfo? ownerInfo;
+  UserInfo? ownerInfo;
   bool? hasSaved;
+  bool? hasRequested;
 
   RealEstate(
       this.realEstateId,
@@ -35,6 +36,7 @@ class RealEstate {
       this.country,
       this.city,
       this.hasSaved,
+      this.hasRequested,
       this.ownerInfo);
 
   factory RealEstate.fromJson(Map<String, dynamic> data,List<String> imagesUrls) {
@@ -54,7 +56,8 @@ class RealEstate {
         data['country'],
         data['city'],
         data['hasSaved'],
-        data['ownerInfo'] != null ? OwnerInfo.fromJson(data['ownerInfo']) : null
+        data['hasRequested'],
+        data['userInfo'] != null ? UserInfo.fromJson(data['userInfo']) : null
     );
   }
 }

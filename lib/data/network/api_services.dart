@@ -182,9 +182,9 @@ class ApiServices {
         for (var link in item['realEstateImages']) {
           urls.add(link['realEstateImageURL']);
         }
-
         var currItem =
             RealEstate.fromJson(Map<String, dynamic>.from(item), urls);
+        print('currItem => $currItem');
         elements.add(currItem);
       }
       return elements;
