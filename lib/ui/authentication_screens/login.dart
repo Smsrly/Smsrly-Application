@@ -144,7 +144,7 @@ class LoginScreen extends StatelessWidget {
                         onClick: () {
                           authViewModel.loginWithGoogle(() {
                             Navigator.pushReplacementNamed(
-                                context, RouteName.screensContainerRoute);
+                                context, RouteName.splashRoute);
                           });
                         },
                         text: StringManager.loginWithGoogle,

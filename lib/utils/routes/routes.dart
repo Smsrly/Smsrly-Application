@@ -9,6 +9,8 @@ import 'package:smsrly/ui/setting_screens/edit_profile.dart';
 import 'package:smsrly/ui/show_details/show_detail.dart';
 import 'package:smsrly/utils/routes/route_name.dart';
 
+import 'package:smsrly/ui/sell_screen/google_maps.dart';
+
 final routes = {
   RouteName.onBoardingRoute: (context) => const OnBoarding(),
   RouteName.loginRoute: (context) => LoginScreen(),
@@ -18,5 +20,6 @@ final routes = {
   RouteName.editProfileRoute: (context) => const EditProfileScreen(),
   RouteName.contactUsRoute: (context) => const ContactUsScreen(),
   RouteName.showDetailsRoute: (context) => const ShowDetailsScreen(),
-  RouteName.verifyRoute: (context) => VerifyScreen()
+  RouteName.verifyRoute: (context) => VerifyScreen(),
+  RouteName.googleMapsRoute: (context) => GoogleMaps()
 };
