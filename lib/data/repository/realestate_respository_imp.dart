@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:smsrly/data/network/api_services.dart';
 import 'package:smsrly/domain/repository/realestate_repository.dart';
+import 'package:smsrly/models/realestate.dart';
 import '../local/local_service.dart';
 
 class RealEstateRepositoryImp implements RealEstateRepository{
@@ -128,6 +131,26 @@ class RealEstateRepositoryImp implements RealEstateRepository{
       return res;
     }
     return 'No Token';
+  }
+
+  @override
+  Future<String?> uploadRealEstate(RealEstate realEstate) async {
+    String? token = _localService.getToken();
+    print('token ==> $token');
+    if (token != null) {
+      final res = await _apiServices.uploadRealEstate(token, realEstate);
+      print('repo response:  ${res['message']}');
+      return res['message'];
+    }
+    return token;
+  }
+
+  @override
+  Future<String?> uploadRealEstateImages(
+      List<File> files, int realEstateId) async {
+    final res = await _apiServices.uploadRealEstateImages(files, realEstateId);
+    print('repo response:  ${res['message']}');
+    return res['message'];
   }
 
 

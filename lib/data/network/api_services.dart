@@ -187,7 +187,7 @@ class ApiServices {
         var currItem =
             RealEstate.fromJson(Map<String, dynamic>.from(item), urls);
         print('currItem => $currItem');
-        elementsMap[currItem.realEstateId] = currItem;
+        elementsMap[currItem.realEstateId!] = currItem;
         elements.add(elementsMap[currItem.realEstateId]!);
       }
       return {
@@ -257,24 +257,6 @@ class ApiServices {
     } catch (e) {
       return e.toString();
     }
-  }
-
-  Future<dynamic> uploadRealEstateImages(
-      List<File> images, int realEstateId) async {
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse(''),
-    );
-
-    request.fields['RealEstateId'] = realEstateId.toString();
-
-    for (var i = 0; i < images.length; i++) {
-      var file = await http.MultipartFile.fromPath('image', images[i].path);
-      request.files.add(file);
-    }
-
-    var response = await request.send();
-    return returnResponse(await http.Response.fromStream(response));
   }
 
   Future<dynamic> requestRealEstate(String token, int realEstateId) async {
@@ -412,6 +394,53 @@ class ApiServices {
     }catch(e){
       return e.toString();
     }
+  }
+
+
+  Future<dynamic> uploadRealEstate(String token, RealEstate realEstate) async {
+    try {
+      String body = jsonEncode(realEstate.toMap());
+      final response = await http
+          .post(
+          Uri.parse(
+              ApiConstants.baseUrl + ApiConstants.realEstatesEndPoint),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          },
+          body: body)
+          .timeout(const Duration(seconds: 30));
+      print('response code => ${response.statusCode}');
+      print('response body => ${response.body}');
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else if (response.statusCode == 403) {
+        return StringManager.tokenNotWork;
+      } else {
+        return returnResponse(response);
+      }
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<dynamic> uploadRealEstateImages(
+      List<File> files, int realEstateId) async {
+    var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(
+            ApiConstants.baseUrl + ApiConstants.realEstateImagesEndPoint));
+
+    request.fields['RealEstateId'] = realEstateId.toString();
+
+    for (var i = 0; i < files.length; i++) {
+      var file = await http.MultipartFile.fromPath('image', files[i].path,
+          contentType: MediaType('image', 'jpeg'));
+      request.files.add(file);
+    }
+
+    var response = await request.send();
+    return returnResponse(await http.Response.fromStream(response));
   }
 
   dynamic returnResponse(http.Response response) {

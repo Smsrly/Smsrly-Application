@@ -25,8 +25,8 @@ class DetailsViewModel with ChangeNotifier{
   bool isTheOwner = false;
 
   void deleteRealEstate() async {
-    if (currRealEstate?.ownerInfo ==null){
-      final res = await _deleteUseCase.delete(currRealEstate!.realEstateId);
+    if (currRealEstate?.userInfo ==null){
+      final res = await _deleteUseCase.delete(currRealEstate!.realEstateId!);
       if(res == StringManager.hasDeleted){
         Utils.showToast(StringManager.deletedBefore, 1);
       }
@@ -34,7 +34,7 @@ class DetailsViewModel with ChangeNotifier{
   }
 
   void onRefresh() async {
-    final res = await realEstateRepository.getRequestsOfRealEstate(currRealEstate!.realEstateId);
+    final res = await realEstateRepository.getRequestsOfRealEstate(currRealEstate!.realEstateId!);
     if(res is List<UserInfo> ){
       print('$res');
       if(res.length != currRealEstate!.requestedBy!.length){
@@ -76,9 +76,9 @@ class DetailsViewModel with ChangeNotifier{
   }
 
   void requestRealEstate()async{
-    await _realEstateRequestUseCase.request(currRealEstate!.realEstateId);
+    await _realEstateRequestUseCase.request(currRealEstate!.realEstateId!);
   }
   void deleteRequestRealEstate()async{
-    await _deleteRequestUseCase.deleteRequest(currRealEstate!.realEstateId);
+    await _deleteRequestUseCase.deleteRequest(currRealEstate!.realEstateId!);
   }
 }

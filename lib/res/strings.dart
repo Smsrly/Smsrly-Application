@@ -115,6 +115,18 @@ class StringManager {
   static const String next = "Next";
   static const String tokenNotWork = "TokenIsExpired";
   static const String tokenNotFound = "TOKEN NOT FOUND";
+  static const String realEstateUploaded = "real estate uploaded";
+  static const String realEstateTitleInvalid = "title name should be between 10 and 20 characters";
+  static const String realEstateDescriptionInvalid ="description name should be between 20 and 150 characters";
+  static const String realEstateAreaInvalid = "this is invalid area";
+  static const String realEstateFloorNumberInvalid = "this is invalid floor number";
+  static const String realEstateBathroomInvalid = "this is invalid bathroom number";
+  static const String realEstateRoomNumberInvalid = "this is invalid room number";
+  static const String realEstatePriceInvalid = "this is invalid price";
+  static const String realEstateImageUploaded = "image uploaded";
+  static const String minNumberOfImages = "upload 5 image at least";
+  static const String maxNumberOfImages = "max uploaded image is 20";
+  static const String onRealEstateUploadedSuccessfully ="Real estate uploaded successfully";
 
   // Args Keys
   static const String itemsMap = 'ItemsMap';

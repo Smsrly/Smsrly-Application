@@ -20,7 +20,7 @@ class User {
   }
 
   void saveRealEstate(RealEstate item) {
-    _savedRealEstates[item.realEstateId] = item;
+    _savedRealEstates[item.realEstateId!] = item;
   }
 
   void unSaveRealEstate(RealEstate item) {

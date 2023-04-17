@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:smsrly/data/network/api_services.dart';
 import 'package:smsrly/data/repository/realestate_respository_imp.dart';
 import 'package:smsrly/data/repository/user_repository_imp.dart';
 import 'package:smsrly/utils/provider_setup.dart';

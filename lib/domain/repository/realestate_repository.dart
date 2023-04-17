@@ -1,4 +1,7 @@
 
+import 'dart:io';
+import 'package:smsrly/models/realestate.dart';
+
 abstract class RealEstateRepository{
   Future<dynamic> getRealEstates();
   Future<String> saveRealEstate(int realEstateId);
@@ -10,4 +13,6 @@ abstract class RealEstateRepository{
   Future<dynamic> getSavesOfUser();
   Future<dynamic> getRequestsOfRealEstate(int realEstateId);
   Future<dynamic> getUploadedRealEstates();
+  Future<String?> uploadRealEstate(RealEstate realEstate);
+  Future<String?> uploadRealEstateImages(List<File> files, int realEstateId);
 }

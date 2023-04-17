@@ -23,9 +23,9 @@ class SaveViewModel with ChangeNotifier{
     notifyListeners();
   }
   void saveRealEstate(RealEstate realEstate) async {
-    await _saveRealEstateUseCase.save(realEstate.realEstateId);
+    await _saveRealEstateUseCase.save(realEstate.realEstateId!);
   }
   void unSaveRealEstate(RealEstate realEstate) async {
-    await _unSaveRealEstateUseCase.unSave(realEstate.realEstateId);
+    await _unSaveRealEstateUseCase.unSave(realEstate.realEstateId!);
   }
 }

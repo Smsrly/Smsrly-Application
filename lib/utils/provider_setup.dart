@@ -16,6 +16,7 @@ import 'package:smsrly/viewmodel/verification_view_model.dart';
 
 import '../domain/repository/realestate_repository.dart';
 import '../domain/repository/user_repository.dart';
+import 'package:smsrly/viewmodel/sell_view_model.dart';
 
 class ProviderSetuper {
   RealEstateRepository realEstateRepository;
@@ -56,6 +57,9 @@ class ProviderSetuper {
           update: (context, appViewModel, detailsViewModel) {
               return DetailsViewModel(realEstateRepository, appViewModel.currUser);
           },
+      ),
+      ChangeNotifierProvider(
+          create: (BuildContext context) => SellViewModel(realEstateRepository)
       )
     ];
   }

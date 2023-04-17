@@ -46,7 +46,7 @@ class ScreensContainer extends StatelessWidget {
       case 1:
         return const ExploreScreen();
       case 2:
-        return const SellScreen();
+        return SellScreen();
       case 3:
         return const MyAdds();
       case 4:

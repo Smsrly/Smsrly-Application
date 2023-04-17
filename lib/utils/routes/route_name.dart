@@ -8,4 +8,5 @@ class RouteName{
   static const String showDetailsRoute = "/SHOW_DETAILS_SCREEN";
   static const String contactUsRoute = "/CONTACT_US_SCREEN";
   static const String editProfileRoute = "/EDIT_PROFILE_SCREEN";
+  static const String googleMapsRoute = "/GOOGLE_MAP_SCREEN";
 }

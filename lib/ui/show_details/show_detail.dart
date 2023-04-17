@@ -75,9 +75,9 @@ class ShowDetailsScreen extends StatelessWidget {
       phoneNumber = viewModel.currUser!.phoneNumber;
       name = viewModel.currUser!.username;
     } else {
-      imageUrl = viewModel.currRealEstate!.ownerInfo!.imageUrl;
-      phoneNumber = viewModel.currRealEstate!.ownerInfo!.phoneNumber;
-      name = viewModel.currRealEstate!.ownerInfo!.name;
+      imageUrl = viewModel.currRealEstate!.userInfo!.imageUrl;
+      phoneNumber = viewModel.currRealEstate!.userInfo!.phoneNumber;
+      name = viewModel.currRealEstate!.userInfo!.name;
     }
     Widget picture;
     if(imageUrl == null){
@@ -221,7 +221,7 @@ class ShowDetailsScreen extends StatelessWidget {
                           width: double.infinity,
                           height: 440.h,
                           child: Image.network(
-                            item.imageUrl[0],
+                            item.imageUrl![0],
                             fit: BoxFit.cover,
                             frameBuilder:
                                 (context, child, frame, wasSynchronouslyLoaded) {
@@ -331,9 +331,9 @@ class ShowDetailsScreen extends StatelessWidget {
                                                   phoneNumber = detailsViewModel.currUser!.phoneNumber;
                                                   name = detailsViewModel.currUser!.username;
                                                 } else {
-                                                  imageUrl = detailsViewModel.currRealEstate!.ownerInfo!.imageUrl;
-                                                  phoneNumber = detailsViewModel.currRealEstate!.ownerInfo!.phoneNumber;
-                                                  name = detailsViewModel.currRealEstate!.ownerInfo!.name;
+                                                  imageUrl = detailsViewModel.currRealEstate!.userInfo!.imageUrl;
+                                                  phoneNumber = detailsViewModel.currRealEstate!.userInfo!.phoneNumber;
+                                                  name = detailsViewModel.currRealEstate!.userInfo!.name;
                                                 }
                                                 print('afffter');
                                                 return UserItem(name: name , phoneNumber: phoneNumber,imageUrl: imageUrl,);

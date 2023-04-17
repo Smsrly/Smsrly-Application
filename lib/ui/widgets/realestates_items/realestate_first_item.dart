@@ -36,7 +36,7 @@ class FirstItem extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             Image(
-              image: NetworkImage(item.imageUrl[Random().nextInt(item.imageUrl.length)]),
+              image: NetworkImage(item.imageUrl![Random().nextInt(item.imageUrl!.length)]),
               fit: BoxFit.cover,
               height: 235,
             ),
