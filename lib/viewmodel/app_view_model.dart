@@ -62,6 +62,11 @@ class AppViewModel with ChangeNotifier {
 
   void logout()async{
     await userRepository.logout();
+    onDestroy();
   }
-
+  void onDestroy(){
+    currUser = null;
+    _items?.clear();
+    _itemsMap?.clear();
+  }
 }

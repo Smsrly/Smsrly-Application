@@ -3,27 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
-import 'package:smsrly/res/colors.dart';
 
-class PasswordDialog extends StatefulWidget {
-  late Function onSubmit;
+class PasswordDialog extends StatelessWidget {
 
-  PasswordDialog({super.key, required this.onSubmit});
+  const PasswordDialog({super.key});
 
-  @override
-  State<PasswordDialog> createState() => _PasswordDialogState();
-}
-
-class _PasswordDialogState extends State<PasswordDialog> {
-  bool currentPasswordIsHide = true;
-  bool newPasswordIsHide = true;
-  bool confirmPasswordIsHide = true;
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: SizedBox(
-        height: 430.h,
         width: 300.w,
         child: Column(children: [
           Container(
@@ -54,13 +43,13 @@ class _PasswordDialogState extends State<PasswordDialog> {
               child: SizedBox(
                 height: 50.h,
                 child: TextField(
-                  obscureText: currentPasswordIsHide,
+                  obscureText: true,
                   decoration: InputDecoration(
                       suffixIcon: InkWell(
-                          onTap: () => setState(() {
-                                currentPasswordIsHide = !currentPasswordIsHide;
-                              }),
-                          child: currentPasswordIsHide == true
+                          onTap: () {
+
+                          },
+                          child: true == true
                               ? const Icon(Icons.visibility)
                               : const Icon(Icons.visibility_off)),
                       border: const OutlineInputBorder(
@@ -80,13 +69,12 @@ class _PasswordDialogState extends State<PasswordDialog> {
               child: SizedBox(
                 height: 50.h,
                 child: TextField(
-                  obscureText: newPasswordIsHide,
+                  obscureText: true,
                   decoration: InputDecoration(
                       suffixIcon: InkWell(
-                          onTap: () => setState(() {
-                                newPasswordIsHide = !newPasswordIsHide;
-                              }),
-                          child: newPasswordIsHide == true
+                          onTap: () {
+                          },
+                          child: true == true
                               ? const Icon(Icons.visibility)
                               : const Icon(Icons.visibility_off)),
                       border: const OutlineInputBorder(
@@ -106,13 +94,12 @@ class _PasswordDialogState extends State<PasswordDialog> {
               child: SizedBox(
                 height: 50.h,
                 child: TextField(
-                  obscureText: confirmPasswordIsHide,
+                  obscureText: true,
                   decoration: InputDecoration(
                       suffixIcon: InkWell(
-                          onTap: () => setState(() {
-                                confirmPasswordIsHide = !confirmPasswordIsHide;
-                              }),
-                          child: confirmPasswordIsHide == true
+                          onTap: () {
+                          },
+                          child: true == true
                               ? const Icon(Icons.visibility)
                               : const Icon(Icons.visibility_off)),
                       border: const OutlineInputBorder(
@@ -124,7 +111,9 @@ class _PasswordDialogState extends State<PasswordDialog> {
             child: SizedBox(
               width: double.infinity,
               child: RoundedButton(
-                onClick: () => widget.onSubmit(),
+                onClick: () {
+
+                },
                 text: StringManager.submit,
               ),
             ),

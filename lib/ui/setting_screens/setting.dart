@@ -8,6 +8,7 @@ import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
 import '../../utils/routes/route_name.dart';
+import '../../viewmodel/tab_viewmodel.dart';
 import 'password_dialog.dart';
 
 
@@ -167,11 +168,7 @@ class Setting extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) {
-                              return PasswordDialog(
-                                onSubmit: () {
-                                  print('Ok');
-                                },
-                              );
+                              return const PasswordDialog();
                             },
                           );
                         }),
@@ -198,6 +195,7 @@ class Setting extends StatelessWidget {
                         settingRow(StringManager.logOut, Icons.logout, () {
                           viewModel.logout();
                           Navigator.of(context).pushReplacementNamed(RouteName.loginRoute);
+                          Provider.of<TabViewModel>(context,listen: false).currentIndex = 0;
                         }),
                         13.h.he,
                         settingRow(StringManager.deleteAccount, Icons.arrow_forward_ios, () {
