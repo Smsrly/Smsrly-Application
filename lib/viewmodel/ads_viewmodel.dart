@@ -58,9 +58,28 @@ class AdsViewModel with ChangeNotifier{
     isRequestedLoading = false;
     notifyListeners();
   }
-  void addToRequested(RealEstate realEstate){
-    if(requestedItems != null){
-      requestedItems!.add(realEstate);
+
+  List<RealEstate>? savedItemsList;
+  bool isSavedLoading = false;
+
+  Future getSavedItems(bool forRefresh) async {
+    print('bool1 => ${!forRefresh && savedItemsList != null && savedItemsList!.isNotEmpty}');
+    print('bool2 => ${forRefresh && (savedItemsList != null && savedItemsList!.isNotEmpty)}');
+    if(!forRefresh && savedItemsList != null && savedItemsList!.isNotEmpty){
+      return;
     }
+    isSavedLoading = true;
+    notifyListeners();
+    print('inos');
+    final res = await _getAdsUseCase.getSaves();
+    if(res is List<RealEstate>){
+      savedItemsList = res;
+    } else {
+      Utils.showToast(StringManager.wentWrong, 1);
+    }
+    isSavedLoading = false;
+    notifyListeners();
   }
+
+
 }

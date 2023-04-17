@@ -25,6 +25,7 @@ class StringManager {
   static const String ups = "Oops!... no results found";
   static const String didNotUpload = "You Did Not Upload Any Real Estate !..";
   static const String didNotRequest = "You Did Not Request Any Real Estate !..";
+  static const String didNotSave = "You Did Not Save Any Real Estate !..";
   static const String hasDeleted = "Error occurred while communicating with server with status code 403";
   static const String deletedBefore = "This real estate has deleted already";
   static const noRequestMessageTitle = "Oops, it looks like you don't have any requests yet.";

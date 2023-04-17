@@ -120,8 +120,15 @@ class RealEstateRepositoryImp implements RealEstateRepository{
     return 'No Token';
   }
 
-
-
+  @override
+  Future getSavesOfUser() async{
+    String? token = _localService.getToken();
+    if(token != null){
+      final res = await _apiServices.getUserSaves(token);
+      return res;
+    }
+    return 'No Token';
+  }
 
 
 }

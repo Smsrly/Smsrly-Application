@@ -385,6 +385,35 @@ class ApiServices {
     }
   }
 
+  Future<dynamic> getUserSaves(String token) async {
+    try{
+      final response = await http.get(
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.savesEndPoint),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }
+      );
+      if(response.statusCode == 200){
+        final responseBody = jsonDecode(response.body);
+        List<RealEstate> realEstates = [];
+        for (var element in responseBody) {
+          element = element as Map<String, dynamic>;
+          List<String> urls = [];
+          for (var link in element['realEstateImages']) {
+            urls.add(link['realEstateImageURL']);
+          }
+          realEstates.add(RealEstate.fromJson(element, urls));
+        }
+        return realEstates;
+      } else {
+        return returnResponse(response);
+      }
+    }catch(e){
+      return e.toString();
+    }
+  }
+
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
