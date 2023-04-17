@@ -123,4 +123,9 @@ class AuthService {
     }
     return apiRes;
   }
+
+  Future logout(String token) async {
+    await _apiServices.expireToken(token);
+  }
+
 }
