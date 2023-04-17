@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:smsrly/domain/repository/realestate_repository.dart';
 import 'package:smsrly/domain/use_cases/real_estate_use_cases/delete_real_estate/delete_real_estate_use_case.dart';
 import 'package:smsrly/domain/use_cases/real_estate_use_cases/request_use_cases/delete_request_use_case.dart';
@@ -32,6 +33,8 @@ class DetailsViewModel with ChangeNotifier{
       }
     }
   }
+
+  get realEstateLocation => LatLng(currRealEstate!.latitude,currRealEstate!.longitude);
 
   void onRefresh() async {
     final res = await realEstateRepository.getRequestsOfRealEstate(currRealEstate!.realEstateId!);

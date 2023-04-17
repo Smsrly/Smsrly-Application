@@ -9,7 +9,7 @@ import 'package:smsrly/ui/setting_screens/edit_profile.dart';
 import 'package:smsrly/ui/show_details/show_detail.dart';
 import 'package:smsrly/utils/routes/route_name.dart';
 
-import 'package:smsrly/ui/sell_screen/google_maps.dart';
+import 'package:smsrly/ui/google_maps.dart';
 
 final routes = {
   RouteName.onBoardingRoute: (context) => const OnBoarding(),

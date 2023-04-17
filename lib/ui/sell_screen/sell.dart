@@ -215,7 +215,7 @@ class SellScreen extends StatelessWidget {
                         // Map Here
                         child: Consumer<AppViewModel>(
                           builder: (context, appViewModel, child) {
-                            return GoogleMapsWidget(appViewModel.location);
+                            return GoogleMapsWidget(appViewModel.location,true);
                           },
                         )),
                     SizedBox(

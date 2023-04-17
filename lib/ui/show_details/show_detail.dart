@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/realestate.dart';
 import '../../res/strings.dart';
+import 'package:smsrly/ui/widgets/google_maps.dart';
 
 class ShowDetailsScreen extends StatelessWidget {
 
@@ -217,24 +219,39 @@ class ShowDetailsScreen extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      SizedBox(
+                      Container(
+                        color: shadowColor,
                           width: double.infinity,
                           height: 440.h,
-                          child: Image.network(
-                            item.imageUrl![0],
-                            fit: BoxFit.cover,
-                            frameBuilder:
-                                (context, child, frame, wasSynchronouslyLoaded) {
-                              return child;
-                            },
-                            loadingBuilder: (context, child, loadingProgress) {
-                              if (loadingProgress == null) {
-                                return child;
-                              } else {
-                                return loading();
-                              }
-                            },
-                          )),
+                          child:
+                          CarouselSlider.builder(
+                              options: CarouselOptions(
+                                viewportFraction: 1,
+                                height: 440.h,
+                                enlargeCenterPage: true,
+                                enableInfiniteScroll: false,
+                              ),
+                              itemCount: item.imageUrl!.length,
+                              itemBuilder: (context, index, realIndex) {
+                                return Image.network(
+                                  item.imageUrl![index],
+                                  fit: BoxFit.fill,
+                                  frameBuilder:
+                                      (context, child, frame, wasSynchronouslyLoaded) {
+                                    return child;
+                                  },
+                                  loadingBuilder: (context, child, loadingProgress) {
+                                    if (loadingProgress == null) {
+                                      return child;
+                                    } else {
+                                      return loading();
+                                    }
+                                  },
+                                );
+                              })
+
+
+                          ),
                     ],
                   ),
                   Column(
@@ -283,13 +300,15 @@ class ShowDetailsScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                             StringManager.profilePlaceholder)
                              */
-                            Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 10),
+                            SizedBox(
+                                height: 150.h,
                                 width: double.infinity,
-                                child: Image.network(
-                                    "https://user-images.githubusercontent.com/90563044/215372638-0dca96fa-5e19-4aea-a8cd-57c9eb9c225b.png")
-                            ),
+                                // Map Here
+                                child: Consumer<DetailsViewModel>(
+                                  builder: (context, detailsViewModel, child) {
+                                    return GoogleMapsWidget(detailsViewModel.realEstateLocation,false);
+                                  },
+                                )),
                             35.h.he,
                             priceRow(viewModel,appViewModel,context),
                             20.h.he,

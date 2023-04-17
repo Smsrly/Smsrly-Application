@@ -5,8 +5,9 @@ import 'package:smsrly/utils/routes/route_name.dart';
 
 class GoogleMapsWidget extends StatelessWidget {
   LatLng latLng;
+  bool changeLocation;
 
-  GoogleMapsWidget(this.latLng, {super.key});
+  GoogleMapsWidget(this.latLng, this.changeLocation, {super.key});
 
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
@@ -26,10 +27,14 @@ class GoogleMapsWidget extends StatelessWidget {
         target: latLng,
         zoom: 15,
       ),
-      onMapCreated: (GoogleMapController controller) {
+      onMapCreated: (GoogleMapController controller) async {
         _controller.complete(controller);
       },
-      onTap: (_) => Navigator.of(context).pushNamed(RouteName.googleMapsRoute),
+      onTap: (_) => Navigator.of(context).pushNamed(RouteName.googleMapsRoute,
+          arguments: {
+            'changeLocation': changeLocation ? true : false,
+            'location': latLng
+          }),
     );
   }
 }

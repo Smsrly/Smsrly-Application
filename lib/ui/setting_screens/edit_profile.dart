@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
+import 'package:smsrly/viewmodel/app_view_model.dart';
 
 import '../widgets/buttons/rounded_back_button.dart';
+import 'package:smsrly/ui/widgets/google_maps.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<AppViewModel>(context, listen: false);
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
@@ -107,9 +111,16 @@ class EditProfileScreen extends StatelessWidget {
                       SizedBox(
                         height: 15.h,
                       ),
-                      Image.asset(
-                        "assets/images/location.jpg",
-                      ),
+                      SizedBox(
+                          height: 150.h,
+                          width: double.infinity,
+                          // Map Here
+                          child: Consumer<AppViewModel>(
+                            builder: (context, appViewModel, child) {
+                              return GoogleMapsWidget(
+                                  appViewModel.location, true);
+                            },
+                          )),
                       Container(
                         alignment: Alignment.center,
                         child: Column(
@@ -120,7 +131,9 @@ class EditProfileScreen extends StatelessWidget {
                             SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  print(viewModel.location);
+                                },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: primaryColor,
                                   shape: RoundedRectangleBorder(
