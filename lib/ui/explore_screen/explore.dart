@@ -6,8 +6,10 @@ import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/explore_screen/options_dialog.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
+import 'package:smsrly/utils/routes/route_name.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
 import 'package:smsrly/viewmodel/explore_viewmodel.dart';
+import 'package:smsrly/viewmodel/save_realestate_viewmodel.dart';
 
 import '../../models/realestate.dart';
 import '../../res/colors.dart';
@@ -72,11 +74,11 @@ class ExploreScreen extends StatelessWidget {
         ));
   }
 
-  Widget realEstateItem(RealEstate currItem) {
+  Widget realEstateItem(RealEstate currItem,BuildContext context) {
     return InkWell(
       child: SecondItem(
         item: currItem,
-        saveButton: Consumer<ExploreViewModel>(
+        saveButton: Consumer<SaveViewModel>(
           builder: (_,viewModel,__){
             return InkWell(
               onTap: () {
@@ -90,7 +92,9 @@ class ExploreScreen extends StatelessWidget {
         )
       ),
       onTap: () {
-        // go to show detail
+        Navigator.of(context).pushNamed(RouteName.showDetailsRoute,arguments: {
+          StringManager.item : currItem
+        });
       },
     );
   }
@@ -183,10 +187,9 @@ class ExploreScreen extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: viewModel.realEstates.length,
-                      // _filteredItems.length,
-                      itemBuilder: (context, index) {
+                      itemBuilder: (ctx, index) {
                         RealEstate currItem = viewModel.realEstates[index];
-                        return realEstateItem(currItem);
+                        return realEstateItem(currItem,context);
                       });
                 },
               ),

@@ -1,8 +1,5 @@
 import 'package:smsrly/data/network/api_services.dart';
 import 'package:smsrly/domain/repository/realestate_repository.dart';
-import 'package:smsrly/models/realestate.dart';
-import 'package:smsrly/models/user_info.dart';
-
 import '../local/local_service.dart';
 
 class RealEstateRepositoryImp implements RealEstateRepository{
@@ -19,7 +16,7 @@ class RealEstateRepositoryImp implements RealEstateRepository{
     print('token ==> $token');
     if(token != null){
       final res = await _apiServices.getRealEstates(token);
-      if(res is List){
+      if(res is Map<String,dynamic>){
         return res;
       } else {
         return res;
@@ -108,6 +105,16 @@ class RealEstateRepositoryImp implements RealEstateRepository{
     String? token = _localService.getToken();
     if(token != null){
       final res = await _apiServices.getRealEstateRequests(token, realEstateId);
+      return res;
+    }
+    return 'No Token';
+  }
+
+  @override
+  Future<dynamic> getRequestsOfUser() async {
+    String? token = _localService.getToken();
+    if(token != null){
+      final res = await _apiServices.getUserRequests(token);
       return res;
     }
     return 'No Token';

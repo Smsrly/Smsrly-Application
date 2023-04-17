@@ -9,6 +9,8 @@ import 'save.dart';
 import 'uploaded.dart';
 
 class MyAdds extends StatelessWidget {
+  const MyAdds({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +48,12 @@ class MyAdds extends StatelessWidget {
               ],
             ),
           ),
-          body: TabBarView(
-            children: [const Uploaded(), Requested(), Saved()],
+          body: const TabBarView(
+            children: [
+              Uploaded(),
+              Requested(),
+              Saved()
+            ],
           ),
         ));
   }

@@ -102,20 +102,4 @@ class ExploreViewModel with ChangeNotifier{
       notifyListeners();
     }
   }
-
-  void toggleRealEstate(RealEstate realEstate){
-    realEstate.hasSaved = !realEstate.hasSaved!;
-    if(realEstate.hasSaved!){
-      saveRealEstate(realEstate);
-    }else{
-      unSaveRealEstate(realEstate);
-    }
-    notifyListeners();
-  }
-  void saveRealEstate(RealEstate realEstate) async {
-    await _saveRealEstateUseCase.save(realEstate.realEstateId);
-  }
-  void unSaveRealEstate(RealEstate realEstate) async {
-    await _unSaveRealEstateUseCase.unSave(realEstate.realEstateId);
-  }
 }

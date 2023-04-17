@@ -9,12 +9,22 @@ class AppViewModel with ChangeNotifier {
   User? currUser;
   bool isLoading = false;
   List<RealEstate>? _items;
+  Map<int,RealEstate>? _itemsMap;
 
   AppViewModel(this.userRepository);
+
+  set realEstateItemsMap(Map<int,RealEstate> map){
+    _itemsMap = map;
+  }
+
+  Map<int,RealEstate> get realEstateItemsMap {
+    return _itemsMap!;
+  }
 
   List<RealEstate> get realEstateItems {
     return _items!;
   }
+
   set realEstateItems(List<RealEstate> list){
     _items = list;
   }

@@ -24,7 +24,9 @@ class StringManager {
   static const String where = "Where do you want to go";
   static const String ups = "Oops!... no results found";
   static const String didNotUpload = "You Did Not Upload Any Real Estate !..";
-
+  static const String didNotRequest = "You Did Not Request Any Real Estate !..";
+  static const String hasDeleted = "Error occurred while communicating with server with status code 403";
+  static const String deletedBefore = "This real estate has deleted already";
   static const noRequestMessageTitle = "Oops, it looks like you don't have any requests yet.";
   static const noRequestMessageBody = "Don't be shy - share our app with your friends and family to help them find their dream home too! The more people using our app, the more properties available for everyone to discover. Thanks for being part of our community!";
   static const String noPhoneNumber ="+0";
@@ -114,6 +116,8 @@ class StringManager {
   static const String tokenNotFound = "TOKEN NOT FOUND";
 
   // Args Keys
+  static const String itemsMap = 'ItemsMap';
+  static const String itemsList = 'ItemsList';
   static const String item = 'Item';
   static const String isTheOwner = 'isTheOwner';
 

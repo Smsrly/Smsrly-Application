@@ -51,7 +51,7 @@ class Uploaded extends StatelessWidget{
           padding: const EdgeInsets.only(top: 10),
           child: Consumer<AdsViewModel>(
             builder: (_,viewModel,__){
-              if(viewModel.isLoading || viewModel.uploadedItems == null){
+              if(viewModel.isUploadedLoading || viewModel.uploadedItems == null){
                 return const Center(
                   child: DefaultProgressBar(),
                 );

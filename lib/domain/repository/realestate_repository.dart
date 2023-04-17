@@ -6,6 +6,7 @@ abstract class RealEstateRepository{
   Future<String> requestRealEstate(int realEstateId);
   Future<String> deleteRealEstate(int realEstateId);
   Future<String> deleteRequestOfRealEstate(int realEstateId);
+  Future<dynamic> getRequestsOfUser();
   Future<dynamic> getRequestsOfRealEstate(int realEstateId);
   Future<dynamic> getUploadedRealEstates();
 }

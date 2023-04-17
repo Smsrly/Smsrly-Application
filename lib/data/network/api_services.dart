@@ -177,6 +177,7 @@ class ApiServices {
             'Authorization': 'Bearer $token'
           }).timeout(const Duration(seconds: 15));
       List<RealEstate> elements = [];
+      Map<int,RealEstate> elementsMap = {};
       var responseBody = jsonDecode(response.body);
       for (var item in responseBody) {
         List<String> urls = [];
@@ -186,9 +187,13 @@ class ApiServices {
         var currItem =
             RealEstate.fromJson(Map<String, dynamic>.from(item), urls);
         print('currItem => $currItem');
-        elements.add(currItem);
+        elementsMap[currItem.realEstateId] = currItem;
+        elements.add(elementsMap[currItem.realEstateId]!);
       }
-      return elements;
+      return {
+        StringManager.itemsMap : elementsMap,
+        StringManager.itemsList : elements
+      };
     } catch (e) {
       return e.toString();
     }
@@ -238,7 +243,6 @@ class ApiServices {
         List<RealEstate> realEstates = [];
         for (var element in responseBody) {
           element = element as Map<String, dynamic>;
-          element.remove('user');
           List<String> urls = [];
           for (var link in element['realEstateImages']) {
             urls.add(link['realEstateImageURL']);
@@ -348,6 +352,35 @@ class ApiServices {
         return returnResponse(res);
       }
     } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<dynamic> getUserRequests(String token) async {
+    try{
+      final response = await http.get(
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.requestedRealEstatesOfUserEndPoint),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }
+      );
+      if(response.statusCode == 200){
+        final responseBody = jsonDecode(response.body);
+        List<RealEstate> realEstates = [];
+        for (var element in responseBody) {
+          element = element as Map<String, dynamic>;
+          List<String> urls = [];
+          for (var link in element['realEstateImages']) {
+            urls.add(link['realEstateImageURL']);
+          }
+          realEstates.add(RealEstate.fromJson(element, urls));
+        }
+        return realEstates;
+      } else {
+        return returnResponse(response);
+      }
+    }catch(e){
       return e.toString();
     }
   }

@@ -6,8 +6,7 @@ import '../../utils/routes/route_name.dart';
 import '../widgets/realestates_items/realestate_third_item.dart';
 
 class Saved extends StatelessWidget{
-
-
+  const Saved({super.key});
 
   void navigateToShowDetail(BuildContext context){
 

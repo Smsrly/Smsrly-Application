@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -8,20 +6,19 @@ import 'package:smsrly/res/styles.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_back_button.dart';
 import 'package:smsrly/ui/widgets/user_items/user_item.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
-import 'package:smsrly/viewmodel/ads_viewmodel.dart';
+import 'package:smsrly/viewmodel/app_view_model.dart';
 import 'package:smsrly/viewmodel/details_viewmodel.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
 import '../../models/realestate.dart';
-import '../../models/user.dart';
 import '../../res/strings.dart';
 
 class ShowDetailsScreen extends StatelessWidget {
 
   const ShowDetailsScreen({Key? key}) : super(key: key);
 
-  Widget priceRow(DetailsViewModel viewModel,BuildContext context) {
+  Widget priceRow(DetailsViewModel viewModel,AppViewModel appViewModel,BuildContext context) {
     return Row(
       children: [
         Expanded(
@@ -202,7 +199,8 @@ class ShowDetailsScreen extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     RealEstate item = args[StringManager.item];
     final viewModel = Provider.of<DetailsViewModel>(context,listen: false);
-    viewModel.currRealEstate = item;
+    final appViewModel = Provider.of<AppViewModel>(context,listen: false);
+    viewModel.currRealEstate = appViewModel.realEstateItemsMap[item.realEstateId] ?? item;
     viewModel.isTheOwner = args[StringManager.isTheOwner] ?? false;
     print('jiuyt');
     return Scaffold(
@@ -293,7 +291,7 @@ class ShowDetailsScreen extends StatelessWidget {
                                     "https://user-images.githubusercontent.com/90563044/215372638-0dca96fa-5e19-4aea-a8cd-57c9eb9c225b.png")
                             ),
                             35.h.he,
-                            priceRow(viewModel,context),
+                            priceRow(viewModel,appViewModel,context),
                             20.h.he,
                             Visibility(
                               visible: viewModel.isTheOwner,

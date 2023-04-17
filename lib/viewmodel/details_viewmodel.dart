@@ -26,7 +26,10 @@ class DetailsViewModel with ChangeNotifier{
 
   void deleteRealEstate() async {
     if (currRealEstate?.ownerInfo ==null){
-      await _deleteUseCase.delete(currRealEstate!.realEstateId);
+      final res = await _deleteUseCase.delete(currRealEstate!.realEstateId);
+      if(res == StringManager.hasDeleted){
+        Utils.showToast(StringManager.deletedBefore, 1);
+      }
     }
   }
 
@@ -43,7 +46,8 @@ class DetailsViewModel with ChangeNotifier{
     }
   }
 
-  void toggleRequest() async {
+  Future<bool> toggleRequest() async {
+    bool res = false;
     if(currUser!.phoneNumber == StringManager.noPhoneNumber){
       Utils.showToast(StringManager.requestInvalid, 1);
     }
@@ -51,11 +55,14 @@ class DetailsViewModel with ChangeNotifier{
       currRealEstate!.hasRequested = !currRealEstate!.hasRequested!;
       if(currRealEstate!.hasRequested!){
         requestRealEstate();
+        res = true;
       }else{
         deleteRequestRealEstate();
+        res = false;
       }
     }
     notifyListeners();
+    return res;
   }
 
   get statue {

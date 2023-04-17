@@ -4,8 +4,8 @@ class DeleteUseCase{
   RealEstateRepository realEstateRepository;
 
   DeleteUseCase(this.realEstateRepository);
-  Future delete(int realEstateId) async {
+  Future<String> delete(int realEstateId) async {
     var res = await realEstateRepository.deleteRealEstate(realEstateId);
-    print('res ==> $res');
+    return res;
   }
 }

@@ -42,13 +42,13 @@ class ScreensContainer extends StatelessWidget {
   Widget? getCurrentScreenByIndex(int index) {
     switch (index) {
       case 0:
-        return HomeScreen();
+        return const HomeScreen();
       case 1:
         return const ExploreScreen();
       case 2:
         return const SellScreen();
       case 3:
-        return MyAdds();
+        return const MyAdds();
       case 4:
         return Setting();
       default:

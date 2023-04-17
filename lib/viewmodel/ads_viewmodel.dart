@@ -16,16 +16,15 @@ class AdsViewModel with ChangeNotifier{
   }
 
   List<RealEstate>? uploadedItems;
-  bool isLoading = false;
-
-
+  bool isUploadedLoading = false;
+  
   Future getUploadedItems(bool forRefresh) async {
     print('bool1 => ${!forRefresh && uploadedItems != null && uploadedItems!.isNotEmpty}');
     print('bool2 => ${forRefresh && (uploadedItems != null && uploadedItems!.isNotEmpty)}');
     if(!forRefresh && uploadedItems != null && uploadedItems!.isNotEmpty){
       return;
     }
-    isLoading = true;
+    isUploadedLoading = true;
     notifyListeners();
     print('inos');
     final res = await _getAdsUseCase.getUploads();
@@ -34,7 +33,34 @@ class AdsViewModel with ChangeNotifier{
     } else {
       Utils.showToast(StringManager.wentWrong, 1);
     }
-    isLoading = false;
+    isUploadedLoading = false;
     notifyListeners();
+  }
+
+  List<RealEstate>? requestedItems;
+  bool isRequestedLoading = false;
+
+  Future getRequestedItems(bool forRefresh) async {
+    print('bool1 => ${!forRefresh && requestedItems != null && requestedItems!.isNotEmpty}');
+    print('bool2 => ${forRefresh && (requestedItems != null && requestedItems!.isNotEmpty)}');
+    if(!forRefresh && requestedItems != null && requestedItems!.isNotEmpty){
+      return;
+    }
+    isRequestedLoading = true;
+    notifyListeners();
+    print('inos');
+    final res = await _getAdsUseCase.getRequests();
+    if(res is List<RealEstate>){
+      requestedItems = res;
+    } else {
+      Utils.showToast(StringManager.wentWrong, 1);
+    }
+    isRequestedLoading = false;
+    notifyListeners();
+  }
+  void addToRequested(RealEstate realEstate){
+    if(requestedItems != null){
+      requestedItems!.add(realEstate);
+    }
   }
 }

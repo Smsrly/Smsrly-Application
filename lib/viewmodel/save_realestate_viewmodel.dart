@@ -1,14 +1,15 @@
 import 'package:flutter/foundation.dart';
-import 'package:smsrly/domain/repository/realestate_repository.dart';
-import 'package:smsrly/domain/use_cases/real_estate_use_cases/save_real_estate/save_real_estate.dart';
-import 'package:smsrly/domain/use_cases/real_estate_use_cases/save_real_estate/unsave_real_estate.dart';
-import 'package:smsrly/models/realestate.dart';
 
-class HomeViewModel with ChangeNotifier{
+import '../domain/repository/realestate_repository.dart';
+import '../domain/use_cases/real_estate_use_cases/save_real_estate/save_real_estate.dart';
+import '../domain/use_cases/real_estate_use_cases/save_real_estate/unsave_real_estate.dart';
+import '../models/realestate.dart';
+
+class SaveViewModel with ChangeNotifier{
   RealEstateRepository realEstateRepository;
   late SaveRealEstateUseCase _saveRealEstateUseCase;
   late UnSaveRealEstateUseCase _unSaveRealEstateUseCase;
-  HomeViewModel(this.realEstateRepository){
+  SaveViewModel(this.realEstateRepository){
     _saveRealEstateUseCase = SaveRealEstateUseCase(realEstateRepository);
     _unSaveRealEstateUseCase = UnSaveRealEstateUseCase(realEstateRepository);
   }

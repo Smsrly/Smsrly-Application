@@ -20,6 +20,7 @@ class SplashViewModel with ChangeNotifier{
 
   User? user;
   List<RealEstate>? realEstateItems;
+  Map<int,RealEstate>? realEstateItemsMap;
 
   Future<bool> onStart() async {
     await _getData();
@@ -35,8 +36,9 @@ class SplashViewModel with ChangeNotifier{
     print('hhhadsa');
     final items = await realEstateRepository.getRealEstates();
     print('items ==> $items');
-    if(items is List<RealEstate>){
-      realEstateItems = items;
+    if(items is Map<String,dynamic>){
+      realEstateItems = items[StringManager.itemsList];
+      realEstateItemsMap = items[StringManager.itemsMap];
       print(items);
     }
   }

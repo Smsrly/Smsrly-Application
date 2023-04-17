@@ -28,6 +28,7 @@ class SplashScreen extends StatelessWidget {
                   final appProvider = Provider.of<AppViewModel>(context, listen: false);
                   appProvider.currUser = provider.user;
                   appProvider.realEstateItems = provider.realEstateItems!;
+                  appProvider.realEstateItemsMap = provider.realEstateItemsMap!;
                   Navigator.of(context).pushReplacementNamed(RouteName.screensContainerRoute);
                 });
               }else{

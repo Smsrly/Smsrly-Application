@@ -7,7 +7,7 @@ import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
-import 'package:smsrly/viewmodel/home_viewmodel.dart';
+import 'package:smsrly/viewmodel/save_realestate_viewmodel.dart';
 
 import '../../models/realestate.dart';
 import '../../utils/routes/route_name.dart';
@@ -15,7 +15,7 @@ import '../widgets/realestates_items/realestate_first_item.dart';
 import '../widgets/realestates_items/realestate_second_item.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   Widget header(AppViewModel viewModel) {
     return Padding(
@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
     return InkWell(
       child: FirstItem(
         item: currItem,
-        saveButton: Consumer<HomeViewModel>(
+        saveButton: Consumer<SaveViewModel>(
           builder: (_,viewModel,__){
             return InkWell(
               onTap: () {
@@ -107,7 +107,7 @@ class HomeScreen extends StatelessWidget {
     return InkWell(
       child: SecondItem(
         item: currItem,
-        saveButton: Consumer<HomeViewModel>(
+        saveButton: Consumer<SaveViewModel>(
           builder: (_,viewModel,__){
             return InkWell(
               child: Image.asset(currItem.hasSaved ?? false
