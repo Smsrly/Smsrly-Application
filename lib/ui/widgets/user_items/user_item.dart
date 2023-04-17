@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/res/strings.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../models/user.dart';
 
 
 class UserItem extends StatelessWidget {
-  late User user;
+  String name;
+  String? imageUrl;
+  String phoneNumber;
 
-  UserItem({super.key, required this.user});
+  UserItem({super.key,required this.name,required this.phoneNumber,this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -22,34 +25,33 @@ class UserItem extends StatelessWidget {
           ),
           color: Colors.white,
           elevation: 25,
-          child: SizedBox(
+          child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 2),
               height: 80.h,
               child: Row(children: [
                 Container(
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(25.0)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  child: user.pictureUrl != null
+                  child: imageUrl != null
                       ? Image(
-                          width: 80.w,
-                          height: 80.h,
+                          width: 60.w,
+                          height: 60.h,
                           fit: BoxFit.cover,
-                          image: NetworkImage(user.pictureUrl!),
+                          image: NetworkImage(imageUrl!),
                         )
                       : Image.asset(
-                          width: 80.w,
-                          height: 80.h,
+                          width: 60.w,
+                          height: 60.h,
                           fit: BoxFit.cover,
                           StringManager.profilePlaceholder),
                 ),
-                SizedBox(
-                  width: 7.w,
-                ),
+                7.w.wi,
                 Text(
-                  user.username,
+                  name,
                   style: TextStyle(
                       fontSize: 18.sp,
-                      fontFamily: 'IBMPlexSans',
+                      fontFamily: StringManager.ibmPlexSans,
                       fontWeight: FontWeight.w500),
                 ),
                 const Expanded(flex: 1, child: SizedBox()),
@@ -62,10 +64,10 @@ class UserItem extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: const Color.fromRGBO(14, 82, 137, 0.18),
                         borderRadius: BorderRadius.circular(13)),
-                    child: Image.asset("assets/images/call_icon.png"),
+                    child: Image.asset(StringManager.phoneIconPath),
                   ),
                   onTap: () {
-                    launch("tel://${user.phoneNumber}");
+                    launch("tel://$phoneNumber");
                   },
                 ),
               ])),

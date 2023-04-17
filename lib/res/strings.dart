@@ -23,6 +23,12 @@ class StringManager {
   static const String explore = "Explore";
   static const String where = "Where do you want to go";
   static const String ups = "Oops!... no results found";
+  static const String didNotUpload = "You Did Not Upload Any Real Estate !..";
+
+  static const noRequestMessageTitle = "Oops, it looks like you don't have any requests yet.";
+  static const noRequestMessageBody = "Don't be shy - share our app with your friends and family to help them find their dream home too! The more people using our app, the more properties available for everyone to discover. Thanks for being part of our community!";
+  static const String noPhoneNumber ="+0";
+  static const String requestInvalid = 'You have to edit you profile and a number to get better experience';
   static const String all = "All";
   static const String forSale = "For Sale";
   static const String forRent = "For Rent";
@@ -61,6 +67,8 @@ class StringManager {
   static const String logOut = "Log out";
   static const String deleteAccount = "Delete Account";
   static const String delete = "Delete Account !";
+  static const String deleteItem = "Delete";
+  static const String removeRequestOfItem = "Remove Request";
   static const String areYouSure =
       "Are you sure that you want to delete your account ?";
   static const String basic = "Basic Information";

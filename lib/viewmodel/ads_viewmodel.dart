@@ -18,6 +18,7 @@ class AdsViewModel with ChangeNotifier{
   List<RealEstate>? uploadedItems;
   bool isLoading = false;
 
+
   Future getUploadedItems(bool forRefresh) async {
     print('bool1 => ${!forRefresh && uploadedItems != null && uploadedItems!.isNotEmpty}');
     print('bool2 => ${forRefresh && (uploadedItems != null && uploadedItems!.isNotEmpty)}');

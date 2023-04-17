@@ -17,6 +17,6 @@ final routes = {
   RouteName.screensContainerRoute: (context) => const ScreensContainer(),
   RouteName.editProfileRoute: (context) => const EditProfileScreen(),
   RouteName.contactUsRoute: (context) => const ContactUsScreen(),
-  RouteName.showDetailsRoute: (context) => ShowDetailsScreen(),
+  RouteName.showDetailsRoute: (context) => const ShowDetailsScreen(),
   RouteName.verifyRoute: (context) => VerifyScreen()
 };

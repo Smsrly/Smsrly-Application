@@ -8,6 +8,7 @@ import 'package:smsrly/viewmodel/ads_viewmodel.dart';
 import '../../models/realestate.dart';
 import '../../res/colors.dart';
 import '../../res/strings.dart';
+import '../../res/styles.dart';
 import '../../utils/routes/route_name.dart';
 
 class Uploaded extends StatelessWidget{
@@ -43,7 +44,7 @@ class Uploaded extends StatelessWidget{
     return Scaffold(
       body: RefreshIndicator(
         color: primaryColor,
-        onRefresh: ()async{
+        onRefresh: () async {
           viewModel.getUploadedItems(true);
         },
         child: Padding(
@@ -55,15 +56,45 @@ class Uploaded extends StatelessWidget{
                   child: DefaultProgressBar(),
                 );
               } else{
-                return ListView.builder(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    itemCount: viewModel.uploadedItems?.length,
-                    itemBuilder: (context,index){
-                      return ThirdItem(
-                          realEstate: viewModel.uploadedItems![index],
-                          saveButton: const SizedBox(),);
-                    }
-                );
+                if(viewModel.uploadedItems != null && viewModel.uploadedItems!.isNotEmpty){
+                  return ListView.builder(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemCount: viewModel.uploadedItems?.length,
+                      itemBuilder: (context,index){
+                        return InkWell(
+                          child: ThirdItem(
+                            realEstate: viewModel.uploadedItems![index],
+                            saveButton: const SizedBox(),
+                          ),
+                          onTap: (){
+                            Navigator.of(context).pushNamed(RouteName.showDetailsRoute,arguments: {
+                              StringManager.item : viewModel.uploadedItems![index],
+                              StringManager.isTheOwner : true
+                            });
+                          },
+                        );
+                      }
+                  );
+                } else {
+                  return Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          StringManager.didNotUpload,
+                          style: AppStyles.headline2,
+                        ),
+                        10.he,
+                        Text(
+                          StringManager.uploadMessage,
+                          style: AppStyles.bodyText4,
+                        ),
+                      ],
+                    ),
+                  );
+                }
               }
             },
           ),

@@ -1,6 +1,7 @@
 import 'package:smsrly/data/network/api_services.dart';
 import 'package:smsrly/domain/repository/realestate_repository.dart';
 import 'package:smsrly/models/realestate.dart';
+import 'package:smsrly/models/user_info.dart';
 
 import '../local/local_service.dart';
 
@@ -39,12 +40,37 @@ class RealEstateRepositoryImp implements RealEstateRepository{
     }
     return 'No Token !';
   }
+  @override
+  Future<String> requestRealEstate(int realEstateId) async {
+    String? token = _localService.getToken();
+    if(token != null){
+      final res = await _apiServices.requestRealEstate(token, realEstateId);
+      if(res is Map<String,dynamic>){
+        return res['message'];
+      }
+      return res;
+    }
+    return 'No Token !';
+  }
 
   @override
   Future<String> unSaveRealEstate(int realEstateId) async{
     String? token = _localService.getToken();
     if(token != null){
       final res = await _apiServices.unSaveRealEstate(token, realEstateId);
+      if(res is Map<String,dynamic>){
+        return res['message'];
+      }
+      return res;
+    }
+    return 'No Token !';
+  }
+
+  @override
+  Future<String> deleteRequestOfRealEstate(int realEstateId) async {
+    String? token = _localService.getToken();
+    if(token != null){
+      final res = await _apiServices.deleteRequestRealEstate(token, realEstateId);
       if(res is Map<String,dynamic>){
         return res['message'];
       }
@@ -62,5 +88,33 @@ class RealEstateRepositoryImp implements RealEstateRepository{
     }
     return null;
   }
+
+  @override
+  Future<String> deleteRealEstate(int realEstateId) async {
+    String? token = _localService.getToken();
+    if(token != null){
+      final res = await _apiServices.deleteRealEstate(token, realEstateId);
+      if(res is Map<String,dynamic>){
+        return res['message'];
+      } else {
+        return res;
+      }
+    }
+    return 'No Token';
+  }
+
+  @override
+  Future getRequestsOfRealEstate(int realEstateId) async {
+    String? token = _localService.getToken();
+    if(token != null){
+      final res = await _apiServices.getRealEstateRequests(token, realEstateId);
+      return res;
+    }
+    return 'No Token';
+  }
+
+
+
+
 
 }

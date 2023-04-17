@@ -13,4 +13,5 @@ class ApiConstants {
   static const String savesEndPoint = "saves";
   static const String uploadedRealEstatesOfUserEndPoint = "user/uploads";
   static const String requestedRealEstatesOfUserEndPoint = "requests";
+  static const String realEstateRequestsEndPoint = "requests/requestedBy";
 }

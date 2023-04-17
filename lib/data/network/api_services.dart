@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:smsrly/models/realestate.dart';
+import 'package:smsrly/models/user_info.dart';
 import 'package:smsrly/res/strings.dart';
 
 import '../../models/user.dart';
@@ -224,7 +225,7 @@ class ApiServices {
   }
 
   Future<dynamic> getUploads(String token) async {
-    try{
+    try {
       final res = await http.get(
           Uri.parse(ApiConstants.baseUrl +
               ApiConstants.uploadedRealEstatesOfUserEndPoint),
@@ -233,7 +234,7 @@ class ApiServices {
             'Authorization': 'Bearer $token'
           }).timeout(const Duration(seconds: 20));
       var responseBody = jsonDecode(res.body) as List<dynamic>;
-      if(res.statusCode == 200){
+      if (res.statusCode == 200) {
         List<RealEstate> realEstates = [];
         for (var element in responseBody) {
           element = element as Map<String, dynamic>;
@@ -249,13 +250,9 @@ class ApiServices {
       } else {
         return returnResponse(res);
       }
-    }catch(e){
+    } catch (e) {
       return e.toString();
     }
-  }
-
-  Future<dynamic> getRequests(String token) async {
-
   }
 
   Future<dynamic> uploadRealEstateImages(
@@ -274,6 +271,85 @@ class ApiServices {
 
     var response = await request.send();
     return returnResponse(await http.Response.fromStream(response));
+  }
+
+  Future<dynamic> requestRealEstate(String token, int realEstateId) async {
+    try {
+      final response = await http.post(
+          Uri.parse(ApiConstants.baseUrl +
+                  ApiConstants.requestedRealEstatesOfUserEndPoint)
+              .replace(queryParameters: {'RealEstateId': "$realEstateId"}),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }).timeout(const Duration(seconds: 2));
+      return returnResponse(response);
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<dynamic> deleteRequestRealEstate(
+      String token, int realEstateId) async {
+    try {
+      final response = await http.delete(
+          Uri.parse(ApiConstants.baseUrl +
+                  ApiConstants.requestedRealEstatesOfUserEndPoint)
+              .replace(queryParameters: {'RealEstateId': "$realEstateId"}),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }).timeout(const Duration(seconds: 2));
+      return returnResponse(response);
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<dynamic> deleteRealEstate(String token, int id) async {
+    try {
+      final res = await http.delete(
+          Uri.parse(
+              '${ApiConstants.baseUrl}${ApiConstants.realEstatesEndPoint}/$id'),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          });
+      return returnResponse(res);
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<dynamic> getRealEstateRequests(String token, int id) async {
+    try {
+      final res = await http.get(
+          Uri.parse(ApiConstants.baseUrl +
+                  ApiConstants.realEstateRequestsEndPoint)
+              .replace(queryParameters: {'RealEstateId': '$id'}),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          });
+      if (res.statusCode == 200) {
+        final resBody = jsonDecode(res.body);
+        List<UserInfo> userInfo = [];
+        for (var item in resBody) {
+          userInfo.add(
+            UserInfo(
+                name: '${item['user']['firstName']} ${item['user']['lastName']}',
+                phoneNumber: '+${item['phoneNumber']}',
+                imageUrl: item['imageURL']
+            )
+          );
+        }
+        return userInfo;
+      } else {
+        return returnResponse(res);
+      }
+    } catch (e) {
+      return e.toString();
+    }
   }
 
   dynamic returnResponse(http.Response response) {

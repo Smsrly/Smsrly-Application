@@ -19,6 +19,9 @@ class AppStyles {
   static TextStyle headline5 =
   _getIBMPlexSansFont(fontSize: 25.sp, fontWeight: FontWeight.w500,color: Colors.black);
 
+  static TextStyle headline7 =
+  _getIBMPlexSansFont(fontSize: 17, fontWeight: FontWeight.w500,color: primaryColor);
+
   static TextStyle bodyText1 =
   _getIBMPlexSansFont(fontSize: 15.sp, fontWeight: FontWeight.w400);
 
