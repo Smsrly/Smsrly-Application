@@ -157,5 +157,14 @@ class UserRepositoryImp implements UserRepository {
     return null;
   }
 
+  @override
+  Future logout() async {
+    String? token = _localService.getToken();
+    if(token != null){
+      await _authService.logout(token);
+      _localService.deleteToken();
+    }
+  }
+
 
 }

@@ -59,4 +59,9 @@ class AppViewModel with ChangeNotifier {
       return RouteName.onBoardingRoute;
     }
   }
+
+  void logout()async{
+    await userRepository.logout();
+  }
+
 }

@@ -443,6 +443,14 @@ class ApiServices {
     return returnResponse(await http.Response.fromStream(response));
   }
 
+  Future expireToken(String token) async {
+    await http
+        .post(Uri.parse(ApiConstants.baseUrl + ApiConstants.logout), headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $token'
+    });
+  }
+
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

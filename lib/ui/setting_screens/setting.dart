@@ -1,14 +1,19 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smsrly/ui/setting_screens/contact_us.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/colors.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
+import 'package:smsrly/viewmodel/app_view_model.dart';
+import '../../utils/routes/route_name.dart';
 import 'password_dialog.dart';
-import 'edit_profile.dart';
 
 
 class Setting extends StatelessWidget {
+  const Setting({super.key});
+
 
   void showDeleteDialog(BuildContext context){
     AwesomeDialog(
@@ -45,6 +50,7 @@ class Setting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
+    final viewModel = Provider.of<AppViewModel>(context ,listen: false);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -54,7 +60,7 @@ class Setting extends StatelessWidget {
                 children: [
                   Container(
                     padding:
-                        EdgeInsets.symmetric(vertical: 45.h, horizontal: 20.w),
+                    EdgeInsets.symmetric(vertical: 45.h, horizontal: 20.w),
                     height: 300.h,
                     decoration: BoxDecoration(
                         color:   primaryColor,
@@ -70,13 +76,11 @@ class Setting extends StatelessWidget {
                             size: 40.sp,
                             color: Colors.white,
                           ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
+                          10.w.wi,
                           Text(
                             StringManager.setting,
                             style: TextStyle(
-                                fontFamily: 'IBMPlexSans',
+                                fontFamily: StringManager.ibmPlexSans,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 26.sp,
                                 color: Colors.white),
@@ -92,9 +96,9 @@ class Setting extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     padding:
-                        EdgeInsets.symmetric(vertical: 12.h, horizontal: 10.w),
+                    EdgeInsets.symmetric(vertical: 12.h, horizontal: 10.w),
                     margin:
-                        EdgeInsets.only(top: h / 5, right: 20.w, left: 20.w),
+                    EdgeInsets.only(top: h / 5, right: 20.w, left: 20.w),
                     decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
@@ -112,22 +116,28 @@ class Setting extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
                               border: Border(
-                            bottom: BorderSide(
-                              color: borderSideColor,
-                              width: 0.4.w,
-                            ),
-                          )),
+                                bottom: BorderSide(
+                                  color: borderSideColor,
+                                  width: 0.4.w,
+                                ),
+                              )),
                           child: Row(
                             children: [
-                              const CircleAvatar(
-                                  radius: 26,
+                              SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: viewModel.currUser!.pictureUrl != null
+                                    ? CircleAvatar(
                                   backgroundImage:
-                                      AssetImage("assets/images/SUIIIIIIIIIIII.jpg")),
+                                  NetworkImage(viewModel.currUser!.pictureUrl!),
+                                )
+                                    : Image.asset(StringManager.profilePlaceholder),
+                              ),
                               SizedBox(
                                 width: 15.h,
                               ),
                               Text(
-                                "Cristiano Ronaldo",
+                                viewModel.currUser!.username,
                                 style: TextStyle(
                                     fontSize: 22.sp,
                                     fontWeight: FontWeight.normal),
@@ -135,9 +145,7 @@ class Setting extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
+                        10.h.he,
                         Row(
                           children: [
                             Text(
@@ -149,17 +157,12 @@ class Setting extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
+                        15.h.he,
 
                         settingRow(StringManager.edit, Icons.arrow_forward_ios, () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => EditProfileScreen()));
+                          Navigator.of(context).pushNamed(RouteName.editProfileRoute);
                         }),
-                        SizedBox(
-                          height: 13.h,
-                        ),
+                        13.h.he,
                         settingRow(StringManager.changePassword, Icons.arrow_forward_ios, () {
                           showDialog(
                             context: context,
@@ -172,13 +175,9 @@ class Setting extends StatelessWidget {
                             },
                           );
                         }),
-                        SizedBox(
-                          height: 13.h,
-                        ),
+                        13.h.he,
                         // settingRow("Dark Mode", Icons.dark_mode_outlined, () {}),
-                        SizedBox(
-                          height: 13.h,
-                        ),
+                        13.h.he,
 
                         Text(
                           StringManager.more,
@@ -188,31 +187,26 @@ class Setting extends StatelessWidget {
                               fontSize: 20.sp),
                         ),
 
-                        SizedBox(
-                          height: 13.h,
-                        ),
+                        13.h.he,
                         settingRow(StringManager.contactUs, Icons.arrow_forward_ios, () {
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (_) {
                             return const ContactUsScreen();
                           }));
                         }),
-                        SizedBox(
-                          height: 13.h,
-                        ),
-                        settingRow(StringManager.logOut, Icons.logout, () {}),
-                        SizedBox(
-                          height: 13.h,
-                        ),
-                        settingRow("${StringManager.deleteAccount}", Icons.arrow_forward_ios, () {
+                        13.h.he,
+                        settingRow(StringManager.logOut, Icons.logout, () {
+                          viewModel.logout();
+                          Navigator.of(context).pushReplacementNamed(RouteName.loginRoute);
+                        }),
+                        13.h.he,
+                        settingRow(StringManager.deleteAccount, Icons.arrow_forward_ios, () {
                           showDeleteDialog(context);
                         }),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 50.h,
-                  )
+                  50.h.he
                 ],
               )
             ],

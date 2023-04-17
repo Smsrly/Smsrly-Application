@@ -112,7 +112,7 @@ class ThirdItem extends StatelessWidget {
                 const Expanded(flex: 1,child: SizedBox()),
                 infoRow(StringManager.bathtubWhite, "${realEstate.bathroomsNo}"),
                 const Expanded(flex: 1,child: SizedBox()),
-                infoRow(StringManager.bathtubWhite, "${realEstate.roomsNo}"),
+                infoRow(StringManager.bedWhite, "${realEstate.roomsNo}"),
                 const Expanded(flex: 1,child: SizedBox()),
 
               ],

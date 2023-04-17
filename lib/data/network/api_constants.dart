@@ -8,6 +8,7 @@ class ApiConstants {
   static const String submitResetPasswordCodeEndPoint = "auth/confirmPassword";
   static const String updatePasswordEndPoint = "auth/newPassword";
   static const String loginWithGoogleEndPoint = "auth/authorization";
+  static const String logout = "auth/logout";
   static const String getUserEndPoint = "user";
   static const String realEstatesEndPoint = "realEstate";
   static const String savesEndPoint = "saves";

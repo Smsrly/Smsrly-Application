@@ -50,7 +50,7 @@ class ScreensContainer extends StatelessWidget {
       case 3:
         return const MyAdds();
       case 4:
-        return Setting();
+        return const Setting();
       default:
         return null;
     }
