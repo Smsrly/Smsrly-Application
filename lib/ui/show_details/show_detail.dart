@@ -344,17 +344,11 @@ class ShowDetailsScreen extends StatelessWidget {
                                                 String? imageUrl;
                                                 String phoneNumber;
                                                 String name;
-                                                print('befffore');
-                                                if(detailsViewModel.isTheOwner){
-                                                  imageUrl = detailsViewModel.currUser!.pictureUrl;
-                                                  phoneNumber = detailsViewModel.currUser!.phoneNumber;
-                                                  name = detailsViewModel.currUser!.username;
-                                                } else {
-                                                  imageUrl = detailsViewModel.currRealEstate!.userInfo!.imageUrl;
-                                                  phoneNumber = detailsViewModel.currRealEstate!.userInfo!.phoneNumber;
-                                                  name = detailsViewModel.currRealEstate!.userInfo!.name;
-                                                }
-                                                print('afffter');
+                                                print('before');
+                                                imageUrl = detailsViewModel.currRealEstate!.requestedBy![index].imageUrl;
+                                                phoneNumber = detailsViewModel.currRealEstate!.requestedBy![index].phoneNumber;
+                                                name = detailsViewModel.currRealEstate!.requestedBy![index]!.name;
+                                                print('after');
                                                 return UserItem(name: name , phoneNumber: phoneNumber,imageUrl: imageUrl,);
                                               }
                                           )

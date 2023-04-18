@@ -10,24 +10,20 @@ import '../../utils/routes/route_name.dart';
 import '../../viewmodel/tab_viewmodel.dart';
 import 'password_dialog.dart';
 
-
 class Setting extends StatelessWidget {
   const Setting({super.key});
 
-
-  void showDeleteDialog(BuildContext context,VoidCallback onOkPress){
+  void showDeleteDialog(BuildContext context, VoidCallback onOkPress) {
     AwesomeDialog(
       context: context,
       dialogType: DialogType.warning,
       animType: AnimType.topSlide,
       title: StringManager.delete,
-      desc:
-      StringManager.areYouSure,
+      desc: StringManager.areYouSure,
       btnCancelOnPress: () => print("Canceled"),
       btnOkOnPress: () => onOkPress(),
     ).show();
   }
-
 
   Widget settingRow(String text, IconData icon, VoidCallback onPressed) {
     return Row(
@@ -50,7 +46,7 @@ class Setting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
-    final viewModel = Provider.of<AppViewModel>(context ,listen: false);
+    final viewModel = Provider.of<AppViewModel>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -60,10 +56,10 @@ class Setting extends StatelessWidget {
                 children: [
                   Container(
                     padding:
-                    EdgeInsets.symmetric(vertical: 45.h, horizontal: 20.w),
+                        EdgeInsets.symmetric(vertical: 45.h, horizontal: 20.w),
                     height: 300.h,
                     decoration: BoxDecoration(
-                        color:   primaryColor,
+                        color: primaryColor,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30.sp),
                             bottomRight: Radius.circular(30.sp))),
@@ -96,9 +92,9 @@ class Setting extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     padding:
-                    EdgeInsets.symmetric(vertical: 12.h, horizontal: 10.w),
+                        EdgeInsets.symmetric(vertical: 12.h, horizontal: 10.w),
                     margin:
-                    EdgeInsets.only(top: h / 5, right: 20.w, left: 20.w),
+                        EdgeInsets.only(top: h / 5, right: 20.w, left: 20.w),
                     decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
@@ -116,11 +112,11 @@ class Setting extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
                               border: Border(
-                                bottom: BorderSide(
-                                  color: borderSideColor,
-                                  width: 0.4.w,
-                                ),
-                              )),
+                            bottom: BorderSide(
+                              color: borderSideColor,
+                              width: 0.4.w,
+                            ),
+                          )),
                           child: Row(
                             children: [
                               SizedBox(
@@ -128,10 +124,11 @@ class Setting extends StatelessWidget {
                                 height: 50,
                                 child: viewModel.currUser!.pictureUrl != null
                                     ? CircleAvatar(
-                                  backgroundImage:
-                                  NetworkImage(viewModel.currUser!.pictureUrl!),
-                                )
-                                    : Image.asset(StringManager.profilePlaceholder),
+                                        backgroundImage: NetworkImage(
+                                            viewModel.currUser!.pictureUrl!),
+                                      )
+                                    : Image.asset(
+                                        StringManager.profilePlaceholder),
                               ),
                               SizedBox(
                                 width: 15.h,
@@ -151,7 +148,7 @@ class Setting extends StatelessWidget {
                             Text(
                               StringManager.accSetting,
                               style: TextStyle(
-                                  color: offWhite ,
+                                  color: offWhite,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 20.sp),
                             ),
@@ -159,11 +156,13 @@ class Setting extends StatelessWidget {
                         ),
                         15.h.he,
 
-                        settingRow(StringManager.edit, Icons.arrow_forward_ios, () {
+                        settingRow(StringManager.edit, Icons.arrow_forward_ios,
+                            () {
                           context.pushNamed(RouteName.editProfileRoute);
                         }),
                         13.h.he,
-                        settingRow(StringManager.changePassword, Icons.arrow_forward_ios, () {
+                        settingRow(StringManager.changePassword,
+                            Icons.arrow_forward_ios, () {
                           showDialog(
                             context: context,
                             builder: (context) {
@@ -178,27 +177,32 @@ class Setting extends StatelessWidget {
                         Text(
                           StringManager.more,
                           style: TextStyle(
-                              color:offWhite,
+                              color: offWhite,
                               fontWeight: FontWeight.w300,
                               fontSize: 20.sp),
                         ),
 
                         13.h.he,
-                        settingRow(StringManager.contactUs, Icons.arrow_forward_ios, () {
+                        settingRow(
+                            StringManager.contactUs, Icons.arrow_forward_ios,
+                            () {
                           context.pushNamed(RouteName.contactUsRoute);
                         }),
                         13.h.he,
                         settingRow(StringManager.logOut, Icons.logout, () {
                           viewModel.logout();
                           context.pushReplacementNamed(RouteName.loginRoute);
-                          Provider.of<TabViewModel>(context,listen: false).currentIndex = 0;
+                          Provider.of<TabViewModel>(context, listen: false)
+                              .currentIndex = 0;
                         }),
                         13.h.he,
-                        settingRow(StringManager.deleteAccount, Icons.arrow_forward_ios, () {
-                          showDeleteDialog(context,() async {
+                        settingRow(StringManager.deleteAccount,
+                            Icons.arrow_forward_ios, () {
+                          showDeleteDialog(context, () async {
                             viewModel.deleteAccount();
                             context.pushReplacementNamed(RouteName.loginRoute);
-                            Provider.of<TabViewModel>(context,listen: false).currentIndex = 0;
+                            Provider.of<TabViewModel>(context, listen: false)
+                                .currentIndex = 0;
                           });
                         }),
                       ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smsrly/res/strings.dart';
-import 'package:smsrly/utils/helpers/extensions.dart';
 import '../../models/realestate.dart';
 import '../../res/colors.dart';
 import '../../res/styles.dart';

@@ -23,7 +23,7 @@ class AppStyles {
   _getIBMPlexSansFont(fontSize: 17, fontWeight: FontWeight.w500,color: primaryColor);
 
   static TextStyle bodyText1 =
-  _getIBMPlexSansFont(fontSize: 15.sp, fontWeight: FontWeight.w400);
+  _getIBMPlexSansFont(fontSize: 12.sp, fontWeight: FontWeight.w400);
 
   static TextStyle getBodyText1(Color color) {
     return _getIBMPlexSansFont(

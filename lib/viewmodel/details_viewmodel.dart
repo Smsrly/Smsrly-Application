@@ -26,7 +26,7 @@ class DetailsViewModel with ChangeNotifier{
   bool isTheOwner = false;
 
   void deleteRealEstate() async {
-    if (currRealEstate?.userInfo ==null){
+    if (currRealEstate?.userInfo == null){
       final res = await _deleteUseCase.delete(currRealEstate!.realEstateId!);
       if(res == StringManager.hasDeleted){
         Utils.showToast(StringManager.deletedBefore, 1);
@@ -53,6 +53,7 @@ class DetailsViewModel with ChangeNotifier{
     bool res = false;
     if(currUser!.phoneNumber == StringManager.noPhoneNumber){
       Utils.showToast(StringManager.requestInvalid, 1);
+      return res;
     }
     if(currRealEstate != null){
       currRealEstate!.hasRequested = !currRealEstate!.hasRequested!;

@@ -179,16 +179,23 @@ class ApiServices {
       List<RealEstate> elements = [];
       Map<int, RealEstate> elementsMap = {};
       var responseBody = jsonDecode(response.body);
+      int i =0;
+      print('response body => $responseBody');
       for (var item in responseBody) {
+        i++;
         List<String> urls = [];
         for (var link in item['realEstateImages']) {
           urls.add(link['realEstateImageURL']);
         }
+        print('i => $i');
         var currItem =
             RealEstate.fromJson(Map<String, dynamic>.from(item), urls);
         print('currItem => $currItem');
-        elementsMap[currItem.realEstateId!] = currItem;
-        elements.add(elementsMap[currItem.realEstateId]!);
+        if(elementsMap[currItem.realEstateId!] == null){
+          elementsMap[currItem.realEstateId!] = currItem;
+          elements.add(elementsMap[currItem.realEstateId]!);
+        }
+
       }
       return {
         StringManager.itemsMap: elementsMap,
@@ -319,13 +326,17 @@ class ApiServices {
           });
       if (res.statusCode == 200) {
         final resBody = jsonDecode(res.body);
+        print('$resBody');
         List<UserInfo> userInfo = [];
         for (var item in resBody) {
-          userInfo.add(UserInfo(
+          var userInfoItem = UserInfo(
               name: '${item['user']['firstName']} ${item['user']['lastName']}',
-              phoneNumber: '+${item['phoneNumber']}',
-              imageUrl: item['imageURL']));
+              phoneNumber: '+${item['user']['phoneNumber']}',
+              imageUrl: item['user']['imageURL']);
+          print('user info name => ${item['user']['firstName']} ${item['user']['lastName']}');
+          userInfo.add(userInfoItem);
         }
+        print('userInfo => $userInfo');
         return userInfo;
       } else {
         return returnResponse(res);
