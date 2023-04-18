@@ -451,6 +451,21 @@ class ApiServices {
     });
   }
 
+  Future deleteAccount(String token) async {
+    try{
+      final res = await http.delete(
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.getUserEndPoint),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          });
+      return returnResponse(res);
+    }catch(e){
+      return e.toString();
+    }
+
+  }
+
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

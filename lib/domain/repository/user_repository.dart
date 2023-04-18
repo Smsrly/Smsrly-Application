@@ -13,6 +13,7 @@ abstract class UserRepository {
   Future<dynamic> logout();
   Future<String> resetPassword(String token, String password);
   Future<String> changePassword(String password);
+  Future<String> deleteAccount();
   void setSeenOnBoarding();
   bool hasSeenOnBoarding();
   bool hasUserSignedInBefore();

@@ -15,7 +15,7 @@ class Setting extends StatelessWidget {
   const Setting({super.key});
 
 
-  void showDeleteDialog(BuildContext context){
+  void showDeleteDialog(BuildContext context,VoidCallback onOkPress){
     AwesomeDialog(
       context: context,
       dialogType: DialogType.warning,
@@ -24,7 +24,7 @@ class Setting extends StatelessWidget {
       desc:
       StringManager.areYouSure,
       btnCancelOnPress: () => print("Canceled"),
-      btnOkOnPress: () => print("Ok"),
+      btnOkOnPress: () => onOkPress(),
     ).show();
   }
 
@@ -195,7 +195,11 @@ class Setting extends StatelessWidget {
                         }),
                         13.h.he,
                         settingRow(StringManager.deleteAccount, Icons.arrow_forward_ios, () {
-                          showDeleteDialog(context);
+                          showDeleteDialog(context,(){
+                            viewModel.deleteAccount();
+                            context.pushReplacementNamed(RouteName.loginRoute);
+                            Provider.of<TabViewModel>(context,listen: false).currentIndex = 0;
+                          });
                         }),
                       ],
                     ),

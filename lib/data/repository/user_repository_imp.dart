@@ -162,7 +162,7 @@ class UserRepositoryImp implements UserRepository {
     String? token = _localService.getToken();
     if(token != null){
       await _authService.logout(token);
-      _localService.deleteToken();
+      await _localService.deleteToken();
     }
   }
 
@@ -177,6 +177,21 @@ class UserRepositoryImp implements UserRepository {
       return res;
     }
     return 'No Token';
+  }
+
+  @override
+  Future<String> deleteAccount() async {
+    String? token = _localService.getToken();
+    if(token != null){
+      final response = await _apiServices.deleteAccount(token);
+      if(response is Map<String,dynamic>){
+        await _localService.deleteToken();
+        return response['message'];
+      }else{
+        return response;
+      }
+    }
+    return 'No Token!';
   }
 
 

@@ -59,7 +59,10 @@ class AppViewModel with ChangeNotifier {
       return RouteName.onBoardingRoute;
     }
   }
-
+  void deleteAccount() async {
+    await userRepository.deleteAccount();
+    onDestroy();
+  }
   void logout()async{
     await userRepository.logout();
     onDestroy();
