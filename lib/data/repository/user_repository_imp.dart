@@ -166,5 +166,18 @@ class UserRepositoryImp implements UserRepository {
     }
   }
 
+  @override
+  Future<String> changePassword(String password) async {
+    String? token = _localService.getToken();
+    if(token != null){
+      final res = await _apiServices.changePassword(token, password);
+      if(res is Map<String,dynamic>){
+        return res['message'];
+      }
+      return res;
+    }
+    return 'No Token';
+  }
+
 
 }

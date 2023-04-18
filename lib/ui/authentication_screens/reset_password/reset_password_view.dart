@@ -44,7 +44,6 @@ class ResetPasswordView extends StatelessWidget {
                     onClickSuffixIcon: () {
                       resetViewModel.togglePassword();
                     },
-                    inputType: TextInputType.emailAddress,
                     fontSize: 14.sp,
                     cursorColor: primaryColor,
                   );

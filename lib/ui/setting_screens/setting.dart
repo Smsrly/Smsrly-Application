@@ -168,7 +168,7 @@ class Setting extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) {
-                              return const PasswordDialog();
+                              return PasswordDialog();
                             },
                           );
                         }),

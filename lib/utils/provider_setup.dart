@@ -6,6 +6,7 @@ import 'package:smsrly/viewmodel/details_viewmodel.dart';
 import 'package:smsrly/viewmodel/explore_viewmodel.dart';
 import 'package:smsrly/viewmodel/reset_password_viewmodel.dart';
 import 'package:smsrly/viewmodel/save_realestate_viewmodel.dart';
+import 'package:smsrly/viewmodel/setting_viewmodel.dart';
 import 'package:smsrly/viewmodel/splash_view_model.dart';
 import 'package:smsrly/viewmodel/tab_viewmodel.dart';
 
@@ -60,6 +61,10 @@ class ProviderSetuper {
       ),
       ChangeNotifierProvider(
           create: (BuildContext context) => SellViewModel(realEstateRepository)
+      ),
+
+      ChangeNotifierProvider(
+          create: (BuildContext context) => SettingViewModel(userRepository)
       )
     ];
   }
