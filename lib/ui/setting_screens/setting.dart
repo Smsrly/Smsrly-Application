@@ -2,7 +2,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smsrly/ui/setting_screens/contact_us.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/colors.dart';
 import 'package:smsrly/utils/helpers/extensions.dart';
@@ -186,10 +185,7 @@ class Setting extends StatelessWidget {
 
                         13.h.he,
                         settingRow(StringManager.contactUs, Icons.arrow_forward_ios, () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (_) {
-                            return const ContactUsScreen();
-                          }));
+                          Navigator.of(context).pushNamed(RouteName.contactUsRoute);
                         }),
                         13.h.he,
                         settingRow(StringManager.logOut, Icons.logout, () {

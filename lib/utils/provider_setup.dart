@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:smsrly/viewmodel/ads_viewmodel.dart';
+import 'package:smsrly/viewmodel/contact_us_viewmodel.dart';
 import 'package:smsrly/viewmodel/details_viewmodel.dart';
 import 'package:smsrly/viewmodel/explore_viewmodel.dart';
 import 'package:smsrly/viewmodel/reset_password_viewmodel.dart';
@@ -65,6 +66,9 @@ class ProviderSetuper {
 
       ChangeNotifierProvider(
           create: (BuildContext context) => SettingViewModel(userRepository)
+      ),
+      ChangeNotifierProvider(
+          create: (BuildContext context) => ContactUsViewModel()
       )
     ];
   }

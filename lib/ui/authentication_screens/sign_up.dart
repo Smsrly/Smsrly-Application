@@ -15,7 +15,6 @@ import 'package:smsrly/utils/helpers/extensions.dart';
 import 'package:smsrly/viewmodel/sign_up_view_model.dart';
 import 'package:smsrly/viewmodel/verification_view_model.dart';
 
-import '../../res/colors.dart';
 import '../../utils/routes/route_name.dart';
 
 class SignUpScreen extends StatelessWidget {

@@ -1,59 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_back_button.dart';
 import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
+import 'package:smsrly/viewmodel/contact_us_viewmodel.dart';
 
 import '../widgets/background_with_shadow.dart';
 
-class ContactUsScreen extends StatefulWidget {
+class ContactUsScreen extends StatelessWidget {
+
   const ContactUsScreen({Key? key}) : super(key: key);
 
-  @override
-  State<ContactUsScreen> createState() => _ContactUsScreenState();
-}
 
-class _ContactUsScreenState extends State<ContactUsScreen> {
-  final problems = ["Problem 1", "Problem 2", "Problem 3"];
-  String? value;
 
   DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
         child: Text(item),
       );
 
-
   Widget dropDownButton(){
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: DropdownButtonHideUnderline(
-          child: DropdownButton(
-            isExpanded: true,
-            value: value,
-            icon: const Icon(Icons.arrow_drop_down_rounded,
-                size: 40, color: Color(0xFF374957)),
-            hint: Text(StringManager.yourTrouble, style: TextStyle(
-                fontSize: 16.sp, fontFamily: "IBMPlexSans",
-                fontWeight: FontWeight.w500),),
-            borderRadius: BorderRadius.circular(20),
-            items: problems.map(buildMenuItem).toList(),
-            onChanged: (value) {
+          child: Consumer<ContactUsViewModel>(
+            builder: (_,viewModel,__){
+              return DropdownButton(
+                isExpanded: true,
+                value: viewModel.value,
+                icon: const Icon(Icons.arrow_drop_down_rounded,
+                    size: 40, color: Color(0xFF374957)),
+                hint: Text(StringManager.yourTrouble, style: TextStyle(
+                    fontSize: 16.sp, fontFamily: StringManager.ibmPlexSans,
+                    fontWeight: FontWeight.w500),),
+                borderRadius: BorderRadius.circular(20),
+                items: viewModel.problems.map(buildMenuItem).toList(),
+                onChanged: (value) {
+                  viewModel.value = value;
+                  /*
               setState(() {
                 this.value = value;
               });
+               */
+                },
+              );
             },
-          ),
+          )
         )
     );
   }
 
-
-
-  Widget messageTextField(){
+  Widget messageTextField(Function(String) onChange){
     return TextField(
             cursorColor:
             const Color.fromRGBO(169, 169, 169, 1),
             maxLines: 6,
+            onChanged: onChange,
             decoration: InputDecoration(
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18.0),
@@ -81,14 +85,14 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             padding: const EdgeInsets.only(left: 16),
             child: Text(StringManager.attach,style: TextStyle(
                 fontSize: 16.sp,
-                fontFamily: "IBMPlexSans",
+                fontFamily: StringManager.ibmPlexSans,
                 fontWeight: FontWeight.w500
             ),),
           ),
           const Padding(
             padding: EdgeInsets.only(right: 16),
             child: Image(
-              image: AssetImage("assets/images/attach.png"),
+              image: AssetImage(StringManager.attachPic),
               width: 25,
             ),
           ),
@@ -97,6 +101,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<ContactUsViewModel>(context,listen: false);
     return Scaffold(
           body: SafeArea(
             child: SingleChildScrollView(
@@ -134,13 +139,13 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                               StringManager.paragraph,
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                fontFamily: "IBMPlexSans",
+                                fontFamily: StringManager.ibmPlexSans,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18.sp,
                               ),
                             ),
                           ),
-                          SizedBox(height: 23.h,),
+                          23.h.he,
 
                           SizedBox(
                             width: double.infinity,
@@ -148,12 +153,12 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                               StringManager.question,
                               textAlign: TextAlign.left,
                               style: TextStyle(color: Colors.black54, fontSize: 16.sp
-                              ,fontFamily: "IBMPlexSans",
+                              ,fontFamily: StringManager.ibmPlexSans,
                                 fontWeight: FontWeight.w500,),
                             ),
                           ),
 
-                          SizedBox(height: 15.h,),
+                          15.h.he,
 
                           ContainerWithShadow(
                             padding: const EdgeInsets.only(
@@ -170,30 +175,38 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                 StringManager.yourMessage,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(color: Colors.black54, fontSize: 16.sp
-                                  ,fontFamily: "IBMPlexSans",
+                                  ,fontFamily: StringManager.ibmPlexSans,
                                   fontWeight: FontWeight.w500,),
                               ),),
-                          SizedBox(height: 15.h,),
+                          15.h.he,
 
                           ContainerWithShadow(
                               width: double.infinity,
-                              child: messageTextField()
+                              child: messageTextField(
+                                  (value){
+                                    viewModel.message = value;
+                                  }
+                              )
                           ),
-                          SizedBox(height: 18.h,),
+                          18.h.he,
                           InkWell(
                             child: ContainerWithShadow(
                                 width: double.infinity,height: 56,
                                 child: attachPictureRow()
                             ),
-                            onTap: (){
-
+                            onTap: () async {
+                              final image = await ImagePicker.platform
+                                  .pickImage(source: ImageSource.gallery);
+                              viewModel.image = image;
                             },
                           ),
-                          SizedBox(height: 45.h,),
+                          35.h.he,
                           SizedBox(
                             width:double.infinity,
-                            child: RoundedButton(text: StringManager.send, onClick: (){
-
+                            child: RoundedButton(
+                              text: StringManager.send,
+                              onClick: (){
+                                viewModel.sendMessage();
                             },)
                           ),
                         ],

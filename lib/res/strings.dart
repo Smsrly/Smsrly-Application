@@ -209,4 +209,6 @@ class StringManager {
   static const String stairsWhite = "assets/images/stairs_icon_white.png";
   static const String bathtubWhite = "assets/images/bathtub_icon_white.png";
   static const String bedWhite = "assets/images/bed_icon_white.png";
+
+  static const String attachPic = "assets/images/attach.png";
 }
