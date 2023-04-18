@@ -116,9 +116,9 @@ class UserRepositoryImp implements UserRepository {
     if (res['statue'] == StringManager.success &&
         res['message'] == StringManager.codeConfirmed) {
       print('token => ${res['token']}');
-      Map<String,dynamic> resultMap = {
-        'statue' : StringManager.success,
-        'token' : res['token']
+      Map<String, dynamic> resultMap = {
+        'statue': StringManager.success,
+        'token': res['token']
       };
       return resultMap;
     } else if (res['statue'] == StringManager.success &&
@@ -132,7 +132,7 @@ class UserRepositoryImp implements UserRepository {
   @override
   Future<String> resetPassword(String token, String password) async {
     final res = await _authService.updatePassword(token, password);
-    if(res == StringManager.passwordUpdated){
+    if (res == StringManager.passwordUpdated) {
       _localService.saveToken(token);
     }
     return res;
@@ -141,15 +141,15 @@ class UserRepositoryImp implements UserRepository {
   @override
   Future<dynamic> getUser() async {
     String? token = _localService.getToken();
-    if(token == null){
+    if (token == null) {
       return StringManager.tokenNotFound;
     }
     print('asdas');
     final res = await _apiServices.getUser(token);
     print('res => $res');
-    if(res is User){
+    if (res is User) {
       return res;
-    } else if(res == StringManager.tokenNotWork) {
+    } else if (res == StringManager.tokenNotWork) {
       print('hsfds');
       await _localService.deleteToken();
       return StringManager.tokenNotWork;
@@ -194,5 +194,15 @@ class UserRepositoryImp implements UserRepository {
     return 'No Token!';
   }
 
-
+  @override
+  Future<String?> updateUserInfo(User user) async {
+    String? token = _localService.getToken();
+    print('token ==> $token');
+    if (token != null) {
+      final res = await _apiServices.updateUserInfo(token, user);
+      print('repo response:  ${res['message']}');
+      return res['message'];
+    }
+    return token;
+  }
 }

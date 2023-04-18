@@ -4,6 +4,7 @@ import 'package:provider/single_child_widget.dart';
 import 'package:smsrly/viewmodel/ads_viewmodel.dart';
 import 'package:smsrly/viewmodel/contact_us_viewmodel.dart';
 import 'package:smsrly/viewmodel/details_viewmodel.dart';
+import 'package:smsrly/viewmodel/edit_view_model.dart';
 import 'package:smsrly/viewmodel/explore_viewmodel.dart';
 import 'package:smsrly/viewmodel/reset_password_viewmodel.dart';
 import 'package:smsrly/viewmodel/save_realestate_viewmodel.dart';
@@ -63,7 +64,9 @@ class ProviderSetuper {
       ChangeNotifierProvider(
           create: (BuildContext context) => SellViewModel(realEstateRepository)
       ),
-
+      ChangeNotifierProvider(
+          create: (BuildContext context) => EditProfileViewModel(userRepository),
+      ),
       ChangeNotifierProvider(
           create: (BuildContext context) => SettingViewModel(userRepository)
       ),

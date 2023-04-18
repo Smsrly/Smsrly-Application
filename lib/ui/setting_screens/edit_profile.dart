@@ -1,20 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:smsrly/models/user.dart';
 import 'package:smsrly/res/strings.dart';
 import 'package:smsrly/res/colors.dart';
+import 'package:smsrly/ui/widgets/buttons/rounded_normal_button.dart';
 import 'package:smsrly/ui/widgets/text_fields/rounded_text_field.dart';
+import 'package:smsrly/utils/utils.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
 
-import '../widgets/buttons/rounded_back_button.dart';
+import 'package:smsrly/viewmodel/edit_view_model.dart';
+import 'package:smsrly/ui/widgets/buttons/rounded_back_button.dart';
 import 'package:smsrly/ui/widgets/google_maps.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key});
+  EditProfileScreen({super.key});
+
+  final TextEditingController _firstController = TextEditingController();
+  final TextEditingController _secondController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<AppViewModel>(context, listen: false);
+
+    _firstController.text = viewModel.currUser!.firstName;
+    _secondController.text = viewModel.currUser!.secondName;
+    _phoneNumberController.text = viewModel.currUser!.phoneNumber;
+    _emailController.text = viewModel.currUser!.email;
+
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
@@ -75,6 +90,7 @@ class EditProfileScreen extends StatelessWidget {
                         height: 30.h,
                       ),
                       RoundedTextField(
+                        controller: _firstController,
                         cursorColor: primaryColor,
                         label: StringManager.first,
                       ),
@@ -82,6 +98,7 @@ class EditProfileScreen extends StatelessWidget {
                         height: 30.h,
                       ),
                       RoundedTextField(
+                        controller: _secondController,
                         cursorColor: primaryColor,
                         label: StringManager.second,
                       ),
@@ -89,6 +106,8 @@ class EditProfileScreen extends StatelessWidget {
                         height: 30.h,
                       ),
                       RoundedTextField(
+                        enable: false,
+                        controller: _emailController,
                         cursorColor: primaryColor,
                         label: StringManager.email,
                         inputType: TextInputType.emailAddress,
@@ -97,6 +116,7 @@ class EditProfileScreen extends StatelessWidget {
                         height: 30.h,
                       ),
                       RoundedTextField(
+                        controller: _phoneNumberController,
                         cursorColor: primaryColor,
                         label: StringManager.phoneNum,
                         inputType: TextInputType.phone,
@@ -130,20 +150,46 @@ class EditProfileScreen extends StatelessWidget {
                             ),
                             SizedBox(
                               width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  print(viewModel.location);
+                              child: Consumer<EditProfileViewModel>(
+                                builder:
+                                    (context, editProfileViewModel, child) {
+                                  return RoundedButton(
+                                    onClick: () {
+                                      editProfileViewModel.updateUserInfo(
+                                          _firstController.text,
+                                          _secondController.text,
+                                          _emailController.text,
+                                          _phoneNumberController.text,
+                                          viewModel.location,
+                                          viewModel.currUser!);
+                                    },
+                                    text: StringManager.submit,
+                                    visible: !editProfileViewModel.isLoading,
+                                  );
+
+                                  //     return ElevatedButton(
+                                  //   onPressed: () {
+                                  //     editProfileViewModel.updateUserInfo(
+                                  //         _firstController.text,
+                                  //         _secondController.text,
+                                  //         _emailController.text,
+                                  //         _phoneNumberController.text,
+                                  //         viewModel.location,
+                                  //         viewModel.currUser!);
+                                  //   },
+                                  //   style: ElevatedButton.styleFrom(
+                                  //     backgroundColor: primaryColor,
+                                  //     shape: RoundedRectangleBorder(
+                                  //       borderRadius:
+                                  //           BorderRadius.circular(18.0),
+                                  //     ),
+                                  //   ),
+                                  //   child: const Padding(
+                                  //     padding: EdgeInsets.all(15.0),
+                                  //     child: Text(StringManager.submit),
+                                  //   ),
+                                  // );
                                 },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
-                                ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(15.0),
-                                  child: Text(StringManager.submit),
-                                ),
                               ),
                             ),
                           ],
@@ -166,10 +212,14 @@ class EditProfileScreen extends StatelessWidget {
               child: Stack(
                 alignment: AlignmentDirectional.bottomEnd,
                 children: [
-                  const CircleAvatar(
-                    radius: 40,
-                    backgroundImage:
-                        AssetImage("assets/images/SUIIIIIIIIIIII.jpg"),
+                  SizedBox(
+                    child: viewModel.currUser!.pictureUrl != null
+                        ? CircleAvatar(
+                            radius: 40,
+                            backgroundImage:
+                                NetworkImage(viewModel.currUser!.pictureUrl!),
+                          )
+                        : Image.asset(StringManager.profilePlaceholder),
                   ),
                   CircleAvatar(
                     radius: 16,
@@ -178,7 +228,11 @@ class EditProfileScreen extends StatelessWidget {
                         Icons.camera_alt_outlined,
                         size: 16,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Utils.showToast(
+                            'coming soon, this feature is not available at that time',
+                            1);
+                      },
                     ),
                   ),
                 ],

@@ -18,4 +18,5 @@ abstract class UserRepository {
   bool hasSeenOnBoarding();
   bool hasUserSignedInBefore();
   Future<String> signInWithGoogle(String firstName, String lastName, String email, String? imageUrl) ;
+  Future<String?> updateUserInfo(User user) ;
 }

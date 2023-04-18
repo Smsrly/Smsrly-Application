@@ -177,7 +177,7 @@ class ApiServices {
             'Authorization': 'Bearer $token'
           }).timeout(const Duration(seconds: 15));
       List<RealEstate> elements = [];
-      Map<int,RealEstate> elementsMap = {};
+      Map<int, RealEstate> elementsMap = {};
       var responseBody = jsonDecode(response.body);
       for (var item in responseBody) {
         List<String> urls = [];
@@ -191,8 +191,8 @@ class ApiServices {
         elements.add(elementsMap[currItem.realEstateId]!);
       }
       return {
-        StringManager.itemsMap : elementsMap,
-        StringManager.itemsList : elements
+        StringManager.itemsMap: elementsMap,
+        StringManager.itemsList: elements
       };
     } catch (e) {
       return e.toString();
@@ -321,13 +321,10 @@ class ApiServices {
         final resBody = jsonDecode(res.body);
         List<UserInfo> userInfo = [];
         for (var item in resBody) {
-          userInfo.add(
-            UserInfo(
-                name: '${item['user']['firstName']} ${item['user']['lastName']}',
-                phoneNumber: '+${item['phoneNumber']}',
-                imageUrl: item['imageURL']
-            )
-          );
+          userInfo.add(UserInfo(
+              name: '${item['user']['firstName']} ${item['user']['lastName']}',
+              phoneNumber: '+${item['phoneNumber']}',
+              imageUrl: item['imageURL']));
         }
         return userInfo;
       } else {
@@ -339,15 +336,15 @@ class ApiServices {
   }
 
   Future<dynamic> getUserRequests(String token) async {
-    try{
+    try {
       final response = await http.get(
-          Uri.parse(ApiConstants.baseUrl + ApiConstants.requestedRealEstatesOfUserEndPoint),
+          Uri.parse(ApiConstants.baseUrl +
+              ApiConstants.requestedRealEstatesOfUserEndPoint),
           headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer $token'
-          }
-      );
-      if(response.statusCode == 200){
+          });
+      if (response.statusCode == 200) {
         final responseBody = jsonDecode(response.body);
         List<RealEstate> realEstates = [];
         for (var element in responseBody) {
@@ -362,21 +359,20 @@ class ApiServices {
       } else {
         return returnResponse(response);
       }
-    }catch(e){
+    } catch (e) {
       return e.toString();
     }
   }
 
   Future<dynamic> getUserSaves(String token) async {
-    try{
+    try {
       final response = await http.get(
           Uri.parse(ApiConstants.baseUrl + ApiConstants.savesEndPoint),
           headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             'Authorization': 'Bearer $token'
-          }
-      );
-      if(response.statusCode == 200){
+          });
+      if (response.statusCode == 200) {
         final responseBody = jsonDecode(response.body);
         List<RealEstate> realEstates = [];
         for (var element in responseBody) {
@@ -391,24 +387,23 @@ class ApiServices {
       } else {
         return returnResponse(response);
       }
-    }catch(e){
+    } catch (e) {
       return e.toString();
     }
   }
-
 
   Future<dynamic> uploadRealEstate(String token, RealEstate realEstate) async {
     try {
       String body = jsonEncode(realEstate.toMap());
       final response = await http
           .post(
-          Uri.parse(
-              ApiConstants.baseUrl + ApiConstants.realEstatesEndPoint),
-          headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer $token'
-          },
-          body: body)
+              Uri.parse(
+                  ApiConstants.baseUrl + ApiConstants.realEstatesEndPoint),
+              headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization': 'Bearer $token'
+              },
+              body: body)
           .timeout(const Duration(seconds: 30));
       print('response code => ${response.statusCode}');
       print('response body => ${response.body}');
@@ -464,6 +459,39 @@ class ApiServices {
       return e.toString();
     }
 
+  }
+
+  Future<dynamic> updateUserInfo(String token, User user) async {
+    try {
+      final response = await http.put(
+          Uri.parse(ApiConstants.baseUrl +
+              ApiConstants.getUserEndPoint +
+              ApiConstants.updateUserFirstName +
+              user.firstName +
+              ApiConstants.updateUserLastName +
+              user.secondName +
+              ApiConstants.updateUserPhoneNumber +
+              user.phoneNumber +
+              ApiConstants.updateUserLongitude +
+              user.longitude.toString() +
+              ApiConstants.updateUserLatitude +
+              user.latitude.toString()),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          }).timeout(const Duration(seconds: 20));
+      print('response code => ${response.statusCode}');
+      print('response body => ${response.body}');
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else if (response.statusCode == 403) {
+        return StringManager.tokenNotWork;
+      } else {
+        return returnResponse(response);
+      }
+    } catch (e) {
+      return e.toString();
+    }
   }
 
   dynamic returnResponse(http.Response response) {

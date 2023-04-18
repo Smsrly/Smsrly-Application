@@ -128,6 +128,8 @@ class StringManager {
   static const String minNumberOfImages = "upload 5 image at least";
   static const String maxNumberOfImages = "max uploaded image is 20";
   static const String onRealEstateUploadedSuccessfully ="Real estate uploaded successfully";
+  static const String userInfoUpdated = "updated";
+
 
   // Args Keys
   static const String itemsMap = 'ItemsMap';

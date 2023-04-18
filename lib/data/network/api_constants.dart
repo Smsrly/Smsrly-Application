@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String baseUrl = "http://192.168.1.2:8080/";
+  static const String baseUrl = "https://81b0-196-132-82-43.ngrok-free.app/";
   static const String registerEndPoint = "auth/register";
   static const String userRegisterImageEndPoint = "image";
   static const String loginEndPoint = "auth/authentication";
@@ -16,4 +16,10 @@ class ApiConstants {
   static const String requestedRealEstatesOfUserEndPoint = "requests";
   static const String realEstateRequestsEndPoint = "requests/requestedBy";
   static const String realEstateImagesEndPoint = "image/realEstate";
+  static const String updateUserFirstName = "?firstName=";
+  static const String updateUserLastName = "&lastName=";
+  static const String updateUserPhoneNumber = "&phoneNumber=";
+  static const String updateUserLatitude = "&latitude=";
+  static const String updateUserLongitude = "&longitude=";
+
 }

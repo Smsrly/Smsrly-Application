@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                viewModel.currUser!.firstName,
+                '${viewModel.currUser!.firstName} ${viewModel.currUser!.secondName}',
                 style: AppStyles.getBodyText2(primaryColor),
               )
             ],
@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
       child: FirstItem(
         item: currItem,
         saveButton: Consumer<SaveViewModel>(
-          builder: (_,viewModel,__){
+          builder: (_, viewModel, __) {
             return InkWell(
               onTap: () {
                 viewModel.toggleRealEstate(currItem);
@@ -105,20 +105,19 @@ class HomeScreen extends StatelessWidget {
     print('curr item ==> ${currItem.hasSaved}');
     return InkWell(
       child: SecondItem(
-        item: currItem,
-        saveButton: Consumer<SaveViewModel>(
-          builder: (_,viewModel,__){
-            return InkWell(
-              child: Image.asset(currItem.hasSaved ?? false
-                  ? StringManager.savedIconBlue
-                  : StringManager.unSaveIconBlue),
-              onTap: () {
-                viewModel.toggleRealEstate(currItem);
-              },
-            );
-          },
-        )
-      ),
+          item: currItem,
+          saveButton: Consumer<SaveViewModel>(
+            builder: (_, viewModel, __) {
+              return InkWell(
+                child: Image.asset(currItem.hasSaved ?? false
+                    ? StringManager.savedIconBlue
+                    : StringManager.unSaveIconBlue),
+                onTap: () {
+                  viewModel.toggleRealEstate(currItem);
+                },
+              );
+            },
+          )),
       onTap: () {
         // go to show details
         Navigator.pushNamed(context, RouteName.showDetailsRoute,
@@ -142,12 +141,11 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                   height: 250,
                   child: ListView.builder(
-                    itemCount: viewModel.realEstateItems.length~/3,
+                    itemCount: viewModel.realEstateItems.length ~/ 3,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return firstItem(
-                        viewModel.realEstateItems[index]
-                          ,context);
+                          viewModel.realEstateItems[index], context);
                     },
                   )),
               seeAllRow(StringManager.more),
@@ -155,13 +153,14 @@ class HomeScreen extends StatelessWidget {
                 child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: viewModel.realEstateItems.length - viewModel.realEstateItems.length~/3,
+                    itemCount: viewModel.realEstateItems.length -
+                        viewModel.realEstateItems.length ~/ 3,
                     itemBuilder: (context, index) {
-                      int currIndex = index + viewModel.realEstateItems.length~/3;
-                      RealEstate currItem= viewModel.realEstateItems[currIndex];
-                      return secondItem(
-                          currItem,
-                          context);
+                      int currIndex =
+                          index + viewModel.realEstateItems.length ~/ 3;
+                      RealEstate currItem =
+                          viewModel.realEstateItems[currIndex];
+                      return secondItem(currItem, context);
                     }),
               )
             ],

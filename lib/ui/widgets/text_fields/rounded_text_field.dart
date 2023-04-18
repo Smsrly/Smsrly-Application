@@ -11,6 +11,7 @@ class RoundedTextField extends StatelessWidget {
   Function(String)? onChange;
   IconData? suffixIcon;
   bool? obscureText;
+  bool? enable;
   Function()? onClickSuffixIcon;
   bool get isObscure{
     return obscureText ?? false;
@@ -27,13 +28,15 @@ class RoundedTextField extends StatelessWidget {
         required this.cursorColor,
         this.textStyle,
         this.suffixIcon,
-        this.obscureText
+        this.obscureText,
+        this.enable
       })
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+        enabled: enable??true,
         controller: controller,
         onChanged: onChange,
         style: textStyle,
