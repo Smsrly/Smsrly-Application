@@ -195,7 +195,7 @@ class Setting extends StatelessWidget {
                         }),
                         13.h.he,
                         settingRow(StringManager.deleteAccount, Icons.arrow_forward_ios, () {
-                          showDeleteDialog(context,(){
+                          showDeleteDialog(context,() async {
                             viewModel.deleteAccount();
                             context.pushReplacementNamed(RouteName.loginRoute);
                             Provider.of<TabViewModel>(context,listen: false).currentIndex = 0;
