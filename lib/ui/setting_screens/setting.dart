@@ -160,7 +160,7 @@ class Setting extends StatelessWidget {
                         15.h.he,
 
                         settingRow(StringManager.edit, Icons.arrow_forward_ios, () {
-                          Navigator.of(context).pushNamed(RouteName.editProfileRoute);
+                          context.pushNamed(RouteName.editProfileRoute);
                         }),
                         13.h.he,
                         settingRow(StringManager.changePassword, Icons.arrow_forward_ios, () {
@@ -185,12 +185,12 @@ class Setting extends StatelessWidget {
 
                         13.h.he,
                         settingRow(StringManager.contactUs, Icons.arrow_forward_ios, () {
-                          Navigator.of(context).pushNamed(RouteName.contactUsRoute);
+                          context.pushNamed(RouteName.contactUsRoute);
                         }),
                         13.h.he,
                         settingRow(StringManager.logOut, Icons.logout, () {
                           viewModel.logout();
-                          Navigator.of(context).pushReplacementNamed(RouteName.loginRoute);
+                          context.pushReplacementNamed(RouteName.loginRoute);
                           Provider.of<TabViewModel>(context,listen: false).currentIndex = 0;
                         }),
                         13.h.he,

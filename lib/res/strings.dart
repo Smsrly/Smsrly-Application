@@ -1,5 +1,6 @@
 class StringManager {
   static const String getStarted = "Get Started";
+  static const String smsrlyEmail = "smsrly2023@gmail.com";
   static const String login = "Login";
   static const String email = "Email";
   static const String password = "Password";

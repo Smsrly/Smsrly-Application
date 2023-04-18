@@ -31,7 +31,7 @@ class PasswordDialog extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.center,
-            child: Text(StringManager.privacy, style: AppStyles.bodyText3),
+            child: Text(StringManager.privacy, style: AppStyles.bodyText2),
           ),
           15.he,
           Padding(

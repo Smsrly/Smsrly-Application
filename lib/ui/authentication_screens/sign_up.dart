@@ -220,8 +220,8 @@ class SignUpScreen extends StatelessWidget {
 
                                   verfProvider.email = viewModel.email!;
                               viewModel.onDestroy();
-                              Navigator.pushReplacementNamed(
-                                  context, RouteName.verifyRoute
+                              context.pushReplacementNamed(
+                                  RouteName.verifyRoute
                               );
                             });
                           },
@@ -243,8 +243,7 @@ class SignUpScreen extends StatelessWidget {
                       TextButton(
                           onPressed: () {
                             Provider.of<SignUpViewModel>(context,listen: false).onDestroy();
-                            Navigator.pushReplacementNamed(
-                                context, RouteName.loginRoute);
+                            context.pushReplacementNamed(RouteName.loginRoute);
                           },
                           child: Text(StringManager.login,
                               style: TextStyle(

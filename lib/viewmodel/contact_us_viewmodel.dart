@@ -30,7 +30,7 @@ class ContactUsViewModel with ChangeNotifier{
         body:  message,
         isHTML: false,
         subject: value as String,
-        recipients: ["smsrly2023@gmail.com"],
+        recipients: [StringManager.smsrlyEmail],
 
       );
       await FlutterEmailSender.send(email);
@@ -41,7 +41,7 @@ class ContactUsViewModel with ChangeNotifier{
           body:  message,
           isHTML: false,
           subject: value as String,
-          recipients: ["smsrly2023@gmail.com"],
+          recipients: [StringManager.smsrlyEmail],
           attachmentPaths: [image!.path]
       );
       await FlutterEmailSender.send(email);

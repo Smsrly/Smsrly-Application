@@ -56,7 +56,7 @@ class OnBoarding extends StatelessWidget {
                 child: RoundedButton(
                   onClick: () {
                     appViewModel.setSeenOnBoarding();
-                    Navigator.pushReplacementNamed(context, RouteName.loginRoute);
+                    context.pushReplacementNamed(RouteName.loginRoute);
                   },
                   text: StringManager.getStarted,
                 ),

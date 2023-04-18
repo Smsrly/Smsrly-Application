@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
         Text(StringManager.haveAnAccountMessage, style: AppStyles.bodyText2),
         TextButton(
             onPressed: () =>
-                Navigator.pushReplacementNamed(context, RouteName.signUpRoute),
+                context.pushReplacementNamed(RouteName.signUpRoute),
             child: Text(StringManager.signUp,
                 style: TextStyle(
                   fontSize: 17.sp,
@@ -124,8 +124,7 @@ class LoginScreen extends StatelessWidget {
                           authViewModel.loginUser(
                               _emailController.text, _passwordController.text,
                               () {
-                            Navigator.pushReplacementNamed(
-                                context, RouteName.splashRoute);
+                            context.pushReplacementNamed(RouteName.splashRoute);
                           });
                         },
                         text: StringManager.login,
@@ -142,8 +141,7 @@ class LoginScreen extends StatelessWidget {
                       return GoogleLoginButton(
                         onClick: () {
                           authViewModel.loginWithGoogle(() {
-                            Navigator.pushReplacementNamed(
-                                context, RouteName.splashRoute);
+                            context.pushReplacementNamed(RouteName.splashRoute);
                           });
                         },
                         text: StringManager.loginWithGoogle,

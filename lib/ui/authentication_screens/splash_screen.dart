@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:smsrly/ui/widgets/others/d_progress_bar.dart';
+import 'package:smsrly/utils/helpers/extensions.dart';
 import 'package:smsrly/utils/routes/route_name.dart';
 import 'package:smsrly/viewmodel/app_view_model.dart';
 
-import '../../res/colors.dart';
 import '../../res/strings.dart';
 import '../../viewmodel/splash_view_model.dart';
 
@@ -29,11 +28,11 @@ class SplashScreen extends StatelessWidget {
                   appProvider.currUser = provider.user;
                   appProvider.realEstateItems = provider.realEstateItems!;
                   appProvider.realEstateItemsMap = provider.realEstateItemsMap!;
-                  Navigator.of(context).pushReplacementNamed(RouteName.screensContainerRoute);
+                  context.pushReplacementNamed(RouteName.screensContainerRoute);
                 });
               }else{
                 Future.delayed(const Duration(seconds: 2), () {
-                  Navigator.of(context).pushReplacementNamed(RouteName.loginRoute);
+                  context.pushReplacementNamed(RouteName.loginRoute);
                 });
               }
             }
