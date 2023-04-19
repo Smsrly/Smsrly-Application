@@ -3,14 +3,18 @@ import 'dart:io';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:smsrly/domain/repository/realestate_repository.dart';
+import 'package:smsrly/models/validator.dart';
 import 'package:smsrly/res/strings.dart';
 
 import 'package:smsrly/models/realestate.dart';
 
 class SellRealEstateUseCase {
   final RealEstateRepository repository;
+  late ValidationService _validationService;
 
-  SellRealEstateUseCase(this.repository);
+  SellRealEstateUseCase(this.repository) {
+    _validationService = ValidationService();
+  }
 
   String? response;
 
@@ -23,10 +27,11 @@ class SellRealEstateUseCase {
       int roomNumber,
       int bathroomNumber,
       double area,
-      LatLng location) async {
+      LatLng location,
+      String phoneNumber) async {
     try {
       String response = _validatingRealEstate(title, description, area,
-          floorNumber, bathroomNumber, roomNumber, price);
+          floorNumber, bathroomNumber, roomNumber, price, phoneNumber);
 
       String city = await getLocationDetails(location, true);
       String country = await getLocationDetails(location, false);
@@ -104,8 +109,15 @@ class SellRealEstateUseCase {
     return pattern.hasMatch(text);
   }
 
-  String _validatingRealEstate(String title, String description, double area,
-      int floorNumber, int bathroomNumber, int roomNumber, double price) {
+  String _validatingRealEstate(
+      String title,
+      String description,
+      double area,
+      int floorNumber,
+      int bathroomNumber,
+      int roomNumber,
+      double price,
+      String phoneNumber) {
     if (!_isValidRealEstateText(title, true)) {
       return StringManager.realEstateTitleInvalid;
     }
@@ -132,6 +144,9 @@ class SellRealEstateUseCase {
       return StringManager.realEstatePriceInvalid;
     }
 
+    if (!_validationService.isValidNumber(phoneNumber)) {
+      return StringManager.phoneNumberWaring;
+    }
     return StringManager.success;
   }
 }

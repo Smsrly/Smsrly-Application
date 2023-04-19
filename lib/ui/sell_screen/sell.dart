@@ -89,9 +89,9 @@ class SellScreen extends StatelessWidget {
                   children: [
                     Center(
                         child: Text(
-                          StringManager.appName,
-                          style: TextStyle(fontFamily: "Inter", fontSize: 22.sp),
-                        )),
+                      StringManager.appName,
+                      style: TextStyle(fontFamily: "Inter", fontSize: 22.sp),
+                    )),
                     SizedBox(
                       height: 15.h,
                     ),
@@ -108,45 +108,45 @@ class SellScreen extends StatelessWidget {
                                   )),
                               child: sellViewModel.hasNoImages
                                   ? Center(
-                                  child: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Image(
-                                            image: const AssetImage(
-                                                "assets/images/add.png"),
-                                            width: 20.w,
-                                            height: 20.h),
-                                        SizedBox(
-                                          width: 6.w,
-                                        ),
-                                        Text(
-                                          StringManager.add,
-                                          style: TextStyle(
-                                              fontSize: 22.sp,
-                                              fontFamily: "IBMPlexSans",
-                                              fontWeight: FontWeight.w500),
-                                        )
-                                      ]))
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                          Image(
+                                              image: const AssetImage(
+                                                  "assets/images/add.png"),
+                                              width: 20.w,
+                                              height: 20.h),
+                                          SizedBox(
+                                            width: 6.w,
+                                          ),
+                                          Text(
+                                            StringManager.add,
+                                            style: TextStyle(
+                                                fontSize: 22.sp,
+                                                fontFamily: "IBMPlexSans",
+                                                fontWeight: FontWeight.w500),
+                                          )
+                                        ]))
                                   : CarouselSlider.builder(
-                                  options: CarouselOptions(
-                                    enlargeCenterPage: true,
-                                    enableInfiniteScroll: false,
-                                  ),
-                                  itemCount: sellViewModel.numOfImages,
-                                  itemBuilder: (context, index, realIndex) {
-                                    return ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(18)),
-                                      child: Image.file(
-                                          File(sellViewModel
-                                              .getImagePath(index)),
-                                          fit: BoxFit.fill),
-                                    );
-                                  })),
+                                      options: CarouselOptions(
+                                        enlargeCenterPage: true,
+                                        enableInfiniteScroll: false,
+                                      ),
+                                      itemCount: sellViewModel.numOfImages,
+                                      itemBuilder: (context, index, realIndex) {
+                                        return ClipRRect(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(18)),
+                                          child: Image.file(
+                                              File(sellViewModel
+                                                  .getImagePath(index)),
+                                              fit: BoxFit.fill),
+                                        );
+                                      })),
                           onTap: () async {
                             final image =
-                            await ImagePicker.platform.getMultiImage();
+                                await ImagePicker.platform.getMultiImage();
                             if (image != null) {
                               sellViewModel.addImages(image);
                             }
@@ -215,7 +215,8 @@ class SellScreen extends StatelessWidget {
                         // Map Here
                         child: Consumer<AppViewModel>(
                           builder: (context, appViewModel, child) {
-                            return GoogleMapsWidget(appViewModel.location,true);
+                            return GoogleMapsWidget(
+                                appViewModel.location, true);
                           },
                         )),
                     SizedBox(
@@ -274,10 +275,9 @@ class SellScreen extends StatelessWidget {
                 ),
                 Consumer<SellViewModel>(
                   builder: (context, sellViewModel, child) {
-
                     return RoundedButton(
-                      onClick: () {
-                        sellViewModel.uploadRealEstate(
+                      onClick: () async {
+                        String? res = await sellViewModel.uploadRealEstate(
                             _titleController.text,
                             _priceController.text,
                             _descriptionController.text,
@@ -285,12 +285,23 @@ class SellScreen extends StatelessWidget {
                             _roomsController.text,
                             _bathroomsController.text,
                             _areaController.text,
-                            viewModel.location);
+                            viewModel.location,
+                            viewModel.currUser!.phoneNumber);
+
+                        if (res ==
+                            StringManager.onRealEstateUploadedSuccessfully) {
+                          _titleController.text = '';
+                          _priceController.text = '';
+                          _descriptionController.text = '';
+                          _floorsController.text = '';
+                          _roomsController.text = '';
+                          _bathroomsController.text = '';
+                          _areaController.text = '';
+                        }
                       },
                       text: StringManager.submit,
                       visible: !sellViewModel.isLoading,
                     );
-
 
                     // return ElevatedButton(
                     //   onPressed: () {

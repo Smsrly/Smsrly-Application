@@ -129,7 +129,7 @@ class StringManager {
   static const String maxNumberOfImages = "max uploaded image is 20";
   static const String onRealEstateUploadedSuccessfully ="Real estate uploaded successfully";
   static const String userInfoUpdated = "updated";
-
+  static const String phoneNumberWaring ="add your phone number first to make it easy for any user to contact with you";
 
   // Args Keys
   static const String itemsMap = 'ItemsMap';

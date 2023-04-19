@@ -59,7 +59,8 @@ class SellViewModel extends ChangeNotifier {
       String rooms,
       String bathrooms,
       String area,
-      LatLng location) async {
+      LatLng location,
+      String phoneNumber) async {
     if (!_isLoading) {
       _isLoading = true;
       notifyListeners();
@@ -102,7 +103,8 @@ class SellViewModel extends ChangeNotifier {
           int.parse(rooms),
           int.parse(bathrooms),
           double.parse(area),
-          location);
+          location,
+          phoneNumber);
 
       if (res != StringManager.realEstateUploaded) {
         _isLoading = false;
@@ -123,11 +125,13 @@ class SellViewModel extends ChangeNotifier {
         return null;
       }
 
+      _pickedFileList.removeRange(0, _pickedFileList.length);
+      isSell = true;
       Utils.showToast(StringManager.onRealEstateUploadedSuccessfully, 1);
       _isLoading = false;
       notifyListeners();
     }
-    return null;
+    return StringManager.onRealEstateUploadedSuccessfully;
   }
 
   _validatingTextIsNotNull(String title, String price, String description,
