@@ -1,6 +1,13 @@
  # Smsrly
  
-### Project Features
+ <br>
+ <br>
+ 
+ ## ✨ Features
+ 
+<br>
+
+### 🔸 Project Features
 
 - Written in [Dart](https://dart.dev/)
 - Implementing MVVM architecture pattern.
@@ -8,6 +15,14 @@
 - State Management with [Provider](https://pub.dev/packages/provider)
 - Safe API call with [Http](https://pub.dev/packages/http)
 - Responsive [*](https://pub.dev/packages/flutter_screenutil)
+
+<br>
+<br>
+
+### 🔹 App Features
+
+<br>
+<br>
 
 ### Architecture 
 This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
