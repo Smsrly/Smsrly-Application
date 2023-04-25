@@ -82,5 +82,16 @@ Consists of three packages:
 <br>
 
 ## Prerequisites 📝
--  Android Studio(IDE) ,IntelliJ IDEA or VS code to run this project
+- Android Studio(IDE) ,IntelliJ IDEA or VS code to run this project
 - Make Sure that `Smsrly-BackEnd` is running at the same time
+
+
+<details>
+<summary><h3>Notes</h3></summary>
+ 
+- If you are using a `real device` as emualtor you need to add your ip to the baseUrl variable in `ApiConstants`.
+ 
+- If you are using an `Emualtor` you need to add `10.0.2.2` to the baseUrl variable in `ApiConstants`.
+
+ 
+</details>
