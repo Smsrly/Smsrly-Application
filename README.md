@@ -1,7 +1,10 @@
  # Smsrly 🏡
  
+`Smsrly` is a real estate system that acts as an intermediary
+between those who want to buy a property and those who want to sell it.
+
  <br>
- 
+
  ## ✨ Features
  
 ### 🔸 Project Features
