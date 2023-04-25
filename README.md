@@ -1,12 +1,9 @@
  # Smsrly
  
  <br>
- <br>
  
  ## ✨ Features
  
-<br>
-
 ### 🔸 Project Features
 
 - Written in [Dart](https://dart.dev/)
