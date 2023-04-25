@@ -2,6 +2,8 @@
  
 `Smsrly` is a real estate system that acts as an intermediary
 between those who want to buy a property and those who want to sell it.
+The goal of `Smsrly` is to protect people who wants to sell their real estate from
+deception and making an honest broker between buyers and sellers in the Middle East.
 
  <br>
 
