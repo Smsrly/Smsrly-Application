@@ -24,7 +24,7 @@ deception and making an honest broker between buyers and sellers in the Middle E
 ### 🔹 App Features
 
 - Authentication
-- Third-party Authentication: utilizes login with Google as a third-party authentication method.
+- Third-party Authentication: utilizes login with **Google** as a third-party authentication method.
 - Authorization
 - Auto Login
 - Reset Password
