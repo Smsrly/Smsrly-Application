@@ -105,6 +105,7 @@ Consists of three packages:
 - [GoogleMaps](https://pub.dev/packages/google_maps_flutter)
 - [ImagePicker](https://pub.dev/packages/image_picker)
 - [GeoLocator](https://pub.dev/packages/geolocator)
+- [CarouselSlider](https://pub.dev/packages/carousel_slider)
 
 
 <br>
