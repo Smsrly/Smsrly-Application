@@ -71,7 +71,7 @@ Data layer contains application data that are fetched from either the API or loc
 
 Consists of three packages:
 - `local`
-- `remote` contains **API Calls**
+- `api` contains **API Calls**
 - `repository` contains **implementations** of repository interfaces that are defined in the domain layer
 <br>
 
