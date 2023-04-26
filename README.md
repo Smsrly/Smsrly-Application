@@ -50,7 +50,7 @@ deception and making an honest broker between buyers and sellers in the Middle E
 <br>
 <br>
 
-## 🛠 Project Structure
+## 🛠 Project Architecture
 
 This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
 <br>
