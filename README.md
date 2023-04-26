@@ -19,7 +19,6 @@ deception and making an honest broker between buyers and sellers in the Middle E
 - Responsive [*](https://pub.dev/packages/flutter_screenutil)
 
 <br>
-<br>
 
 ### 🔹 App Features
 
