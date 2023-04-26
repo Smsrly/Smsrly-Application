@@ -23,6 +23,29 @@ deception and making an honest broker between buyers and sellers in the Middle E
 
 ### 🔹 App Features
 
+- Authentication
+- Authorization
+- Auto Login
+- Reset Password
+- Email Verification
+- Getting user location
+- Browse Real-Estates in Home Screen
+- Arrange The Real-Estates from the closest to the user to the furthest
+- Search and filter Real-Estates in explore screen
+- Viewing The Real-Estate details in show detail screen
+- Viewing Real-Estate location on the map
+- Ability to request and save the Real-Estates
+- For the owner, he can delete his Real-Estate and view the requests of it
+- The user can upload Real-Estate and add at least 5 pictures of it
+- can explore the pictures of the Real-Estate easily `carousel_slider` package
+- can view his uploads in uploads screen 
+- can view his requests in requests screen and can delete the request
+- can view his saves in saved screen
+- can logout from the application
+- can update (name, number, location), delete his account
+- can send an email to us
+
+
 <br>
 <br>
 
