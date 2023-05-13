@@ -14,6 +14,8 @@ class AppViewModel with ChangeNotifier {
   LatLng? _location;
 
   AppViewModel(this.userRepository);
+  
+  get userLocation => LatLng(currUser!.latitude!, currUser!.longitude!);
 
   get location => _location ?? LatLng(currUser!.latitude!, currUser!.longitude!);
 
