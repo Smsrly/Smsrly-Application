@@ -138,7 +138,7 @@ class EditProfileScreen extends StatelessWidget {
                           child: Consumer<AppViewModel>(
                             builder: (context, appViewModel, child) {
                               return GoogleMapsWidget(
-                                  appViewModel.location, true);
+                                  appViewModel.userLocation, true);
                             },
                           )),
                       Container(
