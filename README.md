@@ -2,8 +2,8 @@
  
  <br>
  
- ![project_poster](https://github.com/Smsrly/Smsrly/assets/90563044/d96d5b35-32b1-4abc-b009-2f0a707f3e6a)
- 
+![project_poster6](https://github.com/Smsrly/Smsrly/assets/90563044/9f01297e-a2fb-46b2-b130-8b15bbe8042f)
+
  <br>
  
 - `Smsrly` is a real estate system that acts as an intermediary
