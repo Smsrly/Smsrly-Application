@@ -1,5 +1,11 @@
  # Smsrly 🏡
  
+ <br>
+ 
+ ![project_poster](https://github.com/Smsrly/Smsrly/assets/90563044/d96d5b35-32b1-4abc-b009-2f0a707f3e6a)
+ 
+ <br>
+ 
 - `Smsrly` is a real estate system that acts as an intermediary
 between those who want to buy a property and those who want to sell it.
 - The goal of `Smsrly` is to protect people who wants to sell their real estate from
