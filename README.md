@@ -116,7 +116,7 @@ Consists of three packages:
 
 <br>
 
-## Prerequisites 📝
+## 📝 Prerequisites
 - Android Studio(IDE) ,IntelliJ IDEA or VS code to run this project
 - Make Sure that `Smsrly-BackEnd` is running at the same time
 
