@@ -1,132 +1,91 @@
- # Smsrly 🏡
- 
- <br>
- 
+# Smsrly 🏡
+
 ![project_poster6](https://github.com/Smsrly/Smsrly/assets/90563044/9f01297e-a2fb-46b2-b130-8b15bbe8042f)
 
- <br>
- 
-- `Smsrly` is a real estate system that acts as an intermediary
-between those who want to buy a property and those who want to sell it.
-- The goal of `Smsrly` is to protect people who wants to sell their real estate from
-deception and making an honest broker between buyers and sellers in the Middle East.
+Smsrly is a real estate platform that serves as an intermediary between property buyers and sellers, with a primary focus on ensuring transparency and honesty in the Middle East real estate market.
 
- <br>
+## ✨ Features
 
- ## ✨ Features
- 
 ### 🔸 Project Features
 
-- Written in [Dart](https://dart.dev/)
-- Implementing MVVM architecture pattern.
-- Following clean architecture principles.
-- State Management with [Provider](https://pub.dev/packages/provider)
-- Safe API call with [Http](https://pub.dev/packages/http)
-- Responsive [*](https://pub.dev/packages/flutter_screenutil)
-
-<br>
+- **Programming Language:** Written in [Dart](https://dart.dev/).
+- **Architecture:** Implements the MVVM (Model-View-ViewModel) architecture pattern.
+- **Clean Architecture:** Follows clean architecture principles for code organization.
+- **State Management:** Utilizes [Provider](https://pub.dev/packages/provider) for efficient state management.
+- **API Handling:** Ensures safe API calls using [Http](https://pub.dev/packages/http).
+- **Responsive Design:** Implements responsiveness using [flutter_screenutil](https://pub.dev/packages/flutter_screenutil).
 
 ### 🔹 App Features
 
-- Authentication
-- Third-party Authentication: utilizes login with **Google** as a third-party authentication method.
-- Authorization
-- Auto Login
-- Reset Password
-- Email Verification
-- Getting user location
-- Browse Real-Estates in Home Screen
-- Arrange The Real-Estates from the closest to the user to the furthest
-- Search and filter Real-Estates in explore screen
-- Viewing The Real-Estate details in show detail screen
-- Viewing Real-Estate location on the map
-- Ability to request and save the Real-Estates
-- For the owner, he can delete his Real-Estate and view the requests of it
-- The user can upload Real-Estate and add at least 5 pictures of it
-- can explore the pictures of the Real-Estate easily `carousel_slider` package
-- can view his uploads in uploads screen 
-- can view his requests in requests screen and can delete the request
-- can view his saves in saved screen
-- can logout from the application
-- can update (name, number, location), delete his account
-- can send an email to us
-
-
-<br>
-<br>
+- **Authentication:** Supports user authentication.
+- **Third-party Authentication:** Allows users to log in using their Google accounts.
+- **Authorization:** Manages user permissions and access.
+- **Auto Login:** Provides an automatic login feature for returning users.
+- **Password Reset:** Allows users to reset their passwords.
+- **Email Verification:** Supports email verification for added security.
+- **Location Services:** Retrieves user location for location-based features.
+- **Property Listing:** Enables users to browse real estate listings on the home screen.
+- **Location-Based Sorting:** Sorts property listings based on proximity to the user's location.
+- **Search and Filter:** Provides search and filtering options for property listings on the explore screen.
+- **Property Details:** Allows users to view detailed information about a property.
+- **Map Integration:** Displays property locations on a map.
+- **Request and Save:** Users can request more information about a property or save it for later.
+- **Property Management:** Property owners can delete their listings and view request history.
+- **Listing Upload:** Property owners can upload property listings with at least 5 images.
+- **Image Carousel:** Utilizes the `carousel_slider` package for easy image exploration.
+- **User Profile:** Allows users to view their uploads, requests, and saved listings.
+- **Account Management:** Users can update their personal information, delete their accounts, and contact support via email.
+- **Logout:** Provides a logout option.
 
 ## 🛠 Project Architecture
 
-This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
-<br>
-<br>
-![MVVM](https://user-images.githubusercontent.com/90563044/234581516-1e5fab58-02b6-4ada-acb3-90e1ef99c28d.jpg)
-
-<br>
-<br>
-
-
-The project separated into three main layers:
-- Data
-- Presentation
-- Domain
-<br>
+Smsrly employs the MVVM (Model-View-ViewModel) architecture, which separates the application into three main layers:
 
 ### 🔸 Data
-Data layer contains application data that are fetched from either the API or local.
 
-Consists of three packages:
+The data layer contains application data fetched from the API or stored locally. It includes three packages:
+
 - `local`
-- `network` contains **API Calls**
-- `repository` contains **implementations** of repository interfaces that are defined in the domain layer
-<br>
+- `network` (API calls)
+- `repository` (implementations of repository interfaces defined in the domain layer)
 
 ### 🔸 Presentation
-Presentation layer is responsible for displaying application data on the screen. It contains UI elements that render the data on the screen and ViewModel classes that store and manage data.
 
-Consists of two packages:
+The presentation layer is responsible for displaying data on the screen, including UI elements and ViewModel classes for data management. It consists of two packages:
+
 - `viewmodel`
-- `ui` contains the **Widgets** that we had used in the application
-<br>
+- `ui` (UI widgets used in the application)
 
 ### 🔸 Domain
-Domain layer is the central layer of the project. This layer is a bridge between the data layer and the presentation layer.
 
-Consists of three packages:
-- `model` contains data classes that hold the data retrieved from the data layer to be used later on in the presentation layer to expose it to UI
-- `repository` contains repository **interfaces** to abstract the domain layer from the data layer
-- `usecase` contains use cases(interactors) that handle the business logic, which are reused by multiple ViewModels
+The domain layer serves as the bridge between the data and presentation layers. It includes three packages:
 
-<br>
+- `model` (data classes for holding data from the data layer)
+- `repository` (repository interfaces abstracting the domain from the data layer)
+- `usecase` (use cases or interactors for handling business logic used by multiple ViewModels)
 
 ## 📚 Packages
 
-<br>
+Smsrly utilizes various Dart packages to enhance its functionality:
 
 - [Provider](https://pub.dev/packages/provider)
 - [Http](https://pub.dev/packages/http)
-- [ScreenUtil](https://pub.dev/packages/flutter_screenutil)   `To make the app responsive`
-- [SharedPrefrences](https://pub.dev/packages/shared_preferences)
-- [GoogleSignIn](https://pub.dev/packages/google_sign_in)
-- [GoogleMaps](https://pub.dev/packages/google_maps_flutter)
-- [ImagePicker](https://pub.dev/packages/image_picker)
-- [GeoLocator](https://pub.dev/packages/geolocator)
-- [CarouselSlider](https://pub.dev/packages/carousel_slider)
-
-
-<br>
+- [flutter_screenutil](https://pub.dev/packages/flutter_screenutil) (for responsiveness)
+- [shared_preferences](https://pub.dev/packages/shared_preferences)
+- [google_sign_in](https://pub.dev/packages/google_sign_in)
+- [google_maps_flutter](https://pub.dev/packages/google_maps_flutter)
+- [image_picker](https://pub.dev/packages/image_picker)
+- [geolocator](https://pub.dev/packages/geolocator)
+- [carousel_slider](https://pub.dev/packages/carousel_slider)
 
 ## 📝 Prerequisites
-- Android Studio(IDE) ,IntelliJ IDEA or VS code to run this project
-- Make Sure that `Smsrly-BackEnd` is running at the same time
 
+To run this project, you'll need the following:
 
-<details>
-<summary><h3>Notes</h3></summary>
- 
-- If you are using a `real device` as emualtor you need to add your ip to the baseUrl variable in `ApiConstants`.
- 
-- If you are using an `Emualtor` you need to add `10.0.2.2` to the baseUrl variable in `ApiConstants`.
+- An IDE like Android Studio, IntelliJ IDEA, or VS Code.
+- Ensure that `Smsrly-BackEnd` is running simultaneously.
 
- 
-</details>
+**Notes:**
+
+- If you're using a real device as an emulator, add your IP to the `baseUrl` variable in `ApiConstants`.
+- If you're using an emulator, add `10.0.2.2` to the `baseUrl` variable in `ApiConstants`.
